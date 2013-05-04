@@ -1,0 +1,5 @@
+; This effect deforms the contents of the
+; screen using different predefined equations
+; that cannot be edited at this time; Choose your deform type (0 to 8)fDeformationType 7; Alpha (start -> end) from 0 to 1
+; Indicates the amount of transparency of the
+; result over the current screen contentsfAlphaVariation 1 1

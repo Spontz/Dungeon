@@ -1,0 +1,4 @@
+; This effect deforms the contents of the
+; screen assigning new texture coordinates
+; calculated dynamically
+; Equation defining the deformation type; Available variables x, y, r, p, t; We must return u, v coordinates for the texturestring u = (x + 1)/2; v = (y + 1) / 2;; Equation defining the RGBA values associated with the gridstring red=1; green=1; blue=1; alpha=beat;

@@ -1,0 +1,10 @@
+; This effect desaturates the color
+; of the current scene. As we have
+; to read the entire screen and restore
+; it again, it can slow down the performance
+; while used
+
+; An amount of 1 causes black and white
+; while 0 has no effect over the image
+
+fAmount 0 1

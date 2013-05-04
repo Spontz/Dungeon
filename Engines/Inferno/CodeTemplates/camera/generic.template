@@ -1,0 +1,1 @@
+; This element puts and modify all the; camera properties along time; We need to put one camera before; drawing a 3D element; We can put only one camera and then; render several 3D objects or use a; separate camera for each effectfreeCamera 1cCameraProperties data/pool/cameras/default.cam

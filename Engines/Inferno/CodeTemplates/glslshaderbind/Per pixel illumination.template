@@ -1,0 +1,12 @@
+; This section enables a glsl shader that renders
+; an object following a per pixel illumination shader
+; The only needed parameter is the light direction
+
+; FRAGMENT SHADER
+string data/pool/shaders/per pixel illumination/vertex.txt
+
+; VERTEX SHADER
+string data/pool/shaders/per pixel illumination/fragment.txt
+
+; PARAMETERS
+string vec3 lightDir v1=1; v2=0; v3=1;

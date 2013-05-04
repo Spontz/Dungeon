@@ -1,0 +1,7 @@
+; This section enables a glsl shader
+
+; VERTEX SHADER
+string data/pool/shaders/edgedetector/vertex.txt
+
+; FRAGMENT SHADER
+string data/pool/shaders/edgedetector/fragment.txtstring sampler2D colorMap rtt0string float width v1=rttWidth;string float height v1=rttHeight;string float intensity v1=100;

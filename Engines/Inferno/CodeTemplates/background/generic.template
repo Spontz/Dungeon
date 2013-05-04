@@ -1,0 +1,1 @@
+; This effect draws the specified; image over the screen, covering; the previous content; Useful if it is the first painted section; To set the screen backgroundsBackgroundPicture data/pool/myPicture.jpg

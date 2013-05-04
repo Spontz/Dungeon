@@ -1,0 +1,19 @@
+string data/pool/logo/frame.lwo
+
+string rate = 500;initialParticles=0;
+
+string x=px0; y=py + 0.001; z=pz0;
+string rx=0;ry=0;rz=0;
+string red=0; green=0.5; blue=0.4; alpha=1;
+
+string size = 0.1*select(sin(2*pz+3*t),sin(2*pz+3*t),0);
+string life = 0.5-age;
+
+;Texture buffer to use as particle
+fRTTbuffer 0
+fDisableDepthBuffer 1
+
+; Position of the sources through time
+sTranslate tx=0; ty=0; tz=0;
+sRotate    rx=0; ry=0; rz=0;
+sScale     sx=1; sy=1; sz=0;

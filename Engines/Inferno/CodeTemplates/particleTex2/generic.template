@@ -1,0 +1,23 @@
+string data/pool/logo/logonormal.jpg
+string rate=500;initialParticles=100;
+
+string x=px0; y=py0; z=pz0;
+string rx=0;ry=0;rz=0;
+string red=r0; green=g0; blue=b0; alpha=1;
+
+string size = 10;
+string life = 1;
+
+; Texture buffer to use as particle
+fRTTparticleBuffer 0
+fDisableDepthBuffer 1
+fThreshold 150
+
+; Texture buffer to use as sources
+fUseRTTbuffer 0
+fRTTsourcesBuffer 7
+
+; Position of the sources through time
+sTranslate tx=0; ty=0; tz=0;
+sRotate    rx=0; ry=0; rz=0;
+sScale     sx=1; sy=1; sz=1;

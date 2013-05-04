@@ -1,0 +1,2 @@
+; The box blur effect only takes a single parameter
+fRadius 2

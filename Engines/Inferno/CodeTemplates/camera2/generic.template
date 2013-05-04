@@ -1,0 +1,13 @@
+; **************************
+; * Equation-driven camera *
+; **************************
+
+; Positioning
+sPosition  posX=0;  posY=0;  posZ=100;
+sAngle     angX=0;  angY=0;  angZ=0;
+sTarget   lookX=0; lookY=0; lookZ=0;
+
+; Other parameters
+sFov fov=90;
+sZplanez zNear=0.1; zFar=1000;
+sRoll roll=0;
