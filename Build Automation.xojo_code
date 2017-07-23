@@ -14,29 +14,29 @@
 					AppliesTo = 1
 					Destination = 0
 					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9kZW1vLmV4ZQ==
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9mbW9kLmRsbA==
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9nbGV3MzIuZGxs
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9jZ0dMLmRsbA==
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9jZy5kbGw=
+					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2NnLmRsbA==
+					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2NnR0wuZGxs
+					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2RlbW8uZXhl
+					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2Ztb2QuZGxs
+					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2dsZXczMi5kbGw=
 				End
 				Begin CopyFilesBuildStep CopyOGLCodeTemplates
 					AppliesTo = 1
 					Destination = 0
 					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9Db2RlVGVtcGxhdGVzLw==
+					FolderItem = Li4vLi4vU3BvbnR6L0VuZ2luZS9kZW1vJTIwZWRpdG9yL0VuZ2luZXMvb3BlbkdML0NvZGVUZW1wbGF0ZXMv
 				End
 				Begin CopyFilesBuildStep CopyOGLProjectTemplates
 					AppliesTo = 1
 					Destination = 0
 					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9Qcm9qZWN0VGVtcGxhdGVzLw==
+					FolderItem = Li4vLi4vU3BvbnR6L0VuZ2luZS9kZW1vJTIwZWRpdG9yL0VuZ2luZXMvb3BlbkdML1Byb2plY3RUZW1wbGF0ZXMv
 				End
 				Begin CopyFilesBuildStep CopyOGLFonts
 					AppliesTo = 1
 					Destination = 0
 					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vLi4vLi4vRG9jdW1lbnRzL1Nwb250ei9FbmdpbmUvZGVtbyUyMGVkaXRvci9FbmdpbmVzL29wZW5HTC9mb250cy8=
+					FolderItem = Li4vLi4vU3BvbnR6L0VuZ2luZS9kZW1vJTIwZWRpdG9yL0VuZ2luZXMvb3BlbkdML2ZvbnRzLw==
 				End
 			End
 #tag EndBuildAutomation

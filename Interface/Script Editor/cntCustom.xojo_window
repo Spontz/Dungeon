@@ -126,7 +126,6 @@ Begin ContainerControl cntCustom
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Bar type"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -194,7 +193,6 @@ Begin ContainerControl cntCustom
       Selectable      =   False
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Script template"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -355,7 +353,6 @@ Begin ContainerControl cntCustom
       Selectable      =   False
       TabIndex        =   7
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Blend Source"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -390,7 +387,6 @@ Begin ContainerControl cntCustom
       Selectable      =   False
       TabIndex        =   8
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Blend Destination"
       TextAlign       =   0
       TextColor       =   &c00000000
