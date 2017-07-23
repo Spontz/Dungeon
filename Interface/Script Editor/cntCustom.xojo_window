@@ -64,8 +64,8 @@ Begin ContainerControl cntCustom
       TabStop         =   True
       Text            =   ""
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Courier"
-      TextSize        =   10.0
+      TextFont        =   "Consolas"
+      TextSize        =   11.0
       TextUnit        =   0
       Top             =   0
       Underline       =   False
@@ -104,7 +104,7 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   58
    End
-   Begin Label StaticText1
+   Begin Label lblBarType
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -130,10 +130,10 @@ Begin ContainerControl cntCustom
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   10.0
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   0
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   126
@@ -171,7 +171,7 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   126
    End
-   Begin Label StaticText2
+   Begin Label lblScriptTemplate
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -197,7 +197,7 @@ Begin ContainerControl cntCustom
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   10.0
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   49
       Transparent     =   False
@@ -331,7 +331,7 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   126
    End
-   Begin Label StaticText3
+   Begin Label lblBlendSource
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -357,7 +357,7 @@ Begin ContainerControl cntCustom
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   10.0
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   101
       Transparent     =   False
@@ -365,7 +365,7 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   90
    End
-   Begin Label StaticText4
+   Begin Label lblBlendDestination
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -391,7 +391,7 @@ Begin ContainerControl cntCustom
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   10.0
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   150
       Transparent     =   False
