@@ -1,0 +1,87 @@
+#tag FileTypeSet
+	#tag FileType
+		CodeName=SVEditorProject
+		DocIcon=Demoengine IDE.xojo_resources;&h0
+		Extension=spp
+		Flags=&h1
+		MacCreator=SVEd
+		MacType=SVpj
+		Name=SVEditor/project
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=False
+	#tag EndFileType
+
+	#tag FileType
+		CodeName=Png
+		Extension=.png
+		Flags=&h0
+		MacCreator=ogle
+		MacType=PNGf
+		Name=image/png
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+	#tag FileType
+		CodeName=Jpeg
+		Extension=.jfif;.jpe;.jpeg;.jpg
+		Flags=&h0
+		MacCreator=prvw
+		MacType=JPEG
+		Name=image/jpeg
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+	#tag FileType
+		CodeName=Mp3
+		Extension=.mp3;.swa
+		Flags=&h0
+		MacCreator=TVOD
+		MacType=Mp3 
+		Name=audio/mp3
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+	#tag FileType
+		CodeName=Text
+		Extension=.text;.txt
+		Flags=&h0
+		MacCreator=????
+		MacType=TEXT
+		Name=text/plain
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+	#tag FileType
+		CodeName=Any
+		Extension=
+		Flags=&h0
+		MacCreator=????
+		MacType=????
+		Name=special/any
+		UTI=
+		UTIConformsTo=
+		Description=
+		MimeType=
+		Imported=True
+	#tag EndFileType
+
+#tag EndFileTypeSet
