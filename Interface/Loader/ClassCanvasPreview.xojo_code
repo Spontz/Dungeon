@@ -181,7 +181,7 @@ Inherits Canvas
 		  theOrigin = getOrigin
 		  
 		  if StoredImage <> nil then
-		    buffer = newPicture(StoredImage.Width, StoredImage.Height, screen(0).Depth)
+		    buffer = new Picture(StoredImage.Width, StoredImage.Height, screen(0).Depth)
 		    buffer.Graphics.DrawPicture (StoredImage, 0, 0, StoredImage.Width, StoredImage.Height)
 		    
 		    me.Graphics.DrawPicture buffer, theOrigin(0), theOrigin(1)
