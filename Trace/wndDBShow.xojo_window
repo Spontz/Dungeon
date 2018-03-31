@@ -62,6 +62,7 @@ Begin Window wndDBShow
       ScrollbarHorizontal=   True
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -160,6 +161,7 @@ Begin Window wndDBShow
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True

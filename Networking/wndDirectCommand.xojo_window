@@ -191,13 +191,13 @@ Begin Window wndDirectCommand
    Begin classConnector myConnector
       Address         =   "localhost"
       ControlOrder    =   "4"
-      Enabled         =   "True"
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
       Port            =   28000
       Response        =   ""
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
    End
    Begin Label lblResult
       AutoDeactivate  =   True

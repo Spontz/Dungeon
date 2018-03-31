@@ -406,6 +406,7 @@ Begin Window wndVideoSettings
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True

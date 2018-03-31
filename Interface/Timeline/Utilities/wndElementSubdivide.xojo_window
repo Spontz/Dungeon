@@ -45,7 +45,7 @@ Begin Window wndElementSubdivide
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -76,7 +76,7 @@ Begin Window wndElementSubdivide
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
@@ -106,7 +106,7 @@ Begin Window wndElementSubdivide
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   2
       TabPanelIndex   =   0
@@ -140,7 +140,7 @@ Begin Window wndElementSubdivide
          LockRight       =   False
          LockTop         =   True
          Multiline       =   False
-         Scope           =   "0"
+         Scope           =   0
          Selectable      =   False
          TabIndex        =   0
          TabPanelIndex   =   0
@@ -176,7 +176,7 @@ Begin Window wndElementSubdivide
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
@@ -207,7 +207,7 @@ Begin Window wndElementSubdivide
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True

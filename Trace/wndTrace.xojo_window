@@ -63,6 +63,7 @@ Begin Window wndTrace
       ScrollbarHorizontal=   True
       ScrollBarVertical=   True
       SelectionType   =   1
+      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -214,13 +215,14 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
       Priority        =   5
       Scope           =   0
       StackSize       =   0
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
    End
 End
 #tag EndWindow

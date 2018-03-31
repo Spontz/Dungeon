@@ -1842,6 +1842,7 @@ Protected Class classDemo
 		    demoDB.Commit
 		  End if
 		  
+		  DemoEndTimeSet(theTime)
 		End Sub
 	#tag EndMethod
 
@@ -2193,6 +2194,11 @@ Protected Class classDemo
 		  If demoDB.error then MsgBox demoDB.errormessage
 		End Sub
 	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event demoEndTimeSet(theTime as single)
+	#tag EndHook
 
 
 	#tag Property, Flags = &h21

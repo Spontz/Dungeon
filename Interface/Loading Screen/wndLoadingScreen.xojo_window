@@ -33,7 +33,7 @@ Begin Window wndLoadingScreen
       Mode            =   0
       Period          =   2000
       Scope           =   0
-      TabPanelIndex   =   "0"
+      TabPanelIndex   =   0
    End
    Begin Label StaticText2
       AutoDeactivate  =   True

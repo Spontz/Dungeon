@@ -51,7 +51,7 @@ Inherits Canvas
 		    // Erase the selected sections
 		    demo.deleteSelectedBars
 		    
-		    me.RedrawAll
+		    me.Invalidate
 		    
 		  else
 		    return controller.HandleKey(key)
@@ -189,7 +189,7 @@ Inherits Canvas
 		  end if
 		  
 		  // Window refreshing
-		  me.RedrawAll
+		  me.Invalidate
 		  
 		  // We return true to allow the MouseDrag event to happen
 		  return true
@@ -211,14 +211,14 @@ Inherits Canvas
 		    
 		    SetDemoEndTime(coordinate2time(x))
 		    
-		    me.RedrawAll
+		    me.Invalidate
 		    
 		  elseif clickedItem = "startTimeMarker" then
 		    if x < 16 then x = 16
 		    
 		    SetDemoStartTime(coordinate2time(x))
 		    
-		    me.RedrawAll
+		    me.Invalidate
 		    
 		  elseif clickedItem = "horizontalRuler" then
 		    // The user clicked in the Horizontal Ruler *
@@ -241,7 +241,7 @@ Inherits Canvas
 		      
 		    end if
 		    
-		    me.RedrawAll
+		    me.Invalidate
 		    
 		  elseif clickedItem = "lessZoom" then
 		    //******************************************
@@ -281,6 +281,8 @@ Inherits Canvas
 		      YdragStart = y
 		    end if
 		    
+		    me.Invalidate
+		    
 		    //Now we check for time and layer inconsistences
 		    //tempSingle = 0
 		    //tempInteger = 0
@@ -312,7 +314,6 @@ Inherits Canvas
 		    'demo.setBarLayer(SelectedSections(i,0), SelectedSections(i,6) - tempInteger)
 		    'next
 		    
-		    me.RedrawAll
 		    
 		  elseif clickedItem = "emptyArea" then
 		    if NthField(action, " ", 1) = "drawingBar" then
@@ -337,12 +338,13 @@ Inherits Canvas
 		      // Send this event in order to update the start and end times in the interface
 		      AddBarToSelection
 		      
-		      me.RedrawAll
 		      
 		    elseif action = "selecting" then
 		      // The user is selecting bars with the selection rectangle
 		      SetSelectionSquare (xdragStart, ydragStart, x, y)
 		    end if
+		    
+		    me.Invalidate
 		    
 		  end if
 		End Sub
@@ -413,7 +415,6 @@ Inherits Canvas
 		    
 		  elseif clickedItem = "lessZoom" then
 		    me.pixelsPerSecond = me.pixelsPerSecond * 0.8
-		    me.RedrawAll
 		    
 		  elseif clickedItem = "emptyArea" then
 		    if NthField(action, " ", 1) = "drawingBar" then
@@ -459,17 +460,28 @@ Inherits Canvas
 		  // No bars remain selected, clear the edition area
 		  if demo.countSelectedBars = 0 then SelectionCleared
 		  
-		  me.RedrawAll
+		  me.Invalidate
+		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  if background <> nil then
-		    g.DrawPicture(Background, 0, 0)
-		  end if
+		  if demo = nil then return
 		  
-		  Paint
+		  dim startTicks as integer = ticks
+		  
+		  me.drawBackground(g)
+		  me.drawTimeRule(g)
+		  me.drawBars(g)
+		  me.drawTrackRule(g)
+		  me.drawEndMarker(g)
+		  me.drawTimeMarker(g)
+		  me.drawStartMarker(g)
+		  me.drawSelectionSquare(g)
+		  
+		  // Only draw these markers if we have something to paste
+		  if CopyPaste.Count > 0 then me.drawUsedTimes(g)
 		End Sub
 	#tag EndEvent
 
@@ -534,7 +546,8 @@ Inherits Canvas
 			//We create the undo item
 			AddUndoAction
 			
-			me.RedrawAll
+			me.Invalidate
+			
 		End Function
 	#tag EndMenuHandler
 
@@ -578,28 +591,28 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawBackground()
+		Private Sub drawBackground(g as graphics)
 		  dim usedBackground, unusedBackground as color//Color theme
 		  
 		  usedBackground = &cffffff
 		  unusedBackground = &ceeeeee
 		  
 		  //Rect background
-		  background.graphics.foreColor = UsedBackground
-		  background.graphics.FillRect (16,0,time2coordinate(demo.getDemoEndTime) - 16,me.height)
+		  g.foreColor = UsedBackground
+		  g.FillRect (16,0,time2coordinate(demo.getDemoEndTime) - 16,me.height)
 		  
-		  background.graphics.foreColor = UnusedBackground
-		  background.graphics.FillRect (time2coordinate(demo.getDemoEndTime),0,me.width - 16,me.height)
-		  background.graphics.FillRect (16,0,time2coordinate(demo.getDemoStartTime) - 16,me.height)
+		  g.foreColor = UnusedBackground
+		  g.FillRect (time2coordinate(demo.getDemoEndTime),0,me.width - 16,me.height)
+		  g.FillRect (16,0,time2coordinate(demo.getDemoStartTime) - 16,me.height)
 		  
 		  //Less zoom button
-		  background.graphics.drawpicture lesszoom,0,0
+		  g.drawpicture lesszoom,0,0
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawBar(barID as string)
+		Private Sub drawBar(g as graphics, barID as string)
 		  dim barData as Dictionary
 		  dim EffectBorderColor, EffectFillColor as Color
 		  dim EffectTextColor as Color
@@ -647,14 +660,14 @@ Inherits Canvas
 		    end if
 		  end if
 		  
-		  background.graphics.ForeColor = EffectFillColor
-		  background.graphics.FillRoundRect (startTime, layer, duration, elementHeight - 1, 5 ,5)
-		  background.graphics.ForeColor = EffectBorderColor
-		  background.graphics.DrawRoundRect (startTime, layer, duration, elementHeight - 1, 5, 5)
+		  g.ForeColor = EffectFillColor
+		  g.FillRoundRect (startTime, layer, duration, elementHeight - 1, 5 ,5)
+		  g.ForeColor = EffectBorderColor
+		  g.DrawRoundRect (startTime, layer, duration, elementHeight - 1, 5, 5)
 		  
 		  //Text writting
-		  background.graphics.TextFont = "Helvetica"
-		  background.graphics.TextSize = 10
+		  g.TextFont = "Helvetica"
+		  g.TextSize = 10
 		  
 		  //We choose the text to write depending of the section type
 		  dim theString as string
@@ -670,43 +683,49 @@ Inherits Canvas
 		  if endTime - startTime > 16 then
 		    // There is space for the text, so draw it
 		    EffectTextColor = &cFFFFFF
-		    background.graphics.ForeColor = EffectTextColor
-		    background.graphics.DrawString (theString, startTime + 2, 11 + layer, duration - 4, true)
+		    g.ForeColor = EffectTextColor
+		    g.DrawString (theString, startTime + 2, 11 + layer, duration - 4, true)
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawBars()
+		Private Sub drawBars(g as graphics)
 		  dim barIDs() as string
 		  dim i as integer
 		  
 		  // Get the list of bars to draw
-		  barIDs = demo.GetBarsToDraw(ruleStartTime, coordinate2time(background.graphics.Width))
+		  barIDs = demo.GetBarsToDraw(ruleStartTime, coordinate2time(g.Width))
 		  
 		  // And draw them
 		  for i=0 to UBound(barIDs)
-		    drawBar(barIDs(i))
+		    drawBar(g, barIDs(i))
 		  next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawEndMarker()
+		Private Sub drawEndMarker(g as graphics)
 		  dim positionX as single
 		  dim LineColor as color
 		  
 		  LineColor = &c006600
 		  positionX = time2coordinate(demo.getDemoEndTime)
 		  
-		  background.graphics.foreColor = LineColor
-		  background.graphics.drawline (positionX,0,positionX,me.height)
-		  background.graphics.drawpicture (markergreenright, positionX - 5, 5)
+		  g.foreColor = LineColor
+		  g.drawline (positionX,0,positionX,me.height)
+		  g.drawpicture (markergreenright, positionX - 5, 5)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawStartMarker()
+		Private Sub drawSelectionSquare(g as graphics)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub drawStartMarker(g as graphics)
 		  dim positionX as single
 		  dim LineColor as color
 		  
@@ -714,15 +733,15 @@ Inherits Canvas
 		  positionX = time2coordinate(demo.getDemoStartTime)
 		  
 		  if positionX >= 16 then
-		    background.graphics.foreColor = LineColor
-		    background.graphics.drawline (positionX,0,positionX,me.height)
-		    background.graphics.drawpicture (markergreenleft, positionX - 5, 5)
+		    g.foreColor = LineColor
+		    g.drawline (positionX,0,positionX,me.height)
+		    g.drawpicture (markergreenleft, positionX - 5, 5)
 		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawTimeMarker()
+		Private Sub drawTimeMarker(g as Graphics)
 		  dim positionX as single
 		  dim LineColor as color
 		  
@@ -734,9 +753,9 @@ Inherits Canvas
 		    positionX = time2coordinate(controller.Engine.runTime)
 		    
 		    if positionX >= 16 then
-		      background.graphics.foreColor = LineColor
-		      background.graphics.drawline (positionX,0,positionX,me.height)
-		      background.graphics.drawpicture (markerred, positionX - 5, 5)
+		      g.foreColor = LineColor
+		      g.drawline (positionX,0,positionX,me.height)
+		      g.drawpicture (markerred, positionX - 5, 5)
 		    end if
 		    
 		    SetCurrentTime controller.Engine.runTime
@@ -745,7 +764,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawTimeRule()
+		Private Sub drawTimeRule(g as graphics)
 		  dim RuleBackgroundLines as Color
 		  dim RuleBackground, RuleDivisionsColor, RuleBorderColor as Color
 		  
@@ -759,36 +778,36 @@ Inherits Canvas
 		  RuleBackgroundLines = RGB(220,220,220)
 		  
 		  // TimeLine Background
-		  background.graphics.foreColor = RuleBackground
-		  background.graphics.FillRect (16,0,me.width - 16, 16)
+		  g.foreColor = RuleBackground
+		  g.FillRect (16,0,me.width - 16, 16)
 		  
 		  // TimeLine Rectangle
-		  background.graphics.foreColor = RuleBorderColor
-		  background.graphics.DrawRect (16,0,me.width - 16, 16)
+		  g.foreColor = RuleBorderColor
+		  g.DrawRect (16,0,me.width - 16, 16)
 		  
 		  // TimeLine Time Divisions and timing (text)
 		  dim x as integer
 		  dim i as integer
 		  
 		  x = time2coordinate(me.RulestartTime)
-		  background.graphics.textSize = 9
-		  background.graphics.textFont = "Helvetica"
+		  g.textSize = 9
+		  g.textFont = "Helvetica"
 		  
 		  while x < me.width
-		    background.graphics.foreColor = RuleDivisionsColor
-		    background.graphics.DrawLine (x, 1, x, 5)
+		    g.foreColor = RuleDivisionsColor
+		    g.DrawLine (x, 1, x, 5)
 		    
-		    background.graphics.drawstring (cstr(round(100 * coordinate2time(x)) / 100), x, 13)
+		    g.drawstring (cstr(round(100 * coordinate2time(x)) / 100), x, 13)
 		    
-		    background.graphics.foreColor = RuleBackgroundLines
-		    background.graphics.DrawLine (x, 16, x, me.height)
+		    g.foreColor = RuleBackgroundLines
+		    g.DrawLine (x, 16, x, me.height)
 		    x = x + 25
 		  wend
 		  
 		  x = time2coordinate(me.RulestartTime)
 		  while x < me.width
-		    background.graphics.foreColor = RuleDivisionsColor
-		    background.graphics.DrawLine (x, 1, x, 3)
+		    g.foreColor = RuleDivisionsColor
+		    g.DrawLine (x, 1, x, 3)
 		    
 		    x = x + 5
 		  wend
@@ -796,7 +815,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawTrackRule()
+		Private Sub drawTrackRule(g as graphics)
 		  dim x as integer
 		  
 		  dim RuleBackgroundLines as Color
@@ -812,29 +831,29 @@ Inherits Canvas
 		  RuleBackgroundLines = RGB(220,220,220)
 		  
 		  // TrackLine Background
-		  background.graphics.foreColor = RuleBackground
-		  background.graphics.FillRect (0,16,16, me.height)
+		  g.foreColor = RuleBackground
+		  g.FillRect (0,16,16, me.height)
 		  
 		  // TrackLine Rectangle
-		  background.graphics.foreColor = RuleBorderColor
-		  background.graphics.drawRect (0,16,16, me.height)
+		  g.foreColor = RuleBorderColor
+		  g.drawRect (0,16,16, me.height)
 		  
 		  // Track separators
 		  x = 16
 		  while x < me.height
-		    background.graphics.foreColor = RuleBackgroundLines
-		    background.graphics.DrawLine (16, x, me.width, x)
+		    g.foreColor = RuleBackgroundLines
+		    g.DrawLine (16, x, me.width, x)
 		    x = x + elementHeight
 		  wend
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub drawUsedTimes()
+		Private Sub drawUsedTimes(g as graphics)
 		  if layer < 0 then return
 		  
 		  // Used layer
-		  background.graphics.drawpicture (markeryellowhorizontal, 3, 19 + elementHeight*layer)
+		  g.drawpicture (markeryellowhorizontal, 3, 19 + elementHeight*layer)
 		  
 		  // Used time
 		  // doubleBuffer.graphics.drawpicture (markeryellowvertical, time2coordinate(inUseTime)-5, 5)
@@ -857,7 +876,8 @@ Inherits Canvas
 		  
 		  controller.ToggleBars selection
 		  
-		  me.RedrawAll
+		  me.Invalidate
+		  
 		End Sub
 	#tag EndMethod
 
@@ -930,7 +950,8 @@ Inherits Canvas
 		  
 		  showBarIDs = false
 		  
-		  me.RedrawAll
+		  me.Invalidate
+		  
 		End Sub
 	#tag EndMethod
 
@@ -938,31 +959,6 @@ Inherits Canvas
 		Function layer2coordinate(theLayer as integer) As Integer
 		  return 16 + 1 + (theLayer - me.ruleStartLayer) * elementHeight
 		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub RedrawAll()
-		  if demo = nil then return
-		  
-		  #pragma DisableBackgroundTasks true
-		  
-		  if background = nil or background.Width <> me.width or background.height <> me.height then
-		    background = new Picture(me.width, me.height)
-		  end if
-		  
-		  me.drawBackground
-		  me.drawTimeRule
-		  me.drawBars
-		  me.drawTrackRule
-		  me.drawEndMarker
-		  me.drawTimeMarker
-		  me.drawStartMarker
-		  
-		  // Only draw these markers if we have something to paste
-		  if CopyPaste.Count > 0 then me.drawUsedTimes
-		  
-		  me.Refresh false
-		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
@@ -1057,7 +1053,8 @@ Inherits Canvas
 		  // Update the demo engine
 		  // controller.setBarEndTime (IDsList, theTime)
 		  
-		  me.RedrawAll
+		  me.Invalidate
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1106,9 +1103,9 @@ Inherits Canvas
 		  
 		  AddBarToSelection
 		  
-		  me.RedrawAll
+		  me.Invalidate
 		  
-		  background.graphics.drawRect x0, y0, x1 - x0, y1 - y0
+		  //me.drawRect x0, y0, x1 - x0, y1 - y0
 		  
 		  me.Refresh false
 		  
@@ -1124,7 +1121,8 @@ Inherits Canvas
 		  // Update the demo engine
 		  // controller.setBarEndTime (IDsList, theTime)
 		  
-		  me.RedrawAll
+		  me.Invalidate
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1152,10 +1150,6 @@ Inherits Canvas
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event Paint()
-	#tag EndHook
-
-	#tag Hook, Flags = &h0
 		Event PasteSections()
 	#tag EndHook
 
@@ -1178,10 +1172,6 @@ Inherits Canvas
 
 	#tag Property, Flags = &h21
 		Private action As string
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		background As Picture
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1263,12 +1253,6 @@ Inherits Canvas
 			Group="Appearance"
 			Type="Picture"
 			EditorType="Picture"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="background"
-			Visible=true
-			Group="Behavior"
-			Type="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"

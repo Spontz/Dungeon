@@ -560,19 +560,16 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line1
       BorderWidth     =   1
-      Height          =   50
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
-      TabIndex        =   17
+      TabIndex        =   "17"
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   0
       Visible         =   True
-      Width           =   100
       X1              =   132
       X2              =   132
       Y1              =   0
@@ -580,19 +577,16 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line2
       BorderWidth     =   1
-      Height          =   50
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
       LineColor       =   &c00000000
       LockedInPosition=   False
       Scope           =   0
-      TabIndex        =   18
+      TabIndex        =   "18"
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   0
       Visible         =   True
-      Width           =   100
       X1              =   287
       X2              =   287
       Y1              =   0

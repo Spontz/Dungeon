@@ -58,7 +58,7 @@ Begin Window wndReplace
       Multiline       =   True
       Password        =   "False"
       ReadOnly        =   False
-      Scope           =   "0"
+      Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
       Styled          =   False
@@ -95,7 +95,7 @@ Begin Window wndReplace
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
@@ -144,7 +144,7 @@ Begin Window wndReplace
       Multiline       =   True
       Password        =   "False"
       ReadOnly        =   False
-      Scope           =   "0"
+      Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
       Styled          =   False
@@ -181,7 +181,7 @@ Begin Window wndReplace
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
@@ -218,7 +218,7 @@ Begin Window wndReplace
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
@@ -250,7 +250,7 @@ Begin Window wndReplace
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
-      Scope           =   "0"
+      Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
@@ -281,7 +281,7 @@ Begin Window wndReplace
       LockRight       =   True
       LockTop         =   True
       Multiline       =   False
-      Scope           =   "0"
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   6
       TabPanelIndex   =   0

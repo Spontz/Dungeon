@@ -31,8 +31,7 @@ Begin Window wndTimeLine
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
-      background      =   0
-      DoubleBuffer    =   False
+      DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
       Height          =   220
@@ -593,6 +592,7 @@ Begin Window wndTimeLine
       ScrollbarHorizontal=   True
       ScrollBarVertical=   True
       SelectionType   =   0
+      ShowDropIndicator=   False
       TabIndex        =   21
       TabPanelIndex   =   0
       TabStop         =   True
@@ -606,15 +606,6 @@ Begin Window wndTimeLine
       Width           =   252
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
-   End
-   Begin Timer tmrRedraw
-      Index           =   -2147483648
-      InitialParent   =   ""
-      LockedInPosition=   False
-      Mode            =   2
-      Period          =   250
-      Scope           =   0
-      TabPanelIndex   =   "0"
    End
 End
 #tag EndWindow
@@ -786,7 +777,7 @@ End
 			cnvTimeLine.showBarIDs = true
 			end if
 			
-			cnvTimeLine.RedrawAll
+			cnvTimeLine.Invalidate
 			
 			Return True
 			
@@ -847,9 +838,17 @@ End
 	#tag EndMenuHandler
 
 
+	#tag Method, Flags = &h21
+		Private Sub demoEndTimeSet(sender as classDemo, theTime as single)
+		  scrHorizontal.maximum = theTime
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub init(theDemo as classDemo)
 		  demo = theDemo
+		  
+		  AddHandler demo.demoEndTimeSet, AddressOf demoEndTimeSet
 		  
 		  engine = new classEngine(demo.type)
 		  
@@ -926,12 +925,6 @@ End
 #tag EndWindowCode
 
 #tag Events cnvTimeLine
-	#tag Event
-		Sub Paint()
-		  scrHorizontal.maximum = demo.getDemoEndTime
-		  scrHorizontal.minimum = 0
-		End Sub
-	#tag EndEvent
 	#tag Event
 		Sub EditBar(barID as string)
 		  cntCustomSection.Init demo, barID
@@ -1052,7 +1045,7 @@ End
 		    
 		    // Pass the focus to the timeline
 		    cnvTimeLine.SetFocus
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
@@ -1061,7 +1054,7 @@ End
 		    controller.setStartTime(demo.getDemoStartTime)
 		    
 		    // Pass the focus to the next time field
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    txtEndTime.SelStart = 0
 		    txtEndTime.SelLength = len(txtEndTime.text)
 		  end if
@@ -1079,7 +1072,7 @@ End
 		    
 		    // Pass the focus to the timeline
 		    cnvTimeLine.SetFocus
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
@@ -1088,7 +1081,7 @@ End
 		    controller.setEndTime(demo.getDemoEndTime)
 		    
 		    // Pass the focus to the next time field
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    
 		    txtStartTime.SetFocus
 		    txtStartTime.SelStart = 0
@@ -1197,7 +1190,7 @@ End
 		    
 		    // Pass the focus to the timeline
 		    cnvTimeLine.SetFocus
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
@@ -1206,7 +1199,7 @@ End
 		    controller.setEndTime(demo.getDemoEndTime)
 		    
 		    // Pass the focus to the next time field
-		    cnvTimeLine.RedrawAll
+		    cnvTimeLine.Invalidate
 		    
 		    txtStartTime.SetFocus
 		    txtStartTime.SelStart = 0
@@ -1215,13 +1208,6 @@ End
 		    return true
 		  end if
 		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events tmrRedraw
-	#tag Event
-		Sub Action()
-		  cnvTimeLine.RedrawAll
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

@@ -62,6 +62,7 @@ Begin Window wndPathsEditor
       ScrollbarHorizontal=   False
       ScrollBarVertical=   True
       SelectionType   =   1
+      ShowDropIndicator=   False
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
