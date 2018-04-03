@@ -211,14 +211,14 @@ Inherits Canvas
 		    
 		    SetDemoEndTime(coordinate2time(x))
 		    
-		    me.Invalidate
+		    me.refresh
 		    
 		  elseif clickedItem = "startTimeMarker" then
 		    if x < 16 then x = 16
 		    
 		    SetDemoStartTime(coordinate2time(x))
 		    
-		    me.Invalidate
+		    me.refresh
 		    
 		  elseif clickedItem = "horizontalRuler" then
 		    // The user clicked in the Horizontal Ruler *
@@ -241,7 +241,7 @@ Inherits Canvas
 		      
 		    end if
 		    
-		    me.Invalidate
+		    me.refresh
 		    
 		  elseif clickedItem = "lessZoom" then
 		    //******************************************
@@ -260,8 +260,7 @@ Inherits Canvas
 		    // original layer in which dragging started
 		    layer = floor((YdragStart -16) / elementHeight)
 		    
-		    dim startTime as integer
-		    startTime = val(demo.getSelectedBarsStartTime)
+		    dim startTime as integer = val(demo.getSelectedBarsStartTime)
 		    
 		    if startTime + coordinate2time(x) < 0 then
 		      // Avoid moving the bars before t=0
@@ -281,7 +280,7 @@ Inherits Canvas
 		      YdragStart = y
 		    end if
 		    
-		    me.Invalidate
+		    me.refresh
 		    
 		    //Now we check for time and layer inconsistences
 		    //tempSingle = 0
@@ -344,7 +343,7 @@ Inherits Canvas
 		      SetSelectionSquare (xdragStart, ydragStart, x, y)
 		    end if
 		    
-		    me.Invalidate
+		    me.refresh
 		    
 		  end if
 		End Sub
