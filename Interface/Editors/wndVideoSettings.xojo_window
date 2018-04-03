@@ -16,10 +16,10 @@ Begin Window wndVideoSettings
    MaxHeight       =   32000
    MaximizeButton  =   True
    MaxWidth        =   32000
-   MenuBar         =   -1140810811
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   0
-   MinimizeButton  =   True
+   MinimizeButton  =   False
    MinWidth        =   0
    Placement       =   1
    Resizeable      =   True
