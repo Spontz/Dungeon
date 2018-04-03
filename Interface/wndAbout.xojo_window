@@ -26,7 +26,7 @@ Begin Window wndAbout
    Title           =   "About Spontz Visuals Editor"
    Visible         =   True
    Width           =   640
-   Begin Label StaticText1
+   Begin Label lblAppName
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -61,7 +61,7 @@ Begin Window wndAbout
       Visible         =   True
       Width           =   202
    End
-   Begin Label txtVersion
+   Begin Label lblVersion
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -96,18 +96,18 @@ Begin Window wndAbout
       Visible         =   True
       Width           =   202
    End
-   Begin Label StaticText3
+   Begin Label lblCredits
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   262
+      Height          =   175
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   46
+      Left            =   47
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -129,7 +129,7 @@ Begin Window wndAbout
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   241
+      Width           =   190
    End
    Begin BevelButton BevelButton1
       AcceptFocus     =   False
@@ -194,7 +194,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events txtVersion
+#tag Events lblVersion
 	#tag Event
 		Sub Open()
 		  me.text = "Version " + str(App.MajorVersion) + "." + str(App.MinorVersion) + "." + str(App.BugVersion) + "." + str(App.StageCode) + "." + str(App.NonReleaseVersion)
