@@ -316,12 +316,12 @@ Begin Window wndVideoSettings
       Caption         =   "OK"
       Default         =   True
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   244
+      Left            =   254
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -334,7 +334,7 @@ Begin Window wndVideoSettings
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   498
+      Top             =   494
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -347,12 +347,12 @@ Begin Window wndVideoSettings
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   165
+      Left            =   175
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -365,7 +365,7 @@ Begin Window wndVideoSettings
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   498
+      Top             =   494
       Underline       =   False
       Visible         =   True
       Width           =   69

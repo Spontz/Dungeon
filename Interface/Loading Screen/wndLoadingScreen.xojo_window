@@ -1,7 +1,7 @@
 #tag Window
 Begin Window wndLoadingScreen
    BackColor       =   &c5978D600
-   Backdrop        =   1775445212
+   Backdrop        =   138932223
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
@@ -34,41 +34,6 @@ Begin Window wndLoadingScreen
       Period          =   2000
       Scope           =   0
       TabPanelIndex   =   0
-   End
-   Begin Label StaticText2
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   15
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   190
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Designed and engineered by Spöntz"
-      TextAlign       =   1
-      TextColor       =   &cFFFFFF00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   460
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   260
    End
    Begin Label StaticText1
       AutoDeactivate  =   True
