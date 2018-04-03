@@ -1510,6 +1510,8 @@ Protected Class classDemo
 		  
 		  selectedbarIDs = getSelectedBarIDs
 		  
+		  if UBound(selectedbarIDs) < 0 then return 'No bars to mover
+		  
 		  // First of all, avoid moving the bars before t=0 or in negative layers
 		  // We must calculate the maximum negative allowed time and layer increments in order to avoid this
 		  // But only if the time or layer increments are negative
