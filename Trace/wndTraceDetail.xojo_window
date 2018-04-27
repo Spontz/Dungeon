@@ -69,6 +69,7 @@ Begin Window wndTraceDetail
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True

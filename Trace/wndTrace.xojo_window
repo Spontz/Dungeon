@@ -71,6 +71,7 @@ Begin Window wndTrace
       TextSize        =   14.0
       TextUnit        =   0
       Top             =   33
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -151,6 +152,7 @@ Begin Window wndTrace
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   6
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -210,6 +212,7 @@ Begin Window wndTrace
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   287
+      Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   179

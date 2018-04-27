@@ -68,6 +68,7 @@ Begin Window wndDirectCommand
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   16
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -152,6 +153,7 @@ Begin Window wndDirectCommand
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   55
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -184,6 +186,7 @@ Begin Window wndDirectCommand
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   240
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80
