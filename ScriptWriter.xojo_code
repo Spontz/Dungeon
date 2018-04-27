@@ -73,10 +73,6 @@ Protected Module ScriptWriter
 		  contents = contents + "demo_name " + theDemo.GetDemoName + EndOfLine.Windows
 		  contents = contents + "debug 1" + EndOfLine.Windows
 		  
-		  contents = contents + "record 0" + EndOfLine.Windows
-		  contents = contents + "record_fps 25.0" + EndOfLine.Windows
-		  contents = contents + "compress_tga 0" + EndOfLine.Windows
-		  
 		  //Loop mode
 		  if theDemo.GetDemoLoopMode then
 		    contents = contents + "loop 1" + EndOfLine.Windows
@@ -85,10 +81,9 @@ Protected Module ScriptWriter
 		  end if
 		  
 		  contents = contents + "sound 1" + EndOfLine.Windows
-		  contents = contents + "bench 0" + EndOfLine.Windows
 		  
 		  contents = contents + "demo_start " + str(theDemo.getDemoStartTime) + EndOfLine.Windows
-		  contents = contents + "demo_end " + str(theDemo.getDemoEndTime) + EndOfLine.Windows
+		  contents = contents + "demo_end "   + Str(theDemo.getDemoEndTime) + EndOfLine.Windows
 		  
 		  contents = contents + "slave 1" + EndOfLine.Windows
 		  
