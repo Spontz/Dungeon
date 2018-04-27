@@ -34,7 +34,6 @@ Begin Window wndDirectCommand
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      ControlOrder    =   "0"
       CueText         =   ""
       DataField       =   ""
       DataSource      =   ""
@@ -53,12 +52,9 @@ Begin Window wndDirectCommand
       LockRight       =   True
       LockTop         =   True
       Mask            =   ""
-      Multiline       =   ""
       Password        =   False
       ReadOnly        =   False
-      ScrollbarHorizontal=   ""
-      ScrollbarVertical=   "True"
-      Styled          =   ""
+      Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -77,7 +73,6 @@ Begin Window wndDirectCommand
    Begin Label StaticText1
       AutoDeactivate  =   True
       Bold            =   False
-      ControlOrder    =   "1"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -93,6 +88,7 @@ Begin Window wndDirectCommand
       LockRight       =   False
       LockTop         =   True
       Multiline       =   False
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   1
       TabPanelIndex   =   0
@@ -113,11 +109,10 @@ Begin Window wndDirectCommand
       AcceptTabs      =   False
       Alignment       =   0
       AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
+      AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
       Bold            =   False
-      Border          =   True
-      ControlOrder    =   "2"
+      Border          =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -139,8 +134,8 @@ Begin Window wndDirectCommand
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
-      Password        =   ""
       ReadOnly        =   False
+      Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
       Styled          =   False
@@ -155,7 +150,7 @@ Begin Window wndDirectCommand
       Top             =   55
       Transparent     =   False
       Underline       =   False
-      UseFocusRing    =   True
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   300
    End
@@ -165,10 +160,9 @@ Begin Window wndDirectCommand
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Send"
-      ControlOrder    =   "3"
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -179,13 +173,14 @@ Begin Window wndDirectCommand
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   False
+      Scope           =   0
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   240
+      Top             =   235
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -193,19 +188,17 @@ Begin Window wndDirectCommand
    End
    Begin classConnector myConnector
       Address         =   "localhost"
-      ControlOrder    =   "4"
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
       Port            =   28000
       Response        =   ""
+      Scope           =   0
       TabPanelIndex   =   0
    End
    Begin Label lblResult
       AutoDeactivate  =   True
       Bold            =   False
-      ControlOrder    =   "5"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -221,6 +214,7 @@ Begin Window wndDirectCommand
       LockRight       =   True
       LockTop         =   False
       Multiline       =   False
+      Scope           =   0
       Selectable      =   False
       TabIndex        =   5
       TabPanelIndex   =   0
