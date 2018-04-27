@@ -153,7 +153,7 @@ Begin Window wndPathsEditor
       Caption         =   "Save"
       Default         =   True
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -171,7 +171,7 @@ Begin Window wndPathsEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   246
+      Top             =   241
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -185,7 +185,7 @@ Begin Window wndPathsEditor
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -203,7 +203,7 @@ Begin Window wndPathsEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   246
+      Top             =   241
       Transparent     =   False
       Underline       =   False
       Visible         =   True
