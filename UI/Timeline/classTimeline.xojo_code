@@ -612,7 +612,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawBar(g as graphics, barID as string)
-		  dim barData as Dictionary
+		  Dim barData As Dictionary
 		  dim EffectBorderColor, EffectFillColor as Color
 		  dim EffectTextColor as Color
 		  dim selected as boolean
@@ -637,24 +637,28 @@ Inherits Canvas
 		  if duration = 0 then exit
 		  
 		  //Color Theme
-		  if selected then
-		    if not demo.getBarEnabled(barID) then
-		      EffectBorderColor = RGB(128,0,0)
-		      EffectFillColor = RGB(50,25,25)
+		  If selected Then
+		    If Not demo.getBarEnabled(barID) Then
+		      ' Disabled bars (Selected)
+		      EffectBorderColor = RGB(0,84,121)
+		      EffectFillColor = RGB(32,36,102)
 		      
-		    else
-		      EffectBorderColor = RGB(255,0,0)
-		      EffectFillColor = RGB(100,25,25)
+		    Else
+		      ' Disabled bars (Selected)
+		      EffectBorderColor = RGB(0,168,243)
+		      EffectFillColor = RGB(63,72,204)
 		      
-		    end if
-		  else
-		    if not demo.getBarEnabled(barID) then
-		      EffectBorderColor = RGB(150,0,0)
-		      EffectFillColor = RGB(50,50,100)
+		    End If
+		  Else
+		    If Not demo.getBarEnabled(barID) Then
+		      ' Disabled bars (Unselected)
+		      EffectBorderColor = RGB(190,190,190)
+		      EffectFillColor = RGB(200,200,200)
 		      
-		    else
-		      EffectBorderColor = RGB(200,200,200)
-		      EffectFillColor = RGB(100,100,100)
+		    Else
+		      ' Enabled bars (Unselected)
+		      EffectBorderColor = RGB(140,140,140)
+		      EffectFillColor = RGB(150,150,150)
 		      
 		    end if
 		  end if
