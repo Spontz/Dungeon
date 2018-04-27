@@ -3,7 +3,7 @@ Protected Class classUpdateTimer
 Inherits timer
 	#tag Event
 		Sub Action()
-		  dim state as string
+		  Dim state As String
 		  
 		  if not controller.Engine.myConnector.IsConnected then
 		    
@@ -28,7 +28,7 @@ Inherits timer
 		    
 		  end if
 		  
-		  if Microseconds - lastPingTime > 500000 then
+		  If Microseconds - lastPingTime > 1000000 Then
 		    lastPingTime = Microseconds
 		    controller.ping
 		  end if

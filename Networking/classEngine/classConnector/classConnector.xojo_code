@@ -48,9 +48,10 @@ Inherits TCPSocket
 		  dim theID as String
 		  dim dataLength as integer
 		  
-		  if theMessage <> "command::ping" then trace ("Sent: " + theMessage, cstTraceLevelCommunication)
+		  'If theMessage <> "command::ping" Then
+		  trace ("Sent: " + theMessage, cstTraceLevelCommunication)
 		  
-		  theID = cstr(me.getID)
+		  theID = CStr(Me.getID)
 		  dataLength = len(theID + me.paramSeparator + theMessage )
 		  
 		  dim binaryForm as variant
