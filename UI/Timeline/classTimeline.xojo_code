@@ -719,7 +719,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawSelectionSquare(g as graphics)
-		  If XdragStart > -1 And YdragStart > -1 Then
+		  If XdragStart > -1 And YdragStart > -1 and action = "selecting" Then
 		    g.drawRect XdragStart, YdragStart, MouseX - XdragStart - Me.Left, MouseY - YdragStart - me.Top
 		  End If
 		End Sub
