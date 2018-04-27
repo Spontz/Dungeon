@@ -86,7 +86,7 @@ Begin Window wndChooseDemoType
          Visible         =   True
          Width           =   206
       End
-      Begin Canvas Canvas2
+      Begin Canvas cnvWebGL
          AcceptFocus     =   False
          AcceptTabs      =   False
          AutoDeactivate  =   True
@@ -210,7 +210,7 @@ Begin Window wndChooseDemoType
          Visible         =   True
          Width           =   206
       End
-      Begin Canvas Canvas1
+      Begin Canvas cnvOpenGL
          AcceptFocus     =   False
          AcceptTabs      =   False
          AutoDeactivate  =   True
