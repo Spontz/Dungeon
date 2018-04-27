@@ -34,7 +34,7 @@ Begin Window wndTextEditor
       Caption         =   "Save both"
       Default         =   True
       Enabled         =   False
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -52,7 +52,7 @@ Begin Window wndTextEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   397
+      Top             =   392
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -66,7 +66,7 @@ Begin Window wndTextEditor
       Caption         =   "Save data"
       Default         =   False
       Enabled         =   False
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -84,7 +84,7 @@ Begin Window wndTextEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   397
+      Top             =   392
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -98,7 +98,7 @@ Begin Window wndTextEditor
       Caption         =   "Save pool"
       Default         =   False
       Enabled         =   False
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -116,7 +116,7 @@ Begin Window wndTextEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   397
+      Top             =   392
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -179,7 +179,7 @@ Begin Window wndTextEditor
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -197,7 +197,7 @@ Begin Window wndTextEditor
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   397
+      Top             =   392
       Transparent     =   False
       Underline       =   False
       Visible         =   True
