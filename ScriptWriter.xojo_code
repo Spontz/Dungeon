@@ -71,8 +71,6 @@ Protected Module ScriptWriter
 		  dim contents as String
 		  
 		  contents = contents + "demo_name " + theDemo.GetDemoName + EndOfLine.Windows
-		  contents = contents + "config_dialog 0" + EndOfLine.Windows
-		  
 		  contents = contents + "debug 1" + EndOfLine.Windows
 		  
 		  contents = contents + "record 0" + EndOfLine.Windows
