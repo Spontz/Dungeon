@@ -26,7 +26,7 @@ Begin Window wndDemoSettings
    Title           =   "Demo Settings"
    Visible         =   False
    Width           =   295
-   Begin PushButton PushButton1
+   Begin PushButton btnOK
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -34,7 +34,7 @@ Begin Window wndDemoSettings
       Caption         =   "OK"
       Default         =   True
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -52,13 +52,13 @@ Begin Window wndDemoSettings
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   104
+      Top             =   95
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
    End
-   Begin PushButton PushButton2
+   Begin PushButton btnCancel
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -66,7 +66,7 @@ Begin Window wndDemoSettings
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -84,7 +84,7 @@ Begin Window wndDemoSettings
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   104
+      Top             =   95
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -113,7 +113,7 @@ Begin Window wndDemoSettings
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Name:"
+      Text            =   "Name"
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
@@ -202,39 +202,6 @@ Begin Window wndDemoSettings
       Visible         =   True
       Width           =   98
    End
-   Begin CheckBox CheckBox1
-      AutoDeactivate  =   True
-      Bold            =   False
-      Caption         =   "Configuration Window (Windows Only)"
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   False
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      State           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   72
-      Transparent     =   False
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   260
-   End
 End
 #tag EndWindow
 
@@ -258,7 +225,7 @@ End
 
 #tag EndWindowCode
 
-#tag Events PushButton1
+#tag Events btnOK
 	#tag Event
 		Sub Action()
 		  demo.SetDemoName (txtDemoName.text)
@@ -268,7 +235,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events PushButton2
+#tag Events btnCancel
 	#tag Event
 		Sub Action()
 		  wndDemoSettings.close
