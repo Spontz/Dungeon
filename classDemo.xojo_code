@@ -1510,7 +1510,7 @@ Protected Class classDemo
 		  
 		  selectedbarIDs = getSelectedBarIDs
 		  
-		  if UBound(selectedbarIDs) < 0 then return 'No bars to mover
+		  If UBound(selectedbarIDs) < 0 Then Return False 'No bars to move
 		  
 		  // First of all, avoid moving the bars before t=0 or in negative layers
 		  // We must calculate the maximum negative allowed time and layer increments in order to avoid this
@@ -1519,7 +1519,7 @@ Protected Class classDemo
 		    maxIncrement = demoDB.SQLSelect("SELECT MIN(startTime) AS maxIncrement FROM BARs where selected=1").Field("maxIncrement").DoubleValue
 		    
 		    if abs(timeIncrement) > maxIncrement then timeIncrement = -maxIncrement
-		  end if
+		  End If
 		  
 		  if layerIncrement < 0 then
 		    maxIncrement = demoDB.SQLSelect("SELECT MIN(layer) AS maxIncrement FROM BARs where selected=1").Field("maxIncrement").DoubleValue
