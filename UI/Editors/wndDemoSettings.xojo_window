@@ -53,6 +53,7 @@ Begin Window wndDemoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   104
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -84,6 +85,7 @@ Begin Window wndDemoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   104
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -161,6 +163,7 @@ Begin Window wndDemoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   14
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -193,6 +196,7 @@ Begin Window wndDemoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   47
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -225,6 +229,7 @@ Begin Window wndDemoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   72
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True

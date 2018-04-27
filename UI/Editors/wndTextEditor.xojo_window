@@ -53,6 +53,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   397
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
@@ -84,6 +85,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   397
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
@@ -115,6 +117,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   397
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
@@ -162,6 +165,7 @@ Begin Window wndTextEditor
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   33
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -194,6 +198,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   397
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
@@ -253,6 +258,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   6
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   200
@@ -284,6 +290,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   6
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   200
@@ -382,6 +389,7 @@ Begin Window wndTextEditor
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   33
+      Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   16
@@ -413,6 +421,7 @@ Begin Window wndTextEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   398
+      Transparent     =   False
       Underline       =   False
       Value           =   True
       Visible         =   True

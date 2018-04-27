@@ -71,6 +71,7 @@ Begin Window wndReplace
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   46
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -157,6 +158,7 @@ Begin Window wndReplace
       TextSize        =   10.0
       TextUnit        =   0
       Top             =   121
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -226,6 +228,7 @@ Begin Window wndReplace
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   203
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -258,6 +261,7 @@ Begin Window wndReplace
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   203
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69

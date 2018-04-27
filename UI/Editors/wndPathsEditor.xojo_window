@@ -70,6 +70,7 @@ Begin Window wndPathsEditor
       TextSize        =   11.0
       TextUnit        =   0
       Top             =   38
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -104,6 +105,7 @@ Begin Window wndPathsEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   9
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   450
@@ -170,6 +172,7 @@ Begin Window wndPathsEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   246
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80
@@ -201,6 +204,7 @@ Begin Window wndPathsEditor
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   246
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   80

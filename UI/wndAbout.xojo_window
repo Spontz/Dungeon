@@ -170,6 +170,7 @@ Begin Window wndAbout
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   438
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True

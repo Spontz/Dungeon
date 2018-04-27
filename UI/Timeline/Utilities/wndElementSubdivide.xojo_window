@@ -53,6 +53,7 @@ Begin Window wndElementSubdivide
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   46
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -84,6 +85,7 @@ Begin Window wndElementSubdivide
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   46
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -212,6 +214,7 @@ Begin Window wndElementSubdivide
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   12
+      Transparent     =   False
       Visible         =   True
       Width           =   13
    End

@@ -24,7 +24,7 @@ Begin Window wndChooseDemoType
    Placement       =   2
    Resizeable      =   False
    Title           =   ""
-   Visible         =   True
+   Visible         =   False
    Width           =   600
    Begin RoundRectangle rctWebGL
       AutoDeactivate  =   True
@@ -47,8 +47,8 @@ Begin Window wndChooseDemoType
       Scope           =   0
       TabIndex        =   9
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   94
+      Transparent     =   False
       Visible         =   True
       Width           =   230
       Begin Label lblWebGL
@@ -171,8 +171,8 @@ Begin Window wndChooseDemoType
       Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   94
+      Transparent     =   False
       Visible         =   True
       Width           =   230
       Begin Label lblOpenGL
@@ -260,8 +260,8 @@ Begin Window wndChooseDemoType
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   245
+      Transparent     =   False
       Visible         =   True
       Width           =   230
       Begin Label lblOpenExistingDemo
@@ -339,63 +339,42 @@ End
 #tag EndWindow
 
 #tag WindowCode
-#tag EndWindowCode
-
-#tag Events rctWebGL
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim demo as classDemo
-		  dim demoFile as new FolderItem
-		  
-		  demoFile = demoFIle.child("Engines")
-		  demoFile = demoFIle.child("webGL")
-		  demoFile = demoFIle.child("ProjectTemplates")
-		  demoFile = demoFIle.child("Empty")
-		  demoFile = demoFIle.child("Empty Project.spo")
-		  
-		  demo = new classDemo(demoFile, demo.webGL)
-		  
-		  dim myWndTimeLine as new wndTimeLine
-		  
-		  // Load the project
-		  myWndTimeLine.init(demo)
-		  
-		  // And close the selector window
-		  self.close
-		End Function
+		Sub Open()
+		  openGL
+		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events rctOpenGL
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim demo as classDemo
-		  dim demoFile as new FolderItem
+
+
+	#tag Method, Flags = &h0
+		Sub openGL()
+		  Dim demo As classDemo
+		  Dim demoFile As New FolderItem
 		  
 		  demoFile = demoFIle.child("Engines")
 		  demoFile = demoFIle.child("openGL")
 		  demoFile = demoFIle.child("ProjectTemplates")
 		  demoFile = demoFIle.child("Default.sqlite")
 		  
-		  demo = new classDemo(demoFile, demo.openGL)
+		  demo = New classDemo(demoFile, demo.openGL)
 		  
-		  dim myWndTimeLine as new wndTimeLine
+		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
 		  myWndTimeLine.init(demo)
 		  
 		  // And close the selector window
 		  self.close
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events rctOpenExistingDemo
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim file as folderitem = Chooseproject()
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub openProject()
+		  Dim file As folderitem = Chooseproject
 		  
-		  if file <> nil then
-		    dim demo as classDemo
-		    dim demoFile as new FolderItem
+		  If file <> Nil Then
+		    Dim demo As classDemo
+		    Dim demoFile As New FolderItem
 		    
 		    demoFile = demoFIle.child("Engines")
 		    demoFile = demoFIle.child("openGL")
@@ -403,16 +382,63 @@ End
 		    demoFile = demoFIle.child("Empty")
 		    demoFile = demoFIle.child("Empty Project.spo")
 		    
-		    demo = new classDemo(demoFile, demo.openGL)
+		    demo = New classDemo(demoFile, demo.openGL)
 		    
-		    dim newTimeline as new wndTimeLine
+		    Dim newTimeline As New wndTimeLine
 		    
 		    // Load the project
 		    newTimeline.init(demo)
 		    
 		    // And close the selector window
-		    self.close
+		    Self.close
 		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub webGL()
+		  Dim demo As classDemo
+		  Dim demoFile As New FolderItem
+		  
+		  demoFile = demoFIle.child("Engines")
+		  demoFile = demoFIle.child("webGL")
+		  demoFile = demoFIle.child("ProjectTemplates")
+		  demoFile = demoFIle.child("Empty")
+		  demoFile = demoFIle.child("Empty Project.spo")
+		  
+		  demo = New classDemo(demoFile, demo.webGL)
+		  
+		  Dim myWndTimeLine As New wndTimeLine
+		  
+		  // Load the project
+		  myWndTimeLine.init(demo)
+		  
+		  // And close the selector window
+		  self.close
+		End Sub
+	#tag EndMethod
+
+
+#tag EndWindowCode
+
+#tag Events rctWebGL
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  webGL
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events rctOpenGL
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  openGL
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events rctOpenExistingDemo
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  openProject
 		End Function
 	#tag EndEvent
 #tag EndEvents

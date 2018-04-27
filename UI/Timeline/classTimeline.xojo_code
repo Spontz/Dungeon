@@ -719,7 +719,9 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawSelectionSquare(g as graphics)
-		  
+		  If XdragStart > -1 And YdragStart > -1 Then
+		    g.drawRect XdragStart, YdragStart, MouseX - XdragStart - Me.Left, MouseY - YdragStart - me.Top
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -1059,7 +1061,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h1
 		Protected Sub SetSelectionSquare(x0 as double, y0 as double, x1 as double, y1 as double)
-		  dim i as integer
+		  Dim i As Integer
 		  dim temp as single
 		  dim startTime, endTime, startLayer, endLayer as single
 		  
@@ -1098,13 +1100,12 @@ Inherits Canvas
 		  end if
 		  
 		  //We add the bar to the current selection if it is within the limits of the defined rectangle.
+		  demo.clearBarSelection
 		  demo.AddBarsToSelection (startTime, endTime, startLayer, endLayer)
 		  
 		  AddBarToSelection
 		  
 		  me.Invalidate
-		  
-		  //me.drawRect x0, y0, x1 - x0, y1 - y0
 		  
 		  me.Refresh false
 		  
@@ -1273,6 +1274,7 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"

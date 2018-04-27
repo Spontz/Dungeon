@@ -53,6 +53,7 @@ Begin Window wndLoaderSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   487
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -84,6 +85,7 @@ Begin Window wndLoaderSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   487
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -115,6 +117,7 @@ Begin Window wndLoaderSettings
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   23
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   250
@@ -146,6 +149,7 @@ Begin Window wndLoaderSettings
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   51
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   250
@@ -174,6 +178,7 @@ Begin Window wndLoaderSettings
       TabStop         =   True
       TickStyle       =   "0"
       Top             =   51
+      Transparent     =   False
       Value           =   100
       Visible         =   True
       Width           =   100
@@ -237,6 +242,7 @@ Begin Window wndLoaderSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   25
+      Transparent     =   False
       Underline       =   False
       Value           =   True
       Visible         =   True
@@ -266,6 +272,7 @@ Begin Window wndLoaderSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   53
+      Transparent     =   False
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -393,6 +400,7 @@ Begin Window wndLoaderSettings
       TabStop         =   True
       TickStyle       =   "0"
       Top             =   51
+      Transparent     =   False
       Value           =   100
       Visible         =   True
       Width           =   100
@@ -569,6 +577,7 @@ Begin Window wndLoaderSettings
       TabIndex        =   "17"
       TabPanelIndex   =   0
       TabStop         =   True
+      Transparent     =   False
       Visible         =   True
       X1              =   132
       X2              =   132
@@ -586,6 +595,7 @@ Begin Window wndLoaderSettings
       TabIndex        =   "18"
       TabPanelIndex   =   0
       TabStop         =   True
+      Transparent     =   False
       Visible         =   True
       X1              =   287
       X2              =   287

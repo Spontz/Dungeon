@@ -50,6 +50,7 @@ Begin Window wndVideoSettings
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   4
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   315
@@ -80,6 +81,7 @@ Begin Window wndVideoSettings
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   110
+         Transparent     =   False
          Underline       =   False
          Value           =   False
          Visible         =   True
@@ -112,6 +114,7 @@ Begin Window wndVideoSettings
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   32
+         Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   179
@@ -259,6 +262,7 @@ Begin Window wndVideoSettings
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   59
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -302,6 +306,7 @@ Begin Window wndVideoSettings
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   84
+         Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -335,6 +340,7 @@ Begin Window wndVideoSettings
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   494
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -366,6 +372,7 @@ Begin Window wndVideoSettings
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   494
+      Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
@@ -414,6 +421,7 @@ Begin Window wndVideoSettings
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   148
+      Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
