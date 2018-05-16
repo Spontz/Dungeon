@@ -123,12 +123,31 @@ Protected Module ScriptWriter
 		  theFBOs = theDemo.getFBOsList
 		  // FBOs configuration
 		  
-		  for i=0 to UBound(theFBOs)
+		  For i=0 To UBound(theFBOs)
 		    contents = contents + EndOfLine.Windows
-		    contents = contents + "fbo_" + str(i) + "_width " + NthField(theFBOs(i), " ", 1) + EndOfLine.Windows
-		    contents = contents + "fbo_" + str(i) + "_height " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
-		    contents = contents + "fbo_" + str(i) + "_format " + NthField(theFBOs(i), " ", 3) + EndOfLine.Windows
+		    contents = contents + "fbo_" + Str(i) + "_ratio " + NthField(theFBOs(i), " ", 1) + EndOfLine.Windows
+		    contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
 		  next
+		  
+		  contents = contents + "fbo_20_width 64" + EndOfLine.Windows
+		  contents = contents + "fbo_20_height 64" + EndOfLine.Windows
+		  contents = contents + "fbo_20_format RGB" + EndOfLine.Windows
+		  
+		  contents = contents + "fbo_21_width 64" + EndOfLine.Windows
+		  contents = contents + "fbo_21_height 64" + EndOfLine.Windows
+		  contents = contents + "fbo_21_format RGB" + EndOfLine.Windows
+		  
+		  contents = contents + "fbo_22_width 32" + EndOfLine.Windows
+		  contents = contents + "fbo_22_height 32" + EndOfLine.Windows
+		  contents = contents + "fbo_22_format RGB" + EndOfLine.Windows
+		  
+		  contents = contents + "fbo_23_width 32" + EndOfLine.Windows
+		  contents = contents + "fbo_23_height 32" + EndOfLine.Windows
+		  contents = contents + "fbo_23_format RGB" + EndOfLine.Windows
+		  
+		  contents = contents + "fbo_24_width 128" + EndOfLine.Windows
+		  contents = contents + "fbo_24_height 128" + EndOfLine.Windows
+		  contents = contents + "fbo_24_format RGB" + EndOfLine.Windows
 		  
 		  // Create the file
 		  file = theDemo.GetDataFolder.child("graphics.spo").CreateTextFile

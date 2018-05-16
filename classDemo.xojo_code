@@ -49,17 +49,15 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function addFBO(width as integer, height as integer, format as string) As integer
-		  dim myWidth as string
-		  dim myHeight as string
+		Function addFBO(ratio as integer, format as string) As integer
+		  Dim myRatio As String
 		  dim result as integer
 		  
-		  myWidth = str(width)
-		  myHeight = str(height)
+		  myRatio = str(ratio)
 		  
-		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, format) Values (" + myWidth + ", " + myHeight + ", '" + format + "')")
+		  demoDB.sqlexecute ("INSERT INTO FBOs (ratio, format) Values (" + myRatio + ", '" + Format + "')")
 		  
-		  If demoDB.error then
+		  If demoDB.error Then
 		    MsgBox demoDB.errormessage
 		  else
 		    demoDB.Commit
@@ -928,7 +926,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function getFBOsList() As string()
-		  dim result() as string
+		  Dim result() As String
 		  dim theRecordset as RecordSet
 		  
 		  Redim result(countFBOs - 1)
@@ -940,7 +938,7 @@ Protected Class classDemo
 		  dim i as integer
 		  
 		  for i=0 to theRecordset.RecordCount - 1
-		    result(i) = theRecordset.Field("width").StringValue + " " + theRecordset.Field("height").StringValue + " " + theRecordset.Field("format").StringValue
+		    result(i) = theRecordset.Field("ratio").StringValue + " " + theRecordset.Field("format").StringValue
 		    theRecordSet.MoveNext
 		  next
 		  
@@ -1425,7 +1423,11 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
 		  
 		  // Default FBOs
-		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, width INTEGER, height INTEGER, format TEXT);")
+		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, format TEXT);")
+		  
+		  For i As Integer = 0 To 19
+		    Call addFBO(1, "RGB")
+		  next
 		  
 		  // Creates the structure for bars
 		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")

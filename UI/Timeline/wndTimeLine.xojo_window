@@ -476,6 +476,7 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True

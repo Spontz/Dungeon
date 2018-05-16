@@ -188,6 +188,7 @@ Begin Window wndDirectCommand
    End
    Begin classConnector myConnector
       Address         =   "localhost"
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False

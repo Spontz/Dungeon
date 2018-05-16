@@ -382,9 +382,9 @@ Begin Window wndVideoSettings
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   4
+      ColumnCount     =   3
       ColumnsResizable=   False
-      ColumnWidths    =   "50,*,*,*"
+      ColumnWidths    =   "50,*,*"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   14
@@ -400,7 +400,7 @@ Begin Window wndVideoSettings
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "FBO	Width	Height	Format"
+      InitialValue    =   "FBO	Ratio	Format"
       Italic          =   False
       Left            =   -1
       LockBottom      =   True
@@ -435,7 +435,7 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub init(theDemo as classdemo)
-		  dim i as integer
+		  Dim i As Integer
 		  dim theFBOs() as string
 		  
 		  demo = theDemo
@@ -454,7 +454,6 @@ End
 		    lbxFBOConfiguration.AddRow(str(i))
 		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = NthField(theFBOs(i), " ", 1)
 		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 2) = NthField(theFBOs(i), " ", 2)
-		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = NthField(theFBOs(i), " ", 3)
 		  next
 		  
 		  me.visible = true
@@ -491,7 +490,7 @@ End
 		  demo.clearFBOs
 		  
 		  for i=0 to lbxFBOConfiguration.ListCount - 1
-		    result = demo.addFBO(val(lbxFBOConfiguration.cell(i, 1)), val(lbxFBOConfiguration.cell(i, 2)), lbxFBOConfiguration.cell(i, 3))
+		    result = demo.addFBO(Val(lbxFBOConfiguration.cell(i, 1)), lbxFBOConfiguration.cell(i, 2))
 		  next
 		  
 		  wndVideoSettings.close
@@ -520,42 +519,41 @@ End
 	#tag EndEvent
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
-		  dim currentRow as integer
-		  
-		  // We get the current clicked row and select it before continuing
-		  currentRow =  me.ScrollPosition + floor(y / me.DefaultRowHeight) - 1
-		  if currentRow > me.ListCount then currentRow = -1
-		  
-		  if me.ListCount < 20 then base.Append(New MenuItem(cstCreateFBO))
-		  
-		  if me.ListIndex > -1 then
-		    base.Append(New MenuItem("-"))
-		    base.Append(New MenuItem(cstDeleteFBO))
-		  end if
-		  
-		  return true
+		  'Dim currentRow As Integer
+		  '
+		  '// We get the current clicked row and select it before continuing
+		  'currentRow =  me.ScrollPosition + floor(y / me.DefaultRowHeight) - 1
+		  'if currentRow > me.ListCount then currentRow = -1
+		  '
+		  'if me.ListCount < 20 then base.Append(New MenuItem(cstCreateFBO))
+		  '
+		  'if me.ListIndex > -1 then
+		  'base.Append(New MenuItem("-"))
+		  'base.Append(New MenuItem(cstDeleteFBO))
+		  'end if
+		  '
+		  'return true
 		End Function
 	#tag EndEvent
 	#tag Event
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
-		  select case hitItem.Text
-		    
-		  case cstCreateFBO
-		    me.AddRow(str(me.ListCount))
-		    me.cell(me.LastIndex, 1) = "1024"
-		    me.cell(me.lastindex, 2) = "512"
-		    me.cell(me.lastindex, 3) = "RGB"
-		    
-		  case cstDeleteFBO
-		    me.RemoveRow(me.ListIndex)
-		    
-		  end
-		  
-		  // Renumber the FBOs
-		  dim i as integer
-		  for i=0 to me.ListCount - 1
-		    me.cell(i,0) = str(i)
-		  next
+		  'Select Case hitItem.Text
+		  '
+		  'case cstCreateFBO
+		  'Me.AddRow(Str(Me.ListCount))
+		  'Me.cell(Me.LastIndex, 1) = "1"
+		  'Me.cell(Me.lastindex, 2) = "RGB"
+		  '
+		  'case cstDeleteFBO
+		  'me.RemoveRow(me.ListIndex)
+		  '
+		  'end
+		  '
+		  '// Renumber the FBOs
+		  'dim i as integer
+		  'for i=0 to me.ListCount - 1
+		  'me.cell(i,0) = str(i)
+		  'next
 		End Function
 	#tag EndEvent
 	#tag Event
