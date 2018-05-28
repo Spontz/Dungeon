@@ -382,9 +382,9 @@ Begin Window wndVideoSettings
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   3
+      ColumnCount     =   5
       ColumnsResizable=   False
-      ColumnWidths    =   "50,*,*"
+      ColumnWidths    =   "50,*,*,*,*"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   14
@@ -400,7 +400,7 @@ Begin Window wndVideoSettings
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "FBO	Ratio	Format"
+      InitialValue    =   "FBO	Ratio	Format	Width	Height"
       Italic          =   False
       Left            =   -1
       LockBottom      =   True
@@ -490,7 +490,12 @@ End
 		  demo.clearFBOs
 		  
 		  for i=0 to lbxFBOConfiguration.ListCount - 1
-		    result = demo.addFBO(Val(lbxFBOConfiguration.cell(i, 1)), lbxFBOConfiguration.cell(i, 2))
+		    result = demo.addFBO( _
+		    Val(lbxFBOConfiguration.cell(i, 1)), _
+		    Val(lbxFBOConfiguration.cell(i, 3)), _
+		    Val(lbxFBOConfiguration.cell(i, 4)), _
+		    lbxFBOConfiguration.cell(i, 2) _
+		    )
 		  next
 		  
 		  wndVideoSettings.close

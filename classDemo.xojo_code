@@ -49,13 +49,34 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function addFBO(ratio as integer, format as string) As integer
+		Function addFBO(width as integer, height as integer, ratio as integer, format as string) As integer
 		  Dim myRatio As String
+		  Dim myWidth As String
+		  Dim myHeight As String
+		  
+		  If ratio = 0 Then
+		    myRatio = "NULL"
+		  Else
+		    myRatio = Str(ratio)
+		  End If
+		  
+		  If width = 0 Then
+		    myWidth = "NULL"
+		  Else
+		    myWidth = Str(width)
+		  End If
+		  
+		  If height = 0 Then
+		    myHeight = "NULL"
+		  Else
+		    myHeight = str(width)
+		  End If
+		  
 		  dim result as integer
 		  
 		  myRatio = str(ratio)
 		  
-		  demoDB.sqlexecute ("INSERT INTO FBOs (ratio, format) Values (" + myRatio + ", '" + Format + "')")
+		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, ratio, format) Values (" + myWidth + "," + myHeight + "," + myRatio + ",'" + Format + "')")
 		  
 		  If demoDB.error Then
 		    MsgBox demoDB.errormessage
@@ -65,7 +86,7 @@ Protected Class classDemo
 		  
 		  result = demoDB.SQLSelect("SELECT id FROM FBOs ORDER BY id LIMIT 1").Field("id").IntegerValue
 		  
-		  return result
+		  Return result
 		End Function
 	#tag EndMethod
 
@@ -111,10 +132,9 @@ Protected Class classDemo
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		  else
+		  Else
 		    demoDB.Commit
-		  End if
-		  
+		  End If
 		End Sub
 	#tag EndMethod
 
@@ -1379,6 +1399,20 @@ Protected Class classDemo
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub initDefaultFBOs()
+		  For i As Integer = 0 To 19
+		    Call addFBO(0, 0, 1, "RGB")
+		  Next
+		  
+		  Call addFBO(512, 512, 0, "RGB")
+		  Call addFBO(256, 256, 0, "RGB")
+		  Call addFBO(128, 128, 0, "RGB")
+		  Call addFBO( 64,  64, 0, "RGB")
+		  Call addFBO( 32,  32, 0, "RGB")
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h1
 		Protected Sub initDemoDB(type as string)
 		  // Creates the structure for a project
@@ -1423,11 +1457,9 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
 		  
 		  // Default FBOs
-		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, format TEXT);")
+		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT);")
 		  
-		  For i As Integer = 0 To 19
-		    Call addFBO(1, "RGB")
-		  next
+		  initDefaultFBOs
 		  
 		  // Creates the structure for bars
 		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")

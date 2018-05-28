@@ -361,6 +361,10 @@ End
 		  
 		  demo = New classDemo(demoFile, demo.openGL)
 		  
+		  If demo.countFBOs = 0 Then
+		    demo.initDefaultFBOs
+		  End If
+		  
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
