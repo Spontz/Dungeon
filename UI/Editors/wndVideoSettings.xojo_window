@@ -450,10 +450,28 @@ End
 		  
 		  theFBOs = demo.getFBOsList
 		  
-		  for i=0 to UBound(theFBOs)
-		    lbxFBOConfiguration.AddRow(str(i))
-		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = NthField(theFBOs(i), " ", 1)
-		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 2) = NthField(theFBOs(i), " ", 2)
+		  For i=0 To UBound(theFBOs)
+		    Dim ratio  As String = NthField(theFBOs(i), " ", 1)
+		    Dim Format As String = NthField(theFBOs(i), " ", 2)
+		    Dim width  As String = NthField(theFBOs(i), " ", 3)
+		    Dim height As String = NthField(theFBOs(i), " ", 4)
+		    
+		    lbxFBOConfiguration.AddRow(Str(i))
+		    
+		    ' Format
+		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 2) = Format
+		    
+		    If ratio = "0" Then
+		      ' Fixed size FBO
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = width
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 4) = height
+		      
+		    Else
+		      ' Scaled FBO
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = ratio
+		      
+		    End If
+		    
 		  next
 		  
 		  me.visible = true
