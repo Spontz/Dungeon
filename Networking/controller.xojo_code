@@ -102,7 +102,7 @@ Protected Module controller
 
 	#tag Method, Flags = &h0
 		Sub LaunchLocal()
-		  dim VisualsEngine as FolderItem
+		  Dim VisualsEngine As FolderItem
 		  dim result as string
 		  
 		  //We locate the Visuals Engine
@@ -114,13 +114,13 @@ Protected Module controller
 		  #endif
 		  
 		  #if targetWin32
-		    VisualsEngine = GetFolderItem("Engines").child("openGL").child("demo.exe")
+		    VisualsEngine = GetFolderItem("Engines").child("Dragon").child("sve.exe")
 		    
 		    //And launch it
 		    if VisualsEngine.exists then
 		      VisualsEngine.launch
 		    else
-		      Notify("The engine could not be located","The engine executable must be named demo.exe and be located inside the Engines/openGL folder")
+		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/openGL folder")
 		    end if
 		  #endif
 		End Sub
