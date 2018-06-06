@@ -13,30 +13,31 @@
 				Begin CopyFilesBuildStep CopyOGLEngine
 					AppliesTo = 0
 					Destination = 0
-					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2NnLmRsbA==
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2NnR0wuZGxs
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2RlbW8uZXhl
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2Ztb2QuZGxs
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2dsZXczMi5kbGw=
+					Subdirectory = Engines/Dragon
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vZm1vZDY0LmRsbA==
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vbGlianBlZy05LmRsbA==
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vU0RMMi5kbGw=
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vU0RMMl9JbWFnZS5kbGw=
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vU0RMMl9OZXQuZGxs
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vc3ZlLmV4ZQ==
 				End
 				Begin CopyFilesBuildStep CopyOGLCodeTemplates
 					AppliesTo = 0
 					Destination = 0
-					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL0NvZGVUZW1wbGF0ZXMv
+					Subdirectory = Engines/Dragon
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vQ29kZVRlbXBsYXRlcy8=
 				End
 				Begin CopyFilesBuildStep CopyOGLProjectTemplates
 					AppliesTo = 0
 					Destination = 0
-					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL1Byb2plY3RUZW1wbGF0ZXMv
+					Subdirectory = Engines/Dragon
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vUHJvamVjdFRlbXBsYXRlcy8=
 				End
 				Begin CopyFilesBuildStep CopyOGLFonts
 					AppliesTo = 0
 					Destination = 0
-					Subdirectory = Engines/OpenGL
-					FolderItem = Li4vRW5naW5lcy9JbmZlcm5vL2ZvbnRzLw==
+					Subdirectory = Engines/Dragon
+					FolderItem = Li4vRW5naW5lcy9EcmFnb24vZm9udHMv
 				End
 			End
 #tag EndBuildAutomation

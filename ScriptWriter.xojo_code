@@ -54,7 +54,7 @@ Protected Module ScriptWriter
 		    dim f as new FolderItem
 		    
 		    f = f.child("Engines")
-		    f = f.child("OpenGL")
+		    f = f.child("Dragon")
 		    f = f.child("fonts")
 		    f = f.Child("font.tga")
 		    
@@ -98,7 +98,7 @@ Protected Module ScriptWriter
 
 	#tag Method, Flags = &h1
 		Protected Sub WriteGraphicsSPO(theDemo as classDemo)
-		  dim file as TextOutputStream
+		  Dim file As TextOutputStream
 		  dim contents as String
 		  dim i as integer
 		  
@@ -113,7 +113,7 @@ Protected Module ScriptWriter
 		  
 		  // screen attributes
 		  contents = contents + "gl_width " + str(theDemo.GetVideoScreenWidth) + EndOfLine.Windows
-		  contents = contents + "gl_height " + str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
+		  contents = contents + "gl_height " + Str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
 		  contents = contents + "gl_bpp 32" + EndOfLine.Windows
 		  contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
 		  contents = contents + "gl_stencil 0" + EndOfLine.Windows
@@ -125,29 +125,21 @@ Protected Module ScriptWriter
 		  
 		  For i=0 To UBound(theFBOs)
 		    contents = contents + EndOfLine.Windows
-		    contents = contents + "fbo_" + Str(i) + "_ratio " + NthField(theFBOs(i), " ", 1) + EndOfLine.Windows
-		    contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
-		  next
-		  
-		  contents = contents + "fbo_20_width 64" + EndOfLine.Windows
-		  contents = contents + "fbo_20_height 64" + EndOfLine.Windows
-		  contents = contents + "fbo_20_format RGB" + EndOfLine.Windows
-		  
-		  contents = contents + "fbo_21_width 64" + EndOfLine.Windows
-		  contents = contents + "fbo_21_height 64" + EndOfLine.Windows
-		  contents = contents + "fbo_21_format RGB" + EndOfLine.Windows
-		  
-		  contents = contents + "fbo_22_width 32" + EndOfLine.Windows
-		  contents = contents + "fbo_22_height 32" + EndOfLine.Windows
-		  contents = contents + "fbo_22_format RGB" + EndOfLine.Windows
-		  
-		  contents = contents + "fbo_23_width 32" + EndOfLine.Windows
-		  contents = contents + "fbo_23_height 32" + EndOfLine.Windows
-		  contents = contents + "fbo_23_format RGB" + EndOfLine.Windows
-		  
-		  contents = contents + "fbo_24_width 128" + EndOfLine.Windows
-		  contents = contents + "fbo_24_height 128" + EndOfLine.Windows
-		  contents = contents + "fbo_24_format RGB" + EndOfLine.Windows
+		    
+		    If NthField(theFBOs(i), " ", 1) = "0" Then
+		      // Fixed size FBO
+		      contents = contents + "fbo_" + Str(i) + "_width "  + NthField(theFBOs(i), " ", 3) + EndOfLine.Windows
+		      contents = contents + "fbo_" + Str(i) + "_height " + NthField(theFBOs(i), " ", 4) + EndOfLine.Windows
+		      contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
+		      
+		    Else
+		      // Scaled FBO
+		      contents = contents + "fbo_" + Str(i) + "_ratio "  + NthField(theFBOs(i), " ", 1) + EndOfLine.Windows
+		      contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
+		      
+		    End If
+		    
+		  Next
 		  
 		  // Create the file
 		  file = theDemo.GetDataFolder.child("graphics.spo").CreateTextFile

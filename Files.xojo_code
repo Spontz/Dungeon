@@ -49,7 +49,7 @@ Protected Module Files
 		  dim file as new folderitem
 		  dim i as integer
 		  
-		  file = file.Child("Engines").Child("openGL")
+		  file = file.Child("Engines").Child("Dragon")
 		  
 		  if file <> nil then
 		    for i = file.count downto 1

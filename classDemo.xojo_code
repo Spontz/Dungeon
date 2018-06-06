@@ -166,7 +166,7 @@ Protected Class classDemo
 		  Scriptwriter.CreateConfiguration(me)
 		  
 		  // Create the section scripts
-		  ScriptWriter.WriteScriptsSPO(me)
+		  ScriptWriter.WriteScriptsSPO(Me)
 		End Sub
 	#tag EndMethod
 
@@ -222,7 +222,7 @@ Protected Class classDemo
 		  me.SetEnginesFolder GetFolderItem("Engines")
 		  
 		  // Set the data folder
-		  me.SetDataFolder(GetFolderItem("Engines").child("openGL").child("data_" + controller.getHash))
+		  me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
 		  
 		  
 		End Sub
@@ -957,8 +957,16 @@ Protected Class classDemo
 		  
 		  dim i as integer
 		  
-		  for i=0 to theRecordset.RecordCount - 1
-		    result(i) = theRecordset.Field("ratio").StringValue + " " + theRecordset.Field("format").StringValue
+		  For i=0 To theRecordset.RecordCount - 1
+		    Dim params() As String
+		    
+		    params.Append(theRecordset.Field("ratio" ).StringValue)
+		    params.Append(theRecordset.Field("format").StringValue)
+		    params.Append(theRecordset.Field("width" ).StringValue)
+		    params.Append(theRecordset.Field("height").StringValue)
+		    
+		    result(i) = Join(params, " ")
+		    
 		    theRecordSet.MoveNext
 		  next
 		  
@@ -1955,8 +1963,8 @@ Protected Class classDemo
 		    folder.CreateAsFolder
 		  end if
 		  
-		  if not folder.Child("openGL").Exists then
-		    folder.child("openGL").CreateAsFolder
+		  if not folder.Child("Dragon").Exists then
+		    folder.child("Dragon").CreateAsFolder
 		  end if
 		  
 		  enginesFolder = folder

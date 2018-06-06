@@ -50,7 +50,7 @@ Inherits Application
 			dim demoFile as new FolderItem
 			
 			demoFile = demoFIle.child("Engines")
-			demoFile = demoFIle.child("openGL")
+			demoFile = demoFIle.child("Dragon")
 			demoFile = demoFIle.child("ProjectTemplates")
 			demoFile = demoFIle.child("Empty")
 			demoFile = demoFIle.child("Empty Project.spo")
