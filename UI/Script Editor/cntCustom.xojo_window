@@ -523,7 +523,7 @@ End
 		  dim f as new FolderItem
 		  
 		  f = f.child("Engines")
-		  f = f.child("openGL")
+		  f = f.child("Dragon")
 		  f = f.child("CodeTemplates")
 		  
 		  for i as integer = 1 to f.count
@@ -549,7 +549,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub LoadScriptTemplate()
 		  Trace("cntCustom:LoadScriptTemplate: Searching for script of type " + popTemplate.Text + " for " + popElement.text, cstTraceLevelLog)
-		  dim f as folderitem = GetFolderItem("Engines").child("openGL").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		  dim f as folderitem = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
 		  
 		  if f <> nil then
 		    if f.exists then
@@ -573,7 +573,7 @@ End
 		  
 		  if popElement.text = "" then exit
 		  
-		  f = GetFolderItem("Engines").child("openGL").child("CodeTemplates").child(popElement.text)
+		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text)
 		  
 		  popTemplate.DeleteAllRows
 		  
@@ -692,11 +692,11 @@ End
 		  dim f as folderitem
 		  dim data as TextOutputStream
 		  
-		  f = GetFolderItem("Engines").child("openGL").child("CodeTemplates").child(popElement.text)
+		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.Text)
 		  
 		  if not f.exists then f.CreateAsFolder
 		  
-		  f = GetFolderItem("Engines").child("openGL").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
 		  
 		  data = f.CreateTextFile
 		  

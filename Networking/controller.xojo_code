@@ -107,7 +107,7 @@ Protected Module controller
 		  
 		  //We locate the Visuals Engine
 		  #if TargetMacOS
-		    result = "open /Volumes/" + ReplaceAll(ReplaceAllB(demo.GetEnginesFolder.child("openGL").AbsolutePath, " ", "\ "), ":", "/") + "demo.app"
+		    result = "open /Volumes/" + ReplaceAll(ReplaceAllB(demo.GetEnginesFolder.child("Dragon").AbsolutePath, " ", "\ "), ":", "/") + "demo.app"
 		    result = executeShell (result)
 		    
 		    if result <>"" then notify ("The engine could not be located", "the shell manager said: " + result)
@@ -120,9 +120,9 @@ Protected Module controller
 		    if VisualsEngine.exists then
 		      VisualsEngine.launch
 		    else
-		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/openGL folder")
+		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
 		    end if
-		  #endif
+		  #EndIf
 		End Sub
 	#tag EndMethod
 

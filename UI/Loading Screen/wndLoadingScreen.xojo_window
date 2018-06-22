@@ -131,7 +131,7 @@ End
 		  
 		  // Project loading
 		  // TODO: Load the default project
-		  // file = file.Child("Engines").Child("openGL").Child("Default Project").Child("Project.sqlite")
+		  // file = file.Child("Engines").Child("Dragon").Child("Default Project").Child("Project.sqlite")
 		  
 		  //End of the initialization
 		  wndLoadingScreen.close
