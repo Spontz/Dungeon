@@ -114,11 +114,13 @@ Protected Module controller
 		  #endif
 		  
 		  #if targetWin32
-		    VisualsEngine = GetFolderItem("Engines").child("Dragon").child("sve.exe")
+		    VisualsEngine = GetFolderItem("Engines").child("Dragon")
 		    
 		    //And launch it
 		    if VisualsEngine.exists then
-		      VisualsEngine.launch
+		      dim sh as new shell
+		      sh.Mode = 1 // Asynchronous shell
+		      sh.Execute "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
 		    else
 		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
 		    end if
