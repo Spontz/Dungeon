@@ -46,27 +46,13 @@ Inherits Application
 			if file <> nil then
 			dim newTimeline as new wndTimeLine
 			
-			dim demo as classDemo
-			dim demoFile as new FolderItem
-			
-			demoFile = demoFIle.child("Engines")
-			demoFile = demoFIle.child("Dragon")
-			demoFile = demoFIle.child("ProjectTemplates")
-			demoFile = demoFIle.child("Empty")
-			demoFile = demoFIle.child("Empty Project.spo")
-			
-			demo = new classDemo(demoFile, demo.openGL)
-			
-			dim myWndTimeLine as new wndTimeLine
+			dim demo as new classDemo(file, classDemo.openGL)
 			
 			// Load the project
 			// TODO: myWndTimeLine.NewProject(demo)
 			
-			// And close the selector window
-			// TODO: self.close
-			
 			// And load the project
-			// TODO: newTimeline.init(file)
+			newTimeline.init(demo)
 			end if
 		End Function
 	#tag EndMenuHandler

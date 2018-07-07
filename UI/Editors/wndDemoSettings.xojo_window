@@ -29,7 +29,7 @@ Begin Window wndDemoSettings
    Begin PushButton btnOK
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   "7"
       Cancel          =   False
       Caption         =   "OK"
       Default         =   True
@@ -61,7 +61,7 @@ Begin Window wndDemoSettings
    Begin PushButton btnCancel
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   "7"
       Cancel          =   True
       Caption         =   "Cancel"
       Default         =   False
