@@ -30,7 +30,7 @@ Protected Module Files
 		  dialog.promptText = "Select a project to open"
 		  
 		  #if targetCarbon
-		    dialog.filter = "SVEditor/project"
+		    dialog.filter = "Dungeon/project"
 		  #endif
 		  
 		  #if TargetWin32

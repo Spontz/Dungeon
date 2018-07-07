@@ -1,12 +1,12 @@
 #tag FileTypeSet
 	#tag FileType
-		CodeName=SVEditorProject
+		CodeName=DungeonProject
 		DocIcon=Demoengine IDE.xojo_resources;&h0
-		Extension=spp
+		Extension=sqlite
 		Flags=&h1
 		MacCreator=SVEd
 		MacType=SVpj
-		Name=SVEditor/project
+		Name=Dungeon/project
 		UTI=
 		UTIConformsTo=
 		Description=
@@ -44,7 +44,7 @@
 
 	#tag FileType
 		CodeName=Mp3
-		Extension=.mp3;.swa
+		Extension=.mp3
 		Flags=&h0
 		MacCreator=TVOD
 		MacType=Mp3 
