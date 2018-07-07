@@ -1,0 +1,1 @@
+; This effect draws a video stored as a sequence of images; Folder containing the imagessVideoPath data/pool/videos/hyper; Frames per second for playbackfFPS 30.0; Loop the video?fLoopMode 1; Fit to screen?fFitToContent 0
