@@ -1827,7 +1827,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub setBarScript(barID as string, script as string)
-		  ExecuteSQL("UPDATE BARs SET script = '" + EncodeBase64(script) + "' WHERE id = '" + barID + "'")
+		  ExecuteSQL("UPDATE BARs SET script = '" + EncodeBase64(script, 0) + "' WHERE id = '" + barID + "'")
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage

@@ -39,19 +39,13 @@ Inherits Application
 
 	#tag MenuHandler
 		Function FileOpen() As Boolean Handles FileOpen.Action
-			dim file as folderitem
-			
-			file = Chooseproject()
+			dim file as folderitem = Chooseproject()
 			
 			if file <> nil then
-			dim newTimeline as new wndTimeLine
-			
 			dim demo as new classDemo(file, classDemo.openGL)
 			
-			// Load the project
-			// TODO: myWndTimeLine.NewProject(demo)
-			
 			// And load the project
+			dim newTimeline as new wndTimeLine
 			newTimeline.init(demo)
 			end if
 		End Function

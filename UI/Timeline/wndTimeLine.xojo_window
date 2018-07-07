@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -584,7 +583,7 @@ Begin Window wndTimeLine
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   595
+      Height          =   578
       HelpTag         =   ""
       Hierarchical    =   True
       Index           =   -2147483648
@@ -617,6 +616,29 @@ Begin Window wndTimeLine
       Width           =   252
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
+   End
+   Begin ProgressBar barProgress
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Maximum         =   100
+      Scope           =   0
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      Top             =   579
+      Transparent     =   False
+      Value           =   0
+      Visible         =   True
+      Width           =   252
    End
 End
 #tag EndWindow
@@ -686,6 +708,7 @@ End
 		    if x < objectMinimalWidth then x = objectMinimalWidth
 		    
 		    lbxResourcesManager.Width = x - 2
+		    barProgress.Width = x - 2
 		    cnvMoreZoom.left = me.width - scrVertical.width
 		    
 		    cnvLeftMarker.left = x + 3
