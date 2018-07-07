@@ -16,7 +16,7 @@ Begin Window wndDemoSettings
    MaxHeight       =   32000
    MaximizeButton  =   False
    MaxWidth        =   32000
-   MenuBar         =   -1140810811
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   64
    MinimizeButton  =   True
@@ -181,7 +181,7 @@ Begin Window wndDemoSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   64
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -195,7 +195,7 @@ Begin Window wndDemoSettings
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   47
+      Top             =   48
       Transparent     =   False
       Underline       =   False
       Value           =   False
