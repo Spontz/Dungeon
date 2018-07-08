@@ -16,7 +16,7 @@ Begin Window wndAbout
    MaxHeight       =   32000
    MaximizeButton  =   False
    MaxWidth        =   32000
-   MenuBar         =   -1140810811
+   MenuBar         =   0
    MenuBarVisible  =   False
    MinHeight       =   64
    MinimizeButton  =   True
