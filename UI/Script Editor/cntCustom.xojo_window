@@ -588,9 +588,6 @@ End
 		      end if
 		    next
 		    
-		    // Select the first template by default (if exists)
-		    if popTemplate.ListCount > 0 then popTemplate.ListIndex = 0
-		    
 		  else
 		    Trace("cntCustom:LoadTemplates: No templates found for bar " + popElement.text, cstTraceLevelLog)
 		    
