@@ -509,9 +509,9 @@ End
 		  
 		  for i=0 to lbxFBOConfiguration.ListCount - 1
 		    result = demo.addFBO( _
-		    Val(lbxFBOConfiguration.cell(i, 1)), _
 		    Val(lbxFBOConfiguration.cell(i, 3)), _
 		    Val(lbxFBOConfiguration.cell(i, 4)), _
+		    Val(lbxFBOConfiguration.cell(i, 1)), _
 		    lbxFBOConfiguration.cell(i, 2) _
 		    )
 		  next
