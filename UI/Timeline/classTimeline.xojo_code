@@ -435,15 +435,11 @@ Inherits Canvas
 		  end if
 		  
 		  //We update the selected sections start and end times, and the layer
-		  'for i=0 to Ubound(SelectedSections,1)
-		  'SelectedSections(i,1) = demo.getBarStartTime(SelectedSections(i,0))
-		  'SelectedSections(i,2) = demo.getBarEndTime(SelectedSections(i,0))
-		  'SelectedSections(i,5) =demo.getBarLayer(SelectedSections(i,0))
-		  
-		  'controller.setBarStartTime str(GetSelectedSectionID(i)), SelectedSections(i, 1)
-		  'controller.setBarEndTime str(GetSelectedSectionID(i)), SelectedSections(i, 2)
-		  'controller.setBarLayer str(GetSelectedSectionID(i)), SelectedSections(i, 5)
-		  'next
+		  for each ID as integer in demo.getSelectedBarIDs
+		    controller.setBarStartTime str(ID), demo.getBarStartTime(ID)
+		    controller.setBarEndTime   str(ID), demo.getBarEndTime  (ID)
+		    controller.setBarLayer     str(ID), demo.getBarLayer    (ID)
+		  next
 		  
 		  //We clean the variables used to store the initial dragging point
 		  me.XdragStart = -1
@@ -968,32 +964,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h1
 		Protected Sub RemoveSectionFromSelection(section as integer)
-		  // TODO
-		  'dim row, column as integer
-		  'dim i as integer
-		  '
-		  '// If we don't have selected sections, there is nothing to remove!
-		  'if UBound(SelectedSections) < 0 then return
-		  '
-		  'i = 0
-		  '//First we locate the position in the SelectedSections array in which the current section is
-		  'while SelectedSections(i,0) <> section
-		  'i = i + 1
-		  'wend
-		  '
-		  '//If we are not removing the last section, we must compact the SelectedSections array
-		  'if (section + 1)<demo.Sections.Count then
-		  '//First, we remove the section from the sections.script
-		  'for row=i to Ubound(SelectedSections,1) - 1
-		  '//sections.blendings
-		  'for column=0 to Ubound(SelectedSections,2)
-		  'SelectedSections(row,column) = SelectedSections(row+1, column)
-		  'next
-		  'next
-		  'end if
-		  '
-		  '//Array size updating
-		  'ReDim SelectedSections(Ubound(SelectedSections,1)-1,Ubound(SelectedSections,2))
+		  demo.removeBarFromSelection(section)
 		End Sub
 	#tag EndMethod
 
@@ -1051,12 +1022,17 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub SetSelectionEndTime(theTime as single)
-		  // dim IDsList as String
+		  dim selectedSectionIDs() as integer = demo.getSelectedBarIDs
+		  dim IDsList() as string
+		  
+		  for each num as integer in selectedSectionIDs
+		    IDsList.Append str(num)
+		  next
 		  
 		  demo.setSelectedBarsEndTime(theTime)
 		  
 		  // Update the demo engine
-		  // controller.setBarEndTime (IDsList, theTime)
+		  controller.setBarEndTime (join(IDsList, ","), theTime)
 		  
 		  me.Invalidate
 		  
@@ -1118,12 +1094,17 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub SetSelectionStartTime(theTime as single)
-		  // dim IDsList as String
+		  dim selectedSectionIDs() as integer = demo.getSelectedBarIDs
+		  dim IDsList() as string
+		  
+		  for each num as integer in selectedSectionIDs
+		    IDsList.Append str(num)
+		  next
 		  
 		  demo.setSelectedBarsStartTime(theTime)
 		  
 		  // Update the demo engine
-		  // controller.setBarEndTime (IDsList, theTime)
+		  controller.setBarEndTime (join(IDsList, ","), theTime)
 		  
 		  me.Invalidate
 		  
