@@ -201,13 +201,13 @@ Protected Module controller
 
 	#tag Method, Flags = &h0
 		Sub ToggleBars(engineBarIDs() as integer)
-		  dim theMessage as string
+		  dim theMessage() as string
 		  
 		  for i as integer = 0 to UBound(engineBarIDs)
-		    theMessage = theMessage + str(engineBarIDs(i)) + ","
+		    theMessage.append str(engineBarIDs(i))
 		  next
 		  
-		  Engine.ToggleBars theMessage
+		  Engine.ToggleBars join(theMessage, ",")
 		  
 		End Sub
 	#tag EndMethod
