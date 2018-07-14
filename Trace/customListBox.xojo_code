@@ -72,24 +72,22 @@ Inherits Listbox
 
 	#tag Method, Flags = &h0
 		Sub refreshContents()
-		  dim i,j as integer
-		  
 		  me.DeleteAllRows
 		  
-		  for i=0 to UBound(contents, 1)
+		  for i as integer = 0 to UBound(contents, 1)
 		    // Check if the line should be added to the listbox or not
 		    
 		    if filter = "" then
 		      // No filter, so add the line
 		      me.addRow contents(i, 0)
 		      
-		      for j=1 to UBound(contents, 2)
+		      for j as integer = 1 to UBound(contents, 2)
 		        me.cell(me.LastIndex, j) = contents(i, j)
 		      next
 		    else
 		      
 		      // There is a filter, so we must evaluate the line before adding it to the trace
-		      for j=0 to UBound(contents, 2)
+		      for j as integer = 0 to UBound(contents, 2)
 		        if InStr(0, contents(i, j), filter) > 0 then
 		          // Add the line, since if passed the filtering operation
 		          me.addRow contents(i, 0)

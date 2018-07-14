@@ -210,7 +210,6 @@ Begin Window wndTrace
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   287
       Transparent     =   False
       Value           =   0
@@ -218,7 +217,6 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
@@ -236,12 +234,27 @@ End
 		  lbxTrace.ColumnAlignment(cstColumnTimestamp) = 3 // Right Aligned
 		  lbxTrace.ColumnAlignment(cstColumnLevel) = 2 // Center Aligned
 		  lbxTrace.ColumnAlignment(cstColumnMessage) = 1 // Left Aligned
-		  
-		  // Fill the field
-		  DebugTrace.append(0)
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h0
+		Sub append(logtime as string, message as string, level as string)
+		  // Write the trace to the tracing window
+		  dim lastLine as integer = lbxTrace.appendRow(logtime)
+		  lbxTrace.contents(lastLine, 1) = level
+		  lbxTrace.contents(lastLine, 2) = message
+		  
+		  lbxTrace.AddRow(logtime, level, message)
+		  
+		  // Select the last line of the trace (if there isn't a selected line)
+		  if wndTrace.lbxTrace.SelCount = 0 then
+		    wndTrace.lbxTrace.ScrollPosition = 1 + wndTrace.lbxTrace.ListCount - ceil((wndTrace.lbxTrace.Height - 16) / wndTrace.lbxTrace.DefaultRowHeight)
+		  end if
+		  
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub exportToHTML()
