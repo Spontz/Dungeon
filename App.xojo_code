@@ -86,6 +86,15 @@ Inherits Application
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function mnuTrace() As Boolean Handles mnuTrace.Action
+			wndTrace.Show
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function NewProject() As Boolean Handles NewProject.Action
 			wndChooseDemoType.show
 			

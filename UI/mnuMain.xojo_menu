@@ -440,16 +440,30 @@ Begin Menu mnuMain
       Index = -2147483648
       AutoEnable = True
       Visible = True
-      Begin AppleMenuItem mnuAppleAboutSpöntzVisualsEditor
+      Begin MenuItem mnuTrace
          SpecialMenu = 0
-         Text = "About Spöntz Visuals Editor..."
+         Text = "Trace"
+         Index = -2147483648
+         AutoEnable = True
+         Visible = True
+      End
+      Begin MenuItem UntitledSeparator2
+         SpecialMenu = 0
+         Text = "-"
          Index = -2147483648
          AutoEnable = True
          Visible = True
       End
       Begin MenuItem HelpSpntzHomePage
          SpecialMenu = 0
-         Text = "Spöntz Home Page..."
+         Text = "Spontz Home Page..."
+         Index = -2147483648
+         AutoEnable = True
+         Visible = True
+      End
+      Begin AppleMenuItem mnuAppleAboutSpöntzVisualsEditor
+         SpecialMenu = 0
+         Text = "About Spöntz Visuals Editor..."
          Index = -2147483648
          AutoEnable = True
          Visible = True
