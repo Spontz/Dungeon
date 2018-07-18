@@ -642,7 +642,7 @@ Protected Class classDemo
 		Function getBarEndTime(barID as integer) As single
 		  dim result as Single
 		  
-		  result = demoDB.SQLSelect("SELECT startTime FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("startTime").DoubleValue
+		  result = demoDB.SQLSelect("SELECT endTime FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("endTime").DoubleValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage

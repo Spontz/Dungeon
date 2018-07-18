@@ -118,9 +118,9 @@ Protected Module controller
 		    
 		    //And launch it
 		    if VisualsEngine.exists then
-		      dim sh as new shell
-		      sh.Mode = 1 // Asynchronous shell
-		      sh.Execute "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
+		      Engine.engineShell = new classEngineShell
+		      Engine.engineShell.Mode = 1 // Asynchronous shell
+		      Engine.engineShell.Execute "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
 		    else
 		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
 		    end if
