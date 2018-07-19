@@ -186,44 +186,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(optional demoFile as folderitem, demoType as String = "openGL")
-		  type = demoType
-		  
-		  // Create the demo database in the temporary folder
-		  Dim f as FolderItem
-		  f = GetTemporaryFolderItem()
-		  
-		  demoDB = New REALSQLdatabase
-		  demoDB.databaseFile = f
-		  
-		  if demoFile = nil then
-		    // There is no demofile so create a new empty database
-		    If not demoDB.CreateDatabaseFile then
-		      MsgBox "Error creating project database."
-		      return
-		    end if
-		    
-		    initDemoDB(type)
-		    
-		  else
-		    // There is an existing demofile so copy it to the temp folder
-		    me.projectFolder = demoFile
-		    CopyFileOrFolder(demoFile, f)
-		    
-		  end if
-		  
-		  // Connect to the database
-		  If not demoDB.Connect() then
-		    MsgBox "Could not connect to the project database."
-		    return
-		  end if
-		  
-		  // The engine localization
-		  me.SetEnginesFolder GetFolderItem("Engines")
-		  
-		  // Set the data folder
-		  me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
-		  
+		Sub Constructor()
 		  
 		End Sub
 	#tag EndMethod
@@ -1408,6 +1371,49 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub init(optional demoFile as folderitem, demoType as String = "openGL")
+		  type = demoType
+		  
+		  // Create the demo database in the temporary folder
+		  Dim f as FolderItem
+		  f = GetTemporaryFolderItem()
+		  
+		  demoDB = New REALSQLdatabase
+		  demoDB.databaseFile = f
+		  
+		  if demoFile = nil then
+		    // There is no demofile so create a new empty database
+		    If not demoDB.CreateDatabaseFile then
+		      MsgBox "Error creating project database."
+		      return
+		    end if
+		    
+		    initDemoDB(type)
+		    
+		  else
+		    // There is an existing demofile so copy it to the temp folder
+		    me.projectFolder = demoFile
+		    CopyFileOrFolder(demoFile, f)
+		    
+		  end if
+		  
+		  // Connect to the database
+		  If not demoDB.Connect() then
+		    MsgBox "Could not connect to the project database."
+		    return
+		  end if
+		  
+		  // The engine localization
+		  me.SetEnginesFolder GetFolderItem("Engines")
+		  
+		  // Set the data folder
+		  me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub initDefaultFBOs()
 		  For i As Integer = 0 To 19
 		    Call addFBO(0, 0, 1, "RGB")
@@ -1873,12 +1879,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub setDemoEndTime(theTime as single)
-		  dim myTime as string
+		Sub setDemoEndTime(newEndTime as single)
+		  if newEndTime = getDemoEndTime then return
 		  
-		  myTime = str(theTime)
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + myTime + "' WHERE variable = 'endTime'")
+		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(newEndTime) + "' WHERE variable = 'endTime'")
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -1886,7 +1890,7 @@ Protected Class classDemo
 		    demoDB.Commit
 		  End if
 		  
-		  DemoEndTimeSet(theTime)
+		  DemoEndTimeSet(newEndTime)
 		End Sub
 	#tag EndMethod
 
@@ -1922,12 +1926,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub setDemoStartTime(theTime as single)
-		  dim myTime as string
+		Sub setDemoStartTime(newStartTime as single)
+		  if newStartTime = getDemoStartTime then return
 		  
-		  myTime = str(theTime)
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + myTime + "' WHERE variable = 'startTime'")
+		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(newStartTime) + "' WHERE variable = 'startTime'")
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -1935,6 +1937,7 @@ Protected Class classDemo
 		    demoDB.Commit
 		  End if
 		  
+		  demoStartTimeSet(newStartTime)
 		End Sub
 	#tag EndMethod
 
@@ -2241,7 +2244,11 @@ Protected Class classDemo
 
 
 	#tag Hook, Flags = &h0
-		Event demoEndTimeSet(theTime as single)
+		Event demoEndTimeSet(newEndTime as single)
+	#tag EndHook
+
+	#tag Hook, Flags = &h0
+		Event demoStartTimeSet(newStartTime as single)
 	#tag EndHook
 
 

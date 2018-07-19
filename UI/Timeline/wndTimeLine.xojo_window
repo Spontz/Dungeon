@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -635,12 +634,18 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   252
+   End
+   Begin classDemo demo
+      Index           =   -2147483648
+      LockedInPosition=   False
+      saved           =   True
+      Scope           =   0
+      TabPanelIndex   =   0
    End
 End
 #tag EndWindow
@@ -881,10 +886,23 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(theDemo as classDemo)
-		  demo = theDemo
+		Sub init(demoType as string, optional f as folderitem = nil)
+		  Dim demoFile As New FolderItem
 		  
-		  AddHandler demo.demoEndTimeSet, AddressOf demoEndTimeSet
+		  if f = nil then
+		    demoFile = demoFIle.child("Engines")
+		    demoFile = demoFIle.child("Dragon")
+		    demoFile = demoFIle.child("ProjectTemplates")
+		    demoFile = demoFIle.child("Default.sqlite")
+		  else
+		    demofile = f
+		  end if
+		  
+		  demo.init(demoFile, demoType)
+		  
+		  If demo.countFBOs = 0 Then
+		    demo.initDefaultFBOs
+		  End If
 		  
 		  engine = new classEngine(demo.type)
 		  
@@ -944,10 +962,6 @@ End
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h0
-		demo As classDemo
-	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		engine As classEngine
@@ -1232,8 +1246,6 @@ End
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
 		    me.text = cstr(demo.getDemoEndTime) + " sg"
 		    
-		    controller.setEndTime(demo.getDemoEndTime)
-		    
 		    // Pass the focus to the next time field
 		    cnvTimeLine.Invalidate
 		    
@@ -1244,6 +1256,20 @@ End
 		    return true
 		  end if
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events demo
+	#tag Event
+		Sub demoEndTimeSet(newEndTime as single)
+		  controller.setEndTime(newEndTime)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub demoStartTimeSet(newStartTime as single)
+		  controller.setStartTime(newStartTime)
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

@@ -351,24 +351,10 @@ End
 
 	#tag Method, Flags = &h0
 		Sub openGL()
-		  Dim demo As classDemo
-		  Dim demoFile As New FolderItem
-		  
-		  demoFile = demoFIle.child("Engines")
-		  demoFile = demoFIle.child("Dragon")
-		  demoFile = demoFIle.child("ProjectTemplates")
-		  demoFile = demoFIle.child("Default.sqlite")
-		  
-		  demo = New classDemo(demoFile, demo.openGL)
-		  
-		  If demo.countFBOs = 0 Then
-		    demo.initDefaultFBOs
-		  End If
-		  
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init(demo)
+		  myWndTimeLine.init("openGL")
 		  
 		  // And close the selector window
 		  self.close
@@ -377,48 +363,37 @@ End
 
 	#tag Method, Flags = &h0
 		Sub openProject()
-		  Dim file As folderitem = Chooseproject
-		  
-		  If file <> Nil Then
-		    Dim demo As classDemo
-		    Dim demoFile As New FolderItem
-		    
-		    demoFile = demoFIle.child("Engines")
-		    demoFile = demoFIle.child("Dragon")
-		    demoFile = demoFIle.child("ProjectTemplates")
-		    demoFile = demoFIle.child("Empty")
-		    demoFile = demoFIle.child("Empty Project.spo")
-		    
-		    demo = New classDemo(demoFile, demo.openGL)
-		    
-		    Dim newTimeline As New wndTimeLine
-		    
-		    // Load the project
-		    newTimeline.init(demo)
-		    
-		    // And close the selector window
-		    Self.close
-		  end if
+		  'Dim file As folderitem = Chooseproject
+		  '
+		  'If file <> Nil Then
+		  'Dim demo As classDemo
+		  'Dim demoFile As New FolderItem
+		  '
+		  'demoFile = demoFIle.child("Engines")
+		  'demoFile = demoFIle.child("Dragon")
+		  'demoFile = demoFIle.child("ProjectTemplates")
+		  'demoFile = demoFIle.child("Empty")
+		  'demoFile = demoFIle.child("Empty Project.spo")
+		  '
+		  'demo = New classDemo(demoFile, demo.openGL)
+		  '
+		  'Dim newTimeline As New wndTimeLine
+		  '
+		  '// Load the project
+		  'newTimeline.init(demo)
+		  '
+		  '// And close the selector window
+		  'Self.close
+		  'end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub webGL()
-		  Dim demo As classDemo
-		  Dim demoFile As New FolderItem
-		  
-		  demoFile = demoFIle.child("Engines")
-		  demoFile = demoFIle.child("webGL")
-		  demoFile = demoFIle.child("ProjectTemplates")
-		  demoFile = demoFIle.child("Empty")
-		  demoFile = demoFIle.child("Empty Project.spo")
-		  
-		  demo = New classDemo(demoFile, demo.webGL)
-		  
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init(demo)
+		  myWndTimeLine.init("webGL")
 		  
 		  // And close the selector window
 		  self.close

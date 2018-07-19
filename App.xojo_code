@@ -42,11 +42,9 @@ Inherits Application
 			dim file as folderitem = Chooseproject()
 			
 			if file <> nil then
-			dim demo as new classDemo(file, classDemo.openGL)
-			
 			// And load the project
 			dim newTimeline as new wndTimeLine
-			newTimeline.init(demo)
+			newTimeline.init("openGL", file)
 			end if
 		End Function
 	#tag EndMenuHandler
