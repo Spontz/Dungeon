@@ -5,6 +5,7 @@
 spline data/pool/cameras/default.cam
 
 fInteractiveCamera 1
+fCameraMultiplier 50
 
 ; Positioning
 sPosition  posX=cam_eye_x;  posY=cam_eye_y;  posZ=cam_eye_z;
