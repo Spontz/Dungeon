@@ -7,16 +7,16 @@ Begin Window wndTextEditor
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
-   FullScreenButton=   False
+   FullScreenButton=   True
    HasBackColor    =   True
-   Height          =   434
+   Height          =   576
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
    MaximizeButton  =   True
    MaxWidth        =   32000
-   MenuBar         =   -1140810811
+   MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   300
    MinimizeButton  =   True
@@ -25,13 +25,13 @@ Begin Window wndTextEditor
    Resizeable      =   True
    Title           =   "Text Editor"
    Visible         =   True
-   Width           =   528
-   Begin PushButton btnSaveBoth
+   Width           =   800
+   Begin PushButton btnSave
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Save both"
+      Caption         =   "Save"
       Default         =   True
       Enabled         =   False
       Height          =   32
@@ -39,7 +39,7 @@ Begin Window wndTextEditor
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   422
+      Left            =   694
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -50,20 +50,20 @@ Begin Window wndTextEditor
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   392
+      Top             =   534
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
    End
-   Begin PushButton btnSaveData
+   Begin PushButton btnTest
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Save data"
+      Caption         =   "Test"
       Default         =   False
       Enabled         =   False
       Height          =   32
@@ -71,7 +71,7 @@ Begin Window wndTextEditor
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   324
+      Left            =   596
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -82,41 +82,9 @@ Begin Window wndTextEditor
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   392
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   86
-   End
-   Begin PushButton btnSavePool
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   False
-      Caption         =   "Save pool"
-      Default         =   False
-      Enabled         =   False
-      Height          =   32
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   226
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   392
+      Top             =   534
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -126,7 +94,7 @@ Begin Window wndTextEditor
       AcceptTabs      =   True
       Alignment       =   0
       AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   True
+      AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
@@ -134,7 +102,7 @@ Begin Window wndTextEditor
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   349
+      Height          =   524
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -162,14 +130,42 @@ Begin Window wndTextEditor
       Text            =   ""
       TextColor       =   &c3F3F3F00
       TextFont        =   "Courier"
-      TextSize        =   10.0
+      TextSize        =   11.0
       TextUnit        =   0
-      Top             =   33
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   480
+      Width           =   768
+   End
+   Begin Canvas cnvLineNumbers
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   True
+      Enabled         =   True
+      EraseBackground =   False
+      Height          =   509
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   0
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   32
    End
    Begin PushButton btnCancel
       AutoDeactivate  =   True
@@ -195,249 +191,18 @@ Begin Window wndTextEditor
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   0.0
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   392
+      Top             =   534
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   86
    End
-   Begin Canvas cnvLineNumbers
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   False
-      Height          =   334
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   33
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   32
-   End
-   Begin popTextDataFiles popTextDataFiles
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   308
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   6
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   200
-   End
-   Begin popTextPoolFiles popTextPoolFiles
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   59
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   6
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   200
-   End
-   Begin Label StaticText1
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   7
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "pool"
-      TextAlign       =   2
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   7
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Label StaticText2
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   260
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "data"
-      TextAlign       =   2
-      TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   6
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   40
-   End
-   Begin ScrollBar scrBarVertical
-      AcceptFocus     =   True
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   334
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   512
-      LineStep        =   1
-      LiveScroll      =   True
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Maximum         =   0
-      Minimum         =   0
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   33
-      Transparent     =   False
-      Value           =   0
-      Visible         =   True
-      Width           =   16
-   End
-   Begin CheckBox chkAutoUpload
-      AutoDeactivate  =   True
-      Bold            =   False
-      Caption         =   "Auto Upload"
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   "If checked, the selected currently selected sections are uploaded to the engine when the Save data or Save both button are pressed"
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   115
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Scope           =   0
-      State           =   1
-      TabIndex        =   11
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   398
-      Transparent     =   False
-      Underline       =   False
-      Value           =   True
-      Visible         =   True
-      Width           =   99
-   End
 End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub Open()
-		  state = "editing"
-		End Sub
-	#tag EndEvent
-
-
 	#tag MenuHandler
 		Function FileClose() As Boolean Handles FileClose.Action
 			self.Close
@@ -446,113 +211,71 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub init(poolFile as folderitem, theHook as wndTimeLine)
-		  dim i as integer
+		Sub init(fileID as string, theHook as wndTimeLine)
+		  dim f as FolderItem
+		  dim itemProperties as dictionary
 		  
-		  theLocalPath = Files.GetRelativePathName(poolFile)
-		  theParent = "pool"
+		  itemProperties = theHook.demo.getFile(fileID)
+		  itemID = fileID
+		  
+		  f = theHook.demo.getFilePath(fileID)
+		  f = f.child(itemProperties.value("name"))
+		  
+		  if not f.Exists then
+		    Notify("File does not exist", "Expected path: " + f.ShellPath)
+		    return
+		  end if
+		  
+		  editedFile = f
 		  
 		  hook = theHook
 		  
 		  loadFile
-		  
-		  // Adjust the pool and data menus
-		  popTextDataFiles.init(hook.demo)
-		  popTextPoolFiles.init(hook.demo)
-		  
-		  state = "switching"
-		  
-		  // Pool files popup menu
-		  popTextPoolFiles.ListIndex = -1
-		  
-		  for i=0 to popTextPoolFiles.ListCount - 1
-		    if popTextPoolFiles.list(i) = theLocalPath then
-		      popTextPoolFiles.ListIndex = i
-		      exit
-		    end if
-		  next
-		  
-		  // Data files popup menu
-		  popTextDataFiles.ListIndex = -1
-		  
-		  for i=0 to popTextDataFiles.ListCount - 1
-		    if popTextDataFiles.list(i) = theLocalPath then
-		      popTextDataFiles.ListIndex = i
-		      exit
-		    end if
-		  next
-		  
-		  state = "editing"
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub loadFile()
-		  'dim contents as TextInputStream
-		  'dim theFile as FolderItem
-		  '
-		  'if theParent = "pool" then
-		  'theFile = hook.demo.GetPoolFolderItem(theLocalPath)
-		  'me.Title = theFile.Name + " from pool folder"
-		  '
-		  'else
-		  'theFile = hook.demo.GetDataFolderItem(theLocalPath)
-		  'me.Title = theFile.Name + " from data folder"
-		  'end if
-		  '
-		  'theFileName = theFile.name
-		  '
-		  'contents = theFile.OpenAsTextFile
-		  'txtFileContents.text = contents.ReadAll
-		  'contents.Close
-		  '
-		  'btnSaveBoth.Enabled = true
-		  'btnSaveData.Enabled = true
-		  'btnSavePool.Enabled = true
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub saveToData()
-		  dim theFile as FolderItem
-		  dim shellPath as string
-		  dim contents as TextOutputStream
+		  me.Title = editedFile.Name + " from data folder"
 		  
-		  // Get the path to the file
-		  shellPath = hook.demo.GetDataFolder.child("pool").ShellPath + "/" + theLocalPath
-		  theFile = GetForcedFolderItem(shellPath)
-		  theFile = theFile.Child(theFileName)
+		  dim contents as TextInputStream 
 		  
-		  // If the file exists, delete it
-		  if theFile.Exists then theFile.Delete
+		  try
+		    contents = editedFile.OpenAsTextFile
+		    txtFileContents.text = contents.ReadAll
+		    
+		    btnSave.Enabled = true
+		    btnTest.Enabled = true
+		    
+		  catch
+		    Notify ("Error accesing the file", "Could not open file """ + editedFile.ShellPath + """ for edition")
+		    
+		  end
 		  
-		  // Save the contents to the file
-		  contents = theFile.CreateTextFile
-		  contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
-		  contents.Flush
 		  contents.Close
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub saveToPool()
-		  'dim theFile as FolderItem
-		  'dim shellPath as string
-		  'dim contents as TextOutputStream
-		  '
-		  '// Get the path to the file
-		  'shellPath = hook.demo.GetPoolFolder.ShellPath + "/" + theLocalPath
-		  'theFile = GetForcedFolderItem(shellPath)
-		  'theFile = theFile.Child(theFileName)
-		  '
-		  '// If the file exists, delete it
-		  'if theFile.Exists then theFile.Delete
-		  '
-		  '// Save the contents to the file
-		  'contents = theFile.CreateTextFile
-		  'contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
-		  'contents.Flush
-		  'contents.Close
+		Private Sub saveToDatabase()
+		  hook.demo.updateResourceFromFolderItem(editedFile, itemID)
+		  
+		  self.close
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub saveToDataFolder()
+		  // If the file exists, delete it
+		  if editedFile.Exists then editedFile.Delete
+		  
+		  // Save the contents to the file
+		  dim contents as TextOutputStream
+		  
+		  contents = editedFile.CreateTextFile
+		  contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
+		  contents.Flush
+		  contents.Close
 		End Sub
 	#tag EndMethod
 
@@ -564,106 +287,80 @@ End
 		  txtFileContents.Text = ReplaceAll(txtFileContents.text, chr(10), chr(13))
 		  currentNumberOfLines = CountFields(txtFileContents.text, chr(13))
 		  maxVisibleLines = floor((txtFileContents.Height - 16)/ txtFileContents.TextSize)
-		  
-		  if maxVisibleLines > currentNumberOfLines then
-		    scrBarVertical.Maximum = 0
-		  else
-		    scrBarVertical.Maximum = currentNumberOfLines - maxVisibleLines
-		  end if
-		  
-		  scrBarVertical.Value = txtFileContents.ScrollPosition
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h21
+		Private editedFile As FolderItem
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private hook As wndTimeLine
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private state As String = "initing"
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private theFileName As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private theLocalPath As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private theParent As String
+	#tag Property, Flags = &h0
+		itemID As String
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events btnSaveBoth
+#tag Events btnSave
 	#tag Event
 		Sub Action()
-		  saveToPool
-		  saveToData
+		  saveToDatabase
+		  saveToDataFolder
 		  
-		  if chkAutoUpload.Value then hook.updateSelectedSections()
+		  hook.updateSelectedSections()
+		  
+		  self.close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnSaveData
+#tag Events btnTest
 	#tag Event
 		Sub Action()
-		  saveToData
+		  saveToDataFolder
 		  
-		  if chkAutoUpload.Value then hook.UpdateSelectedSections
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events btnSavePool
-	#tag Event
-		Sub Action()
-		  saveToPool
+		  hook.UpdateSelectedSections
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events txtFileContents
 	#tag Event
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  dim vNewPosition as integer
-		  dim hNewPosition as integer
-		  
-		  vNewPosition = me.ScrollPosition + deltaY
-		  
-		  if vNewPosition < 0 then
-		    vNewPosition = 0
-		  elseif vNewPosition > scrBarVertical.Maximum then
-		    vNewPosition = scrBarVertical.Maximum
-		  end if
-		  
-		  me.ScrollPosition = vNewPosition
-		  
-		  updateScrollBar
+		  cnvLineNumbers.Invalidate
 		End Function
 	#tag EndEvent
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(key) = 3 then
-		    // Apply the changes
-		    saveToData
-		    saveToPool
+		    // User pressed the ENTER key
+		    // Apply the changes to the data folder
+		    saveToDataFolder
 		    
-		    if chkAutoUpload.Value then hook.UpdateSelectedSections
+		    hook.UpdateSelectedSections
 		    
 		    // No further processing to be done with the key
 		    return true
 		  end if
 		End Function
 	#tag EndEvent
-#tag EndEvents
-#tag Events btnCancel
 	#tag Event
-		Sub Action()
-		  self.Close
+		Sub TextChange()
+		  cnvLineNumbers.Invalidate
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub KeyUp(Key As String)
+		  cnvLineNumbers.Invalidate
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  cnvLineNumbers.Invalidate
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events cnvLineNumbers
@@ -673,88 +370,29 @@ End
 		  dim lineNumber as integer
 		  dim theStringWidth as integer
 		  
-		  lineNumber = scrBarVertical.Value + 1
+		  lineNumber = txtFileContents.ScrollPosition + 1
 		  
-		  me.Graphics.ForeColor = &ce0e0e0
+		  g.ForeColor = &ce0e0e0
 		  
-		  me.Graphics.FillRect (0,0,me.Width, me.Height)
+		  g.FillRect (0,0,me.Width, me.Height)
 		  
-		  me.Graphics.TextFont = "Arial"
-		  me.Graphics.TextSize = 9
-		  me.Graphics.ForeColor = &c666666
+		  g.TextFont = "Courier"
+		  g.TextSize = 11
+		  g.ForeColor = &c666666
 		  
-		  for y=txtFileContents.TextSize to me.Height + txtFileContents.TextSize Step txtFileContents.TextSize
-		    theStringWidth = me.Graphics.StringWidth(str(lineNumber))
+		  for y=txtFileContents.TextSize + 2 to me.Height + txtFileContents.TextSize Step txtFileContents.TextSize + 3
+		    theStringWidth = g.StringWidth(str(lineNumber))
 		    
-		    me.Graphics.DrawString (str(lineNumber), me.Width - theStringWidth - 2, y + 1)
+		    g.DrawString (str(lineNumber), me.Width - theStringWidth - 2, y + 1)
 		    lineNumber = lineNumber + 1
 		  next
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events popTextDataFiles
+#tag Events btnCancel
 	#tag Event
-		Sub Change()
-		  dim i as integer
-		  
-		  if state = "initing" then
-		    me.ListIndex = -1
-		    
-		  elseif state = "editing" then
-		    theLocalPath = me.list(me.ListIndex)
-		    theParent = "data"
-		    loadFile
-		    
-		    state = "switching"
-		    
-		    popTextPoolFiles.ListIndex = -1
-		    
-		    for i=0 to popTextPoolFiles.ListCount - 1
-		      if popTextPoolFiles.list(i) = theLocalPath then
-		        popTextPoolFiles.ListIndex = i
-		        exit
-		      end if
-		    next
-		    
-		    state = "editing"
-		  end if
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events popTextPoolFiles
-	#tag Event
-		Sub Change()
-		  dim i as integer
-		  
-		  if state = "initing" then
-		    me.ListIndex = -1
-		    
-		  elseif state = "editing" then
-		    theLocalPath = me.list(me.ListIndex)
-		    theParent = "pool"
-		    loadFile
-		    
-		    state = "switching"
-		    
-		    popTextDataFiles.ListIndex = -1
-		    
-		    for i=0 to popTextDataFiles.ListCount - 1
-		      if popTextDataFiles.list(i) = theLocalPath then
-		        popTextDataFiles.ListIndex = i
-		        exit
-		      end if
-		    next
-		    
-		    state = "editing"
-		  end if
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events scrBarVertical
-	#tag Event
-		Sub ValueChanged()
-		  cnvLineNumbers.Refresh
-		  txtFileContents.ScrollPosition = me.Value
+		Sub Action()
+		  self.Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -263,8 +263,22 @@ Inherits listbox
 
 	#tag Event
 		Sub DoubleClick()
-		  // Toggle the expanded / collapsed status of a row
-		  if me.ListIndex > -1 then me.Expanded(me.ListIndex) = not me.Expanded(me.ListIndex)
+		  if me.ListIndex > -1 then
+		    if me.RowIsFolder(me.ListIndex) then
+		      // Row is a folder
+		      // Toggle the expanded / collapsed status of the row
+		      me.Expanded(me.ListIndex) = not me.Expanded(me.ListIndex)
+		      
+		    elseif me.CellCheck(me.ListIndex, me.cstColumnName) then
+		      // Raise an event indicating than an icon has been double clicked
+		      DoubleClickedItem(me.cell(me.ListIndex, cstColumnID))
+		      
+		    else
+		      // The file must be checked in order to edit it
+		      Notify("File can't be edited", "Please mark the file as checked in order to edit it")
+		      
+		    end if
+		  end if
 		End Sub
 	#tag EndEvent
 
@@ -339,7 +353,6 @@ Inherits listbox
 		      
 		    end if
 		    
-		    
 		  else
 		    parentID = "0"
 		    depth = 0
@@ -364,9 +377,7 @@ Inherits listbox
 		      
 		    end if
 		    
-		    
 		  end if
-		  
 		  
 		  // Insert the item
 		  if id <> "" then
@@ -523,6 +534,11 @@ Inherits listbox
 		  next
 		End Sub
 	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event DoubleClickedItem(itemID as string)
+	#tag EndHook
 
 
 	#tag Property, Flags = &h21

@@ -339,7 +339,7 @@ Protected Class classDemo
 		      rec.IntegerColumn("parent") = val(parentID)
 		      rec.IntegerColumn("bytes") = f.Length
 		      rec.Column("type") = "File"
-		      rec.BlobColumn("data") = file
+		      rec.BlobColumn("data") = EncodeBase64(file, 0)
 		      rec.Column("format") = f.Type
 		      rec.Column("enabled") = "0"
 		      
@@ -955,7 +955,7 @@ Protected Class classDemo
 		    result.Value("name") = files.Field("name").StringValue
 		    result.Value("type") = "File"
 		    result.Value("size") = files.Field("bytes").StringValue
-		    result.Value("data") = files.Field("data").NativeValue
+		    result.Value("data") = DecodeBase64(files.Field("data").NativeValue)
 		  end if
 		  
 		  return result
@@ -2239,6 +2239,38 @@ Protected Class classDemo
 		  wend
 		  
 		  If demoDB.error then MsgBox demoDB.errormessage
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub updateResourceFromFolderItem(f as FolderItem, itemID as string)
+		  Dim b As BinaryStream
+		  Dim data as string
+		  dim fileSize as Uint64
+		  
+		  If f = Nil then return
+		  if f.Directory then return
+		  
+		  // Read the file
+		  b = BinaryStream.Open(f,False)
+		  data = b.Read(b.Length)
+		  b.Close
+		  
+		  fileSize = Len(data)
+		  
+		  // Update the file in the database
+		  demoDB.SQLExecute("UPDATE FILES SET data='" + EncodeBase64(data, 0) + "', size = " + str(fileSize) + " where id = " + itemID)
+		  
+		  If demoDB.error then
+		    demoDB.Rollback
+		    MsgBox demoDB.errormessage
+		    
+		  else
+		    demoDB.Commit
+		    
+		    // Mark the project as not saved
+		    saved = false
+		  end if
 		End Sub
 	#tag EndMethod
 

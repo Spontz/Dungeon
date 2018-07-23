@@ -646,6 +646,7 @@ Begin Window wndTimeLine
       saved           =   True
       Scope           =   0
       TabPanelIndex   =   0
+      type            =   ""
    End
 End
 #tag EndWindow
@@ -1256,6 +1257,70 @@ End
 		    return true
 		  end if
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events lbxResourcesManager
+	#tag Event
+		Sub DoubleClickedItem(itemID as string)
+		  // Retrieve the item from the database
+		  dim fileProperties as dictionary = demo.getFile(itemID)
+		  
+		  dim fileName  as string = fileProperties.Value("name")
+		  dim parts()   as string = split(fileName, ".")
+		  dim extension as string = parts(UBound(parts))
+		  
+		  select case extension
+		    
+		  case "cam"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "txt"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "layer"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "pth"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "path"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "shader"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "vertex"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "vs"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "fragment"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "fs"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  else
+		    dim f as folderitem
+		    
+		    f = demo.getFilePath(itemID)
+		    f = f.child(filename)
+		    
+		    f.launch
+		    
+		  end select
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events demo
