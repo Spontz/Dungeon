@@ -34,7 +34,7 @@ Inherits Canvas
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  dim i as integer
-		  dim selectedBarIDs() as integer
+		  dim selectedBarIDs() as String
 		  
 		  if key.Asc = 8 or key.Asc = 127 then
 		    // The user pressed backspace or SUPR
@@ -42,7 +42,7 @@ Inherits Canvas
 		    
 		    // Remove the selected bars from the demoengines
 		    for i=0 to UBound(selectedBarIDs)
-		      if demo.getBarType(str(selectedBarIDs(i))) <> "" then
+		      if demo.getBarType(selectedBarIDs(i)) <> "" then
 		        // The bar has been already sent to the demoengine, order its deletion
 		        controller.deleteBar(selectedBarIDs(i))
 		      end if
@@ -435,10 +435,10 @@ Inherits Canvas
 		  end if
 		  
 		  //We update the selected sections start and end times, and the layer
-		  for each ID as integer in demo.getSelectedBarIDs
-		    controller.setBarStartTime str(ID), demo.getBarStartTime(ID)
-		    controller.setBarEndTime   str(ID), demo.getBarEndTime  (ID)
-		    controller.setBarLayer     str(ID), demo.getBarLayer    (ID)
+		  for each ID as string in demo.getSelectedBarIDs
+		    controller.setBarStartTime ID, demo.getBarStartTime(ID)
+		    controller.setBarEndTime   ID, demo.getBarEndTime  (ID)
+		    controller.setBarLayer     ID, demo.getBarLayer    (ID)
 		  next
 		  
 		  //We clean the variables used to store the initial dragging point
@@ -865,14 +865,14 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Sub elementsToggleEnable()
 		  dim i as integer
-		  dim selection() as integer
+		  dim selection() as string
 		  
 		  // Get the list of selected bars
 		  selection = demo.getSelectedBarIDs
 		  
 		  // Toggle the state of the selected bars
 		  for i=0 to UBound(selection)
-		    demo.toggleBar str(selection(i))
+		    demo.toggleBar selection(i)
 		  next
 		  
 		  controller.ToggleBars selection
@@ -1022,11 +1022,11 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub SetSelectionEndTime(theTime as single)
-		  dim selectedSectionIDs() as integer = demo.getSelectedBarIDs
+		  dim selectedSectionIDs() as string = demo.getSelectedBarIDs
 		  dim IDsList() as string
 		  
-		  for each num as integer in selectedSectionIDs
-		    IDsList.Append str(num)
+		  for each num as string in selectedSectionIDs
+		    IDsList.Append num
 		  next
 		  
 		  demo.setSelectedBarsEndTime(theTime)
@@ -1094,11 +1094,11 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub SetSelectionStartTime(theTime as single)
-		  dim selectedSectionIDs() as integer = demo.getSelectedBarIDs
+		  dim selectedSectionIDs() as string = demo.getSelectedBarIDs
 		  dim IDsList() as string
 		  
-		  for each num as integer in selectedSectionIDs
-		    IDsList.Append str(num)
+		  for each num as string in selectedSectionIDs
+		    IDsList.Append num
 		  next
 		  
 		  demo.setSelectedBarsStartTime(theTime)

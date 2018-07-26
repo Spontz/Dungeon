@@ -339,7 +339,7 @@ Protected Class classDemo
 		      rec.IntegerColumn("parent") = val(parentID)
 		      rec.IntegerColumn("bytes") = f.Length
 		      rec.Column("type") = "File"
-		      rec.BlobColumn("data") = EncodeBase64(file, 0)
+		      rec.BlobColumn("data") = file
 		      rec.Column("format") = f.Type
 		      rec.Column("enabled") = "0"
 		      
@@ -602,10 +602,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarEndTime(barID as integer) As single
+		Function getBarEndTime(barID as string) As single
 		  dim result as Single
 		  
-		  result = demoDB.SQLSelect("SELECT endTime FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("endTime").DoubleValue
+		  result = demoDB.SQLSelect("SELECT endTime FROM BARs where id = '" + barID + "' LIMIT 1").Field("endTime").DoubleValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -646,10 +646,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarLayer(barID as integer) As integer
+		Function getBarLayer(barID as string) As integer
 		  dim result as integer
 		  
-		  result = demoDB.SQLSelect("SELECT layer FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("layer").DoubleValue
+		  result = demoDB.SQLSelect("SELECT layer FROM BARs where id = '" + barID + "' LIMIT 1").Field("layer").DoubleValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -664,7 +664,7 @@ Protected Class classDemo
 		Function getBarScript(barID as string) As string
 		  dim result as string
 		  
-		  result = DecodeBase64(demoDB.SQLSelect("SELECT script FROM BARs where id = '" + barID + "' LIMIT 1").Field("script").StringValue)
+		  result = demoDB.SQLSelect("SELECT script FROM BARs where id = '" + barID + "' LIMIT 1").Field("script").StringValue
 		  
 		  result = result.DefineEncoding(Encodings.UTF8)
 		  
@@ -708,10 +708,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarStartTime(barID as integer) As single
+		Function getBarStartTime(barID as string) As single
 		  dim result as Single
 		  
-		  result = demoDB.SQLSelect("SELECT startTime FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("startTime").DoubleValue
+		  result = demoDB.SQLSelect("SELECT startTime FROM BARs where id = '" + barID + "' LIMIT 1").Field("startTime").DoubleValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -719,6 +719,29 @@ Protected Class classDemo
 		  else
 		    return result
 		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getBarsThatUseFile(content as string) As String()
+		  // Get a list of sections containing the passed string
+		  dim barIDs() as String
+		  
+		  content = ReplaceAll(content, "\", "/")
+		  
+		  'Dim ps As SQLitePreparedStatement
+		  'ps = SQLitePreparedStatement(demoDB.Prepare("SELECT id FROM BARS where script LIKE ?"))
+		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%data/pool/" + content + "%'")
+		  'ps.BindType(0, SQLitePreparedStatement.SQLITE_BLOB)
+		  'ps.Bind(0, "%" + content + "%")
+		  'Dim result As RecordSet = ps.SQLSelect
+		  
+		  while not result.EOF
+		    barIDs.Append(result.Field("id").StringValue)
+		    result.MoveNext
+		  wend
+		  
+		  return barIDs
 		End Function
 	#tag EndMethod
 
@@ -955,7 +978,7 @@ Protected Class classDemo
 		    result.Value("name") = files.Field("name").StringValue
 		    result.Value("type") = "File"
 		    result.Value("size") = files.Field("bytes").StringValue
-		    result.Value("data") = DecodeBase64(files.Field("data").NativeValue)
+		    result.Value("data") = files.Field("data").NativeValue
 		  end if
 		  
 		  return result
@@ -1271,14 +1294,14 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getSelectedBarIDs() As integer()
-		  dim selectedBarIDs() as Integer
+		Function getSelectedBarIDs() As String()
+		  dim selectedBarIDs() as String
 		  dim result as RecordSet
 		  
 		  result = demoDB.SQLSelect("SELECT id FROM BARs where selected = 1")
 		  
 		  while not result.EOF
-		    selectedBarIDs.Append(result.Field("id").IntegerValue)
+		    selectedBarIDs.Append(result.Field("id").StringValue)
 		    result.MoveNext
 		  wend
 		  
@@ -1378,7 +1401,7 @@ Protected Class classDemo
 		  Dim f as FolderItem
 		  f = GetTemporaryFolderItem()
 		  
-		  demoDB = New REALSQLdatabase
+		  demoDB = New SQLiteDatabase
 		  demoDB.databaseFile = f
 		  
 		  if demoFile = nil then
@@ -1549,7 +1572,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function moveSelectedBars(timeIncrement as double, layerIncrement as integer) As boolean
-		  dim selectedbarIDs() as integer
+		  dim selectedbarIDs() as string
 		  dim i as integer
 		  dim maxIncrement as double
 		  dim result as RecordSet
@@ -1581,7 +1604,7 @@ Protected Class classDemo
 		  
 		  for i=0 to ubound(selectedbarIDs)
 		    // Get current bar details
-		    barData = getBarData(str(selectedbarIDs(i)))
+		    barData = getBarData(selectedbarIDs(i))
 		    
 		    // Ensure that this bar does not overlap other bars
 		    query = query + "(layer = " + barData.Value("layer").StringValue + " + " + str(layerIncrement) + " AND id <> " + barData.Value("id").StringValue + " AND ((" + _
@@ -1607,7 +1630,7 @@ Protected Class classDemo
 		  for i=0 to UBound(selectedbarIDs)
 		    ExecuteSQL("UPDATE BARs SET startTime = startTime + " + str(timeIncrement) + _
 		    ", endTime = endTime + " + str(timeIncrement) + _
-		    ", layer = layer + " + str(layerIncrement) + " WHERE id = '" + str(selectedBarIDs(i)) + "'")
+		    ", layer = layer + " + str(layerIncrement) + " WHERE id = '" + selectedBarIDs(i) + "'")
 		  next
 		  
 		  If demoDB.error then
@@ -1833,7 +1856,13 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub setBarScript(barID as string, script as string)
-		  ExecuteSQL("UPDATE BARs SET script = '" + EncodeBase64(script, 0) + "' WHERE id = '" + barID + "'")
+		  Dim ps As SQLitePreparedStatement = _
+		  demoDB.Prepare("UPDATE BARs SET script = ? WHERE id = ?")
+		  
+		  ps.BindType(0, SQLitePreparedStatement.SQLITE_BLOB)
+		  ps.BindType(1, SQLitePreparedStatement.SQLITE_TEXT)
+		  
+		  ps.SQLExecute(script, barID)
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -2259,7 +2288,13 @@ Protected Class classDemo
 		  fileSize = Len(data)
 		  
 		  // Update the file in the database
-		  demoDB.SQLExecute("UPDATE FILES SET data='" + EncodeBase64(data, 0) + "', size = " + str(fileSize) + " where id = " + itemID)
+		  Dim ps As SQLitePreparedStatement = demoDB.Prepare("UPDATE FILES SET data=?, bytes=? where id=?")
+		  
+		  ps.BindType(0, SQLitePreparedStatement.SQLITE_BLOB  )
+		  ps.BindType(1, SQLitePreparedStatement.SQLITE_TEXT)
+		  ps.BindType(2, SQLitePreparedStatement.SQLITE_TEXT)
+		  
+		  ps.SQLExecute(data, str(filesize), itemID)
 		  
 		  If demoDB.error then
 		    demoDB.Rollback
@@ -2289,7 +2324,7 @@ Protected Class classDemo
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private demoDB As REALSQLDatabase
+		Private demoDB As SQLiteDatabase
 	#tag EndProperty
 
 	#tag Property, Flags = &h1

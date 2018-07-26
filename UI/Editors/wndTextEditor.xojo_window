@@ -312,7 +312,12 @@ End
 		  saveToDatabase
 		  saveToDataFolder
 		  
-		  hook.updateSelectedSections()
+		  dim filePath as string
+		  filePath = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
+		  
+		  dim barIDs() as string
+		  barIDs = hook.demo.getBarsThatUseFile(filePath)
+		  hook.updateBarIDs(barIDs)
 		  
 		  self.close
 		End Sub
@@ -323,7 +328,7 @@ End
 		Sub Action()
 		  saveToDataFolder
 		  
-		  hook.UpdateSelectedSections
+		  hook.UpdateSelectedBars
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -340,7 +345,7 @@ End
 		    // Apply the changes to the data folder
 		    saveToDataFolder
 		    
-		    hook.UpdateSelectedSections
+		    hook.UpdateSelectedBars
 		    
 		    // No further processing to be done with the key
 		    return true
@@ -624,5 +629,11 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="itemID"
+		Group="Behavior"
+		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 #tag EndViewBehavior

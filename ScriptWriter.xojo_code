@@ -228,7 +228,7 @@ Protected Module ScriptWriter
 		    file = theDemo.GetDataFolder.child(barName).CreateTextFile
 		    
 		    //We write the contents
-		    file.write AddScriptHeaders(DecodeBase64(allBars(i).Value("script")).ConvertEncoding(Encodings.UTF8), allBars(i))
+		    file.write AddScriptHeaders(allBars(i).Value("script"), allBars(i))
 		    
 		    //We close the script file
 		    file.close

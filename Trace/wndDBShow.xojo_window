@@ -258,7 +258,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(theDatabase as REALSQLDatabase)
+		Sub init(theDatabase as SQLiteDatabase)
 		  dim result as recordset
 		  
 		  theDB = theDatabase
@@ -273,7 +273,7 @@ End
 
 
 	#tag Property, Flags = &h21
-		Private theDB As REALSQLDatabase
+		Private theDB As SQLiteDatabase
 	#tag EndProperty
 
 

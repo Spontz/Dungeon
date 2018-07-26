@@ -34,8 +34,8 @@ Protected Module controller
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub deleteBar(theBarID as integer)
-		  Engine.deleteBar(cstr(theBarID))
+		Sub deleteBar(theBarID as string)
+		  Engine.deleteBar(theBarID)
 		  
 		End Sub
 	#tag EndMethod
@@ -200,11 +200,11 @@ Protected Module controller
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub ToggleBars(engineBarIDs() as integer)
+		Sub ToggleBars(engineBarIDs() as string)
 		  dim theMessage() as string
 		  
 		  for i as integer = 0 to UBound(engineBarIDs)
-		    theMessage.append str(engineBarIDs(i))
+		    theMessage.append engineBarIDs(i)
 		  next
 		  
 		  Engine.ToggleBars join(theMessage, ",")

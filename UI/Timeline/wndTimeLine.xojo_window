@@ -476,6 +476,7 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -634,6 +635,7 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
@@ -641,6 +643,7 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       saved           =   True
@@ -768,7 +771,7 @@ End
 
 	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
-			UpdateSelectedSections
+			// UpdateSelectedSections
 		End Function
 	#tag EndMenuHandler
 
@@ -945,13 +948,25 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub UpdateSelectedSections()
+		Sub UpdateBarIDs(barIDs() as string)
+		  for each barID as string in barIDs
+		    controller.updateBar(barID)
+		  next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UpdateSelectedBars()
+		  dim selectedBarsIDs() as string = demo.getSelectedBarIDs
 		  
+		  for each barID as string in selectedBarsIDs
+		    controller.updateBar(barID)
+		  next
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub UpdateSelectedSectionsTimes()
+		Private Sub UpdateSelectedBarsTimes()
 		  dim start, ending as single
 		  
 		  // We show the group start and end times
@@ -1040,17 +1055,17 @@ End
 	#tag Event
 		Sub PasteSections()
 		  // Update the pasted sections in the engine
-		  if demo.GetDataFolder() <> nil then UpdateSelectedSections
+		  // if demo.GetDataFolder() <> nil then UpdateSelectedBarsTimes
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub AddBarToSelection()
-		  UpdateSelectedSectionsTimes
+		  UpdateSelectedBarsTimes
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub DragSections()
-		  UpdateSelectedSectionsTimes
+		  UpdateSelectedBarsTimes
 		End Sub
 	#tag EndEvent
 #tag EndEvents
