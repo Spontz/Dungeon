@@ -20,12 +20,12 @@ Begin Window wndTimeLine
    MenuBarVisible  =   True
    MinHeight       =   400
    MinimizeButton  =   True
-   MinWidth        =   640
+   MinWidth        =   700
    Placement       =   1
    Resizeable      =   True
    Title           =   "Demo Editor"
    Visible         =   False
-   Width           =   640
+   Width           =   760
    Begin classTimeline cnvTimeLine
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -56,7 +56,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   368
+      Width           =   488
    End
    Begin ScrollBar scrHorizontal
       AcceptFocus     =   True
@@ -85,7 +85,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       Value           =   0
       Visible         =   True
-      Width           =   368
+      Width           =   488
    End
    Begin ScrollBar scrVertical
       AcceptFocus     =   True
@@ -95,7 +95,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   624
+      Left            =   744
       LineStep        =   1
       LiveScroll      =   True
       LockBottom      =   True
@@ -128,7 +128,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   624
+      Left            =   744
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -306,7 +306,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   483
+      Left            =   603
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -350,7 +350,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   512
+      Left            =   632
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -394,7 +394,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   572
+      Left            =   692
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -438,7 +438,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   590
+      Left            =   710
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -492,7 +491,7 @@ Begin Window wndTimeLine
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   379
+      Width           =   499
    End
    Begin Canvas cnvRightMarker
       AcceptFocus     =   False
@@ -635,7 +634,6 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
@@ -643,7 +641,6 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       saved           =   True

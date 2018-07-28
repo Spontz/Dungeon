@@ -25,7 +25,7 @@ Begin ContainerControl cntCustom
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   512
+   Width           =   412
    Begin TextArea txtSectionScript
       AcceptTabs      =   False
       Alignment       =   0
@@ -38,7 +38,7 @@ Begin ContainerControl cntCustom
       DataSource      =   ""
       Enabled         =   False
       Format          =   ""
-      Height          =   246
+      Height          =   136
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -68,14 +68,14 @@ Begin ContainerControl cntCustom
       TextFont        =   "Consolas"
       TextSize        =   11.0
       TextUnit        =   0
-      Top             =   0
+      Top             =   49
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   369
+      Width           =   412
    End
-   Begin PushButton btnOK
+   Begin PushButton btnApply
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
@@ -88,7 +88,7 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   444
+      Left            =   289
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -101,11 +101,11 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   207
+      Top             =   204
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   58
+      Width           =   110
    End
    Begin Label lblBarType
       AutoDeactivate  =   True
@@ -118,11 +118,11 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   11
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   True
       Multiline       =   False
       Scope           =   0
@@ -155,12 +155,12 @@ Begin ContainerControl cntCustom
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   11
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   0
       TabIndex        =   3
@@ -187,11 +187,11 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   149
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   True
       Multiline       =   False
       Scope           =   0
@@ -205,7 +205,7 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   49
+      Top             =   0
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -224,12 +224,12 @@ Begin ContainerControl cntCustom
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   149
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
+      LockLeft        =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   0
       TabIndex        =   5
@@ -238,19 +238,19 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   69
+      Top             =   20
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   126
    End
-   Begin PushButton btnSave
+   Begin PushButton btnSaveTemplate
       AutoDeactivate  =   True
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Save"
+      Caption         =   "Save template"
       Default         =   False
       Enabled         =   False
       Height          =   26
@@ -258,12 +258,12 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   377
-      LockBottom      =   True
+      Left            =   289
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   True
-      LockTop         =   False
+      LockTop         =   True
       Scope           =   0
       TabIndex        =   6
       TabPanelIndex   =   0
@@ -271,11 +271,11 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   207
+      Top             =   17
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   58
+      Width           =   110
    End
    Begin popBlending mnuBlendStart
       AutoDeactivate  =   False
@@ -289,13 +289,13 @@ Begin ContainerControl cntCustom
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   11
       ListIndex       =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
       Scope           =   0
       TabIndex        =   7
       TabPanelIndex   =   0
@@ -303,7 +303,7 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   122
+      Top             =   207
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -321,13 +321,13 @@ Begin ContainerControl cntCustom
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   377
+      Left            =   149
       ListIndex       =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
       Scope           =   0
       TabIndex        =   8
       TabPanelIndex   =   0
@@ -335,7 +335,7 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   171
+      Top             =   206
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -352,12 +352,12 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   377
-      LockBottom      =   False
+      Left            =   11
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
@@ -370,11 +370,11 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   101
+      Top             =   186
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   90
+      Width           =   126
    End
    Begin Label lblBlendDestination
       AutoDeactivate  =   True
@@ -387,12 +387,12 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   377
-      LockBottom      =   False
+      Left            =   149
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
       Multiline       =   False
       Scope           =   0
       Selectable      =   False
@@ -405,11 +405,11 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   150
+      Top             =   185
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   95
+      Width           =   126
    End
 End
 #tag EndWindow
@@ -417,8 +417,8 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h21
 		Private Sub activate()
-		  btnOK.Enabled = false // Deactivated until a change happens
-		  btnSave.Enabled = true
+		  btnApply.Enabled = false // Deactivated until a change happens
+		  btnSaveTemplate.Enabled = true
 		  
 		  popElement.Enabled = true
 		  popTemplate.Enabled = true
@@ -460,14 +460,14 @@ End
 		  end if
 		  
 		  // Deactivate the Apply Button
-		  btnOK.Enabled = false
+		  btnApply.Enabled = false
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub deactivate()
-		  btnOK.Enabled = false
-		  btnSave.Enabled = false
+		  btnApply.Enabled = false
+		  btnSaveTemplate.Enabled = false
 		  
 		  popElement.Enabled = false
 		  popTemplate.Enabled = false
@@ -613,9 +613,9 @@ End
 	#tag Event
 		Sub TextChange()
 		  if me.Text <> "" and bar <> "" then
-		    btnOK.Enabled = true
+		    btnApply.Enabled = true
 		  else
-		    btnOK.Enabled = false
+		    btnApply.Enabled = false
 		  end if
 		End Sub
 	#tag EndEvent
@@ -640,7 +640,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnOK
+#tag Events btnApply
 	#tag Event
 		Sub Action()
 		  applyChanges
@@ -658,9 +658,9 @@ End
 		  LoadTemplates
 		  
 		  if me.text = "" or popTemplate.text = "" then
-		    btnSave.enabled = false
+		    btnSaveTemplate.enabled = false
 		  else
-		    btnSave.enabled = true
+		    btnSaveTemplate.enabled = true
 		  end if
 		End Sub
 	#tag EndEvent
@@ -676,14 +676,14 @@ End
 		  LoadScriptTemplate
 		  
 		  if me.text = "" or popElement.text = "" then
-		    btnSave.enabled = false
+		    btnSaveTemplate.enabled = false
 		  else
-		    btnSave.enabled = true
+		    btnSaveTemplate.enabled = true
 		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnSave
+#tag Events btnSaveTemplate
 	#tag Event
 		Sub Action()
 		  dim f as folderitem
