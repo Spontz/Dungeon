@@ -33,7 +33,7 @@ Begin ContainerControl cntCustom
       AutomaticallyCheckSpelling=   False
       BackColor       =   &cFFFFFF00
       Bold            =   False
-      Border          =   True
+      Border          =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   False
@@ -229,7 +229,7 @@ Begin ContainerControl cntCustom
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   0
       TabIndex        =   5
@@ -438,24 +438,24 @@ End
 		  dim barType as string
 		  
 		  // First of all we must determine if we are saving a new bar or updating a already existing bar
-		  barType = demo.getBarType(bar)
+		  barType = demo.getBarType(barID)
 		  
 		  // We store the element name and the additional script
-		  demo.setBarType(bar, ReplaceLineEndings(popElement.Text, EndOfLine.Windows))
-		  demo.setBarScript(bar, txtSectionScript.text)
+		  demo.setBarType(barID, ReplaceLineEndings(popElement.Text, EndOfLine.Windows))
+		  demo.setBarScript(barID, txtSectionScript.text)
 		  
 		  // Notify the demo editor about the update
 		  if barType = "" then
 		    // We are creating a new bar
-		    controller.createBar(bar)
+		    controller.createBar(barID)
 		    
-		    Trace("cntCustom:applyChanges: Bar " + bar + " created in engine.", cstTraceLevelLog)
+		    Trace("cntCustom:applyChanges: Bar " + barID + " created in engine.", cstTraceLevelLog)
 		    
 		  else
 		    // We are updating an already existing bar
-		    controller.updateBar(bar)
+		    controller.updateBar(barID)
 		    
-		    Trace("cntCustom:applyChanges: Bar " + bar + " updated in engine.", cstTraceLevelLog)
+		    Trace("cntCustom:applyChanges: Bar " + barID + " updated in engine.", cstTraceLevelLog)
 		    
 		  end if
 		  
@@ -478,34 +478,33 @@ End
 		  txtSectionScript.Enabled = false
 		  txtSectionScript.Text = ""
 		  
-		  bar = ""
+		  barID = ""
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(theDemo as classDemo, barID as string)
+		Sub init(theDemo as classDemo, theBarID as string)
 		  dim theListIndex as integer
 		  
 		  demo = theDemo
 		  
-		  if barID <> "" then
-		    bar = ""
+		  if thebarID <> "" then
+		    barID = ""
 		    
 		    // The blending menus
-		    // TODO
-		    // mnuBlendStart.listIndex = demo.getBarSrcBlending(BarID)
-		    // mnuBlendEnd.listIndex = demo.getBarDstBlending(BarID)
+		    mnuBlendStart.listIndex = demo.getBarSrcBlendingID(theBarID)
+		    mnuBlendEnd.listIndex = demo.getBarDstBlendingID(theBarID)
 		    
 		    // The element name and additional script
-		    popElement.text = demo.getBarType(barID)
-		    txtSectionScript.text = ReplaceLineEndings(demo.getBarScript(barID), EndOfLine)
+		    popElement.text = demo.getBarType(theBarID)
+		    txtSectionScript.text = ReplaceLineEndings(demo.getBarScript(theBarID), EndOfLine)
 		    
 		    // We populate the Elements menu
 		    LoadElements
 		    
 		    activate
 		    
-		    bar = barID
+		    barID = theBarID
 		  else
 		    
 		    deactivate
@@ -599,7 +598,7 @@ End
 
 
 	#tag Property, Flags = &h1
-		Protected bar As string
+		Protected barID As string
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -612,7 +611,7 @@ End
 #tag Events txtSectionScript
 	#tag Event
 		Sub TextChange()
-		  if me.Text <> "" and bar <> "" then
+		  if me.Text <> "" and barID <> "" then
 		    btnApply.Enabled = true
 		  else
 		    btnApply.Enabled = false
@@ -711,15 +710,14 @@ End
 #tag Events mnuBlendStart
 	#tag Event
 		Sub Change()
-		  if bar <> "" then
+		  if barID > "" and me.ListIndex > -1 and me.ListCount > 0 then
 		    AddUndoAction
 		    
 		    // Set the new blending
-		    // TODO
-		    // demo.sections.SetBlending(section, 1, me.Listindex)
+		    demo.SetBlendingSource(barID, me.Listindex)
 		    
 		    // Notify the demo editor about the update
-		    controller.updateBar(bar)
+		    controller.updateBar(barID)
 		  end if
 		End Sub
 	#tag EndEvent
@@ -727,15 +725,14 @@ End
 #tag Events mnuBlendEnd
 	#tag Event
 		Sub Change()
-		  if bar > "" then
+		  if barID > "" and me.ListIndex > -1 and me.ListCount > 0 then
 		    AddUndoAction
 		    
 		    // Set the new blending
-		    // TODO
-		    // demo.sections.SetBlending(section, 2, me.Listindex)
+		    demo.SetBlendingDestination(barID, me.Listindex)
 		    
 		    // Notify the demo editor about the update
-		    controller.updateBar(bar)
+		    controller.updateBar(barID)
 		  end if
 		End Sub
 	#tag EndEvent

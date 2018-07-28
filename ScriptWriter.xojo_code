@@ -26,7 +26,7 @@ Protected Module ScriptWriter
 		  
 		  // Blending
 		  if bar.value("srcBlending") <> "" and bar.value("dstBlending") <> "" then
-		    theScript = theScript + "blend " + bar.value("srcBlending") + bar.value("dstBlending") + EndOfLine.Windows
+		    theScript = theScript + "blend " + bar.value("srcBlending") + " " + bar.value("dstBlending") + EndOfLine.Windows
 		  end if
 		  
 		  // Rest of the script

@@ -572,16 +572,18 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarDstBlending(barID as integer) As string
+		Function getBarDstBlendingID(barID as string) As integer
 		  dim result as string
+		  dim query as string
 		  
-		  result = demoDB.SQLSelect("SELECT dstBlending FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("dstBlending").StringValue
+		  query = "SELECT dstBlending FROM BARs where id = '" + barID + "' LIMIT 1"
+		  result = demoDB.SQLSelect(query).Field("dstBlending").StringValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		    return ""
+		    return -1
 		  else
-		    return result
+		    return getBlendingID(result)
 		  end if
 		End Function
 	#tag EndMethod
@@ -693,16 +695,19 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarSrcBlending(barID as integer) As string
+		Function getBarSrcBlendingID(barID as string) As integer
 		  dim result as string
+		  dim query as string
 		  
-		  result = demoDB.SQLSelect("SELECT srcBlending FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("srcBlending").StringValue
+		  query = "SELECT srcBlending FROM BARs where id = '" + barID + "' LIMIT 1"
+		  
+		  result = demoDB.SQLSelect(query).Field("srcBlending").StringValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		    return ""
+		    return -1
 		  else
-		    return result
+		    return getBlendingID(result)
 		  end if
 		End Function
 	#tag EndMethod
@@ -779,6 +784,94 @@ Protected Class classDemo
 		  else
 		    return result
 		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getBlendingID(mode as string) As integer
+		  select case mode
+		    
+		  case "ZERO"
+		    Return 0
+		    
+		  case "ONE"
+		    return 1
+		    
+		  case "SRC_COLOR"
+		    return 2
+		    
+		  case "ONE_MINUS_SRC_COLOR"
+		    return 3
+		    
+		  case "DST_COLOR"
+		    return 4
+		    
+		  case "ONE_MINUS_DST_COLOR"
+		    return 5
+		    
+		  case "SRC_ALPHA"
+		    return 6
+		    
+		  case "ONE_MINUS_SRC_ALPHA"
+		    return 7
+		    
+		  case "DST_ALPHA"
+		    return 8
+		    
+		  case "ONE_MINUS_DST_ALPHA"
+		    return 9
+		    
+		  case "SRC_ALPHA_SATURATE"
+		    return 10
+		    
+		  else
+		    return -1
+		    
+		  end select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getBlendingMode(mode as integer) As string
+		  select case mode
+		    
+		  case 0
+		    Return "ZERO"
+		    
+		  case 1
+		    return "ONE"
+		    
+		  case 2
+		    return "SRC_COLOR"
+		    
+		  case 3
+		    return "ONE_MINUS_SRC_COLOR"
+		    
+		  case 4
+		    return "DST_COLOR"
+		    
+		  case 5
+		    return "ONE_MINUS_DST_COLOR"
+		    
+		  case 6
+		    return "SRC_ALPHA"
+		    
+		  case 7
+		    return "ONE_MINUS_SRC_ALPHA"
+		    
+		  case 8
+		    return "DST_ALPHA"
+		    
+		  case 9
+		    return "ONE_MINUS_DST_ALPHA"
+		    
+		  case 10
+		    return "SRC_ALPHA_SATURATE"
+		    
+		  else
+		    return "Invalid blending mode"
+		    
+		  end select
 		End Function
 	#tag EndMethod
 
@@ -1893,6 +1986,38 @@ Protected Class classDemo
 		  else
 		    demoDB.Commit
 		  End if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setBlendingDestination(barID as string, newDestinationBlending as integer)
+		  dim blendingMode as string = getBlendingMode(newDestinationBlending)
+		  
+		  ExecuteSQL("UPDATE BARS SET dstBlending='" + blendingMode  + "' WHERE id=" + barID)
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setBlendingSource(barID as string, newSourceBlending as integer)
+		  dim blendingMode as string = getBlendingMode(newSourceBlending)
+		  
+		  ExecuteSQL("UPDATE BARS SET srcBlending='" + blendingMode + "' WHERE id=" + barID)
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
+		  
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
