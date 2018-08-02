@@ -171,31 +171,39 @@ Inherits listbox
 		    
 		  case "Delete"
 		    // Delete the selected item
-		    confirmed = Messages.GetConfirmation("Are you sure to delete the item?")
+		    if me.SelCount = 1 then
+		      confirmed = Messages.GetConfirmation("Are you sure to delete the item?")
+		    else
+		      confirmed = Messages.GetConfirmation("Are you sure to delete " + str(me.SelCount) + " items?")
+		    end if
 		    
-		    if confirmed then
-		      if me.cell(me.ListIndex, cstColumnType) = "Folder" then
+		    if not confirmed then return true
+		    
+		    for row as integer = me.ListCount downto 0
+		      if not me.Selected(row) then continue
+		      
+		      if me.cell(row, cstColumnType) = "Folder" then
 		        // If the folder is published on disk, remove it
-		        deleteFolder(demo.getFolderPath(me.cell(me.ListIndex, me.cstColumnID)).Child(me.cell(me.ListIndex, me.cstColumnName)))
+		        deleteFolder(demo.getFolderPath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName)))
 		        
 		        // Collapse the folder in the listbox and remove it from the database
-		        me.Expanded(me.ListIndex) = false
-		        demo.deleteFolder(me.cell(me.ListIndex, me.cstColumnID))
+		        me.Expanded(row) = false
+		        demo.deleteFolder(me.cell(row, me.cstColumnID))
 		        
 		      else
 		        // If the file is published on disk, remove it
-		        f = demo.getFilePath(me.cell(me.ListIndex, me.cstColumnID)).Child(me.cell(me.ListIndex, me.cstColumnName))
+		        f = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
 		        
 		        if f.Exists then f.Delete
 		        
 		        // Remove the resource from the database
-		        demo.deleteResource(me.cell(me.ListIndex, me.cstColumnID))
+		        demo.deleteResource(me.cell(row, me.cstColumnID))
 		        
 		      end if
 		      
 		      // Finally, remove the row from the listbox
-		      me.RemoveRow(me.ListIndex)
-		    end if
+		      me.RemoveRow(row)
+		    next
 		    
 		  case "Open Resource"
 		    // TODO: Open the file with the default editor
