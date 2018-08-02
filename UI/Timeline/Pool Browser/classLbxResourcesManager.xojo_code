@@ -313,10 +313,19 @@ Inherits listbox
 		    if not me.Expanded(me.ListIndex) then me.Expanded(me.ListIndex) = true
 		    
 		    if obj.FolderItemAvailable then
-		      // The user dragged a folderitem from the filesystem
-		      id = demo.createResourceFromFolderItem(obj.FolderItem, me.cell(me.ListIndex, me.cstColumnID))
-		      type = "Folder"
-		      icon = folderblue
+		      if obj.FolderItem.Directory then
+		        // The user dragged a folder from the filesystem
+		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, me.cell(me.ListIndex, me.cstColumnID))
+		        type = "Folder"
+		        icon = folderblue
+		        
+		      else
+		        // The user dragged a file from the filesystem
+		        id = demo.createResourceFromFolderItem(obj.FolderItem, me.cell(me.ListIndex, me.cstColumnID))
+		        type = "File"
+		        icon = icoDocument
+		        
+		      end if
 		      
 		    elseif obj.TextAvailable then
 		      // The user is moving an element to a new position
