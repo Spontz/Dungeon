@@ -1,11 +1,19 @@
 #tag Class
 Protected Class classDemo
 	#tag Method, Flags = &h0
-		Function addBar(type as string, layer as integer, startTime as single, endTime as single, script as string, srcBlending as string, dstBlending as string, srcAlpha as string, dstAlpha as string) As integer
-		  dim result as integer
+		Function addBar(type as string, layer as integer, startTime as single, endTime as single, script as string, srcBlending as string, dstBlending as string, srcAlpha as string, dstAlpha as string) As string
+		  dim rec as New DatabaseRecord
 		  
-		  demoDB.sqlexecute ("INSERT INTO BARS (type, layer, startTime, endTime, enabled, script, srcBlending, dstBlending, srcAlpha, dstAlpha) Values ('" _
-		  + type + "', '" + str(layer) + "', " + str(startTime) + ", " + str(endTime) + ", 1, '" + script + "', '" + srcBlending + "', '" + dstBlending + "', '" + srcAlpha + "', '" + dstAlpha + "')")
+		  rec.Column("type") = type
+		  rec.IntegerColumn("layer") = layer
+		  rec.DoubleColumn("startTime") = startTime
+		  rec.DoubleColumn("endTime") = endTime
+		  rec.BooleanColumn("enabled") = true
+		  rec.Column("script") = script
+		  rec.Column("srcBlending") = srcBlending
+		  rec.Column("dstBlending") = dstBlending
+		  
+		  demoDB.InsertRecord ("BARS", rec)
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -14,7 +22,7 @@ Protected Class classDemo
 		  End if
 		  
 		  // Return the ID of the added bar
-		  result = demoDB.SQLSelect("SELECT id FROM BARs ORDER BY id DESC LIMIT 1").Field("id").IntegerValue
+		  dim result as string = demoDB.SQLSelect("SELECT id FROM BARs ORDER BY id DESC LIMIT 1").Field("id").StringValue
 		  
 		  return result
 		End Function
@@ -1613,54 +1621,45 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function moveResource(data as string, parentID as string) As string
-		  'Dim b As BinaryStream
-		  'Dim comment As String
-		  'Dim rec As DatabaseRecord
-		  'Dim file as string
-		  '
-		  'If f <> Nil then
-		  'if nameConflict(f.Name, parentID) then
-		  '// There is a folder or a file with the same name in the same location
-		  'return ""
-		  'end if
-		  '
-		  'b=BinaryStream.Open(f,False)
-		  'file=b.Read(b.Length)
-		  'b.Close
-		  '
-		  'rec = New DatabaseRecord
-		  '
-		  'rec.Column("name") = f.Name
-		  'rec.IntegerColumn("parent") = val(parentID)
-		  'rec.IntegerColumn("bytes") = f.Length
-		  'rec.Column("type") = "File"
-		  'rec.BlobColumn("data") = file
-		  'rec.Column("format") = f.Type
-		  'rec.Column("enabled") = "0"
-		  '
-		  'demoDB.InsertRecord ("FILES, rec)
-		  '
-		  'If demoDB.error then
-		  'demoDB.Rollback
-		  'MsgBox demoDB.errormessage
-		  'else
-		  'demoDB.Commit
-		  'saved = false
-		  'end if
-		  '
-		  'dim result as string
-		  '
-		  '// Return the ID of the added folder
-		  'result = demoDB.SQLSelect("SELECT id FROM FILES ORDER BY id DESC LIMIT 1").Field("id").StringValue
-		  '
-		  'return result
-		  '
-		  'else
-		  'Trace("classDemo:createResouce: The dropped file could not be located in the filesystem", cstTraceLevelError)
-		  '
-		  'end if
-		End Function
+		Sub moveFile(fileID as string, parentFolderID as string)
+		  if nameConflict(getFile(fileID).value("name"), parentFolderID) then
+		    Notify("Can't complete move", "There is already a folder or a file with the same name in the destination.")
+		    return
+		  end if
+		  
+		  dim query as string = "UPDATE FILES SET parent=" + parentFolderID + " WHERE id=" + fileID
+		  
+		  demoDB.SQLExecute (query)
+		  
+		  If demoDB.error then
+		    demoDB.Rollback
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		    saved = false
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub moveFolder(folderID as string, parentFolderID as string)
+		  if nameConflict(getFolderName(folderID), parentFolderID) then
+		    Notify("Can't complete move", "There is already a folder or a file with the same name in the destination.")
+		    return
+		  end if
+		  
+		  dim query as string = "UPDATE FOLDERS SET parent=" + parentFolderID + " WHERE id=" + folderID
+		  
+		  demoDB.SQLExecute (query)
+		  
+		  If demoDB.error then
+		    demoDB.Rollback
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		    saved = false
+		  end if
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1737,13 +1736,13 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function nameConflict(name as string, parentID as string) As boolean
+		Private Function nameConflict(name as string, parentFolderID as string) As boolean
 		  dim result1 as integer
 		  dim result2 as integer
 		  
 		  // First of all, get an unique name for the folder
-		  result1 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FOLDERS WHERE name = '" + name + "' AND parent = '" + parentID + "' LIMIT 1").Field("TOTAL").IntegerValue
-		  result2 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FILES WHERE name = '" + name + "' AND parent = '" + parentID + "' LIMIT 1").Field("TOTAL").IntegerValue
+		  result1 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FOLDERS WHERE name = '" + name + "' AND parent = '" + parentFOlderID + "' LIMIT 1").Field("TOTAL").IntegerValue
+		  result2 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FILES WHERE name = '" + name + "' AND parent = '" + parentFolderID + "' LIMIT 1").Field("TOTAL").IntegerValue
 		  
 		  if result1 > 0 or result2 > 0 then
 		    // A folder or a resource with the same name was found in this location

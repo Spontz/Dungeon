@@ -281,16 +281,31 @@ Inherits listbox
 		Function DragRow(drag As DragItem, row As Integer) As Boolean
 		  // Create a draggable item that could be dropped
 		  // in the desktop or in orther place of the listbox
-		  
 		  if me.cell(row, cstColumnType) = "File" then
 		    // it's a file!
 		    drag.FolderItem = demo.saveResource(me.cell(row, cstColumnID), SpecialFolder.Temporary)
 		    drag.PrivateRawData("????") = "File " + me.cell(row, cstColumnID)
 		    
+		    dim dragItem as new Dictionary
+		    
+		    dragItem.value("parentFolder") = me.cell(row, cstColumnParent)
+		    dragItem.value("type") = "File"
+		    dragItem.value("id") = me.cell(row, cstColumnID)
+		    
+		    draggedItems.Append(dragItem)
+		    
 		  elseif me.cell(row, cstColumnType) = "Folder" then
 		    // it's a folder!
 		    drag.FolderItem = demo.saveFolder(me.cell(row, cstColumnID), SpecialFolder.Temporary)
 		    drag.PrivateRawData("????") = "Folder " + me.cell(row, cstColumnID)
+		    
+		    dim dragItem as new Dictionary
+		    
+		    dragItem.value("parentFolder") = me.cell(row, cstColumnParent)
+		    dragItem.value("type") = "Folder"
+		    dragItem.value("id") = me.cell(row, cstColumnID)
+		    
+		    draggedItems.Append(dragItem)
 		    
 		  end if
 		  
@@ -302,63 +317,89 @@ Inherits listbox
 		Sub DropObject(obj As DragItem, action As Integer)
 		  dim id as string
 		  dim depth as integer
-		  dim parentID as String
 		  dim type as string
 		  dim icon as picture
+		  dim parentFolderID as string
+		  
+		  if not obj.FolderItemAvailable then return
 		  
 		  if me.ListIndex > -1 then
 		    depth = val(me.cell(me.ListIndex, me.cstColumnDepth)) + 1
-		    parentID = me.cell(me.ListIndex, me.cstColumnID)
+		    parentFolderID = me.cell(me.ListIndex, me.cstColumnID)
 		    
 		    if not me.Expanded(me.ListIndex) then me.Expanded(me.ListIndex) = true
 		    
-		    if obj.FolderItemAvailable then
+		    if draggedItems.Ubound > -1 then
+		      // We are dragging from inside the database
+		      // The user is moving an element to a new position
+		      if me.draggedItems(0).value("type") = "File" then
+		        demo.moveFile(draggedItems(0).value("id"), parentFolderID)
+		        
+		      else
+		        demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
+		        
+		      end if
+		      
+		      RefreshFolder(draggedItems(0).value("parentFolderID"))
+		      RefreshFolder(parentFolderID)
+		      
+		      draggedItems.Remove(0)
+		      return
+		      
+		    else
+		      // We are dragging from the filesystem
 		      if obj.FolderItem.Directory then
 		        // The user dragged a folder from the filesystem
-		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, me.cell(me.ListIndex, me.cstColumnID))
+		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
 		        type = "Folder"
 		        icon = folderblue
 		        
 		      else
 		        // The user dragged a file from the filesystem
-		        id = demo.createResourceFromFolderItem(obj.FolderItem, me.cell(me.ListIndex, me.cstColumnID))
+		        id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
 		        type = "File"
 		        icon = icoDocument
 		        
 		      end if
-		      
-		    elseif obj.TextAvailable then
-		      // The user is moving an element to a new position
-		      id = demo.moveResource(obj.Text, me.cell(me.ListIndex, me.cstColumnID))
-		      type = "File"
-		      icon = icoDocument
-		      
 		    end if
 		    
 		  else
-		    parentID = "0"
+		    parentFolderID = "0"
 		    depth = 0
 		    
-		    if obj.FolderItemAvailable then
+		    if draggedItems.Ubound > -1 then
+		      // We are dragging from inside the database
+		      // The user is moving an element to a new position
+		      if me.draggedItems(0).value("type") = "File" then
+		        demo.moveFile(draggedItems(0).value("id"), parentFolderID)
+		        
+		      else
+		        demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
+		        
+		      end if
+		      
+		      RefreshFolder(draggedItems(0).value("parentFolderID"))
+		      RefreshFolder(parentFolderID)
+		      
+		      draggedItems.remove(0)
+		      
+		      return
+		      
+		    else
+		      
 		      // The user dragged a folderitem from the filesystem to the root
 		      if obj.FolderItem.Directory then
-		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentID)
+		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
 		        type = "Folder"
 		        icon = folderblue
 		        
 		      else
-		        id = demo.createResourceFromFolderItem(obj.FolderItem, parentID)
+		        id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
 		        type = "File"
 		        icon = icoDocument
 		        
 		      end if
-		      
-		    elseif obj.TextAvailable then
-		      // The user is moving an element to the root
-		      id = demo.moveResource(obj.text, parentID)
-		      
 		    end if
-		    
 		  end if
 		  
 		  // Insert the item
@@ -376,7 +417,7 @@ Inherits listbox
 		    me.cell(me.LastIndex, me.cstColumnName) = obj.FolderItem.name
 		    me.cell(me.LastIndex, me.cstColumnType) = type
 		    me.cell(me.LastIndex, me.cstColumnDepth) = str(depth)
-		    me.cell(me.LastIndex, me.cstColumnParent) = parentID
+		    me.cell(me.LastIndex, me.cstColumnParent) = parentFolderID
 		    me.CellType(me.LastIndex, me.cstColumnName) = 2
 		    me.CellCheck(me.LastIndex, me.cstColumnName) = false
 		    me.RowPicture(me.LastIndex) = icon
@@ -389,6 +430,11 @@ Inherits listbox
 		    Notify("An item with the same name already exists in this location", "Either rename the new item before adding it to this location or remove the item that already uses the name in conflict from the demofiles")
 		    
 		  end if
+		  
+		  // Ensure that the dragged items array is empty
+		  while draggedItems.Ubound > -1
+		    draggedItems.Remove(0)
+		  wend
 		End Sub
 	#tag EndEvent
 
@@ -505,6 +551,12 @@ Inherits listbox
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub RefreshFolder(folderID as string)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SelectRow(id as string, type as String)
 		  dim i as integer
 		  
@@ -588,6 +640,10 @@ Inherits listbox
 
 	#tag Property, Flags = &h21
 		Private demo As classDemo
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private draggedItems() As dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
