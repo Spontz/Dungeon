@@ -66,7 +66,7 @@ Inherits Canvas
 		  me.YdragStart = y
 		  
 		  // Store the layer we are using
-		  if Coordinate2layer (y) >= 0 then layer = Coordinate2layer (y)
+		  if Coordinate2layer (y) >= 0 then selectedLayer = Coordinate2layer (y)
 		  
 		  // If the user has the ALT (Windows) or OPTION (Mac) key pressed and clicks in a section we duplicate the selection
 		  dim i as integer
@@ -104,10 +104,10 @@ Inherits Canvas
 		      demo.clearBarSelection
 		      
 		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", layer, coordinate2time(x), coordinate2time(x), "", "", "", "", "")
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "", "", "", "")
 		      
 		      // We find the bar limits and store them for a later use
-		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), layer)
+		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)
 		      
 		      action = "drawingBar " + str(barID)
 		      
@@ -258,7 +258,7 @@ Inherits Canvas
 		    if demo.countSelectedBars > 0 then DragSections
 		    
 		    // original layer in which dragging started
-		    layer = floor((YdragStart -16) / elementHeight)
+		    selectedLayer = floor((YdragStart -16) / elementHeight)
 		    
 		    dim startTime as integer = val(demo.getSelectedBarsStartTime)
 		    
@@ -269,10 +269,10 @@ Inherits Canvas
 		    
 		    if keyboard.AsyncShiftKey then
 		      // The SHIFT key is pressed so we limit the start and end times to the original ones
-		      success = demo.MoveSelectedBars(0, coordinate2layer(y) - layer)
+		      success = demo.MoveSelectedBars(0, coordinate2layer(y) - selectedLayer)
 		    else
 		      // The SHIFT key is not pressed so the bars will freely move in the time scale also
-		      success = demo.MoveSelectedBars(coordinate2time(x) - coordinate2time(XdragStart), coordinate2layer(y) - layer)
+		      success = demo.MoveSelectedBars(coordinate2time(x) - coordinate2time(XdragStart), coordinate2layer(y) - selectedLayer)
 		    end if
 		    
 		    if success then
@@ -422,9 +422,11 @@ Inherits Canvas
 		      
 		      barData = demo.getBarData(NthField(action, " ", 2))
 		      
-		      if round(1000*val(barData.Value("startTime"))) = round(1000*val(barData.Value("endTime"))) then
+		      if time2coordinate(val(barData.Value("endTime"))) - time2coordinate(val(barData.Value("endTime"))) < 2 then
 		        Trace("classTimeline:MouseUp: The drawn bar had a duration of zero so it was deleted", cstTraceLevelLog)
 		        demo.deleteBar(NthField(action, " ", 2))
+		        selectedTime = barData.Value("endTime").SingleValue
+		        selectedLayer = barData.Value("layer").IntegerValue
 		        
 		      else
 		        // Send a new bar event
@@ -474,6 +476,7 @@ Inherits Canvas
 		  me.drawTimeMarker(g)
 		  me.drawStartMarker(g)
 		  me.drawSelectionSquare(g)
+		  me.drawUsedTimes(g)
 		  
 		  // Only draw these markers if we have something to paste
 		  if CopyPaste.Count > 0 then me.drawUsedTimes(g)
@@ -483,19 +486,7 @@ Inherits Canvas
 
 	#tag MenuHandler
 		Function EditCopy() As Boolean Handles EditCopy.Action
-			dim IDs() as integer
-			dim i as integer
-			
-			'ReDim IDs(UBound(SelectedSections))
-			'
-			'for i=0 to UBound(SelectedSections)
-			'IDs(i) = SelectedSections(i, 0)
-			'next
-			
-			// TODO
-			// CopyPaste.CopySections(IDs, demo.sections)
-			
-			Return True
+			copiedBarIDs = demo.getSelectedBarIDs
 			
 		End Function
 	#tag EndMenuHandler
@@ -851,14 +842,14 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawUsedTimes(g as graphics)
-		  if layer < 0 then return
+		  if selectedLayer < 0 then return
+		  if copiedBarIDs.Ubound < 0 then return
 		  
-		  // Used layer
-		  g.drawpicture (markeryellowhorizontal, 3, 19 + elementHeight*layer)
+		  // Selected layer
+		  g.drawpicture (markeryellowhorizontal, 3, 19 + elementHeight*selectedLayer)
 		  
-		  // Used time
-		  // doubleBuffer.graphics.drawpicture (markeryellowvertical, time2coordinate(inUseTime)-5, 5)
-		  
+		  // Selected time
+		  g.drawpicture (markeryellowvertical, time2coordinate(selectedTime) - 5, 5)
 		End Sub
 	#tag EndMethod
 
@@ -1164,15 +1155,15 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private copiedBarIDs() As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private demo As classDemo
 	#tag EndProperty
 
 	#tag Property, Flags = &h1
 		Protected elementHeight As integer = 16
-	#tag EndProperty
-
-	#tag Property, Flags = &h1
-		Protected layer As integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1185,6 +1176,14 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		ruleStartTime As single
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected selectedLayer As integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h1
+		Protected selectedTime As single
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
