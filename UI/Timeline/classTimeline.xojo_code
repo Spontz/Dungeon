@@ -23,7 +23,7 @@ Inherits Canvas
 		  end
 		  
 		  // Enable the paste menu if we have items to paste
-		  if CopyPaste.Count > 0 then
+		  if copiedBarIDs.Ubound > -1 then
 		    EditPaste.enabled = true
 		  else
 		    EditPaste.Enabled = false
@@ -70,7 +70,7 @@ Inherits Canvas
 		  
 		  // If the user has the ALT (Windows) or OPTION (Mac) key pressed and clicks in a section we duplicate the selection
 		  dim i as integer
-		  dim barID as integer
+		  dim barID as string
 		  dim NewSectionList(-1) as integer
 		  dim tempinteger as integer
 		  
@@ -104,7 +104,7 @@ Inherits Canvas
 		      demo.clearBarSelection
 		      
 		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "", "", "", "")
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "ONE", "ONE", "", "", "")
 		      
 		      // We find the bar limits and store them for a later use
 		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)
@@ -422,7 +422,7 @@ Inherits Canvas
 		      
 		      barData = demo.getBarData(NthField(action, " ", 2))
 		      
-		      if time2coordinate(val(barData.Value("endTime"))) - time2coordinate(val(barData.Value("endTime"))) < 2 then
+		      if time2coordinate(barData.Value("endTime").SingleValue) - time2coordinate(barData.Value("startTime").SingleValue) < 2 then
 		        Trace("classTimeline:MouseUp: The drawn bar had a duration of zero so it was deleted", cstTraceLevelLog)
 		        demo.deleteBar(NthField(action, " ", 2))
 		        selectedTime = barData.Value("endTime").SingleValue
@@ -477,9 +477,6 @@ Inherits Canvas
 		  me.drawStartMarker(g)
 		  me.drawSelectionSquare(g)
 		  me.drawUsedTimes(g)
-		  
-		  // Only draw these markers if we have something to paste
-		  if CopyPaste.Count > 0 then me.drawUsedTimes(g)
 		End Sub
 	#tag EndEvent
 
@@ -488,31 +485,57 @@ Inherits Canvas
 		Function EditCopy() As Boolean Handles EditCopy.Action
 			copiedBarIDs = demo.getSelectedBarIDs
 			
+			me.Invalidate
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditPaste() As Boolean Handles EditPaste.Action
-			// Save the last section
-			dim theFirstPastedSection as integer
-			dim i as integer
+			// The paste process requires some steps
 			
-			// TODO
-			'theFirstPastedSection = UBound(demo.sections.IDs) + 1
-			'
-			'CopyPaste.PasteSections(demo.sections, inUseTime, layer)
-			'
-			'// Mark the pasted sections as selected
-			'demo.clearBarSelection
-			'
-			'for i=theFirstPastedSection to UBound(demo.sections.IDs)
-			'AddSectionToSelection(i)
-			'next
+			// Calculate the start time and top layerof the copied bars
+			dim firstBarStartTime as single = -1
+			dim topLayer as integer = -1
+			
+			for each barID as string in copiedBarIDs
+			dim barStartTime as single = demo.getBarStartTime(barID)
+			if barStartTime < firstBarStartTime or firstBarStartTime = -1 then firstBarStartTime = barStartTime
+			
+			dim barLayer as integer = demo.getBarLayer(barID)
+			if barLayer < topLayer or topLayer = -1 then topLayer = barLayer
+			next
+			
+			dim timeIncrement as single = selectedTime - firstBarStartTime
+			dim layerIncrement as single = selectedLayer - topLayer
+			
+			// Mark the pasted sections as selected
+			demo.clearBarSelection
+			
+			// Add a copy of the copied sections with time increments
+			for each barID as string in copiedBarIDs
+			dim barData as dictionary = demo.getBarData(barID)
+			
+			dim newBarID as string = demo.addBar( _
+			bardata.value("type"), _
+			bardata.value("layer").IntegerValue + layerIncrement, _
+			bardata.value("startTime").SingleValue + timeIncrement, _
+			bardata.value("endTime").SingleValue + timeIncrement, _
+			bardata.value("script"), _
+			bardata.value("srcBlending"), _
+			bardata.value("dstBlending"), _
+			bardata.value("srcAlpha"), _
+			bardata.value("dstAlpha") _
+			)
+			
+			demo.addBarToSelection(newBarID)
+			
+			next
+			
+			me.Invalidate
 			
 			PasteSections
 			
 			Return True
-			
 		End Function
 	#tag EndMenuHandler
 
