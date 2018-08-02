@@ -38,63 +38,7 @@ Inherits listbox
 		      renaming = false
 		      
 		    else
-		      // Checkbox has been pressed
-		      if me.CellCheck(row, column) then
-		        // The cell is now enabled so copy the resource to the data folder
-		        if me.cell(row, me.cstColumnType) = "Folder" then
-		          demo.checkResourceFolder (me.cell(row, me.cstColumnID))
-		          
-		          // Save the folder under the pool folder
-		          dim result as folderitem = demo.saveFolder(me.cell(row, me.cstColumnID), demo.getFolderPath(me.cell(row, me.cstColumnID)))
-		        end if
-		        
-		        if me.cell(row, me.cstColumnType) = "File" then
-		          demo.checkResource (me.cell(row, me.cstColumnID))
-		          
-		          // Save the resource under the pool folder
-		          dim result as folderitem = demo.saveResource(me.cell(row, me.cstColumnID), demo.getFilePath(me.cell(row, me.cstColumnID)))
-		          
-		        end if
-		        
-		        // Put a checkmark in the resource's parent folders
-		        parent = me.cell(row, me.cstColumnParent)
-		        for i as integer = row-1 DownTo 0
-		          if me.cell(i, cstColumnType) = "Folder" and me.cell(i, cstColumnID) = parent then
-		            me.CellCheck(i, me.cstColumnName) = true
-		            parent = me.cell(i, me.cstColumnParent)
-		            
-		            if parent = "0" then exit // We are in the root folder
-		          end if
-		        next
-		        
-		      else
-		        // The cell is now disabled so delete thefiles from the data folder
-		        if me.cell(row, me.cstColumnType) = "Folder" then
-		          demo.uncheckResourceFolder (me.cell(row, me.cstColumnID))
-		          
-		          // Remove the resource from the data folder
-		          files.deleteFolder(demo.getFolderPath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName)))
-		          
-		          // If the folder is expanded, remove the check from all the childs
-		          if me.Expanded(row) then
-		            for i as integer = row to me.ListCount - 1
-		              if me.cell(i, cstColumnDepth) > me.cell(row, cstColumnDepth) then
-		                me.CellCheck(i, cstColumnName) = false
-		              end if
-		            next
-		          end if
-		        end if
-		        
-		        if me.cell(row, me.cstColumnType) = "File" then
-		          demo.uncheckResource (me.cell(row, me.cstColumnID))
-		          
-		          // Remove the resource from the pool folder
-		          theFolderitem = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
-		          
-		          if theFolderitem <> nil then theFolderitem.Delete
-		        end if
-		        
-		      end if
+		      ToggleRow(row)
 		    end if
 		    
 		    me.CellType(row, me.cstColumnName) = 2
@@ -118,21 +62,31 @@ Inherits listbox
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
 		  base.Append (New MenuItem("New Root Folder"))
 		  
-		  if me.ListIndex > -1 then
-		    if me.cell(me.ListIndex, me.cstColumnType) = "Folder" then base.Append (New MenuItem("New Folder Inside"))
-		    
-		    base.Append (New MenuItem("-"))
-		    
-		    if me.cell(me.ListIndex, me.cstColumnType) = "File" then base.Append (New MenuItem("Open Resource"))
-		    
-		    base.Append (New MenuItem("-"))
-		    
-		    base.Append (New MenuItem("Delete"))
-		    base.Append (New MenuItem("Duplicate"))
-		    base.Append (New MenuItem("Rename"))
-		    
-		    base.Append (New MenuItem("-"))
+		  base.Append (New MenuItem("New Folder Inside"))
+		  if me.SelCount > 1 or me.cell(me.ListIndex, me.cstColumnType) <> "Folder" then
+		    base.Child("New folder inside").Enabled = false
 		  end if
+		  
+		  base.Append (New MenuItem("-"))
+		  
+		  base.Append (New MenuItem("Open Resource"))
+		  if me.cell(me.ListIndex, me.cstColumnType) <> "File" then
+		    base.Child("Open Resource").Enabled = false
+		  end if
+		  
+		  base.Append (New MenuItem("Toggle selected"))
+		  
+		  base.Append (New MenuItem("-"))
+		  
+		  base.Append (New MenuItem("Delete"))
+		  base.Append (New MenuItem("Duplicate"))
+		  
+		  base.Append (New MenuItem("Rename"))
+		  if me.SelCount > 1 then
+		    base.Child("Rename").Enabled = false
+		  end if
+		  
+		  base.Append (New MenuItem("-"))
 		  
 		  base.Append (New MenuItem("Open Data Folder"))
 		  
@@ -144,21 +98,18 @@ Inherits listbox
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
 		  dim f as folderitem
 		  dim confirmed as boolean
-		  dim row as integer
-		  dim id as string
-		  dim i as integer
 		  dim finalName as string
-		  
-		  row = me.ListIndex
 		  
 		  select case hitItem.Text
 		    
 		  case "New Root Folder"
-		    id = demo.createResourceFolder(demo.getUniqueName("New Folder", "0"), "0")
+		    dim id as string = demo.createResourceFolder(demo.getUniqueName("New Folder", "0"), "0")
+		    dim row as integer
 		    
 		    // Locate the end of the folders list
-		    for i=0 to me.ListCount - 1
+		    for i as integer = 0 to me.ListCount - 1
 		      if me.cell(i, me.cstColumnParent) = "0" and me.cell(i, me.cstColumnType) = "File" then
+		        row = i
 		        exit
 		      end if
 		    next
@@ -167,7 +118,7 @@ Inherits listbox
 		    finalName = demo.getFolderName(id)
 		    
 		    // Insert the folder
-		    me.InsertFolder(i, finalName, 0)
+		    me.InsertFolder(row, finalName, 0)
 		    me.cell(me.LastIndex, me.cstColumnID) = id
 		    me.cell(me.LastIndex, me.cstColumnType) = "Folder"
 		    me.cell(me.LastIndex, me.cstColumnParent) = "0"
@@ -177,22 +128,26 @@ Inherits listbox
 		    me.RowPicture(me.LastIndex) = folderblue
 		    
 		    // Select the recently created folder
-		    me.ListIndex = i
+		    me.ListIndex = row
 		    
 		  case "New Folder Inside"
-		    id = demo.createResourceFolder(demo.getUniqueName("New Folder", me.cell(row, me.cstColumnID)), me.cell(row, me.cstColumnID))
+		    dim id as string = demo.createResourceFolder(demo.getUniqueName("New Folder", me.cell(me.listindex, me.cstColumnID)), me.cell(me.ListIndex, me.cstColumnID))
 		    
 		    // If the parent folder is collapsed, then expand it
-		    if not me.expanded(row) then
-		      me.Expanded(row) = true
+		    if not me.expanded(me.listindex) then
+		      me.Expanded(me.ListIndex) = true
 		      me.selectRow(id, "Folder")
 		      
 		    else
+		      dim row as integer
+		      
 		      // Locate the end of the folders list inside the expanded folder
-		      for i=row to me.ListCount - 1
-		        if me.cell(i, me.cstColumnParent) = me.cell(row, me.cstColumnID) and me.cell(i, me.cstColumnType) = "File" then
+		      for i as integer = me.ListIndex to me.ListCount - 1
+		        if me.cell(i, me.cstColumnParent) = me.cell(me.ListIndex, me.cstColumnID) and me.cell(i, me.cstColumnType) = "File" then
+		          row = i
 		          exit
-		        elseif me.cell(i, me.cstColumnDepth) = me.cell(row, cstColumnDepth) then
+		        elseif me.cell(i, me.cstColumnDepth) = me.cell(me.ListIndex, cstColumnDepth) then
+		          row = i
 		          exit
 		        end if
 		      next
@@ -201,11 +156,11 @@ Inherits listbox
 		      finalName = demo.getFolderName(id)
 		      
 		      // Insert the folder
-		      me.InsertFolder(i+1, finalName, val(me.cell(row, me.cstColumnDepth)) + 1)
+		      me.InsertFolder(row+1, finalName, val(me.cell(me.ListIndex, me.cstColumnDepth)) + 1)
 		      me.cell(me.LastIndex, me.cstColumnID) = id
 		      me.cell(me.LastIndex, me.cstColumnType) = "Folder"
-		      me.cell(me.LastIndex, me.cstColumnParent) = me.cell(row, me.cstColumnID)
-		      me.cell(me.LastIndex, me.cstColumnDepth) = str(val(me.cell(row, me.cstColumnDepth)) + 1)
+		      me.cell(me.LastIndex, me.cstColumnParent) = me.cell(me.ListIndex, me.cstColumnID)
+		      me.cell(me.LastIndex, me.cstColumnDepth) = str(val(me.cell(me.ListIndex, me.cstColumnDepth)) + 1)
 		      me.CellType(me.LastIndex, me.cstColumnName) = 2
 		      me.CellCheck(me.LastIndex, me.cstColumnName) = false
 		      me.RowPicture(me.LastIndex) = folderblue
@@ -217,28 +172,29 @@ Inherits listbox
 		  case "Delete"
 		    // Delete the selected item
 		    confirmed = Messages.GetConfirmation("Are you sure to delete the item?")
+		    
 		    if confirmed then
-		      if me.cell(row, cstColumnType) = "Folder" then
+		      if me.cell(me.ListIndex, cstColumnType) = "Folder" then
 		        // If the folder is published on disk, remove it
-		        deleteFolder(demo.getFolderPath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName)))
+		        deleteFolder(demo.getFolderPath(me.cell(me.ListIndex, me.cstColumnID)).Child(me.cell(me.ListIndex, me.cstColumnName)))
 		        
 		        // Collapse the folder in the listbox and remove it from the database
-		        me.Expanded(row) = false
-		        demo.deleteFolder(me.cell(row, me.cstColumnID))
+		        me.Expanded(me.ListIndex) = false
+		        demo.deleteFolder(me.cell(me.ListIndex, me.cstColumnID))
 		        
 		      else
 		        // If the file is published on disk, remove it
-		        f = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
+		        f = demo.getFilePath(me.cell(me.ListIndex, me.cstColumnID)).Child(me.cell(me.ListIndex, me.cstColumnName))
 		        
 		        if f.Exists then f.Delete
 		        
 		        // Remove the resource from the database
-		        demo.deleteResource(me.cell(row, me.cstColumnID))
+		        demo.deleteResource(me.cell(me.ListIndex, me.cstColumnID))
 		        
 		      end if
 		      
 		      // Finally, remove the row from the listbox
-		      me.RemoveRow(row)
+		      me.RemoveRow(me.ListIndex)
 		    end if
 		    
 		  case "Open Resource"
@@ -254,8 +210,17 @@ Inherits listbox
 		    
 		  case "Rename"
 		    renaming = true
-		    me.CellType(row, cstColumnName) = 3
-		    me.EditCell(row, cstColumnName)
+		    me.CellType(me.listindex, cstColumnName) = 3
+		    me.EditCell(me.ListIndex, cstColumnName)
+		    
+		  case "Toggle selected"
+		    // Invert the cell selected state
+		    for row as integer = 0 to me.ListCount
+		      if me.Selected(row) then
+		        me.CellCheck(row, cstColumnName) = not me.CellCheck(row, cstColumnName)
+		        ToggleRow(row)
+		      end if
+		    next
 		    
 		  end
 		End Function
@@ -532,6 +497,69 @@ Inherits listbox
 		      exit
 		    end if
 		  next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ToggleRow(row as integer)
+		  // Checkbox has been pressed
+		  if me.CellCheck(row, cstColumnName) then
+		    // The cell is now enabled so copy the resource to the data folder
+		    if me.cell(row, me.cstColumnType) = "Folder" then
+		      demo.checkResourceFolder (me.cell(row, me.cstColumnID))
+		      
+		      // Save the folder under the pool folder
+		      dim result as folderitem = demo.saveFolder(me.cell(row, me.cstColumnID), demo.getFolderPath(me.cell(row, me.cstColumnID)))
+		    end if
+		    
+		    if me.cell(row, me.cstColumnType) = "File" then
+		      demo.checkResource (me.cell(row, me.cstColumnID))
+		      
+		      // Save the resource under the pool folder
+		      dim result as folderitem = demo.saveResource(me.cell(row, me.cstColumnID), demo.getFilePath(me.cell(row, me.cstColumnID)))
+		      
+		    end if
+		    
+		    // Put a checkmark in the resource's parent folders
+		    dim parent as string = me.cell(row, me.cstColumnParent)
+		    
+		    for i as integer = row-1 DownTo 0
+		      if me.cell(i, cstColumnType) = "Folder" and me.cell(i, cstColumnID) = parent then
+		        me.CellCheck(i, me.cstColumnName) = true
+		        parent = me.cell(i, me.cstColumnParent)
+		        
+		        if parent = "0" then exit // We are in the root folder
+		      end if
+		    next
+		    
+		  else
+		    // The cell is now disabled so delete thefiles from the data folder
+		    if me.cell(row, me.cstColumnType) = "Folder" then
+		      demo.uncheckResourceFolder (me.cell(row, me.cstColumnID))
+		      
+		      // Remove the resource from the data folder
+		      files.deleteFolder(demo.getFolderPath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName)))
+		      
+		      // If the folder is expanded, remove the check from all the childs
+		      if me.Expanded(row) then
+		        for i as integer = row to me.ListCount - 1
+		          if me.cell(i, cstColumnDepth) > me.cell(row, cstColumnDepth) then
+		            me.CellCheck(i, cstColumnName) = false
+		          end if
+		        next
+		      end if
+		    end if
+		    
+		    if me.cell(row, me.cstColumnType) = "File" then
+		      demo.uncheckResource (me.cell(row, me.cstColumnID))
+		      
+		      // Remove the resource from the pool folder
+		      dim f as folderitem = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
+		      
+		      if f <> nil then f.Delete
+		    end if
+		    
+		  end if
 		End Sub
 	#tag EndMethod
 

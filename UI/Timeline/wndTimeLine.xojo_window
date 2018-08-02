@@ -569,7 +569,7 @@ Begin Window wndTimeLine
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
-      Border          =   True
+      Border          =   False
       ColumnCount     =   6
       ColumnsResizable=   False
       ColumnWidths    =   "*,50,0,0,0,0,0"
@@ -600,8 +600,8 @@ Begin Window wndTimeLine
       Scope           =   0
       ScrollbarHorizontal=   True
       ScrollBarVertical=   True
-      SelectionType   =   0
-      ShowDropIndicator=   False
+      SelectionType   =   1
+      ShowDropIndicator=   True
       TabIndex        =   21
       TabPanelIndex   =   0
       TabStop         =   True
