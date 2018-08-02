@@ -648,6 +648,14 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       type            =   ""
    End
+   Begin Timer tmrRedraw
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Mode            =   2
+      Period          =   100
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
@@ -1379,6 +1387,13 @@ End
 		Sub demoStartTimeSet(newStartTime as single)
 		  controller.setStartTime(newStartTime)
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events tmrRedraw
+	#tag Event
+		Sub Action()
+		  cnvTimeLine.Invalidate
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -28,7 +28,7 @@ Inherits timer
 		    
 		  end if
 		  
-		  If Microseconds - lastPingTime > 1000000 Then
+		  If Microseconds - lastPingTime > 500000 Then
 		    lastPingTime = Microseconds
 		    controller.ping
 		  end if
