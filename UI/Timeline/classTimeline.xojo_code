@@ -104,7 +104,7 @@ Inherits Canvas
 		      demo.clearBarSelection
 		      
 		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "ONE", "ONE", "", "", "")
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "")
 		      
 		      // We find the bar limits and store them for a later use
 		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)

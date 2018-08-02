@@ -661,6 +661,39 @@ End
 	#tag EndEvent
 
 	#tag Event
+		Function CancelClose(appQuitting as Boolean) As Boolean
+		  if not demo.saved then
+		    Dim d as New MessageDialog //declare the MessageDialog object 
+		    Dim b as MessageDialogButton //for handling the result 
+		    
+		    d.Icon = MessageDialog.GraphicCaution
+		    d.ActionButton.Caption = "Save" 
+		    d.CancelButton.Visible = True //show the Cancel button 
+		    d.AlternateActionButton.Visible = True //show the Dont Save button 
+		    d.AlternateActionButton.Caption = "Don't Save" 
+		    d.Message="Do you want to save changes to this demo before closing?" 
+		    d.Explanation="If you don't save, your changes will be lost. "
+		    
+		    b = d.ShowModal //display the dialog 
+		    
+		    Select Case b //determine which button was pressed. 
+		      
+		    Case d.ActionButton //user pressed Save 
+		      demo.saveProject(false)
+		      return false
+		      
+		    Case d.AlternateActionButton // don't save, close window 
+		      return false
+		      
+		    Case d.CancelButton 
+		      return true
+		      
+		    End select
+		  end if
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Close()
 		  // Clear the data folder pertaining to this project
 		  Files.deleteFolder demo.GetDataFolder
