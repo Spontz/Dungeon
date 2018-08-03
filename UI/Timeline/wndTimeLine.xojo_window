@@ -23,7 +23,7 @@ Begin Window wndTimeLine
    MinWidth        =   700
    Placement       =   1
    Resizeable      =   True
-   Title           =   "Demo Editor"
+   Title           =   "Dungeon Demo Editor"
    Visible         =   False
    Width           =   760
    Begin classTimeline cnvTimeLine
@@ -941,6 +941,8 @@ End
 		  end if
 		  
 		  demo.init(demoFile, demoType)
+		  
+		  self.Title = "Dungeon Demo Editor: " + demoFile.Name
 		  
 		  If demo.countFBOs = 0 Then
 		    demo.initDefaultFBOs
