@@ -90,55 +90,6 @@ Begin Window wndTextEditor
       Visible         =   True
       Width           =   86
    End
-   Begin TextArea txtFileContents
-      AcceptTabs      =   True
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
-      Bold            =   False
-      Border          =   True
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   524
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   0
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   True
-      ScrollbarVertical=   True
-      Styled          =   False
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Courier"
-      TextSize        =   11.0
-      TextUnit        =   0
-      Top             =   0
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   800
-   End
    Begin PushButton btnCancel
       AutoDeactivate  =   True
       Bold            =   False
@@ -170,6 +121,81 @@ Begin Window wndTextEditor
       Underline       =   False
       Visible         =   True
       Width           =   86
+   End
+   Begin CustomEditField txtFileContents
+      AcceptFocus     =   True
+      AcceptTabs      =   True
+      AutoCloseBrackets=   False
+      AutocompleteAppliesStandardCase=   True
+      AutoDeactivate  =   False
+      AutoIndentNewLines=   True
+      BackColor       =   &cFFFFFF00
+      Backdrop        =   0
+      Border          =   False
+      BorderColor     =   &c88888800
+      BracketHighlightColor=   &cFFFF0000
+      CaretColor      =   &c00000000
+      CaretLine       =   0
+      CaretPos        =   0
+      ClearHighlightedRangesOnTextChange=   True
+      DirtyLinesColor =   &cFF999900
+      DisplayDirtyLines=   False
+      DisplayInvisibleCharacters=   False
+      DisplayLineNumbers=   True
+      DisplayRightMarginMarker=   False
+      EnableAutocomplete=   False
+      Enabled         =   True
+      EnableLineFoldings=   True
+      EraseBackground =   True
+      GutterBackgroundColor=   &cEEEEEE00
+      GutterSeparationLineColor=   &c88888800
+      GutterWidth     =   0
+      Height          =   522
+      HelpTag         =   ""
+      HighlightBlocksOnMouseOverGutter=   True
+      HighlightMatchingBrackets=   True
+      HighlightMatchingBracketsMode=   0
+      IndentPixels    =   16
+      IndentVisually  =   False
+      Index           =   -2147483648
+      InitialParent   =   ""
+      KeepEntireTextIndented=   False
+      Left            =   0
+      leftMarginOffset=   4
+      LineNumbersColor=   &c88888800
+      LineNumbersTextFont=   "System"
+      LineNumbersTextSize=   9
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MaxVisibleLines =   0
+      ReadOnly        =   False
+      RightMarginAtPixel=   0
+      RightScrollMargin=   150
+      Scope           =   0
+      ScrollPosition  =   0
+      ScrollPositionX =   0
+      selLength       =   0
+      selStart        =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TabWidth        =   4
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   ""
+      TextHeight      =   0
+      TextLength      =   0
+      TextSelectionColor=   &c00000000
+      TextSize        =   11
+      ThickInsertionPoint=   True
+      Top             =   0
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   800
    End
 End
 #tag EndWindow
@@ -207,7 +233,14 @@ End
 		  
 		  try
 		    contents = editedFile.OpenAsTextFile
+		    
 		    txtFileContents.text = contents.ReadAll
+		    
+		    // Note: If you handle large text, e.g. more than a few 100 lines, and if you also want to use
+		    // indentation, then the syntax definition should be set to nil before setting the new text,
+		    
+		    txtFileContents.ReindentText // cleans up indentations, removing any leading blanks from the lines
+		    txtFileContents.ResetUndo // needed so that the Reindentation doesn't become an undoable action
 		    
 		    btnSave.Enabled = true
 		    btnTest.Enabled = true
@@ -292,9 +325,16 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events btnCancel
+	#tag Event
+		Sub Action()
+		  self.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events txtFileContents
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key as string) As boolean
 		  if asc(key) = 3 and not Keyboard.AsyncControlKey then
 		    // User pressed the ENTER key
 		    // Apply the changes to the data folder
@@ -308,17 +348,19 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub TextChange()
+		Sub TextChanged()
 		  btnSave.Enabled = true
 		  btnTest.Enabled = true
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events btnCancel
 	#tag Event
-		Sub Action()
-		  self.Close
-		End Sub
+		Function MouseDown(X as integer, Y as integer) As boolean
+		  #pragma unused X
+		  #pragma unused Y
+		  
+		  // this is just a cheap trick to cause a redraw for debugging
+		  txtFileContents.Redraw
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

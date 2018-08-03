@@ -172,9 +172,9 @@ Inherits listbox
 		  case "Delete"
 		    // Delete the selected item
 		    if me.SelCount = 1 then
-		      confirmed = Messages.GetConfirmation("Are you sure to delete the item?")
+		      confirmed = GetConfirmation("Are you sure to delete the item?")
 		    else
-		      confirmed = Messages.GetConfirmation("Are you sure to delete " + str(me.SelCount) + " items?")
+		      confirmed = GetConfirmation("Are you sure to delete " + str(me.SelCount) + " items?")
 		    end if
 		    
 		    if not confirmed then return true
