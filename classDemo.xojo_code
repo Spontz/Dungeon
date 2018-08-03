@@ -1075,11 +1075,12 @@ Protected Class classDemo
 		  if files.RecordCount > 0 then
 		    result = new Dictionary
 		    
-		    result.Value("id"  ) = files.Field("id").StringValue
-		    result.Value("name") = files.Field("name").StringValue
-		    result.Value("type") = "File"
-		    result.Value("size") = files.Field("bytes").StringValue
-		    result.Value("data") = files.Field("data").NativeValue
+		    result.Value("type"   ) = "File"
+		    result.Value("id"     ) = files.Field("id"     ).StringValue
+		    result.Value("name"   ) = files.Field("name"   ).StringValue
+		    result.Value("size"   ) = files.Field("bytes"  ).StringValue
+		    result.Value("data"   ) = files.Field("data"   ).NativeValue
+		    result.value("enabled") = files.field("enabled").BooleanValue
 		  end if
 		  
 		  return result
@@ -1097,9 +1098,9 @@ Protected Class classDemo
 		  dim queryResult as Recordset
 		  
 		  // Check if the resource is published
-		  // dim published as boolean
-		  // published = demoDB.SQLSelect("SELECT enabled FROM FILES where id='" + ID + "'").Field("enabled").BooleanValue
-		  // if not published then return nil
+		  dim published as boolean
+		  published = demoDB.SQLSelect("SELECT enabled FROM FILES where id='" + ID + "'").Field("enabled").BooleanValue
+		  if not published then return nil
 		  
 		  // The resource is published, so let's construct its path
 		  parent = demoDB.SQLSelect("SELECT parent FROM FILES where id='" + ID + "'").Field("parent").StringValue
@@ -1627,6 +1628,11 @@ Protected Class classDemo
 		    return
 		  end if
 		  
+		  // Get a reference to the file
+		  dim fileData as Dictionary = getFile(fileID)
+		  dim f as FolderItem = getFilePath(fileID)
+		  f = f.Child(fileData.value("name"))
+		  
 		  dim query as string = "UPDATE FILES SET parent=" + parentFolderID + " WHERE id=" + fileID
 		  
 		  demoDB.SQLExecute (query)
@@ -1637,6 +1643,14 @@ Protected Class classDemo
 		  else
 		    demoDB.Commit
 		    saved = false
+		    
+		    // If the moved file is published, do also the change in the filesystem
+		    if fileData.value("enabled").BooleanValue then
+		      dim folderpath as folderitem = getFolderPath(parentFolderID)
+		      dim folderName as string = getFolderName(parentFolderID)
+		      folderpath = folderpath.child(folderName)
+		      if f.Exists then f.MoveFileTo(folderPath)
+		    end if
 		  end if
 		End Sub
 	#tag EndMethod

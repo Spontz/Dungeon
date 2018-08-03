@@ -332,17 +332,22 @@ Inherits listbox
 		    if draggedItems.Ubound > -1 then
 		      // We are dragging from inside the database
 		      // The user is moving an element to a new position
+		      // If we are moving to the same position, we will ignore the move
 		      if draggedItems(0).value("parentFolderID") <> parentFolderID then
+		        
 		        if me.draggedItems(0).value("type") = "File" then
+		          // We are dragging a file
 		          demo.moveFile(draggedItems(0).value("id"), parentFolderID)
 		          
 		        else
+		          // We are dragging a folder
 		          demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
 		          
 		        end if
 		        
 		        RefreshFolder(draggedItems(0).value("parentFolderID"))
 		        RefreshFolder(parentFolderID)
+		        
 		      end if
 		      
 		      draggedItems.Remove(0)
@@ -363,6 +368,8 @@ Inherits listbox
 		        icon = icoDocument
 		        
 		      end if
+		      
+		      
 		    end if
 		    
 		  else
@@ -554,7 +561,16 @@ Inherits listbox
 
 	#tag Method, Flags = &h0
 		Sub RefreshFolder(folderID as string)
-		  
+		  for row as integer = me.ListCount - 1 downto 0
+		    if me.cell(row, cstColumnID) = folderID then
+		      if me.cell(row, cstColumnType) = "Folder" then
+		        expanded(row) = false
+		        expanded(row) = true
+		        
+		        exit
+		      end if
+		    end if
+		  next
 		End Sub
 	#tag EndMethod
 
@@ -622,12 +638,13 @@ Inherits listbox
 		    end if
 		    
 		    if me.cell(row, me.cstColumnType) = "File" then
-		      demo.uncheckResource (me.cell(row, me.cstColumnID))
-		      
 		      // Remove the resource from the pool folder
 		      dim f as folderitem = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
 		      
 		      if f <> nil then f.Delete
+		      
+		      // Mark the file as unpublisched
+		      demo.uncheckResource (me.cell(row, me.cstColumnID))
 		    end if
 		    
 		  end if
