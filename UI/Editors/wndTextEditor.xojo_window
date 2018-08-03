@@ -243,13 +243,12 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub updateScrollBar()
-		  dim currentNumberOfLines as integer
-		  dim maxVisibleLines as integer
+		Private Sub updateBarsUsingFile()
+		  dim filePath as string = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
 		  
-		  txtFileContents.Text = ReplaceAll(txtFileContents.text, chr(10), chr(13))
-		  currentNumberOfLines = CountFields(txtFileContents.text, chr(13))
-		  maxVisibleLines = floor((txtFileContents.Height - 16)/ txtFileContents.TextSize)
+		  dim barIDs() as string
+		  barIDs = hook.demo.getBarsThatUseFile(filePath)
+		  hook.updateBarIDs(barIDs)
 		End Sub
 	#tag EndMethod
 
@@ -275,12 +274,10 @@ End
 		  saveToDatabase
 		  saveToDataFolder
 		  
-		  dim filePath as string
-		  filePath = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
+		  updateBarsUsingFile
 		  
-		  dim barIDs() as string
-		  barIDs = hook.demo.getBarsThatUseFile(filePath)
-		  hook.updateBarIDs(barIDs)
+		  me.Enabled = false
+		  btnTest.Enabled = false
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -289,24 +286,32 @@ End
 		Sub Action()
 		  saveToDataFolder
 		  
-		  hook.UpdateSelectedBars
+		  updateBarsUsingFile
+		  
+		  me.Enabled = false
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events txtFileContents
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(key) = 3 then
+		  if asc(key) = 3 and not Keyboard.AsyncControlKey then
 		    // User pressed the ENTER key
 		    // Apply the changes to the data folder
 		    saveToDataFolder
 		    
-		    hook.UpdateSelectedBars
+		    updateBarsUsingFile
 		    
 		    // No further processing to be done with the key
 		    return true
 		  end if
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  btnSave.Enabled = true
+		  btnTest.Enabled = true
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnCancel

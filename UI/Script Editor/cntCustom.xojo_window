@@ -620,7 +620,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(key) = 3 then
+		  if asc(key) = 3 and not keyboard.AsyncControlKey then
 		    // Apply the changes
 		    applyChanges
 		    
