@@ -224,8 +224,6 @@ End
 	#tag Method, Flags = &h21
 		Private Sub saveToDatabase()
 		  hook.demo.updateResourceFromFolderItem(editedFile, itemID)
-		  
-		  self.close
 		End Sub
 	#tag EndMethod
 
