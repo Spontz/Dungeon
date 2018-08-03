@@ -175,13 +175,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag MenuHandler
-		Function FileClose() As Boolean Handles FileClose.Action
-			self.Close
-		End Function
-	#tag EndMenuHandler
-
-
 	#tag Method, Flags = &h0
 		Sub init(fileID as string, theHook as wndTimeLine)
 		  dim f as FolderItem
