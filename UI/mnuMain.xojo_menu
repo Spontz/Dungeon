@@ -223,20 +223,6 @@ Begin Menu mnuMain
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem ProjectSetMarker
-         SpecialMenu = 0
-         Text = "Set Marker..."
-         Index = -2147483648
-         AutoEnable = False
-         Visible = True
-      End
-      Begin MenuItem UntitledSeparator1
-         SpecialMenu = 0
-         Text = "-"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
       Begin MenuItem mnuEditDatabase
          SpecialMenu = 0
          Text = "Edit Database..."
@@ -360,76 +346,6 @@ Begin Menu mnuMain
          Text = "Direct Command..."
          Index = -2147483648
          MacOptionKey = True
-         AutoEnable = True
-         Visible = True
-      End
-   End
-   Begin MenuItem WindowMenu
-      SpecialMenu = 0
-      Text = "Window"
-      Index = -2147483648
-      AutoEnable = True
-      Visible = True
-      Begin MenuItem WindowArrange
-         SpecialMenu = 0
-         Text = "Arrange"
-         Index = -2147483648
-         AutoEnable = True
-         SubMenu = True
-         Visible = True
-         Begin MenuItem ArrangeDefault
-            SpecialMenu = 0
-            Text = "Default"
-            Index = -2147483648
-            AutoEnable = True
-            Visible = True
-         End
-         Begin MenuItem UntitledMenu15
-            SpecialMenu = 0
-            Text = ""
-            Index = -2147483648
-            AutoEnable = True
-            Visible = True
-         End
-      End
-      Begin MenuItem UntitledMenu1
-         SpecialMenu = 0
-         Text = "-"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem WindowTools
-         SpecialMenu = 0
-         Text = "Tools Palette"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem UntitledItem
-         SpecialMenu = 0
-         Text = "-"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem mnuPathEditor
-         SpecialMenu = 0
-         Text = "Path Editor..."
-         Index = -2147483648
-         ShortcutKey = "E"
-         Shortcut = "Cmd+E"
-         MenuModifier = True
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem WindowTextEditor
-         SpecialMenu = 0
-         Text = "Text Editor..."
-         Index = -2147483648
-         ShortcutKey = "T"
-         Shortcut = "Cmd+T"
-         MenuModifier = True
          AutoEnable = True
          Visible = True
       End
