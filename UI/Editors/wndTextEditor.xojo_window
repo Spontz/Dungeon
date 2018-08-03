@@ -108,7 +108,7 @@ Begin Window wndTextEditor
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   32
+      Left            =   0
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -122,7 +122,7 @@ Begin Window wndTextEditor
       ReadOnly        =   False
       Scope           =   0
       ScrollbarHorizontal=   True
-      ScrollbarVertical=   False
+      ScrollbarVertical=   True
       Styled          =   False
       TabIndex        =   3
       TabPanelIndex   =   0
@@ -137,35 +137,7 @@ Begin Window wndTextEditor
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   768
-   End
-   Begin Canvas cnvLineNumbers
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   True
-      Enabled         =   True
-      EraseBackground =   False
-      Height          =   509
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   0
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   32
+      Width           =   800
    End
    Begin PushButton btnCancel
       AutoDeactivate  =   True
@@ -334,11 +306,6 @@ End
 #tag EndEvents
 #tag Events txtFileContents
 	#tag Event
-		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
-		  cnvLineNumbers.Invalidate
-		End Function
-	#tag EndEvent
-	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(key) = 3 then
 		    // User pressed the ENTER key
@@ -351,47 +318,6 @@ End
 		    return true
 		  end if
 		End Function
-	#tag EndEvent
-	#tag Event
-		Sub TextChange()
-		  cnvLineNumbers.Invalidate
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub KeyUp(Key As String)
-		  cnvLineNumbers.Invalidate
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  cnvLineNumbers.Invalidate
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events cnvLineNumbers
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  dim y as integer
-		  dim lineNumber as integer
-		  dim theStringWidth as integer
-		  
-		  lineNumber = txtFileContents.ScrollPosition + 1
-		  
-		  g.ForeColor = &ce0e0e0
-		  
-		  g.FillRect (0,0,me.Width, me.Height)
-		  
-		  g.TextFont = "Courier"
-		  g.TextSize = 11
-		  g.ForeColor = &c666666
-		  
-		  for y=txtFileContents.TextSize + 2 to me.Height + txtFileContents.TextSize Step txtFileContents.TextSize + 3
-		    theStringWidth = g.StringWidth(str(lineNumber))
-		    
-		    g.DrawString (str(lineNumber), me.Width - theStringWidth - 2, y + 1)
-		    lineNumber = lineNumber + 1
-		  next
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnCancel

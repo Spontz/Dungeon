@@ -288,7 +288,7 @@ Inherits listbox
 		    
 		    dim dragItem as new Dictionary
 		    
-		    dragItem.value("parentFolder") = me.cell(row, cstColumnParent)
+		    dragItem.value("parentFolderID") = me.cell(row, cstColumnParent)
 		    dragItem.value("type") = "File"
 		    dragItem.value("id") = me.cell(row, cstColumnID)
 		    
@@ -301,7 +301,7 @@ Inherits listbox
 		    
 		    dim dragItem as new Dictionary
 		    
-		    dragItem.value("parentFolder") = me.cell(row, cstColumnParent)
+		    dragItem.value("parentFolderID") = me.cell(row, cstColumnParent)
 		    dragItem.value("type") = "Folder"
 		    dragItem.value("id") = me.cell(row, cstColumnID)
 		    
@@ -332,16 +332,18 @@ Inherits listbox
 		    if draggedItems.Ubound > -1 then
 		      // We are dragging from inside the database
 		      // The user is moving an element to a new position
-		      if me.draggedItems(0).value("type") = "File" then
-		        demo.moveFile(draggedItems(0).value("id"), parentFolderID)
+		      if draggedItems(0).value("parentFolderID") <> parentFolderID then
+		        if me.draggedItems(0).value("type") = "File" then
+		          demo.moveFile(draggedItems(0).value("id"), parentFolderID)
+		          
+		        else
+		          demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
+		          
+		        end if
 		        
-		      else
-		        demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
-		        
+		        RefreshFolder(draggedItems(0).value("parentFolderID"))
+		        RefreshFolder(parentFolderID)
 		      end if
-		      
-		      RefreshFolder(draggedItems(0).value("parentFolderID"))
-		      RefreshFolder(parentFolderID)
 		      
 		      draggedItems.Remove(0)
 		      return
