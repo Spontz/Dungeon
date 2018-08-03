@@ -290,8 +290,6 @@ End
 		  dim barIDs() as string
 		  barIDs = hook.demo.getBarsThatUseFile(filePath)
 		  hook.updateBarIDs(barIDs)
-		  
-		  self.close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
