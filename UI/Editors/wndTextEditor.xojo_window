@@ -27,7 +27,7 @@ Begin Window wndTextEditor
    Visible         =   True
    Width           =   800
    Begin PushButton btnSave
-      AutoDeactivate  =   True
+      AutoDeactivate  =   False
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
@@ -59,7 +59,7 @@ Begin Window wndTextEditor
       Width           =   86
    End
    Begin PushButton btnTest
-      AutoDeactivate  =   True
+      AutoDeactivate  =   False
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
@@ -91,7 +91,7 @@ Begin Window wndTextEditor
       Width           =   86
    End
    Begin PushButton btnCancel
-      AutoDeactivate  =   True
+      AutoDeactivate  =   False
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   True
@@ -139,13 +139,16 @@ Begin Window wndTextEditor
       CaretPos        =   0
       ClearHighlightedRangesOnTextChange=   True
       DirtyLinesColor =   &cFF999900
+      disableReset    =   False
       DisplayDirtyLines=   False
       DisplayInvisibleCharacters=   False
       DisplayLineNumbers=   True
       DisplayRightMarginMarker=   False
+      DoubleBuffer    =   False
       EnableAutocomplete=   False
       Enabled         =   True
       EnableLineFoldings=   True
+      enableLineFoldingSetting=   False
       EraseBackground =   True
       GutterBackgroundColor=   &cEEEEEE00
       GutterSeparationLineColor=   &c88888800
@@ -155,6 +158,7 @@ Begin Window wndTextEditor
       HighlightBlocksOnMouseOverGutter=   True
       HighlightMatchingBrackets=   True
       HighlightMatchingBracketsMode=   0
+      ignoreRepaint   =   False
       IndentPixels    =   16
       IndentVisually  =   False
       Index           =   -2147483648
@@ -164,7 +168,7 @@ Begin Window wndTextEditor
       leftMarginOffset=   4
       LineNumbersColor=   &c88888800
       LineNumbersTextFont=   "System"
-      LineNumbersTextSize=   9
+      LineNumbersTextSize=   10
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -179,21 +183,22 @@ Begin Window wndTextEditor
       ScrollPositionX =   0
       selLength       =   0
       selStart        =   0
+      SelText         =   ""
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
       TabWidth        =   4
       Text            =   ""
       TextColor       =   &c00000000
-      TextFont        =   ""
+      TextFont        =   "Consolas"
       TextHeight      =   0
       TextLength      =   0
       TextSelectionColor=   &c00000000
-      TextSize        =   11
-      ThickInsertionPoint=   True
+      TextSize        =   12
+      ThickInsertionPoint=   False
       Top             =   0
-      Transparent     =   True
-      UseFocusRing    =   True
+      Transparent     =   False
+      UseFocusRing    =   False
       Visible         =   True
       Width           =   800
    End
@@ -335,7 +340,7 @@ End
 #tag Events txtFileContents
 	#tag Event
 		Function KeyDown(key as string) As boolean
-		  if asc(key) = 3 and not Keyboard.AsyncControlKey then
+		  if key = decodeHex("3") and not Keyboard.AsyncControlKey then
 		    // User pressed the ENTER key
 		    // Apply the changes to the data folder
 		    saveToDataFolder
@@ -344,6 +349,18 @@ End
 		    
 		    // No further processing to be done with the key
 		    return true
+		    
+		  elseif asc(key) = 9 then
+		    // tab key pressed
+		    me.Insert(me.CaretPos, "    ")
+		    return true
+		    
+		  elseif Keyboard.AsyncControlKey and key = decodehex("1A") then
+		    me.Undo
+		    
+		  elseif Keyboard.AsyncControlKey and key = DecodeHex("19") then
+		    me.Redo
+		    
 		  end if
 		End Function
 	#tag EndEvent
