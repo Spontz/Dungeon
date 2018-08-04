@@ -1399,10 +1399,10 @@ Implements MessageReceiver
 
 	#tag Method, Flags = &h21
 		Private Sub drawContents(gr as graphics)
-		  #if not DebugBuild
-		    #pragma DisableBackgroundTasks
-		    
-		  #endif
+		  //#if not DebugBuild
+		  #pragma DisableBackgroundTasks
+		  
+		  //#endif
 		  
 		  #if DebugBuild and EditFieldGlobals.DebugIndentation
 		    System.DebugLog "drawContents() start, firstLineToIndent: "+str(lines.FirstLineForIndentation)
@@ -3166,11 +3166,11 @@ Implements MessageReceiver
 
 	#tag Method, Flags = &h1
 		Protected Function NextBlockChar(forChar as string, offset as integer, byref charToFind as String) As integer
-		  #if not DebugBuild
-		    #pragma DisableBackgroundTasks
-		    #pragma DisableBoundsChecking
-		    
-		  #endif
+		  //#if not DebugBuild
+		  #pragma DisableBackgroundTasks
+		  #pragma DisableBoundsChecking
+		  
+		  //#endif
 		  
 		  //find the next block char, for the given "forChar" char
 		  //dim charToFind as String
