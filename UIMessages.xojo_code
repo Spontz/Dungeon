@@ -1,5 +1,5 @@
 #tag Module
-Protected Module Messages
+Protected Module UIMessages
 	#tag Method, Flags = &h0
 		Function GetConfirmation(Question as string) As boolean
 		  dim answer as integer
