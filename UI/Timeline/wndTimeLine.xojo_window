@@ -476,6 +476,7 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -634,6 +635,7 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
@@ -641,6 +643,7 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       saved           =   True
@@ -649,6 +652,7 @@ Begin Window wndTimeLine
       type            =   ""
    End
    Begin Timer tmrRedraw
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
