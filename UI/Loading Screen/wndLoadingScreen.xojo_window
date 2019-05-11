@@ -2,10 +2,10 @@
 Begin Window wndLoadingScreen
    BackColor       =   &c5978D600
    Backdrop        =   138932223
-   CloseButton     =   True
+   CloseButton     =   False
    Compatibility   =   ""
    Composite       =   False
-   Frame           =   2
+   Frame           =   4
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
@@ -14,20 +14,19 @@ Begin Window wndLoadingScreen
    LiveResize      =   False
    MacProcID       =   0
    MaxHeight       =   32000
-   MaximizeButton  =   True
+   MaximizeButton  =   False
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   480
-   MinimizeButton  =   True
+   MinimizeButton  =   False
    MinWidth        =   640
-   Placement       =   0
-   Resizeable      =   True
+   Placement       =   2
+   Resizeable      =   False
    Title           =   "Loading Visuals"
    Visible         =   True
    Width           =   640
    Begin Timer tmrCloseWindow
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False

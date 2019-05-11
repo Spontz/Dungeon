@@ -11,20 +11,18 @@ Inherits Canvas
 		Sub MouseUp(X As Integer, Y As Integer)
 		  Dim c  as Color
 		  Dim b as Boolean
-		  c=RGB(me.Red,me.Green,me.Blue) //choose the default color shown in color picker
-		  b=SelectColor(c,"Select a Color")
+		  
+		  c = RGB(me.Red,me.Green,me.Blue) //choose the default color shown in color picker
+		  b = SelectColor(c, "Select a Color")
 		  
 		  //Check if the user selected a color or not
 		  if b then
-		    me.Red = c.red
-		    me.Blue = c.blue
+		    me.Red   = c.red
+		    me.Blue  = c.blue
 		    me.Green = c.green
-		    
-		    //We paint our own background with the current color
-		    me.graphics.foreColor = RGB(me.Red,me.Green,me.Blue)
-		    me.graphics.fillRect (0,0,me.width,me.height)
 		  end if
 		  
+		  me.Invalidate
 		  ColorChanged c
 		End Sub
 	#tag EndEvent

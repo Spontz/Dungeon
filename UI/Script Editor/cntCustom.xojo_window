@@ -98,8 +98,8 @@ Begin ContainerControl cntCustom
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   204
       Transparent     =   False
@@ -133,8 +133,8 @@ Begin ContainerControl cntCustom
       Text            =   "Bar type"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   0
       Transparent     =   True
@@ -202,8 +202,8 @@ Begin ContainerControl cntCustom
       Text            =   "Script template"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   0
       Transparent     =   False
@@ -268,8 +268,8 @@ Begin ContainerControl cntCustom
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   17
       Transparent     =   False
@@ -367,8 +367,8 @@ Begin ContainerControl cntCustom
       Text            =   "Blend Source"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   186
       Transparent     =   False
@@ -402,8 +402,8 @@ Begin ContainerControl cntCustom
       Text            =   "Blend Destination"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   185
       Transparent     =   False

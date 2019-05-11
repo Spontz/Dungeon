@@ -568,7 +568,6 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line1
       BorderWidth     =   1
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
@@ -586,7 +585,6 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line2
       BorderWidth     =   1
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
@@ -666,35 +664,7 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub refreshProgressBar()
-		  if cnvPreview.getImageWidth < 0 or cnvPreview.getImageHeight < 0 then return
-		  
-		  dim theOrigin(2) as integer
-		  theOrigin = cnvPreview.getOrigin()
-		  
-		  dim theLeft, theTop, theWidth, theHeight as integer
-		  
-		  // Set the colors
-		  cnvPreview.Graphics.ForeColor = barColorSelector.getColor
-		  
-		  // Draw the progress bar
-		  theLeft = theOrigin(0) + progressBarCoords(0) * cnvPreview.getImageWidth
-		  theTop = theOrigin(1) + (1 - progressBarCoords(1)) * cnvPreview.getImageHeight
-		  
-		  theWidth = (progressBarCoords(2) - progressBarCoords(0)) * cnvPreview.getImageWidth
-		  theHeight = (progressBarCoords(3) - progressBarCoords(1)) * cnvPreview.getImageHeight
-		  
-		  cnvPreview.Graphics.ForeColor = progressBarColor
-		  cnvPreview.Graphics.FillRect(theLeft, theTop, theWidth, theHeight)
-		  
-		  // Draw the progress bar border
-		  theLeft = theOrigin(0) + progressBarBorderCoords(0) * cnvPreview.getImageWidth
-		  theTop = theOrigin(1) + (1 - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
-		  
-		  theWidth = (progressBarBorderCoords(2) - progressBarBorderCoords(0)) * cnvPreview.getImageWidth
-		  theHeight = (progressBarBorderCoords(3) - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
-		  
-		  cnvPreview.Graphics.ForeColor = progressBarBorderColor
-		  cnvPreview.Graphics.DrawRect(theLeft, theTop, theWidth, theHeight)
+		  cnvPreview.Invalidate
 		End Sub
 	#tag EndMethod
 
@@ -830,8 +800,36 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Paint()
-		  me.refreshPicture
+		Sub Paint(g as graphics)
+		  if cnvPreview.getImageWidth < 0 or cnvPreview.getImageHeight < 0 then return
+		  
+		  dim theOrigin(2) as integer
+		  theOrigin = cnvPreview.getOrigin()
+		  
+		  dim theLeft, theTop, theWidth, theHeight as integer
+		  
+		  // Set the colors
+		  g.ForeColor = barColorSelector.getColor
+		  
+		  // Draw the progress bar
+		  theLeft = theOrigin(0) + progressBarCoords(0) * cnvPreview.getImageWidth
+		  theTop = theOrigin(1) + (1 - progressBarCoords(1)) * cnvPreview.getImageHeight
+		  
+		  theWidth = (progressBarCoords(2) - progressBarCoords(0)) * cnvPreview.getImageWidth
+		  theHeight = (progressBarCoords(3) - progressBarCoords(1)) * cnvPreview.getImageHeight
+		  
+		  g.ForeColor = progressBarColor
+		  g.FillRect(theLeft, theTop, theWidth, theHeight)
+		  
+		  // Draw the progress bar border
+		  theLeft = theOrigin(0) + progressBarBorderCoords(0) * cnvPreview.getImageWidth
+		  theTop = theOrigin(1) + (1 - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
+		  
+		  theWidth = (progressBarBorderCoords(2) - progressBarBorderCoords(0)) * cnvPreview.getImageWidth
+		  theHeight = (progressBarBorderCoords(3) - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
+		  
+		  g.ForeColor = progressBarBorderColor
+		  g.DrawRect(theLeft, theTop, theWidth, theHeight)
 		End Sub
 	#tag EndEvent
 	#tag Event

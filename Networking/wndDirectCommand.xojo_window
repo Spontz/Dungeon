@@ -70,7 +70,7 @@ Begin Window wndDirectCommand
       Visible         =   True
       Width           =   226
    End
-   Begin Label StaticText1
+   Begin Label lblServer
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -188,7 +188,6 @@ Begin Window wndDirectCommand
    End
    Begin classConnector myConnector
       Address         =   "localhost"
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
@@ -236,14 +235,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Method, Flags = &h21
-		Private Sub sendMessage(theMessage as String)
-		  myConnector.SendMessage theMessage
-		  myConnector.Connect
-		End Sub
-	#tag EndMethod
-
-
 #tag EndWindowCode
 
 #tag Events txtServer
@@ -258,20 +249,22 @@ End
 #tag Events txtCommand
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  'if asc(key) = 13 then
-		  '// The return key has been pressed, so let's send the field contents
-		  'sendMessage txtCommand.text
-		  '
-		  '// No further procesing with the key
-		  'return true
-		  'end if
+		  if asc(key) = 13 then
+		    // The return key has been pressed, so let's send the field contents
+		    myConnector.SendMessage txtCommand.text, false
+		    myConnector.Connect 
+		    
+		    // No further procesing with the key
+		    return true
+		  end if
 		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events btnSend
 	#tag Event
 		Sub Action()
-		  sendMessage txtCommand.text
+		  myConnector.SendMessage txtCommand.text, false
+		  myConnector.Connect 
 		End Sub
 	#tag EndEvent
 #tag EndEvents

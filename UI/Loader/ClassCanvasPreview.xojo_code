@@ -71,35 +71,49 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  Paint
+		  g.ForeColor = getBackgroundColor
+		  g.FillRect 0, 0, me.width, me.height
+		  
+		  // The Canvas Frame
+		  g.forecolor=RGB(140, 140, 140) // gray
+		  g.drawline 0,0,me.width-1,0
+		  g.drawline 0,me.height-1,0,0
+		  
+		  g.forecolor=RGB(255,255,255) // white
+		  g.drawline me.width-1,1,me.width-1,me.height-1
+		  g.drawline 1,me.height-1,me.width-1,me.height-1
+		  
+		  dim theOrigin(2) as integer
+		  theOrigin = getOrigin
+		  
+		  if StoredImage <> nil then
+		    dim buffer as picture = new Picture(StoredImage.Width, StoredImage.Height, screen(0).Depth)
+		    buffer.Graphics.DrawPicture (StoredImage, 0, 0, StoredImage.Width, StoredImage.Height)
+		    
+		    g.DrawPicture buffer, theOrigin(0), theOrigin(1)
+		    
+		    StoredImage = nil
+		  end if
+		  
+		  
+		  // Pass the event
+		  refreshed
+		  
+		  Paint(g)
 		End Sub
 	#tag EndEvent
 
 
 	#tag Method, Flags = &h0
 		Sub clearPicture()
-		  StoredImage = nil
+		  
 		  refreshPicture
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub drawBackground()
-		  me.Graphics.ForeColor = getBackgroundColor
-		  me.Graphics.FillRect 0, 0, me.width, me.height
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub drawFrame()
-		  // The Canvas Frame
-		  me.Graphics.forecolor=RGB(140, 140, 140) // gray
-		  me.Graphics.drawline 0,0,me.width-1,0
-		  me.Graphics.drawline 0,me.height-1,0,0
-		  
-		  me.Graphics.forecolor=RGB(255,255,255) // white
-		  me.Graphics.drawline me.width-1,1,me.width-1,me.height-1
-		  me.Graphics.drawline 1,me.height-1,me.width-1,me.height-1
+		  me.Invalidate
 		End Sub
 	#tag EndMethod
 
@@ -173,24 +187,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub refreshPicture()
-		  dim buffer as picture
-		  
-		  drawBackground
-		  
-		  dim theOrigin(2) as integer
-		  theOrigin = getOrigin
-		  
-		  if StoredImage <> nil then
-		    buffer = new Picture(StoredImage.Width, StoredImage.Height, screen(0).Depth)
-		    buffer.Graphics.DrawPicture (StoredImage, 0, 0, StoredImage.Width, StoredImage.Height)
-		    
-		    me.Graphics.DrawPicture buffer, theOrigin(0), theOrigin(1)
-		  end if
-		  
-		  drawFrame
-		  
-		  // Pass the event
-		  refreshed
+		  me.Invalidate
 		End Sub
 	#tag EndMethod
 
@@ -241,7 +238,7 @@ Inherits Canvas
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event Paint()
+		Event Paint(g as graphics)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0

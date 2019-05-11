@@ -4,8 +4,8 @@ Inherits Application
 	#tag Event
 		Sub Open()
 		  // Obtain the version string
-		  applicationVersion=str(App.MajorVersion) + "." + str(app.MinorVersion) + "." + str(App.BugVersion) + "." + str(app.StageCode)+ "." +  str(App.NonReleaseVersion)
-		  applicationName=self.LongVersion
+		  applicationVersion = str(App.MajorVersion) + "." + str(app.MinorVersion) + "." + str(App.BugVersion) + "." + str(app.StageCode)+ "." +  str(App.NonReleaseVersion)
+		  applicationName = self.LongVersion
 		  
 		  // Open the trace window if in debug mode
 		  if DebugBuild then

@@ -6,7 +6,11 @@ Inherits TCPSocket
 		  if UBound(messageQueue) < 0 then
 		    // RaiseError ("Bad connection","The connection manager tried to connect without a proper order to send")
 		  else
-		    me.write messageQueue(0)
+		    dim Message as dictionary = messageQueue(0)
+		    
+		    trace ("Sent: " + Message.value("content"), cstTraceLevelCommunication)
+		    
+		    me.write Message.value("content")
 		  end if
 		End Sub
 	#tag EndEvent
@@ -17,7 +21,7 @@ Inherits TCPSocket
 		  
 		  trace(response, cstTraceLevelCommunication)
 		  
-		  if NthField(response, paramSeparator, 2) = "OK" then
+		  if NthField(response, paramSeparator, 2) = "OK" or not messageQueue(0).Value("retry") then
 		    // Remove the message from the queue
 		    messageQueue.Remove(0)
 		  end if
@@ -45,12 +49,10 @@ Inherits TCPSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendMessage(theMessage as String)
+		Sub SendMessage(theMessage as String, optional retry as boolean = true)
 		  dim theSizer as String
 		  dim theID as String
 		  dim dataLength as integer
-		  
-		  trace ("Sent: " + theMessage, cstTraceLevelCommunication)
 		  
 		  theID = CStr(Me.getID)
 		  dataLength = len(theID + me.paramSeparator + theMessage )
@@ -64,13 +66,18 @@ Inherits TCPSocket
 		  
 		  theSizer = chr(val("&b" + binaryForm.StringValue.Left   (8))) + _
 		  chr(val("&b" + binaryForm.StringValue.Mid   (9,8))) + _
-		  chr(val("&b" + binaryForm.StringValue.Mid    (17,8))) + _
+		  chr(val("&b" + binaryForm.StringValue.Mid   (17,8))) + _
 		  chr(val("&b" + binaryForm.StringValue.Right (8)))
 		  
 		  theSizer = ""
 		  
 		  // Add the message to the message queue
-		  messageQueue.Append theSizer + theID + me.paramSeparator + theMessage + chr(val("&b00000000"))
+		  dim Message as new dictionary
+		  
+		  Message.value("content") = theSizer + theID + me.paramSeparator + theMessage + chr(val("&b00000000"))
+		  Message.value("retry"  ) = retry
+		  
+		  messageQueue.Append Message
 		End Sub
 	#tag EndMethod
 
@@ -85,7 +92,7 @@ Inherits TCPSocket
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		messageQueue(-1) As String
+		messageQueue(-1) As dictionary
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

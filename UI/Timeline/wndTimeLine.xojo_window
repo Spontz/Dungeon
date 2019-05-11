@@ -10,7 +10,7 @@ Begin Window wndTimeLine
    FullScreenButton=   False
    HasBackColor    =   True
    Height          =   595
-   ImplicitInstance=   True
+   ImplicitInstance=   False
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -234,8 +234,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "0.00 sg"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -278,8 +278,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "0.00 sg"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -322,8 +322,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "from:"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -366,8 +366,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "-"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -410,8 +410,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "to:"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -454,8 +454,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "-"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -556,8 +555,8 @@ Begin Window wndTimeLine
       TabStop         =   True
       Text            =   "0.00 sg"
       TextColor       =   &c3F3F3F00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
       Transparent     =   False
@@ -635,7 +634,6 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
@@ -643,7 +641,6 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       saved           =   True
@@ -652,7 +649,6 @@ Begin Window wndTimeLine
       type            =   ""
    End
    Begin Timer tmrRedraw
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
