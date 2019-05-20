@@ -1,0 +1,12 @@
+[sound]
+id 99
+start 0
+end 100
+enabled 1
+layer 0
+
+; This element reproduces the sound passed as
+; argument mixing it with the current sound
+; output.
+fVolume 1.0
+sSoundFile /pool/music/Demo_2019_140BPM.mp3

@@ -1,0 +1,17 @@
+[background]
+id 35
+start 0
+end 100
+enabled 1
+layer 35
+blend ONE ONE
+
+; This effect draws the specified
+; image over the screen, covering
+; the previous content
+
+; Useful if it is the first painted section
+; To set the screen background
+
+fFitToContent 1
+sBackgroundPicture /resources/textures/tv.jpg

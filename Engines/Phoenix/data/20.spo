@@ -1,0 +1,27 @@
+[objectShader]
+id 20
+start 0
+end 100
+enabled 1
+layer 20
+blend ONE ONE
+
+sModelFilePath /pool/models/torus/torus.3ds
+sVShaderPath /resources/shaders/basic/basicColor.vert
+sFShaderPath /resources/shaders/basic/basicColor.frag
+
+fEnableDepthBufferClearing 0
+
+; **********************
+; * OBJECT POSITIONING *
+; **********************
+; Translation for object n
+string tx:=0; ty:=0; tz:=-10;
+; Rotation for object n
+string rx:=0; ry:=30.0*sin(t/10); rz:=0;
+; Scale for object n
+string sx:=0.1; sy:=0.1; sz:=0.1;
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************

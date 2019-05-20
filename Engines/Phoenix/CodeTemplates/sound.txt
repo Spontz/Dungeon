@@ -1,0 +1,10 @@
+[sound]
+id 0
+start 0
+end 100
+enabled 1
+layer 1
+
+; Specify the volume (from 0.0 to 1.0) and the music file
+fVolume 1.0
+sSoundFile /pool/music/Demo_2019_140BPM.mp3
