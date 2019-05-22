@@ -981,7 +981,7 @@ Protected Class classDemo
 		  
 		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='type' LIMIT 1").Field("value").StringValue
 		  
-		  if result = "" then result = "openGL"
+		  if result = "" then result = "dragon"
 		  
 		  return result
 		End Function
@@ -1496,8 +1496,8 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(optional demoFile as folderitem, demoType as String = "openGL")
-		  type = demoType
+		Sub init(optional demoFile as folderitem, theEngine as String = "dragon")
+		  engine = theEngine
 		  
 		  // Create the demo database in the temporary folder
 		  Dim f as FolderItem
@@ -1513,7 +1513,7 @@ Protected Class classDemo
 		      return
 		    end if
 		    
-		    initDemoDB(type)
+		    initDemoDB(engine)
 		    
 		  else
 		    // There is an existing demofile so copy it to the temp folder
@@ -1532,7 +1532,15 @@ Protected Class classDemo
 		  me.SetEnginesFolder GetFolderItem("Engines")
 		  
 		  // Set the data folder
-		  me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
+		  select case engine
+		    
+		  case dragon
+		    me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
+		    
+		  case phoenix
+		    me.SetDataFolder(GetFolderItem("Engines").child("Phoenix").child("data_" + controller.getHash))
+		    
+		  end
 		  
 		  
 		End Sub
@@ -2465,6 +2473,10 @@ Protected Class classDemo
 		Private demoDB As SQLiteDatabase
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		engine As string
+	#tag EndProperty
+
 	#tag Property, Flags = &h1
 		Protected enginesFolder As FolderItem
 	#tag EndProperty
@@ -2477,15 +2489,11 @@ Protected Class classDemo
 		saved As Boolean = true
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		type As string
-	#tag EndProperty
 
-
-	#tag Constant, Name = openGL, Type = String, Dynamic = False, Default = \"openGL", Scope = Public
+	#tag Constant, Name = dragon, Type = String, Dynamic = False, Default = \"dragon", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = webGL, Type = String, Dynamic = False, Default = \"webGL", Scope = Public
+	#tag Constant, Name = phoenix, Type = String, Dynamic = False, Default = \"phoenix", Scope = Public
 	#tag EndConstant
 
 
@@ -2530,7 +2538,7 @@ Protected Class classDemo
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="type"
+			Name="engine"
 			Group="Behavior"
 			Type="string"
 			EditorType="MultiLineEditor"

@@ -335,7 +335,7 @@ Begin ContainerControl cntCustom
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   206
+      Top             =   207
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -405,7 +405,7 @@ Begin ContainerControl cntCustom
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
-      Top             =   185
+      Top             =   186
       Transparent     =   False
       Underline       =   False
       Visible         =   True

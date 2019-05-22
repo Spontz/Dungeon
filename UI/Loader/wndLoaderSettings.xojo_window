@@ -301,7 +301,7 @@ Begin Window wndLoaderSettings
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   88
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   620
@@ -533,7 +533,7 @@ Begin Window wndLoaderSettings
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   23
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   40
@@ -561,7 +561,7 @@ Begin Window wndLoaderSettings
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   22
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   40

@@ -90,7 +90,7 @@ Begin Window wndAbout
       TextFont        =   "Arial"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   5
+      Top             =   8
       Transparent     =   True
       Underline       =   False
       Visible         =   True

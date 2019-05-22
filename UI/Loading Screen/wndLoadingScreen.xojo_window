@@ -2,10 +2,10 @@
 Begin Window wndLoadingScreen
    BackColor       =   &c5978D600
    Backdrop        =   138932223
-   CloseButton     =   False
+   CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
-   Frame           =   4
+   Frame           =   2
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
@@ -14,15 +14,15 @@ Begin Window wndLoadingScreen
    LiveResize      =   False
    MacProcID       =   0
    MaxHeight       =   32000
-   MaximizeButton  =   False
+   MaximizeButton  =   True
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   480
-   MinimizeButton  =   False
+   MinimizeButton  =   True
    MinWidth        =   640
-   Placement       =   2
-   Resizeable      =   False
+   Placement       =   0
+   Resizeable      =   True
    Title           =   "Loading Visuals"
    Visible         =   True
    Width           =   640
@@ -136,7 +136,7 @@ End
 		  wndLoadingScreen.close
 		  
 		  // Open the select demo type window
-		  wndChooseDemoType.show
+		  wndChooseDemoengine.show
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -4,8 +4,8 @@ Inherits Application
 	#tag Event
 		Sub Open()
 		  // Obtain the version string
-		  applicationVersion = str(App.MajorVersion) + "." + str(app.MinorVersion) + "." + str(App.BugVersion) + "." + str(app.StageCode)+ "." +  str(App.NonReleaseVersion)
-		  applicationName = self.LongVersion
+		  applicationVersion=str(App.MajorVersion) + "." + str(app.MinorVersion) + "." + str(App.BugVersion) + "." + str(app.StageCode)+ "." +  str(App.NonReleaseVersion)
+		  applicationName=self.LongVersion
 		  
 		  // Open the trace window if in debug mode
 		  if DebugBuild then
@@ -44,7 +44,7 @@ Inherits Application
 			if file <> nil then
 			// And load the project
 			dim newTimeline as new wndTimeLine
-			newTimeline.init("openGL", file)
+			newTimeline.init("dragon", file)
 			end if
 		End Function
 	#tag EndMenuHandler
@@ -94,7 +94,7 @@ Inherits Application
 
 	#tag MenuHandler
 		Function NewProject() As Boolean Handles NewProject.Action
-			wndChooseDemoType.show
+			wndChooseDemoengine.show
 			
 		End Function
 	#tag EndMenuHandler

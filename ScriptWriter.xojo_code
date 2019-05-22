@@ -42,12 +42,14 @@ Protected Module ScriptWriter
 
 	#tag Method, Flags = &h1
 		Protected Sub CreateConfiguration(theDemo as classdemo)
-		  if theDemo.type = theDemo.openGL then
-		    // Generate configuration scripts
-		    ScriptWriter.WriteControlSPO(theDemo)
-		    ScriptWriter.WriteGraphicsSPO(theDemo)
-		    ScriptWriter.WriteLoaderSPO(theDemo)
+		  // Generate configuration scripts
+		  ScriptWriter.WriteControlSPO(theDemo)
+		  ScriptWriter.WriteGraphicsSPO(theDemo)
+		  ScriptWriter.WriteLoaderSPO(theDemo)
+		  
+		  select case theDemo.engine
 		    
+		  case theDemo.dragon
 		    // Copy fonts texture
 		    dim destination as folderitem = theDemo.GetDataFolder.child("fonts")
 		    
@@ -61,7 +63,21 @@ Protected Module ScriptWriter
 		    destination.CreateAsFolder
 		    f.CopyFileTo(destination.child("font.tga"))
 		    
-		  end if
+		  case theDemo.phoenix
+		    '// Copy fonts texture
+		    'dim destination as folderitem = theDemo.GetDataFolder.child("fonts")
+		    '
+		    'dim f as new FolderItem
+		    '
+		    'f = f.child("Engines")
+		    'f = f.child("Dragon")
+		    'f = f.child("fonts")
+		    'f = f.Child("font.tga")
+		    '
+		    'destination.CreateAsFolder
+		    'f.CopyFileTo(destination.child("font.tga"))
+		    
+		  end
 		End Sub
 	#tag EndMethod
 
@@ -222,7 +238,7 @@ Protected Module ScriptWriter
 		    if allBars(i).Value("type") = "" or not allBars(i).Value("enabled") then continue
 		    
 		    //We decide the bar name
-		    barName = allBars(i).Value("id") + ".spo"
+		    barName = format(allBars(i).Value("id").IntegerValue, "000000") + "_" + allBars(i).Value("type") + ".spo"
 		    
 		    //We create the script file
 		    file = theDemo.GetDataFolder.child(barName).CreateTextFile

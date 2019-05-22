@@ -34,7 +34,6 @@ Begin Window wndReplace
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      ControlOrder    =   "0"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -56,7 +55,6 @@ Begin Window wndReplace
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
-      Password        =   "False"
       ReadOnly        =   False
       Scope           =   0
       ScrollbarHorizontal=   False
@@ -80,7 +78,6 @@ Begin Window wndReplace
    Begin Label StaticText1
       AutoDeactivate  =   True
       Bold            =   False
-      ControlOrder    =   "1"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -121,7 +118,6 @@ Begin Window wndReplace
       BackColor       =   &cFFFFFF00
       Bold            =   False
       Border          =   True
-      ControlOrder    =   "2"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -143,7 +139,6 @@ Begin Window wndReplace
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
-      Password        =   "False"
       ReadOnly        =   False
       Scope           =   0
       ScrollbarHorizontal=   False
@@ -167,7 +162,6 @@ Begin Window wndReplace
    Begin Label StaticText2
       AutoDeactivate  =   True
       Bold            =   False
-      ControlOrder    =   "3"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
@@ -206,7 +200,6 @@ Begin Window wndReplace
       ButtonStyle     =   "0"
       Cancel          =   False
       Caption         =   "Replace"
-      ControlOrder    =   "4"
       Default         =   True
       Enabled         =   True
       Height          =   22
@@ -239,7 +232,6 @@ Begin Window wndReplace
       ButtonStyle     =   "0"
       Cancel          =   True
       Caption         =   "Cancel"
-      ControlOrder    =   "5"
       Default         =   False
       Enabled         =   True
       Height          =   22
@@ -269,7 +261,6 @@ Begin Window wndReplace
    Begin Label StaticText3
       AutoDeactivate  =   True
       Bold            =   False
-      ControlOrder    =   "6"
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True

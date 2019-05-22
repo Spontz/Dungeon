@@ -10,7 +10,7 @@ Begin Window wndTimeLine
    FullScreenButton=   False
    HasBackColor    =   True
    Height          =   595
-   ImplicitInstance=   False
+   ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   32000
@@ -139,7 +139,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   18
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   16
@@ -148,7 +148,7 @@ Begin Window wndTimeLine
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   False
-      Backdrop        =   -1126422769
+      Backdrop        =   789798911
       DoubleBuffer    =   False
       Enabled         =   False
       EraseBackground =   True
@@ -167,7 +167,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   4
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   11
@@ -176,7 +176,7 @@ Begin Window wndTimeLine
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   False
-      Backdrop        =   -1126422771
+      Backdrop        =   87476223
       DoubleBuffer    =   False
       Enabled         =   False
       EraseBackground =   True
@@ -195,7 +195,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   4
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   11
@@ -488,7 +488,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   259
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   499
@@ -497,7 +497,7 @@ Begin Window wndTimeLine
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   False
-      Backdrop        =   -1126422769
+      Backdrop        =   429590527
       DoubleBuffer    =   False
       Enabled         =   False
       EraseBackground =   True
@@ -516,7 +516,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   4
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
       Width           =   11
@@ -641,12 +641,12 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      engine          =   ""
       Index           =   -2147483648
       LockedInPosition=   False
       saved           =   True
       Scope           =   0
       TabPanelIndex   =   0
-      type            =   ""
    End
    Begin Timer tmrRedraw
       Index           =   -2147483648
@@ -818,9 +818,9 @@ End
 			// Make the current project active
 			activateDemo demo
 			
-			select case demo.type
+			select case demo.engine
 			
-			case demo.openGL
+			case demo.dragon
 			// Delete existing script files
 			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
 			
@@ -830,10 +830,19 @@ End
 			// Create the section scripts
 			ScriptWriter.WriteScriptsSPO(demo)
 			
-			case demo.webGL
+			case demo.phoenix
+			// Delete existing script files
+			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
+			
+			// Create the configuration scripts and copy needed files to the data folder
+			ScriptWriter.CreateConfiguration(demo)
+			
+			// Create the section scripts
+			ScriptWriter.WriteScriptsSPO(demo)
 			
 			else
 			Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
+			
 			end
 			
 			// Launch the engine
@@ -928,27 +937,39 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(demoType as string, optional f as folderitem = nil)
+		Sub init(demoEngine as string, optional f as folderitem = nil)
 		  Dim demoFile As New FolderItem
 		  
 		  if f = nil then
-		    demoFile = demoFIle.child("Engines")
-		    demoFile = demoFIle.child("Dragon")
-		    demoFile = demoFIle.child("ProjectTemplates")
-		    demoFile = demoFIle.child("Default.sqlite")
+		    select case demoEngine 
+		      
+		    case demo.dragon
+		      demoFile = demoFile.child("Engines")
+		      demoFile = demoFile.child("Dragon")
+		      demoFile = demoFile.child("ProjectTemplates")
+		      demoFile = demoFile.child("Default.sqlite")
+		      
+		    case demo.phoenix
+		      demoFile = demoFile.child("Engines")
+		      demoFile = demoFile.child("Phoenix")
+		      demoFile = demoFile.child("ProjectTemplates")
+		      demoFile = demoFile.child("Default.sqlite")
+		      
+		    end
+		    
 		  else
 		    demofile = f
 		  end if
 		  
-		  demo.init(demoFile, demoType)
+		  demo.init(demoFile, demoEngine)
 		  
-		  self.Title = "Dungeon Demo Editor: " + demoFile.Name
+		  self.Title = "Dungeon Demo Editor [" + demoEngine + "]: " + demoFile.Name
 		  
 		  If demo.countFBOs = 0 Then
 		    demo.initDefaultFBOs
 		  End If
 		  
-		  engine = new classEngine(demo.type)
+		  engine = new classEngine(demo.engine)
 		  
 		  // Initialization of the engines manager
 		  controller.init demo

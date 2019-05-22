@@ -123,7 +123,7 @@ Begin Window wndElementSubdivide
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   256
+      Width           =   159
       Begin Label lblElementsNum
          AutoDeactivate  =   True
          Bold            =   False

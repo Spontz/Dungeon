@@ -91,7 +91,7 @@ Protected Module controller
 		  // IP: 127.0.0.1
 		  // Port: 28000
 		  
-		  Engine = new classEngine(theDemo.type)
+		  Engine = new classEngine(theDemo.engine)
 		  
 		  updateTimer = new classUpdateTimer
 		  updateTimer.Period = 1 // As soon as possible
