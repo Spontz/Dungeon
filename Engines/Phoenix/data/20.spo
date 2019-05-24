@@ -7,8 +7,8 @@ layer 20
 blend ONE ONE
 
 sModelFilePath /pool/models/torus/torus.3ds
-sVShaderPath /resources/shaders/basic/basicColor.vert
-sFShaderPath /resources/shaders/basic/basicColor.frag
+sVShaderPath /pool/models/torus/torusColor.vert
+sFShaderPath /pool/models/torus/torusColor.frag
 
 fEnableDepthBufferClearing 0
 
