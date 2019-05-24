@@ -8,7 +8,7 @@ gl_zbuffer 16
 gl_stencil 0
 gl_multisampling 0
 
-fbo_0_ratio 4
+fbo_0_ratio 1
 fbo_0_format RGB
 
 fbo_1_ratio 1

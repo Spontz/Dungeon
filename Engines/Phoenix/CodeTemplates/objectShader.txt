@@ -3,23 +3,30 @@ id 0
 start 0
 end 100
 enabled 1
-layer 1
+layer 0
 blend ONE ONE
 blendequation ADD
 
 ; Specify the model to load and the shader to apply
 sModelFilePath /pool/models/torus/torus.3ds
-sVShaderPath /resources/shaders/basic/basicColor.vert
-sFShaderPath /resources/shaders/basic/basicColor.frag
+sVShaderPath /pool/models/torus/torusVars.vert
+sFShaderPath /pool/models/torus/torusVars.frag
 
 fEnableDepthBufferClearing 0
+fEnableDrawWireframe 0
 
-
-; OBJECT POSITIONING
-; ----------------------------------------------
-; Translation
+; **********************
+; * OBJECT POSITIONING *
+; **********************
+; Translation for object n
 string tx:=0; ty:=0; tz:=-10;
-; Rotation
+; Rotation for object n
 string rx:=0; ry:=30.0*sin(t/10); rz:=0;
-; Scale
+; Scale for object n
 string sx:=0.1; sy:=0.1; sz:=0.1;
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************
+string vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
+string float scale v1:=1+0.1*beat;

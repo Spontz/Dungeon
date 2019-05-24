@@ -7,10 +7,11 @@ layer 20
 blend ONE ONE
 
 sModelFilePath /pool/models/torus/torus.3ds
-sVShaderPath /pool/models/torus/torusColor.vert
-sFShaderPath /pool/models/torus/torusColor.frag
+sVShaderPath /pool/models/torus/torusVars.vert
+sFShaderPath /pool/models/torus/torusVars.frag
 
 fEnableDepthBufferClearing 0
+fEnableDrawWireframe 0
 
 ; **********************
 ; * OBJECT POSITIONING *
@@ -25,3 +26,5 @@ string sx:=0.1; sy:=0.1; sz:=0.1;
 ; **********************
 ; ** SHADER VARIABLES **
 ; **********************
+string vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
+string float scale v1:=1+0.1*beat;
