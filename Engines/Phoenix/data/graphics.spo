@@ -4,7 +4,6 @@ gl_accum 0
 gl_width 640
 gl_height 480
 gl_bpp 32
-gl_zbuffer 16
 gl_stencil 0
 gl_multisampling 0
 
