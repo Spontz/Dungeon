@@ -1,4 +1,4 @@
-[renderfbo]
+[renderFbo]
 id 40
 start 0
 end 100
@@ -12,14 +12,10 @@ blendequation ADD
 
 ; Integer representing the fbo unit that will be
 ; recovered over the current screen contents
-; if '-1' is passed, no fbo is binded (useful for glsl)
-param 0
+fFboNum 0
 
 ; Clear the screen buffer before restoring? (1=yes, 0=no)
 fClearScreenBuffer 0
 
 ; Clear the depth buffer after restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
-
-; Fullscreen restore? 0 = no; 1 = yes
-fFullScreenRestore 1

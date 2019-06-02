@@ -1,12 +1,3 @@
-[fbounbind]
-id 0
-start 0
-end 100
-enabled 1
-layer 1
-blend ONE ONE
-blendequation ADD
-
 ; Clear the screen buffer after capturing? (1=yes, 0=no)
 fClearScreenBuffer 1
 

@@ -1,12 +1,3 @@
-[objectShader]
-id 0
-start 0
-end 100
-enabled 1
-layer 0
-blend ONE ONE
-blendequation ADD
-
 ; Specify the model to load and the shader to apply
 sModelFilePath /pool/models/torus/torus.3ds
 sVShaderPath /pool/models/torus/torusVars.vert
@@ -28,5 +19,5 @@ string sx:=0.1; sy:=0.1; sz:=0.1;
 ; **********************
 ; ** SHADER VARIABLES **
 ; **********************
-string vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
-string float scale v1:=1+0.1*beat;
+uniform vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
+uniform float scale v1:=1+0.1*beat;

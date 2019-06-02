@@ -26,5 +26,5 @@ string sx:=0.1; sy:=0.1; sz:=0.1;
 ; **********************
 ; ** SHADER VARIABLES **
 ; **********************
-string vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
-string float scale v1:=1+0.1*beat;
+uniform vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
+uniform float scale v1:=1+0.1*beat;
