@@ -476,6 +476,7 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   332
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -634,6 +635,7 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   579
       Transparent     =   False
       Value           =   0
@@ -641,6 +643,7 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      Enabled         =   True
       engine          =   ""
       Index           =   -2147483648
       LockedInPosition=   False
@@ -649,6 +652,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin Timer tmrRedraw
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
@@ -945,15 +949,61 @@ End
 		      
 		    case demo.dragon
 		      demoFile = demoFile.child("Engines")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("Dragon")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("ProjectTemplates")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("Default.sqlite")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
 		      
 		    case demo.phoenix
 		      demoFile = demoFile.child("Engines")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("Phoenix")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("ProjectTemplates")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
+		      
 		      demoFile = demoFile.child("Default.sqlite")
+		      
+		      if not demofile.Exists then
+		        Notify("File could not be found", demofile.ShellPath)
+		        return
+		      end if
 		      
 		    end
 		    
