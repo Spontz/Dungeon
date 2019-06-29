@@ -1,0 +1,5 @@
+; draws an image
+
+; Fit to content: 1=respect video aspect ratio, 0=fill entire viewport window
+fFitToContent 1
+sBackgroundPicture /resources/textures/tv.jpg
