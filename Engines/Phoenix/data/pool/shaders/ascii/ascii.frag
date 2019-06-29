@@ -1,14 +1,14 @@
-#version 120
+#version 330 core
+out vec4 FragColor;
+
+in vec2 TexCoords;
+
 uniform vec2 iResolution; // Use 256 in order to "see something"
 uniform float sample; // Use 4.0 to 16.0
 uniform sampler2D iChannel0; // Texture to ascii
 
-
-
-/******
- For generating new bitmaps use:
- http://www.thrill-project.com/archiv/coding/bitmap/
- ****/
+// For generating new bitmaps use:
+// http://www.thrill-project.com/archiv/coding/bitmap/
 
 float character(float n, vec2 p) // some compilers have the word "char" reserved
 {
@@ -22,11 +22,11 @@ float character(float n, vec2 p) // some compilers have the word "char" reserved
 
 void main(void)
 {
-	vec2 uv = gl_TexCoord[0].xy;
+	vec2 uv = TexCoords.xy;
 	uv = uv * iResolution;
 	
-	vec3 col = texture2D(iChannel0, floor(uv/sample)*sample/iResolution).rgb;	
-
+	vec3 col = texture2D(iChannel0, floor(uv/sample)*sample/iResolution).rgb;
+	
 	float gray = (col.r + col.g + col.b)/3.0;
 	
 	float n =  65536.0;             // .
@@ -42,5 +42,5 @@ void main(void)
 	//col = gray*vec3(character(n, p));
 	col = col*character(n, p);
 
-	gl_FragColor = vec4(col, 1.0);
+	FragColor = vec4(col, 1.0);
 }
