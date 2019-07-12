@@ -1,0 +1,29 @@
+; Specify the model to load and the shader to apply
+sModelFilePath /pool/models/cube/cube.obj
+sVShaderPath /pool/models/cube/lightsBlinnPhong.vert
+sFShaderPath /pool/models/cube/lightsBlinnPhong.frag
+
+fEnableDepthBufferClearing 0
+fEnableDrawWireframe 0
+
+; **********************
+; * OBJECT POSITIONING *
+; **********************
+; Translation for object n
+string tx:=0; ty:=0; tz:=0;
+; Rotation for object n
+string rx:=0; ry:=0; rz:=0;
+; Scale for object n
+string sx:=1; sy:=1; sz:=1;
+
+
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************
+;uniform float ambientStrength v1:=0.3;
+;uniform float specularStrength v1:=0.9+2*beat;
+uniform vec3 lightPos v1:=1*sin(t/2);v2:=1*cos(t/2);v3:=3; 
+uniform vec3 lightColor v1:=1*beat;v2:=0.3;v3:=0.7;
+uniform vec3 viewPos v1:=cam_pos_x;v2:=cam_pos_y;v3:=cam_pos_z; 
+uniform int blinn v1:=1;
