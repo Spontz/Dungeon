@@ -1,15 +1,19 @@
 ; Changes the light properties
 
 ; link Position to camera (for debug): It places the light (but not the "look at") into the camera position
-fLinkToCamera 1
+fLinkToCamera 0
 ; Is this light being used for Shadow Mapping? (1=yes, 0=no)
-fShadowMapping 1
+fShadowMapping 0
 ; Shadow Mapping properties (only affect when doing Shadow Mapping)
 ; Near & far plane (the more far away, the less precission)
-fNearPlane 0.1
-fFarPlane 50.0
+fShadowMapNearPlane 0.1
+fShadowMapFarPlane 50.0
 ; Size of our light (the more size, less precission, but more iluminated)
-fSize 20.0
+fShadowMapSize 20.0
+
+; Draw a cube representing the light (1=draw it, 0=do not draw) (useful for DEBUG)
+fDebugDraw 1
+
 
 ; Light Properties
 ; Ambient light strength (0.0 to 1.0)
@@ -17,8 +21,8 @@ string ambientStrength:=0.2;
 ; Specular light strength (0.0 to 1.0)
 string specularStrength:=0.8;
 ; Light position
-string posX:=-25.6*sin(t/2);posY:=12;posZ:=12;
+string posX:=2*sin(t/2);posY:=2;posZ:=2*cos(t/2);
 ; Light look at
-string lookAtX:=-8.3;lookAtY:=1.4;lookAtZ:=-19;
+string lookAtX:=0;lookAtY:=0;lookAtZ:=0;
 ; Light Color
-string colR:=1;colG:=1;colB:=1;
+string colR:=1;colG:=0.5+0.5*cos(t);colB:=0;
