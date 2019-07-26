@@ -1,0 +1,31 @@
+; NOTE: USE Blending mode "ONE - ZERO", or "ONE - ONE_MINUS_SRC_ALPHA" for better results
+
+; Clear the screen buffer before restoring? (1=yes, 0=no)
+fClearScreenBuffer 1
+
+; Clear the depth buffer after restoring? (1=yes, 0=no)
+fClearDepthBuffer 1
+
+; Draws the scene with the bloom effect
+; The input FBO must have 2 attachments
+; Attachment 0 should contain the normal scene
+; Attachment 1 should contain the brights scene
+; Final image = Attachment 0 + Blur(Attachment 1)
+fFboUnit 4
+
+; Blur amount (10 recommended) - It has performance impacts
+fBlurAmount 10
+
+
+; Blur shader files
+sVShaderPath /resources/shaders/sections/drawBloom_blur.vert
+sVShaderPath /resources/shaders/sections/drawBloom_blur.frag
+
+; Bloom shader files
+sVShaderPath /resources/shaders/sections/drawBloom_bloom.vert
+sVShaderPath /resources/shaders/sections/drawBloom_bloom.frag
+
+
+; Bloom Shader variables
+uniform float bloom v1:=1.0; //1.0if(t<5.0)(v1:=1.0); else(v1:=0.0);
+uniform float exposure v1:=0.2; //v1:=0.4+0.2*sin(t);

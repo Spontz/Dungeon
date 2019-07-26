@@ -21,7 +21,7 @@ string sx:=1; sy:=1; sz:=1;
 ; ** SHADER VARIABLES **
 ; **********************
 uniform vec3 lightPos v1:=light_pos_x;v2:=light_pos_y;v3:=light_pos_z;
-uniform vec3 viewPos v1:=cam_pos_x;v2:=cam_pos_y;v3:=cam_pos_z;
+uniform vec3 viewPos v1:=cam_posX;v2:=cam_posY;v3:=cam_posZ;
 ; Ambient and Specular Strenght between 0.1 and 1.0
 uniform float ambientStrenght v1:=0.9;
 uniform float specularStrenght v1:=0.7;
