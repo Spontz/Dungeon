@@ -25,7 +25,7 @@ Begin ContainerControl cntCustom
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   412
+   Width           =   548
    Begin TextArea txtSectionScript
       AcceptTabs      =   False
       Alignment       =   0
@@ -73,7 +73,7 @@ Begin ContainerControl cntCustom
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   412
+      Width           =   548
    End
    Begin PushButton btnApply
       AutoDeactivate  =   True
@@ -88,7 +88,7 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   289
+      Left            =   425
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -243,7 +243,7 @@ Begin ContainerControl cntCustom
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   126
+      Width           =   262
    End
    Begin PushButton btnSaveTemplate
       AutoDeactivate  =   True
@@ -258,7 +258,7 @@ Begin ContainerControl cntCustom
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   289
+      Left            =   425
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -411,6 +411,73 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   126
    End
+   Begin PopupMenu mnuBlendEquation
+      AutoDeactivate  =   False
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   False
+      Height          =   26
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   287
+      ListIndex       =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   9
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   207
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
+   Begin Label lblBlendEquation
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   287
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Blend Equation"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
+      TextUnit        =   0
+      Top             =   186
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   126
+   End
 End
 #tag EndWindow
 
@@ -435,10 +502,8 @@ End
 		  // We save the undo item
 		  // AddUndoAction
 		  
-		  dim barType as string
-		  
 		  // First of all we must determine if we are saving a new bar or updating a already existing bar
-		  barType = demo.getBarType(barID)
+		  dim barType as string = demo.getBarType(barID)
 		  
 		  // We store the element name and the additional script
 		  demo.setBarType(barID, ReplaceLineEndings(popElement.Text, EndOfLine.Windows))
@@ -522,7 +587,17 @@ End
 		  dim f as new FolderItem
 		  
 		  f = f.child("Engines")
-		  f = f.child("Dragon")
+		  
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    f = f.child("Dragon")
+		    
+		  case demo.phoenix
+		    f = f.child("Phoenix")
+		    
+		  end select
+		  
 		  f = f.child("CodeTemplates")
 		  
 		  for i as integer = 1 to f.count
@@ -548,7 +623,18 @@ End
 	#tag Method, Flags = &h21
 		Private Sub LoadScriptTemplate()
 		  Trace("cntCustom:LoadScriptTemplate: Searching for script of type " + popTemplate.Text + " for " + popElement.text, cstTraceLevelLog)
-		  dim f as folderitem = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		  
+		  dim f as folderitem
+		  
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		    
+		  case demo.phoenix
+		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		    
+		  end select
 		  
 		  if f <> nil then
 		    if f.exists then
@@ -572,7 +658,15 @@ End
 		  
 		  if popElement.text = "" then exit
 		  
-		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text)
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text)
+		    
+		  case demo.phoenix
+		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text)
+		    
+		  end select
 		  
 		  popTemplate.DeleteAllRows
 		  
@@ -734,6 +828,32 @@ End
 		    // Notify the demo editor about the update
 		    controller.updateBar(barID)
 		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events mnuBlendEquation
+	#tag Event
+		Sub Change()
+		  if barID > "" and me.ListIndex > -1 and me.ListCount > 0 then
+		    AddUndoAction
+		    
+		    // Set the new blending
+		    demo.SetBlendingEquation(barID, me.Listindex)
+		    
+		    // Notify the demo editor about the update
+		    controller.updateBar(barID)
+		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  //We add the rows to the menu
+		  me.addrow "Add"
+		  me.addrow "Subtract"
+		  me.addrow "Reverse subtract"
+		  
+		  //We select the primer index to avoid blank selections
+		  me.listindex = 0
 		End Sub
 	#tag EndEvent
 #tag EndEvents

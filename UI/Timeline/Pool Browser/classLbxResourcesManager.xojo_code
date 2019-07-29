@@ -538,7 +538,7 @@ Inherits listbox
 		      me.RowPicture(me.LastIndex) = icoDocument
 		      
 		    else
-		      Trace("classLbxResourcesManager:RefreshCOntents: Unknown item of type " + Resources(i).value("type") + " was not added to the tree", cstTraceLevelError)
+		      Trace("classLbxResourcesManager:RefreshContents: Unknown item of type " + Resources(i).value("type") + " was not added to the tree", cstTraceLevelError)
 		      continue
 		      
 		    end

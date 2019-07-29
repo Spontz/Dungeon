@@ -568,6 +568,7 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line1
       BorderWidth     =   1
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
@@ -585,6 +586,7 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line2
       BorderWidth     =   1
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000

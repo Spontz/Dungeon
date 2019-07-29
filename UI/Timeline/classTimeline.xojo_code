@@ -496,6 +496,7 @@ Inherits Canvas
 			// Calculate the start time and top layerof the copied bars
 			dim firstBarStartTime as single = -1
 			dim topLayer as integer = -1
+			dim pastedSections() as string
 			
 			for each barID as string in copiedBarIDs
 			dim barStartTime as single = demo.getBarStartTime(barID)
@@ -528,12 +529,12 @@ Inherits Canvas
 			)
 			
 			demo.addBarToSelection(newBarID)
-			
+			pastedSections.Append(NewBarID)
 			next
 			
 			me.Invalidate
 			
-			PasteSections
+			PasteSections(pastedSections)
 			
 			Return True
 		End Function
@@ -1149,7 +1150,7 @@ Inherits Canvas
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
-		Event PasteSections()
+		Event PasteSections(sectionIDs() as string)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0

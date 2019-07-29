@@ -101,33 +101,56 @@ Protected Module controller
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub LaunchLocal()
+		Sub LaunchLocal(demo as classDemo)
 		  Dim VisualsEngine As FolderItem
 		  dim result as string
 		  
 		  //We locate the Visuals Engine
-		  #if TargetMacOS
-		    result = "open /Volumes/" + ReplaceAll(ReplaceAllB(demo.GetEnginesFolder.child("Dragon").AbsolutePath, " ", "\ "), ":", "/") + "demo.app"
-		    result = executeShell (result)
-		    
-		    if result <>"" then notify ("The engine could not be located", "the shell manager said: " + result)
-		  #endif
+		  '#if TargetMacOS
+		  'result = "open /Volumes/" + ReplaceAll(ReplaceAllB(demo.GetEnginesFolder.child("Dragon").AbsolutePath, " ", "\ "), ":", "/") + "demo.app"
+		  'result = executeShell (result)
+		  '
+		  'if result <>"" then notify ("The engine could not be located", "the shell manager said: " + result)
+		  '#endif
 		  
-		  #if targetWin32
-		    VisualsEngine = GetFolderItem("Engines").child("Dragon")
-		    
-		    //And launch it
-		    If VisualsEngine.exists Then
-		      Dim command As String
-		      command = "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
-		      Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
+		  #if TargetWindows
+		    select case demo.engine
 		      
-		      Engine.engineShell = new classEngineShell
-		      Engine.engineShell.Mode = 1 // Asynchronous shell
-		      Engine.engineShell.Execute command
-		    Else
-		      Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
-		    end if
+		    case demo.dragon
+		      
+		      VisualsEngine = GetFolderItem("Engines").child("Dragon")
+		      
+		      //And launch it
+		      If VisualsEngine.exists Then
+		        Dim command As String
+		        command = "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
+		        Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
+		        
+		        Engine.engineShell = new classEngineShell
+		        Engine.engineShell.Mode = 1 // Asynchronous shell
+		        Engine.engineShell.Execute command
+		      Else
+		        Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
+		      end if
+		      
+		    case demo.phoenix
+		      VisualsEngine = GetFolderItem("Engines").child("Phoenix")
+		      
+		      //And launch it
+		      If VisualsEngine.exists Then
+		        Dim command As String
+		        command = "cd " + VisualsEngine.ShellPath +" && " + "Phoenix.exe"
+		        Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
+		        
+		        Engine.engineShell = new classEngineShell
+		        Engine.engineShell.Mode = 1 // Asynchronous shell
+		        Engine.engineShell.Execute command
+		      Else
+		        Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
+		      end if
+		      
+		    end select
+		    
 		  #EndIf
 		End Sub
 	#tag EndMethod

@@ -57,7 +57,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function addFBO(width as integer, height as integer, ratio as integer, format as string) As integer
+		Function addFBO(width as integer, height as integer, ratio as integer, format as string, colorAttachments as integer) As integer
 		  Dim myRatio As String
 		  Dim myWidth As String
 		  Dim myHeight As String
@@ -84,7 +84,7 @@ Protected Class classDemo
 		  
 		  myRatio = str(ratio)
 		  
-		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, ratio, format) Values (" + myWidth + "," + myHeight + "," + myRatio + ",'" + Format + "')")
+		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, ratio, format, colorAttachments) Values (" + myWidth + "," + myHeight + "," + myRatio + ",'" + Format + "'," + str(colorAttachments) + ")")
 		  
 		  If demoDB.error Then
 		    MsgBox demoDB.errormessage
@@ -796,6 +796,26 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function getBlendingEquation(mode as integer) As string
+		  select case mode
+		    
+		  case 0
+		    Return "ADD"
+		    
+		  case 1
+		    return "SUBTRACT"
+		    
+		  case 2
+		    return "REVERSE_SUBTRACT"
+		    
+		  else
+		    return "Invalid blending equation"
+		    
+		  end select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Function getBlendingID(mode as string) As integer
 		  select case mode
 		    
@@ -1047,10 +1067,11 @@ Protected Class classDemo
 		  For i=0 To theRecordset.RecordCount - 1
 		    Dim params() As String
 		    
-		    params.Append(theRecordset.Field("ratio" ).StringValue)
-		    params.Append(theRecordset.Field("format").StringValue)
-		    params.Append(theRecordset.Field("width" ).StringValue)
-		    params.Append(theRecordset.Field("height").StringValue)
+		    params.Append(theRecordset.Field("ratio"           ).StringValue)
+		    params.Append(theRecordset.Field("format"          ).StringValue)
+		    params.Append(theRecordset.Field("width"           ).StringValue)
+		    params.Append(theRecordset.Field("height"          ).StringValue)
+		    params.append(theRecordset.Field("colorAttachments").StringValue)
 		    
 		    result(i) = Join(params, " ")
 		    
@@ -1548,15 +1569,35 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub initDefaultFBOs()
-		  For i As Integer = 0 To 19
-		    Call addFBO(0, 0, 1, "RGB")
-		  Next
+		  // TODO: Permitir editar desde el UI
+		  // TODO: Poner estos cambios en la BD por defecto de phoenix
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 2)
+		  Call addFBO(0, 0, 1, "RGB", 2)
 		  
-		  Call addFBO(512, 512, 0, "RGB")
-		  Call addFBO(256, 256, 0, "RGB")
-		  Call addFBO(128, 128, 0, "RGB")
-		  Call addFBO( 64,  64, 0, "RGB")
-		  Call addFBO( 32,  32, 0, "RGB")
+		  Call addFBO(0, 0, 1, "RGBA_16F", 1)
+		  Call addFBO(0, 0, 1, "RGBA_16F", 1)
+		  Call addFBO(0, 0, 1, "RGBA_16F", 2)
+		  Call addFBO(0, 0, 1, "RGBA_16F", 2)
+		  Call addFBO(0, 0, 1, "RGBA", 1)
+		  Call addFBO(0, 0, 1, "RGBA", 1)
+		  Call addFBO(0, 0, 1, "RGBA", 1)
+		  Call addFBO(0, 0, 1, "RGBA", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  Call addFBO(0, 0, 1, "RGB", 1)
+		  
+		  Call addFBO(512, 512, 0, "RGB", 1)
+		  Call addFBO(256, 256, 0, "RGB", 1)
+		  Call addFBO(128, 128, 0, "RGB", 1)
+		  Call addFBO( 64,  64, 0, "RGB", 1)
+		  Call addFBO( 32,  32, 0, "RGB", 1)
 		End Sub
 	#tag EndMethod
 
@@ -1604,7 +1645,7 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
 		  
 		  // Default FBOs
-		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT);")
+		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER);")
 		  
 		  initDefaultFBOs
 		  
@@ -2021,6 +2062,24 @@ Protected Class classDemo
 		  else
 		    demoDB.Commit
 		  End if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setBlendingEquation(barID as string, newBlendingEquation as integer)
+		  dim blendingEquation as string = getBlendingEquation(newBlendingEquation)
+		  
+		  ExecuteSQL("UPDATE BARS SET blendingEQ='" + blendingEquation + "' WHERE id=" + barID)
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
+		  
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 

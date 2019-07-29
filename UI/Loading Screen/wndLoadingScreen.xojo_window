@@ -35,7 +35,7 @@ Begin Window wndLoadingScreen
       Scope           =   0
       TabPanelIndex   =   0
    End
-   Begin Label StaticText1
+   Begin Label lblCopyright
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -58,7 +58,7 @@ Begin Window wndLoadingScreen
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Spontz Demo Editor  ©2003-2016"
+      Text            =   "Spontz Demo Editor  ©2003-"
       TextAlign       =   0
       TextColor       =   &cFFFFFF00
       TextFont        =   "Arial"
@@ -137,6 +137,22 @@ End
 		  
 		  // Open the select demo type window
 		  wndChooseDemoengine.show
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events lblCopyright
+	#tag Event
+		Sub Open()
+		  dim d as new date
+		  dim year as integer
+		  
+		  if d.Year < 2019 then
+		    year = 2019
+		  else
+		    year = d.Year
+		  end if
+		  
+		  me.Text = me.Text + str(Year)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

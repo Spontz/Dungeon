@@ -9,7 +9,7 @@ Begin Window wndVideoSettings
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   532
+   Height          =   550
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -18,14 +18,14 @@ Begin Window wndVideoSettings
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   0
+   MinHeight       =   300
    MinimizeButton  =   False
-   MinWidth        =   0
+   MinWidth        =   330
    Placement       =   1
    Resizeable      =   True
    Title           =   "Video Settings"
    Visible         =   False
-   Width           =   331
+   Width           =   350
    Begin GroupBox GroupBox2
       AutoDeactivate  =   True
       Bold            =   False
@@ -53,7 +53,7 @@ Begin Window wndVideoSettings
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   315
+      Width           =   334
       Begin CheckBox chkFullScreen
          AutoDeactivate  =   True
          Bold            =   False
@@ -66,7 +66,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   116
+         Left            =   135
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -87,7 +87,7 @@ Begin Window wndVideoSettings
          Visible         =   True
          Width           =   88
       End
-      Begin PopupMenu PopupMenu1
+      Begin PopupMenu popColorDepth
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -99,7 +99,7 @@ Begin Window wndVideoSettings
          InitialParent   =   "GroupBox2"
          InitialValue    =   "32 bits (True Color)\r16 bits (Thousands)\r8 bits (256 Colors)"
          Italic          =   False
-         Left            =   118
+         Left            =   137
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -130,7 +130,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   28
+         Left            =   47
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -165,7 +165,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   36
+         Left            =   55
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -200,7 +200,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   36
+         Left            =   55
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -242,7 +242,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   118
+         Left            =   137
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -286,7 +286,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   118
+         Left            =   137
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -326,7 +326,7 @@ Begin Window wndVideoSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   254
+      Left            =   273
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -339,7 +339,7 @@ Begin Window wndVideoSettings
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   494
+      Top             =   512
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -358,7 +358,7 @@ Begin Window wndVideoSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   175
+      Left            =   194
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -371,36 +371,36 @@ Begin Window wndVideoSettings
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   494
+      Top             =   512
       Transparent     =   False
       Underline       =   False
       Visible         =   True
       Width           =   69
    End
    Begin ListBox lbxFBOConfiguration
-      AutoDeactivate  =   True
+      AutoDeactivate  =   False
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   5
-      ColumnsResizable=   False
-      ColumnWidths    =   "50,*,*,*,*"
+      ColumnCount     =   6
+      ColumnsResizable=   True
+      ColumnWidths    =   "*,*,80,*,*,*"
       DataField       =   ""
       DataSource      =   ""
-      DefaultRowHeight=   14
+      DefaultRowHeight=   16
       Enabled         =   True
       EnableDrag      =   False
       EnableDragReorder=   False
       GridLinesHorizontal=   0
-      GridLinesVertical=   0
+      GridLinesVertical=   2
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   338
+      Height          =   356
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "FBO	Ratio	Format	Width	Height"
+      InitialValue    =   "FBO	Ratio	Format	Width	Height	Buffers"
       Italic          =   False
       Left            =   -1
       LockBottom      =   True
@@ -425,7 +425,7 @@ Begin Window wndVideoSettings
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   332
+      Width           =   351
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -451,24 +451,31 @@ End
 		  theFBOs = demo.getFBOsList
 		  
 		  For i=0 To UBound(theFBOs)
-		    Dim ratio  As String = NthField(theFBOs(i), " ", 1)
-		    Dim Format As String = NthField(theFBOs(i), " ", 2)
-		    Dim width  As String = NthField(theFBOs(i), " ", 3)
-		    Dim height As String = NthField(theFBOs(i), " ", 4)
+		    Dim ratio            As String = NthField(theFBOs(i), " ", 1)
+		    Dim Format           As String = NthField(theFBOs(i), " ", 2)
+		    Dim width            As String = NthField(theFBOs(i), " ", 3)
+		    Dim height           As String = NthField(theFBOs(i), " ", 4)
+		    Dim colorAttachments as String = NthField(theFBOs(i), " ", 5)
 		    
 		    lbxFBOConfiguration.AddRow(Str(i))
 		    
 		    ' Format
 		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 2) = Format
+		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 5) = colorAttachments
 		    
 		    If ratio = "0" Then
 		      ' Fixed size FBO
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = "" 'This is to trigger cellTextPaint event
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = width
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 4) = height
+		      
 		      
 		    Else
 		      ' Scaled FBO
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = ratio
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = "" 'This is to trigger cellTextPaint event
+		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 4) = "" 'This is to trigger cellTextPaint event
+		      
 		      
 		    End If
 		    
@@ -512,7 +519,8 @@ End
 		    Val(lbxFBOConfiguration.cell(i, 3)), _
 		    Val(lbxFBOConfiguration.cell(i, 4)), _
 		    Val(lbxFBOConfiguration.cell(i, 1)), _
-		    lbxFBOConfiguration.cell(i, 2) _
+		    lbxFBOConfiguration.cell(i, 2), _
+		    Val(lbxFBOConfiguration.cell(i, 5)) _
 		    )
 		  next
 		  
@@ -542,83 +550,206 @@ End
 	#tag EndEvent
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
-		  'Dim currentRow As Integer
-		  '
-		  '// We get the current clicked row and select it before continuing
-		  'currentRow =  me.ScrollPosition + floor(y / me.DefaultRowHeight) - 1
-		  'if currentRow > me.ListCount then currentRow = -1
-		  '
-		  'if me.ListCount < 20 then base.Append(New MenuItem(cstCreateFBO))
-		  '
-		  'if me.ListIndex > -1 then
-		  'base.Append(New MenuItem("-"))
-		  'base.Append(New MenuItem(cstDeleteFBO))
-		  'end if
-		  '
-		  'return true
+		  Dim currentRow As Integer
+		  
+		  // We get the current clicked row and select it before continuing
+		  currentRow =  me.ScrollPosition + floor(y / me.DefaultRowHeight) - 1
+		  if currentRow > me.ListCount then currentRow = -1
+		  
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    if me.ListCount < 25 then
+		      base.Append(New MenuItem(cstCreateFBO))
+		      base.Append(New MenuItem("-"))
+		    end if
+		    
+		  else
+		    base.Append(New MenuItem(cstCreateFBO))
+		    base.Append(New MenuItem("-"))
+		    
+		    
+		  end select
+		  
+		  if me.ListIndex > -1 then
+		    base.Append(New MenuItem(cstDeleteFBO))
+		  end if
+		  
+		  return true
 		End Function
 	#tag EndEvent
 	#tag Event
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
-		  'Select Case hitItem.Text
-		  '
-		  'case cstCreateFBO
-		  'Me.AddRow(Str(Me.ListCount))
-		  'Me.cell(Me.LastIndex, 1) = "1"
-		  'Me.cell(Me.lastindex, 2) = "RGB"
-		  '
-		  'case cstDeleteFBO
-		  'me.RemoveRow(me.ListIndex)
-		  '
-		  'end
-		  '
-		  '// Renumber the FBOs
-		  'dim i as integer
-		  'for i=0 to me.ListCount - 1
-		  'me.cell(i,0) = str(i)
-		  'next
+		  Select Case hitItem.Text
+		    
+		  case cstCreateFBO
+		    Me.AddRow(Str(Me.ListCount))
+		    Me.cell(Me.LastIndex, 1) = "1"
+		    Me.cell(Me.lastindex, 2) = "RGB"
+		    Me.cell(Me.LastIndex, 5) = "1"
+		    
+		  case cstDeleteFBO
+		    me.RemoveRow(me.ListIndex)
+		    
+		  end
+		  
+		  // Renumber the FBOs
+		  for i as integer = 0 to me.ListCount - 1
+		    me.cell(i,0) = str(i)
+		  next
 		End Function
 	#tag EndEvent
 	#tag Event
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
-		  // if IsCMMClick then Return false
 		  
-		  'cmnFBOOptions.DeleteAllRows
-		  '
-		  'me.Refresh
-		  'App.DoEvents
-		  '
-		  'if column = 1 or column = 2 then
-		  '// The user clicked in the width or height column
-		  'cmnFBOOptions.AddRow("1")
-		  'cmnFBOOptions.AddRow("2")
-		  'cmnFBOOptions.AddRow("4")
-		  'cmnFBOOptions.AddRow("8")
-		  'cmnFBOOptions.AddRow("16")
-		  'cmnFBOOptions.AddRow("32")
-		  'cmnFBOOptions.AddRow("64")
-		  'cmnFBOOptions.AddRow("128")
-		  'cmnFBOOptions.AddRow("256")
-		  'cmnFBOOptions.AddRow("512")
-		  'cmnFBOOptions.AddRow("1024")
-		  'cmnFBOOptions.AddRow("2048")
-		  'cmnFBOOptions.AddRow("4096")
-		  '
-		  'elseif column = 3 then
-		  '// The user clicked in the format column
-		  'cmnFBOOptions.AddRow("RGB")
-		  'cmnFBOOptions.AddRow("RGBA")
-		  'cmnFBOOptions.AddRow("RGB16F")
-		  'cmnFBOOptions.AddRow("RGBA16F")
-		  'cmnFBOOptions.AddRow("RGB32")
-		  'cmnFBOOptions.AddRow("RGB32F")
-		  '
-		  'end
-		  '
-		  'selectedItem = ""
-		  'cmnFBOOptions.Open
-		  '
-		  'if selectedItem <> "" then me.Cell(row, column) = selectedItem
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
+		  if column <> 0 then
+		    ' Draw an arrow to indicate that clicking this field will display a menu
+		    g.ForeColor = &cCCCCCC
+		    
+		    ' Points for a triangle on the right side of the cell
+		    Dim points(6) As Integer
+		    points(1) = g.Width - 12
+		    points(2) = 5
+		    points(3) = g.Width - 4
+		    points(4) = 5
+		    points(5) = g.Width - 8
+		    points(6) = 10
+		    
+		    g.FillPolygon(points)
+		    
+		    if me.ListIndex = row then
+		      g.ForeColor = &cFFFFFF
+		    else
+		      g.ForeColor = &c000000
+		    end if
+		    
+		    g.DrawString(Me.cell(row, column), x, y)
+		    
+		    Return True
+		    
+		  End if
+		End Function
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(x As Integer, y As Integer) As Boolean
+		  dim row as integer = me.RowFromXY(x, y)
+		  dim column as integer = me.ColumnFromXY(x, y)
+		  
+		  me.ListIndex = row
+		  
+		  if IsContextualClick then return true
+		  
+		  dim cmnFBOOptions as new MenuItem
+		  dim selectedMenu as menuitem
+		  
+		  
+		  me.Refresh
+		  App.DoEvents
+		  
+		  select case column
+		    
+		  case 1
+		    ' The user clicked in the ratio column
+		    cmnFBOOptions.Append(new menuItem("0.25"))
+		    cmnFBOOptions.Append(new menuItem("0.5" ))
+		    cmnFBOOptions.Append(new menuItem("1"   ))
+		    cmnFBOOptions.Append(new menuItem("2"   ))
+		    cmnFBOOptions.Append(new menuItem("4"   ))
+		    cmnFBOOptions.Append(new menuItem("8"   ))
+		    cmnFBOOptions.Append(new menuItem("16"  ))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedMenu = nil then return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		    me.cell(row, 3) = "" ' Clear width as ratio has been selected
+		    me.cell(row, 4) = "" ' Clear height as ratio has been selected
+		    
+		  case 2
+		    // The user clicked in the format column
+		    cmnFBOOptions.Append(new MenuItem("RGB"    ))
+		    cmnFBOOptions.Append(new MenuItem("RGBA"   ))
+		    cmnFBOOptions.Append(new MenuItem("RGB16F" ))
+		    cmnFBOOptions.Append(new MenuItem("RGBA16F"))
+		    cmnFBOOptions.Append(new MenuItem("RGB32"  ))
+		    cmnFBOOptions.Append(new MenuItem("RGB32F" ))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedmenu = nil then Return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		  case 3
+		    // The user clicked in the width column
+		    cmnFBOOptions.Append(new menuItem("1"   ))
+		    cmnFBOOptions.Append(new menuitem("2"   ))
+		    cmnFBOOptions.Append(new menuitem("4"   ))
+		    cmnFBOOptions.Append(new menuitem("8"   ))
+		    cmnFBOOptions.Append(new menuitem("16"  ))
+		    cmnFBOOptions.Append(new menuitem("32"  ))
+		    cmnFBOOptions.Append(new menuitem("64"  ))
+		    cmnFBOOptions.Append(new menuitem("128" ))
+		    cmnFBOOptions.Append(new menuitem("256" ))
+		    cmnFBOOptions.Append(new menuitem("512" ))
+		    cmnFBOOptions.Append(new menuitem("1024"))
+		    cmnFBOOptions.Append(new menuitem("2048"))
+		    cmnFBOOptions.Append(new menuitem("4096"))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedMenu = nil then return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		    if me.cell(row, 4) = "" then me.cell(row, 4) = me.cell(row, 3)
+		    me.cell(row, 1) = ""
+		    
+		  case 4
+		    // The user clicked in the height column
+		    cmnFBOOptions.Append(new menuItem("1"   ))
+		    cmnFBOOptions.Append(new menuitem("2"   ))
+		    cmnFBOOptions.Append(new menuitem("4"   ))
+		    cmnFBOOptions.Append(new menuitem("8"   ))
+		    cmnFBOOptions.Append(new menuitem("16"  ))
+		    cmnFBOOptions.Append(new menuitem("32"  ))
+		    cmnFBOOptions.Append(new menuitem("64"  ))
+		    cmnFBOOptions.Append(new menuitem("128" ))
+		    cmnFBOOptions.Append(new menuitem("256" ))
+		    cmnFBOOptions.Append(new menuitem("512" ))
+		    cmnFBOOptions.Append(new menuitem("1024"))
+		    cmnFBOOptions.Append(new menuitem("2048"))
+		    cmnFBOOptions.Append(new menuitem("4096"))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedmenu = nil then return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		    if me.cell(row, 3) = "" then me.cell(row, 3) = me.cell(row, 4)
+		    me.cell(row, 1) = ""
+		    
+		  case 5
+		    ' The user clicked in the ratio column
+		    cmnFBOOptions.Append(new menuItem("1"))
+		    cmnFBOOptions.Append(new menuItem("2"))
+		    cmnFBOOptions.Append(new menuItem("3"))
+		    cmnFBOOptions.Append(new menuItem("4"))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedMenu = nil then return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		  end select
 		End Function
 	#tag EndEvent
 #tag EndEvents

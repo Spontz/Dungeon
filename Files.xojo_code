@@ -61,6 +61,19 @@ Protected Module Files
 		      end if
 		    next
 		  end if
+		  
+		  file = file.Child("Engines").Child("Phoenix")
+		  
+		  if file <> nil then
+		    for i = file.count downto 1
+		      if file.item(i).directory then
+		        tempString = left(file.item(i).name, 4)
+		        if tempString = "data" then
+		          deleteFolder(file.item(i))
+		        end if
+		      end if
+		    next
+		  end if
 		End Sub
 	#tag EndMethod
 

@@ -9,7 +9,7 @@ Begin Window wndTimeLine
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   True
-   Height          =   595
+   Height          =   600
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window wndTimeLine
    Resizeable      =   True
    Title           =   "Dungeon Demo Editor"
    Visible         =   False
-   Width           =   760
+   Width           =   805
    Begin classTimeline cnvTimeLine
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -34,7 +34,7 @@ Begin Window wndTimeLine
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
-      Height          =   220
+      Height          =   225
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -56,7 +56,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   488
+      Width           =   533
    End
    Begin ScrollBar scrHorizontal
       AcceptFocus     =   True
@@ -81,21 +81,21 @@ Begin Window wndTimeLine
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   238
+      Top             =   243
       Transparent     =   False
       Value           =   0
       Visible         =   True
-      Width           =   488
+      Width           =   533
    End
    Begin ScrollBar scrVertical
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
-      Height          =   204
+      Height          =   209
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   744
+      Left            =   789
       LineStep        =   1
       LiveScroll      =   True
       LockBottom      =   True
@@ -128,7 +128,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   744
+      Left            =   789
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -306,7 +306,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   603
+      Left            =   648
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -350,7 +350,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   632
+      Left            =   677
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -394,7 +394,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   692
+      Left            =   737
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -438,7 +438,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   710
+      Left            =   755
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -474,9 +474,8 @@ Begin Window wndTimeLine
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
-      Height          =   332
+      Height          =   254
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -488,11 +487,11 @@ Begin Window wndTimeLine
       TabIndex        =   14
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   259
+      Top             =   264
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   499
+      Width           =   544
    End
    Begin Canvas cnvRightMarker
       AcceptFocus     =   False
@@ -584,7 +583,7 @@ Begin Window wndTimeLine
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   578
+      Height          =   583
       HelpTag         =   ""
       Hierarchical    =   True
       Index           =   -2147483648
@@ -635,15 +634,13 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   579
+      Top             =   584
       Transparent     =   False
       Value           =   0
       Visible         =   True
       Width           =   252
    End
    Begin classDemo demo
-      Enabled         =   True
       engine          =   ""
       Index           =   -2147483648
       LockedInPosition=   False
@@ -652,13 +649,68 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin Timer tmrRedraw
-      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
       Period          =   100
       Scope           =   0
       TabPanelIndex   =   0
+   End
+   Begin TCPSocket tcpErrorLogger
+      Address         =   "0.0.0.0"
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Port            =   28001
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin TextArea txtEngineComm
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cEFEDC700
+      Bold            =   False
+      Border          =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   82
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   257
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   True
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   23
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "Consolas"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   518
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   548
    End
 End
 #tag EndWindow
@@ -692,16 +744,29 @@ End
 		      
 		    Case d.ActionButton //user pressed Save 
 		      demo.saveProject(false)
-		      return false
 		      
 		    Case d.AlternateActionButton // don't save, close window 
-		      return false
 		      
-		    Case d.CancelButton 
+		    Case d.CancelButton
 		      return true
 		      
 		    End select
+		    
 		  end if
+		  
+		  ' Check if we are the last timeline open. In this case, open the choose demoproject window
+		  for i as integer = 0 to windowcount-1
+		    if window(i) isa wndTimeLine and window(i) <> self then
+		      // There is another timeline open so we can safely close
+		      return false
+		    end if
+		  next
+		  
+		  ' If execution reaches this point, there is no other timeline open so we display the choose demoengine window
+		  wndChooseDemoengine.Show
+		  
+		  ' CLose the timeline
+		  return false
 		End Function
 	#tag EndEvent
 
@@ -750,7 +815,16 @@ End
 		    // We are resizing vertically
 		    cnvTimeLine.Height = y - 2 - cnvTimeLine.top - scrHorizontal.Height
 		    cntCustomSection.top = y + 2
-		    cntCustomSection.Height = me.Height - cntCustomSection.top - 5
+		    
+		    select case demo.engine
+		      
+		    case demo.dragon
+		      cntCustomSection.Height = me.Height - cntCustomSection.top - 5
+		      
+		    case demo.phoenix
+		      cntCustomSection.Height = me.Height - cntCustomSection.top - 5 - txtEngineComm.Height
+		      
+		    end select
 		    
 		    scrHorizontal.top = cnvTimeLine.top + cnvTimeLine.Height
 		    scrVertical.Height = cnvTimeLine.Height - scrHorizontal.Height
@@ -777,6 +851,9 @@ End
 		    
 		    cntCustomSection.left = x + 3
 		    cntCustomSection.Width = cnvTimeLine.Width + 12
+		    
+		    txtEngineComm.left = x + 3
+		    txtEngineComm.Width = cnvTimeLine.Width + 12
 		    
 		    scrHorizontal.Left = x + 3
 		    scrHorizontal.Width = me.width - cnvTimeLine.Left - scrVertical.Width
@@ -822,27 +899,21 @@ End
 			// Make the current project active
 			activateDemo demo
 			
+			// Delete existing script files
+			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
+			
+			// Create the configuration scripts and copy needed files to the data folder
+			ScriptWriter.CreateConfiguration(demo)
+			
+			// Create the section scripts
+			ScriptWriter.WriteScriptsSPO(demo)
+			
 			select case demo.engine
 			
 			case demo.dragon
-			// Delete existing script files
-			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
-			
-			// Create the configuration scripts and copy needed files to the data folder
-			ScriptWriter.CreateConfiguration(demo)
-			
-			// Create the section scripts
-			ScriptWriter.WriteScriptsSPO(demo)
 			
 			case demo.phoenix
-			// Delete existing script files
-			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
 			
-			// Create the configuration scripts and copy needed files to the data folder
-			ScriptWriter.CreateConfiguration(demo)
-			
-			// Create the section scripts
-			ScriptWriter.WriteScriptsSPO(demo)
 			
 			else
 			Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
@@ -851,7 +922,7 @@ End
 			
 			// Launch the engine
 			controller.resetEngine
-			controller.LaunchLocal
+			controller.LaunchLocal(demo)
 		End Function
 	#tag EndMenuHandler
 
@@ -1047,14 +1118,20 @@ End
 		  // Link the demo with the window controls
 		  cnvTimeLine.Init demo
 		  
+		  // Hide or display the error message pane
+		  select case demo.engine
+		    
+		  case demo.phoenix
+		    tcpErrorLogger.Listen
+		    
+		  else
+		    txtEngineComm.Visible = false
+		    cntCustomSection.Height = cntCustomSection.Height + txtEngineComm.Height
+		    
+		  end select
+		  
 		  // Show the timeline
 		  self.Visible = true
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub RunEngine()
-		  controller.LaunchLocal
 		End Sub
 	#tag EndMethod
 
@@ -1164,12 +1241,6 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub PasteSections()
-		  // Update the pasted sections in the engine
-		  // if demo.GetDataFolder() <> nil then UpdateSelectedBarsTimes
-		End Sub
-	#tag EndEvent
-	#tag Event
 		Sub AddBarToSelection()
 		  UpdateSelectedBarsTimes
 		End Sub
@@ -1177,6 +1248,19 @@ End
 	#tag Event
 		Sub DragSections()
 		  UpdateSelectedBarsTimes
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub PasteSections(sectionIDs() as string)
+		  ' Update the bars in the engine
+		  if demo.GetDataFolder() <> nil then
+		    for each barID as String in sectionIDs
+		      controller.createBar(barID)
+		    next
+		  end if
+		  
+		  ' Update the pasted sections in the engine
+		  ' UpdateSelectedBarsTimes
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1467,6 +1551,13 @@ End
 	#tag Event
 		Sub Action()
 		  cnvTimeLine.Invalidate
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events tcpErrorLogger
+	#tag Event
+		Sub DataAvailable()
+		  txtEngineComm.Text = me.ReadAll
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -43,9 +43,9 @@ Protected Module ScriptWriter
 	#tag Method, Flags = &h1
 		Protected Sub CreateConfiguration(theDemo as classdemo)
 		  // Generate configuration scripts
-		  ScriptWriter.WriteControlSPO(theDemo)
+		  ScriptWriter.WriteControlSPO (theDemo)
 		  ScriptWriter.WriteGraphicsSPO(theDemo)
-		  ScriptWriter.WriteLoaderSPO(theDemo)
+		  ScriptWriter.WriteLoaderSPO  (theDemo)
 		  
 		  select case theDemo.engine
 		    
@@ -64,18 +64,14 @@ Protected Module ScriptWriter
 		    f.CopyFileTo(destination.child("font.tga"))
 		    
 		  case theDemo.phoenix
-		    '// Copy fonts texture
-		    'dim destination as folderitem = theDemo.GetDataFolder.child("fonts")
-		    '
-		    'dim f as new FolderItem
-		    '
-		    'f = f.child("Engines")
-		    'f = f.child("Dragon")
-		    'f = f.child("fonts")
-		    'f = f.Child("font.tga")
-		    '
-		    'destination.CreateAsFolder
-		    'f.CopyFileTo(destination.child("font.tga"))
+		    // Copy resources texture
+		    dim f as new FolderItem
+		    
+		    f = f.child("Engines")
+		    f = f.child("Phoenix")
+		    f = f.child("resources")
+		    
+		    CopyFileOrFolder(f, theDemo.GetDataFolder)
 		    
 		  end
 		End Sub
@@ -131,7 +127,11 @@ Protected Module ScriptWriter
 		  contents = contents + "gl_width " + str(theDemo.GetVideoScreenWidth) + EndOfLine.Windows
 		  contents = contents + "gl_height " + Str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
 		  contents = contents + "gl_bpp 32" + EndOfLine.Windows
-		  contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
+		  
+		  if theDemo.engine = theDemo.dragon then
+		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
+		  end if
+		  
 		  contents = contents + "gl_stencil 0" + EndOfLine.Windows
 		  contents = contents + "gl_multisampling 0" + EndOfLine.Windows
 		  
@@ -146,14 +146,15 @@ Protected Module ScriptWriter
 		      // Fixed size FBO
 		      contents = contents + "fbo_" + Str(i) + "_width "  + NthField(theFBOs(i), " ", 3) + EndOfLine.Windows
 		      contents = contents + "fbo_" + Str(i) + "_height " + NthField(theFBOs(i), " ", 4) + EndOfLine.Windows
-		      contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
 		      
 		    Else
 		      // Scaled FBO
 		      contents = contents + "fbo_" + Str(i) + "_ratio "  + NthField(theFBOs(i), " ", 1) + EndOfLine.Windows
-		      contents = contents + "fbo_" + Str(i) + "_format " + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
 		      
 		    End If
+		    
+		    contents = contents + "fbo_" + Str(i) + "_format "           + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
+		    contents = contents + "fbo_" + Str(i) + "_colorAttachments " + NthField(theFBOs(i), " ", 5) + EndOfLine.Windows
 		    
 		  Next
 		  
@@ -168,56 +169,77 @@ Protected Module ScriptWriter
 
 	#tag Method, Flags = &h1
 		Protected Sub WriteLoaderSPO(theDemo as classDemo)
-		  dim file as TextOutputStream
-		  dim LoaderBarCoords(3) as single
 		  dim contents as String
 		  
-		  dim loaderInitialGraphicPath as string
-		  dim loaderFinalGraphicPath as string
+		  dim file as TextOutputStream
+		  file = theDemo.GetDataFolder().child("loader.spo").CreateTextFile
 		  
-		  loaderInitialGraphicPath = theDemo.GetLoaderInitialGraphic
-		  loaderFinalGraphicPath = theDemo.GetLoaderFinalGraphic
-		  
-		  if loaderInitialGraphicPath <> "" and loaderFinalGraphicPath <> "" then
+		  select case theDemo.engine
+		    
+		  case theDemo.dragon
+		    
+		    dim LoaderBarCoords(3) as single
+		    
+		    dim loaderInitialGraphicPath as string
+		    dim loaderFinalGraphicPath as string
+		    
+		    loaderInitialGraphicPath = theDemo.GetLoaderInitialGraphic
+		    loaderFinalGraphicPath = theDemo.GetLoaderFinalGraphic
+		    
+		    if loaderInitialGraphicPath <> "" and loaderFinalGraphicPath <> "" then
+		      contents = contents + "[loading]" + EndOfLine.Windows
+		      contents = contents + "string data/pool/" + loaderInitialGraphicPath + EndOfLine.Windows
+		      contents = contents + "string data/pool/" + loaderFinalGraphicPath + EndOfLine.Windows
+		      
+		      // Progress bar color
+		      contents = contents + "fProgressBarColor " + _
+		      str(round(1000 * theDemo.GetLoaderBarColor.red / 255) / 1000) + " " + _
+		      str(round(1000 * theDemo.GetLoaderBarColor.green / 255) / 1000) + " " + _
+		      str(round(1000 * theDemo.GetLoaderBarColor.blue / 255) / 1000) + " " + _
+		      str(theDemo.GetLoaderBarAlpha) + EndOfLine.Windows
+		      
+		      // Progress bar position
+		      // file.WriteLine "fProgressBarPosition 0.42 0.29 0.61 0.332" + EndOfLine.Windows
+		      LoaderBarCoords = theDemo.getLoaderBarCoords
+		      contents = contents + "fProgressBarPosition " + _
+		      str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + _
+		      str(round(1000 * LoaderBarCoords(1)) / 1000) + " " + _
+		      str(round(1000 * LoaderBarCoords(2)) / 1000) + " " + _
+		      str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + EndOfLine.Windows
+		      
+		      // progress bar border color
+		      contents = contents + "fProgressBarBorderColor 0 0 0 0" + EndOfLine.Windows
+		      
+		      // Progress bar border position
+		      contents = contents + "fProgressBarBorderPosition 0.25 0.10 0.75 0.12" + EndOfLine.Windows
+		      
+		      // Progress bar border width
+		      contents = contents + "fBorderWidth 0.002" + EndOfLine.Windows
+		      
+		      file.Write contents
+		      
+		      Trace("ScriptWriter:WriteLoaderSPO: Loader configuration written successfuly.", cstTraceLevelLog)
+		      
+		    else
+		      Trace("ScriptWriter:WriteLoaderSPO: Loader configuration not defined. File was not written.", cstTraceLevelWarning)
+		      
+		    end if
+		    
+		  case theDemo.phoenix
 		    contents = contents + "[loading]" + EndOfLine.Windows
-		    contents = contents + "string data/pool/" + loaderInitialGraphicPath + EndOfLine.Windows
-		    contents = contents + "string data/pool/" + loaderFinalGraphicPath + EndOfLine.Windows
+		    contents = contents + "id loader" + EndOfLine.Windows
+		    contents = contents + "string /pool/loadingback.jpg" + EndOfLine.Windows
+		    contents = contents + "string /pool/loadingfront.jpg" + EndOfLine.Windows
+		    contents = contents + "string /pool/loadingbar.jpg" + EndOfLine.Windows
+		    contents = contents + "fProgressBarPositionX 0" + EndOfLine.Windows
+		    contents = contents + "fProgressBarPositionY -0.4" + EndOfLine.Windows
+		    contents = contents + "fBorderWidth 0.1" + EndOfLine.Windows
 		    
-		    // Progress bar color
-		    contents = contents + "fProgressBarColor " + _
-		    str(round(1000 * theDemo.GetLoaderBarColor.red / 255) / 1000) + " " + _
-		    str(round(1000 * theDemo.GetLoaderBarColor.green / 255) / 1000) + " " + _
-		    str(round(1000 * theDemo.GetLoaderBarColor.blue / 255) / 1000) + " " + _
-		    str(theDemo.GetLoaderBarAlpha) + EndOfLine.Windows
-		    
-		    // Progress bar position
-		    // file.WriteLine "fProgressBarPosition 0.42 0.29 0.61 0.332" + EndOfLine.Windows
-		    LoaderBarCoords = theDemo.getLoaderBarCoords
-		    contents = contents + "fProgressBarPosition " + _
-		    str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + _
-		    str(round(1000 * LoaderBarCoords(1)) / 1000) + " " + _
-		    str(round(1000 * LoaderBarCoords(2)) / 1000) + " " + _
-		    str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + EndOfLine.Windows
-		    
-		    // progress bar border color
-		    contents = contents + "fProgressBarBorderColor 0 0 0 0" + EndOfLine.Windows
-		    
-		    // Progress bar border position
-		    contents = contents + "fProgressBarBorderPosition 0.25 0.10 0.75 0.12" + EndOfLine.Windows
-		    
-		    // Progress bar border width
-		    contents = contents + "fBorderWidth 0.002" + EndOfLine.Windows
-		    
-		    file = theDemo.GetDataFolder().child("loader.spo").CreateTextFile
 		    file.Write contents
-		    file.Close
 		    
-		    Trace("ScriptWriter:WriteLoaderSPO: Loader configuration written successfuly.", cstTraceLevelLog)
-		    
-		  else
-		    Trace("ScriptWriter:WriteLoaderSPO: Loader configuration not defined in the website. File was not written.", cstTraceLevelWarning)
-		    
-		  end if
+		  end select
+		  
+		  file.Close
 		End Sub
 	#tag EndMethod
 

@@ -218,6 +218,7 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False

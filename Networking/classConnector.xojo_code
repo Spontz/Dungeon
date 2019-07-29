@@ -19,6 +19,10 @@ Inherits TCPSocket
 		Sub DataAvailable()
 		  Response = me.readall
 		  
+		  if NthField(response, paramSeparator, 5) = "ERROR" then
+		    msgbox("mierdin")
+		  end if
+		  
 		  trace(response, cstTraceLevelCommunication)
 		  
 		  if NthField(response, paramSeparator, 2) = "OK" or not messageQueue(0).Value("retry") then

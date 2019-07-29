@@ -49,7 +49,7 @@ Begin Window wndAbout
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Spontz Demo Editor  ©2003-2018"
+      Text            =   "Spontz Demo Editor  ©2003-"
       TextAlign       =   0
       TextColor       =   &cFFFFFF00
       TextFont        =   "Arial"
@@ -195,6 +195,22 @@ End
 
 #tag EndWindowCode
 
+#tag Events lblAppName
+	#tag Event
+		Sub Open()
+		  dim d as new date
+		  dim year as integer
+		  
+		  if d.Year < 2019 then
+		    year = 2019
+		  else
+		    year = d.Year
+		  end if
+		  
+		  me.Text = me.Text + str(Year)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events lblVersion
 	#tag Event
 		Sub Open()
