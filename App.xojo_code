@@ -17,10 +17,14 @@ Inherits Application
 	#tag Event
 		Function UnhandledException(error As RuntimeException) As Boolean
 		  dim stack as string
+		  dim counter as integer
 		  dim stackAll() as string = error.Stack()
 		  
 		  for i as integer = 0 to ubound(error.stack)
+		    counter = counter + 1
 		    stack = stackAll(i) + EndOfLine
+		    
+		    if counter > 10 then exit
 		  next
 		  
 		  // Leave a trace of the error
@@ -44,7 +48,7 @@ Inherits Application
 			if file <> nil then
 			// And load the project
 			dim newTimeline as new wndTimeLine
-			newTimeline.init("dragon", file)
+			newTimeline.init(file)
 			end if
 		End Function
 	#tag EndMenuHandler

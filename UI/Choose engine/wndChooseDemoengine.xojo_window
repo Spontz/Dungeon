@@ -47,7 +47,6 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   9
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   94
       Transparent     =   False
       Visible         =   True
@@ -172,7 +171,6 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   94
       Transparent     =   False
       Visible         =   True
@@ -262,7 +260,6 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   248
       Transparent     =   False
       Visible         =   True
@@ -344,10 +341,40 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub dragon()
+		  dim demoFile as new FolderItem
+		  
+		  demoFile = demoFile.child("Engines")
+		  
+		  if not demofile.Exists then
+		    Notify("Engines folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("Dragon")
+		  
+		  if not demofile.Exists then
+		    Notify("Dragon folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("ProjectTemplates")
+		  
+		  if not demofile.Exists then
+		    Notify("Dragon project Templates folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("Default.sqlite")
+		  
+		  if not demofile.Exists then
+		    Notify("Phoenix default project database could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init("dragon")
+		  myWndTimeLine.init(demofile)
 		  
 		  // And close the selector window
 		  self.close
@@ -356,37 +383,55 @@ End
 
 	#tag Method, Flags = &h0
 		Sub openProject()
-		  'Dim file As folderitem = Chooseproject
-		  '
-		  'If file <> Nil Then
-		  'Dim demo As classDemo
-		  'Dim demoFile As New FolderItem
-		  '
-		  'demoFile = demoFIle.child("Engines")
-		  'demoFile = demoFIle.child("Dragon")
-		  'demoFile = demoFIle.child("ProjectTemplates")
-		  'demoFile = demoFIle.child("Empty")
-		  'demoFile = demoFIle.child("Empty Project.spo")
-		  '
-		  'demo = New classDemo(demoFile, demo.openGL)
-		  '
-		  'Dim newTimeline As New wndTimeLine
-		  '
-		  '// Load the project
-		  'newTimeline.init(demo)
-		  '
-		  '// And close the selector window
-		  'Self.close
-		  'end if
+		  Dim file As folderitem = Chooseproject
+		  
+		  If file <> Nil Then
+		    // Load the project
+		    dim mywindow as new wndTimeLine
+		    myWindow.init(file)
+		    
+		    // And close the selector window
+		    Self.close
+		  end if
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub phoenix()
+		  dim demoFile as new FolderItem
+		  
+		  demoFile = demoFile.child("Engines")
+		  
+		  if not demofile.Exists then
+		    Notify("Engines folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("Phoenix")
+		  
+		  if not demofile.Exists then
+		    Notify("Phoenix folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("ProjectTemplates")
+		  
+		  if not demofile.Exists then
+		    Notify("Phoenix project templates folder could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
+		  demoFile = demoFile.child("Default.sqlite")
+		  
+		  if not demofile.Exists then
+		    Notify("Default dragon database could not be found", demofile.ShellPath)
+		    return
+		  end if
+		  
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init("phoenix")
+		  myWndTimeLine.init(demofile)
 		  
 		  // And close the selector window
 		  self.close

@@ -194,12 +194,6 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function countBars() As integer
 		  dim result as integer
 		  dim barRS as RecordSet
@@ -1052,6 +1046,16 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function getEngineType() As string
+		  dim result as string
+		  
+		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='engine' LIMIT 1").Field("value").StringValue
+		  
+		  return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getFBOsList() As string()
 		  Dim result() As String
 		  dim theRecordset as RecordSet
@@ -1517,42 +1521,34 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(optional demoFile as folderitem, theEngine as String = "dragon")
-		  engine = theEngine
-		  
-		  // Create the demo database in the temporary folder
-		  Dim f as FolderItem
-		  f = GetTemporaryFolderItem()
+		Sub init(optional demoFile as folderitem)
+		  ' Create the demo database in the temporary folder
+		  Dim f as FolderItem = GetTemporaryFolderItem()
 		  
 		  demoDB = New SQLiteDatabase
 		  demoDB.databaseFile = f
 		  
-		  if demoFile = nil then
-		    // There is no demofile so create a new empty database
-		    If not demoDB.CreateDatabaseFile then
-		      MsgBox "Error creating project database."
-		      return
-		    end if
-		    
-		    initDemoDB(engine)
-		    
-		  else
-		    // There is an existing demofile so copy it to the temp folder
-		    me.projectFolder = demoFile
-		    CopyFileOrFolder(demoFile, f)
-		    
+		  ' There is an existing demofile so copy it to the temp folder
+		  me.projectFolder = demoFile
+		  CopyFileOrFolder(demoFile, f)
+		  
+		  if not demoDB.Connect then
+		    Notify("Could not connect to the database", f.ShellPath)
+		    return
 		  end if
 		  
-		  // Connect to the database
+		  engine = me.getEngineType
+		  
+		  ' Connect to the database
 		  If not demoDB.Connect() then
 		    MsgBox "Could not connect to the project database."
 		    return
 		  end if
 		  
-		  // The engine localization
+		  ' The engine localization
 		  me.SetEnginesFolder GetFolderItem("Engines")
 		  
-		  // Set the data folder
+		  ' Set the data folder
 		  select case engine
 		    
 		  case dragon
@@ -1569,35 +1565,67 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub initDefaultFBOs()
-		  // TODO: Permitir editar desde el UI
-		  // TODO: Poner estos cambios en la BD por defecto de phoenix
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 2)
-		  Call addFBO(0, 0, 1, "RGB", 2)
-		  
-		  Call addFBO(0, 0, 1, "RGBA_16F", 1)
-		  Call addFBO(0, 0, 1, "RGBA_16F", 1)
-		  Call addFBO(0, 0, 1, "RGBA_16F", 2)
-		  Call addFBO(0, 0, 1, "RGBA_16F", 2)
-		  Call addFBO(0, 0, 1, "RGBA", 1)
-		  Call addFBO(0, 0, 1, "RGBA", 1)
-		  Call addFBO(0, 0, 1, "RGBA", 1)
-		  Call addFBO(0, 0, 1, "RGBA", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  Call addFBO(0, 0, 1, "RGB", 1)
-		  
-		  Call addFBO(512, 512, 0, "RGB", 1)
-		  Call addFBO(256, 256, 0, "RGB", 1)
-		  Call addFBO(128, 128, 0, "RGB", 1)
-		  Call addFBO( 64,  64, 0, "RGB", 1)
-		  Call addFBO( 32,  32, 0, "RGB", 1)
+		  select case me.engine
+		    
+		  case me.phoenix
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 2)
+		    Call addFBO(0, 0, 1, "RGB", 2)
+		    
+		    Call addFBO(0, 0, 1, "RGBA_16F", 1)
+		    Call addFBO(0, 0, 1, "RGBA_16F", 1)
+		    Call addFBO(0, 0, 1, "RGBA_16F", 2)
+		    Call addFBO(0, 0, 1, "RGBA_16F", 2)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    
+		    Call addFBO(512, 512, 0, "RGB", 1)
+		    Call addFBO(256, 256, 0, "RGB", 1)
+		    Call addFBO(128, 128, 0, "RGB", 1)
+		    Call addFBO( 64,  64, 0, "RGB", 1)
+		    Call addFBO( 32,  32, 0, "RGB", 1)
+		    
+		  else
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 2)
+		    Call addFBO(0, 0, 1, "RGB", 2)
+		    
+		    Call addFBO(0, 0, 1, "RGBA16F", 1)
+		    Call addFBO(0, 0, 1, "RGBA16F", 1)
+		    Call addFBO(0, 0, 1, "RGBA16F", 2)
+		    Call addFBO(0, 0, 1, "RGBA16F", 2)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGBA", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGB", 1)
+		    
+		    Call addFBO(512, 512, 0, "RGB", 1)
+		    Call addFBO(256, 256, 0, "RGB", 1)
+		    Call addFBO(128, 128, 0, "RGB", 1)
+		    Call addFBO( 64,  64, 0, "RGB", 1)
+		    Call addFBO( 32,  32, 0, "RGB", 1)
+		    
+		  end select
 		End Sub
 	#tag EndMethod
 
@@ -1643,6 +1671,7 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderAlpha','1.0')")
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderInitialGraphic','')")
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
+		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('engine','" + type + "')")
 		  
 		  // Default FBOs
 		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER);")

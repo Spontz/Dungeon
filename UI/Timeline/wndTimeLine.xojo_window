@@ -1012,79 +1012,10 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(demoEngine as string, optional f as folderitem = nil)
-		  Dim demoFile As New FolderItem
+		Sub init(demoFile as folderitem)
+		  demo.init(demoFile)
 		  
-		  if f = nil then
-		    select case demoEngine 
-		      
-		    case demo.dragon
-		      demoFile = demoFile.child("Engines")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("Dragon")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("ProjectTemplates")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("Default.sqlite")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		    case demo.phoenix
-		      demoFile = demoFile.child("Engines")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("Phoenix")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("ProjectTemplates")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		      demoFile = demoFile.child("Default.sqlite")
-		      
-		      if not demofile.Exists then
-		        Notify("File could not be found", demofile.ShellPath)
-		        return
-		      end if
-		      
-		    end
-		    
-		  else
-		    demofile = f
-		  end if
-		  
-		  demo.init(demoFile, demoEngine)
-		  
-		  self.Title = "Dungeon Demo Editor [" + demoEngine + "]: " + demoFile.Name
+		  self.Title = "Dungeon Demo Editor [" + demo.engine + "]: " + demoFile.Name
 		  
 		  If demo.countFBOs = 0 Then
 		    demo.initDefaultFBOs
