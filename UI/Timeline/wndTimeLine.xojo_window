@@ -1517,6 +1517,18 @@ End
 		    dim myWindow as new wndTextEditor
 		    myWindow.init(itemID, self)
 		    
+		  case "frag"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "vert"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "geom"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
 		  case "fs"
 		    dim myWindow as new wndTextEditor
 		    myWindow.init(itemID, self)
