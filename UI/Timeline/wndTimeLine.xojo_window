@@ -1560,6 +1560,11 @@ End
 		  txtEngineComm.Text = me.ReadAll
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Error()
+		  me.Listen
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

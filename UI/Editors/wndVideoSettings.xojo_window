@@ -600,11 +600,6 @@ End
 		End Function
 	#tag EndEvent
 	#tag Event
-		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
 		  if column <> 0 then
 		    ' Draw an arrow to indicate that clicking this field will display a menu
@@ -672,13 +667,27 @@ End
 		    me.cell(row, 4) = "" ' Clear height as ratio has been selected
 		    
 		  case 2
-		    // The user clicked in the format column
-		    cmnFBOOptions.Append(new MenuItem("RGB"    ))
-		    cmnFBOOptions.Append(new MenuItem("RGBA"   ))
-		    cmnFBOOptions.Append(new MenuItem("RGB16F" ))
-		    cmnFBOOptions.Append(new MenuItem("RGBA16F"))
-		    cmnFBOOptions.Append(new MenuItem("RGB32"  ))
-		    cmnFBOOptions.Append(new MenuItem("RGB32F" ))
+		    select demo.engine
+		      // The user clicked in the format column
+		      
+		    case demo.phoenix
+		      cmnFBOOptions.Append(new MenuItem("RGB"    ))
+		      cmnFBOOptions.Append(new MenuItem("RGBA"   ))
+		      cmnFBOOptions.Append(new MenuItem("RGB_16F" ))
+		      cmnFBOOptions.Append(new MenuItem("RGBA_16F"))
+		      cmnFBOOptions.Append(new MenuItem("RGB_32F" ))
+		      cmnFBOOptions.Append(new MenuItem("RGBA_32F"))
+		      cmnFBOOptions.Append(new MenuItem("DEPTH"   ))
+		      
+		    else
+		      cmnFBOOptions.Append(new MenuItem("RGB"    ))
+		      cmnFBOOptions.Append(new MenuItem("RGBA"   ))
+		      cmnFBOOptions.Append(new MenuItem("RGB16F" ))
+		      cmnFBOOptions.Append(new MenuItem("RGBA16F"))
+		      cmnFBOOptions.Append(new MenuItem("RGB32"  ))
+		      cmnFBOOptions.Append(new MenuItem("RGB32F" ))
+		      
+		    end select
 		    
 		    selectedMenu = cmnFBOOptions.PopUp
 		    
