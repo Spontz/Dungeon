@@ -1826,6 +1826,19 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub optimize()
+		  ExecuteSQL("VACUUM")
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub removeBarFromSelection(barID as integer)
 		  ExecuteSQL("UPDATE BARs SET selected = 0 WHERE id = '" + str(barID) + "'")
 		  
@@ -1927,6 +1940,9 @@ Protected Class classDemo
 		      Return
 		    end if
 		  end if
+		  
+		  // Recover empty space from thew Database
+		  me.optimize
 		  
 		  dim newProjectFolder as new FolderItem(projectFolder)
 		  

@@ -667,7 +667,7 @@ End
 		    me.cell(row, 4) = "" ' Clear height as ratio has been selected
 		    
 		  case 2
-		    select demo.engine
+		    select case demo.engine
 		      // The user clicked in the format column
 		      
 		    case demo.phoenix
