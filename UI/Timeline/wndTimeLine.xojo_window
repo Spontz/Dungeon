@@ -774,6 +774,8 @@ End
 		Sub Close()
 		  // Clear the data folder pertaining to this project
 		  Files.deleteFolder demo.GetDataFolder
+		  
+		  tcpErrorLogger.Close
 		End Sub
 	#tag EndEvent
 
@@ -1505,7 +1507,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Error()
-		  me.Listen
+		  'me.Listen
 		End Sub
 	#tag EndEvent
 #tag EndEvents
