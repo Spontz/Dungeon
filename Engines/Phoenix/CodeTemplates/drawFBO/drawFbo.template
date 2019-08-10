@@ -5,8 +5,11 @@
 ; recovered over the current screen contents
 fFboNum 0
 
+; Integer representing the fbo attachment
+fFboAttachment 0
+
 ; Clear the screen buffer before restoring? (1=yes, 0=no)
 fClearScreenBuffer 0
 
-; Clear the depth buffer after restoring? (1=yes, 0=no)
+; Clear the depth buffer before restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
