@@ -579,7 +579,8 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub LoadElements()
-		  dim currentElement as String = popElement.text
+		  dim currentElement  as String =  popElement.text
+		  dim currentTemplate as string = popTemplate.text
 		  
 		  popElement.DeleteAllRows
 		  popTemplate.DeleteAllRows
@@ -606,11 +607,21 @@ End
 		    end if
 		  next
 		  
-		  // If exists, we select the previous item that was in the menu before reloading
+		  // If exists, we select the previous item that was in the elements menu before reloading
 		  if not (currentElement = "") then
 		    for i as integer = 0 to popElement.ListCount - 1
 		      if popElement.List(i) = currentElement then
 		        popElement.ListIndex = i
+		        exit
+		      end if
+		    next
+		  end if
+		  
+		  // If exists, we select the previous item that was in the template menu before reloading
+		  if not (currentTemplate = "") then
+		    for i as integer = 0 to popTemplate.ListCount - 1
+		      if popTemplate.List(i) = currentTemplate then
+		        popTemplate.ListIndex = i
 		        exit
 		      end if
 		    next
