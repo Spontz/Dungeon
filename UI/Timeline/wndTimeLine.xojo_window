@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   254
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -635,7 +634,6 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   584
       Transparent     =   False
       Value           =   0
@@ -695,7 +693,7 @@ Begin Window wndTimeLine
       LockTop         =   False
       Mask            =   ""
       Multiline       =   True
-      ReadOnly        =   True
+      ReadOnly        =   False
       Scope           =   0
       ScrollbarHorizontal=   False
       ScrollbarVertical=   True
@@ -886,6 +884,15 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag MenuHandler
+		Function ClearEngineLog() As Boolean Handles ClearEngineLog.Action
+			txtEngineComm.Text = ""
+			
+			Return True
+			
+		End Function
+	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditReplace() As Boolean Handles EditReplace.Action

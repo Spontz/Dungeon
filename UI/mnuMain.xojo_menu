@@ -209,8 +209,6 @@ Begin Menu mnuMain
          SpecialMenu = 0
          Text = "Loader..."
          Index = -2147483648
-         ShortcutKey = "L"
-         Shortcut = "Cmd+L"
          MenuModifier = True
          Help = "Displays a window that allows you to customize the loading screens plus the properties of the loading bar."
          AutoEnable = True
@@ -335,6 +333,23 @@ Begin Menu mnuMain
          Visible = True
       End
       Begin MenuItem UntitledSeparator
+         SpecialMenu = 0
+         Text = "-"
+         Index = -2147483648
+         AutoEnable = True
+         Visible = True
+      End
+      Begin MenuItem ClearEngineLog
+         SpecialMenu = 0
+         Text = "Clear Engine Log"
+         Index = -2147483648
+         ShortcutKey = "L"
+         Shortcut = "Cmd+L"
+         MenuModifier = True
+         AutoEnable = True
+         Visible = True
+      End
+      Begin MenuItem UntitledSeparator1
          SpecialMenu = 0
          Text = "-"
          Index = -2147483648

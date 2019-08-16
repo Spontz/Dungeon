@@ -105,14 +105,6 @@ Protected Module controller
 		  Dim VisualsEngine As FolderItem
 		  dim result as string
 		  
-		  //We locate the Visuals Engine
-		  '#if TargetMacOS
-		  'result = "open /Volumes/" + ReplaceAll(ReplaceAllB(demo.GetEnginesFolder.child("Dragon").AbsolutePath, " ", "\ "), ":", "/") + "demo.app"
-		  'result = executeShell (result)
-		  '
-		  'if result <>"" then notify ("The engine could not be located", "the shell manager said: " + result)
-		  '#endif
-		  
 		  #if TargetWindows
 		    select case demo.engine
 		      
