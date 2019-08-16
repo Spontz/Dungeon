@@ -112,6 +112,10 @@ Inherits Application
 		applicationVersion As String
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		fonts() As folderItem
+	#tag EndProperty
+
 
 	#tag ViewBehavior
 		#tag ViewProperty

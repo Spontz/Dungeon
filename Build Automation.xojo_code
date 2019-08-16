@@ -72,5 +72,11 @@
 					Subdirectory = Engines/Phoenix
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3Jlc291cmNlcy8=
 				End
+				Begin CopyFilesBuildStep CopyFonts
+					AppliesTo = 0
+					Destination = 2
+					Subdirectory = 
+					FolderItem = Li4vZm9udHMv
+				End
 			End
 #tag EndBuildAutomation
