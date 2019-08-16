@@ -146,8 +146,8 @@ Protected Module Files
 		    command = "rm " + theFolder.ShellPath + "/" + "*." + extension
 		    result = executeShell(command)
 		    
-		  elseif TargetWin32 then
-		    command = "del " + theFolder.ShellPath + "\" + "*." + extension
+		  elseif TargetWindows then
+		    command = "del """ + theFolder.ShellPath + "\" + "*.""" + extension
 		    result = executeShell(command)
 		    
 		  end if
