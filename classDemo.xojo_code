@@ -1679,7 +1679,7 @@ Protected Class classDemo
 		  initDefaultFBOs
 		  
 		  // Creates the structure for bars
-		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")
+		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), blendingEQ VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")
 		  
 		  // Creates the structure for thefiles
 		  ExecuteSQL("CREATE TABLE FILES (id INTEGER PRIMARY KEY, name TEXT, parent INTEGER, bytes INTEGER, type TEXT, data BLOB, format TEXT, enabled BOOLEAN);")
