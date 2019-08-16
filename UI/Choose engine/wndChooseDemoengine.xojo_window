@@ -1,7 +1,7 @@
 #tag Window
 Begin Window wndChooseDemoengine
    BackColor       =   &c19191900
-   Backdrop        =   0
+   Backdrop        =   1554413567
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
@@ -9,7 +9,7 @@ Begin Window wndChooseDemoengine
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   True
-   Height          =   400
+   Height          =   448
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,233 +25,18 @@ Begin Window wndChooseDemoengine
    Resizeable      =   False
    Title           =   "Dungeon Demo Editor"
    Visible         =   True
-   Width           =   600
-   Begin RoundRectangle rctPhoenix
-      AutoDeactivate  =   True
-      BorderColor     =   &c7F7F7F00
-      BorderWidth     =   2
-      Enabled         =   True
-      FillColor       =   &c3F3F3F00
-      Height          =   128
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   319
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      OvalHeight      =   16
-      OvalWidth       =   16
-      Scope           =   0
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   94
-      Transparent     =   False
-      Visible         =   True
-      Width           =   230
-      Begin Label lblPhoenix
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "rctPhoenix"
-         Italic          =   False
-         Left            =   331
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "Phoenix"
-         TextAlign       =   1
-         TextColor       =   &cBFBFBF00
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   192
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   206
-      End
-      Begin Canvas cnvPhoenix
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
-         Backdrop        =   710002687
-         DoubleBuffer    =   False
-         Enabled         =   True
-         EraseBackground =   True
-         Height          =   72
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "rctPhoenix"
-         Left            =   354
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   1
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   108
-         Transparent     =   False
-         UseFocusRing    =   True
-         Visible         =   True
-         Width           =   168
-      End
-   End
-   Begin Label lblChooseYourDemo
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   34
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   51
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Choose your demo engine"
-      TextAlign       =   1
-      TextColor       =   &cBFBFBF00
-      TextFont        =   "System"
-      TextSize        =   20.0
-      TextUnit        =   0
-      Top             =   29
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   498
-   End
-   Begin RoundRectangle rctDragon
-      AutoDeactivate  =   True
-      BorderColor     =   &c7F7F7F00
-      BorderWidth     =   2
-      Enabled         =   True
-      FillColor       =   &c3F3F3F00
-      Height          =   128
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   51
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      OvalHeight      =   16
-      OvalWidth       =   16
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   94
-      Transparent     =   False
-      Visible         =   True
-      Width           =   230
-      Begin Label lblDragon
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "rctDragon"
-         Italic          =   False
-         Left            =   63
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   0
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "Dragon"
-         TextAlign       =   1
-         TextColor       =   &cBFBFBF00
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   192
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   206
-      End
-      Begin Canvas cnvDragon
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
-         Backdrop        =   1557612543
-         DoubleBuffer    =   False
-         Enabled         =   True
-         EraseBackground =   True
-         Height          =   72
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "rctDragon"
-         Left            =   87
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   1
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   109
-         Transparent     =   False
-         UseFocusRing    =   True
-         Visible         =   True
-         Width           =   168
-      End
-   End
+   Width           =   512
    Begin RoundRectangle rctOpenExistingDemo
       AutoDeactivate  =   True
       BorderColor     =   &c7F7F7F00
       BorderWidth     =   2
       Enabled         =   True
       FillColor       =   &c3F3F3F00
-      Height          =   79
+      Height          =   34
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   185
+      Left            =   141
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -262,9 +47,8 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   248
-      Transparent     =   False
+      Top             =   401
+      Transparent     =   True
       Visible         =   True
       Width           =   230
       Begin Label lblOpenExistingDemo
@@ -278,7 +62,7 @@ Begin Window wndChooseDemoengine
          Index           =   -2147483648
          InitialParent   =   "rctOpenExistingDemo"
          Italic          =   False
-         Left            =   197
+         Left            =   153
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -296,12 +80,82 @@ Begin Window wndChooseDemoengine
          TextFont        =   "System"
          TextSize        =   20.0
          TextUnit        =   0
-         Top             =   274
+         Top             =   401
          Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   206
       End
+   End
+   Begin Label lblDragon
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   55
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   28
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Dragon"
+      TextAlign       =   1
+      TextColor       =   &cFFFFFF00
+      TextFont        =   "Germany"
+      TextSize        =   50.0
+      TextUnit        =   0
+      Top             =   326
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   168
+   End
+   Begin Label lblPhoenix
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   55
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   290
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   50
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Phoenix"
+      TextAlign       =   1
+      TextColor       =   &cFFFFFF00
+      TextFont        =   "Belgium"
+      TextSize        =   50.0
+      TextUnit        =   0
+      Top             =   320
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   189
    End
    Begin Label lblChooseWisely
       AutoDeactivate  =   True
@@ -332,11 +186,11 @@ Begin Window wndChooseDemoengine
       TextFont        =   "System"
       TextSize        =   20.0
       TextUnit        =   0
-      Top             =   339
+      Top             =   87
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   238
+      Width           =   150
    End
 End
 #tag EndWindow
@@ -444,25 +298,57 @@ End
 
 #tag EndWindowCode
 
-#tag Events rctPhoenix
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  phoenix
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events rctDragon
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dragon
-		End Function
-	#tag EndEvent
-#tag EndEvents
 #tag Events rctOpenExistingDemo
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  openProject
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events lblOpenExistingDemo
+	#tag Event
+		Sub MouseEnter()
+		  me.TextColor = &cFF0000
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseExit()
+		  me.TextColor = &cFFFFFF
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events lblDragon
+	#tag Event
+		Sub MouseEnter()
+		  me.TextColor = &cFF0000
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseExit()
+		  me.TextColor = &cFFFFFF
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  Dragon
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events lblPhoenix
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  phoenix
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub MouseEnter()
+		  me.TextColor = &cFF0000
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseExit()
+		  me.TextColor = &cFFFFFF
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
