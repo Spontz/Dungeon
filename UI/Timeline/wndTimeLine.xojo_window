@@ -583,7 +583,7 @@ Begin Window wndTimeLine
       GridLinesVertical=   0
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   583
+      Height          =   496
       HelpTag         =   ""
       Hierarchical    =   True
       Index           =   -2147483648
@@ -624,7 +624,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
+      Left            =   2
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -634,7 +634,7 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      Top             =   584
+      Top             =   500
       Transparent     =   False
       Value           =   0
       Visible         =   True
@@ -682,7 +682,7 @@ Begin Window wndTimeLine
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   257
+      Left            =   0
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -711,7 +711,7 @@ Begin Window wndTimeLine
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   548
+      Width           =   805
    End
 End
 #tag EndWindow
@@ -1070,6 +1070,8 @@ End
 		  else
 		    txtEngineComm.Visible = false
 		    cntCustomSection.Height = cntCustomSection.Height + txtEngineComm.Height
+		    lbxResourcesManager.Height = self.Height - barProgress.Height
+		    barProgress.top = self.Height - barProgress.Height
 		    
 		  end select
 		  

@@ -102,7 +102,7 @@ Begin Window wndAbout
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   175
+      Height          =   117
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -119,7 +119,7 @@ Begin Window wndAbout
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Editor Programming\rIván Fernández\r\rEngine Programming\rIván Fernández\rPere Felices\rIsaac Lascasas"
+      Text            =   "Editor Programming\rIván Fernández\r\rEngine Programming\rPere Felices\r"
       TextAlign       =   0
       TextColor       =   &cFFFFFF00
       TextFont        =   "Arial"
@@ -129,7 +129,7 @@ Begin Window wndAbout
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   190
+      Width           =   144
    End
    Begin BevelButton BevelButton1
       AcceptFocus     =   False
