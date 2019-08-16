@@ -370,7 +370,7 @@ End
 		  demoFile = demoFile.child("Default.sqlite")
 		  
 		  if not demofile.Exists then
-		    Notify("Phoenix default project database could not be found", demofile.ShellPath)
+		    Notify("Dragon default project database could not be found", demofile.ShellPath)
 		    return
 		  end if
 		  

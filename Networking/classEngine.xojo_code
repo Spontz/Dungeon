@@ -49,8 +49,14 @@ Protected Class classEngine
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub Quit()
+		  myConnector.SendMessage "command::end"
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub Restart()
-		  myConnector.SendMessage "command::restart"
+		  
 		End Sub
 	#tag EndMethod
 

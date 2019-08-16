@@ -768,6 +768,8 @@ End
 		  ' If execution reaches this point, there is no other timeline open so we display the choose demoengine window
 		  wndChooseDemoengine.Show
 		  
+		  engine.Quit
+		  
 		  ' CLose the timeline
 		  return false
 		End Function
