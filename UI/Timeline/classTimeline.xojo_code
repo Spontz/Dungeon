@@ -1119,7 +1119,7 @@ Inherits Canvas
 		  demo.setSelectedBarsStartTime(theTime)
 		  
 		  // Update the demo engine
-		  controller.setBarEndTime (join(IDsList, ","), theTime)
+		  controller.setBarStartTime (join(IDsList, ","), theTime)
 		  
 		  me.Invalidate
 		  
