@@ -1,39 +1,39 @@
 #tag MultiImage
-Image Dragon
+Image Choose
 	#tag ImageRepresentation
-		SaveInfo = APHRcwECAQAAAAA2QzpcVXNlcnNcbWVybHVcRG9jdW1lbnRzXEdJVFxEdW5nZW9uXGltYWdlc1xEcmFnb24ucG5nAwAAAAABAAQAAAAAAQAAAAAAAAA=
-		FullPath = C:\Users\merlu\Documents\GIT\Dungeon\images\Dragon.png
-		PartialPath = images\Dragon.png
+		SaveInfo = APHRcwECAQAAAAA2QzpcVXNlcnNcbWVybHVcRG9jdW1lbnRzXEdJVFxEdW5nZW9uXGltYWdlc1xDaG9vc2UucG5nAwAAAAABAAQAAAAAAQAAAAAAAAA=
+		FullPath = C:\Users\merlu\Documents\GIT\Dungeon\images\Choose.png
+		PartialPath = images\Choose.png
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = 163.00
+			HSize = 512.00
 			Orientation = Any
 			Platform = 15
 			PPI = 72
-			VSize = 68.00
+			VSize = 448.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 	#tag ImageRepresentation
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = 163.00
+			HSize = 512.00
 			Orientation = Any
 			Platform = 15
 			PPI = 144
-			VSize = 68.00
+			VSize = 448.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 	#tag ImageRepresentation
 		#tag ImageSpecification
 			Comment = 
 			Device = 31
-			HSize = 163.00
+			HSize = 512.00
 			Orientation = Any
 			Platform = 15
 			PPI = 216
-			VSize = 68.00
+			VSize = 448.00
 		#tag EndImageSpecification
 	#tag EndImageRepresentation
 End Image

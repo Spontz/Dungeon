@@ -26,16 +26,6 @@ Begin Window wndLoadingScreen
    Title           =   "Loading Visuals"
    Visible         =   True
    Width           =   640
-   Begin Timer tmrCloseWindow
-      Enabled         =   True
-      Index           =   -2147483648
-      InitialParent   =   ""
-      LockedInPosition=   False
-      Mode            =   0
-      Period          =   2000
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
    Begin Label lblCopyright
       AutoDeactivate  =   True
       Bold            =   False
@@ -114,24 +104,33 @@ End
 		Sub Open()
 		  txtVersion.text = "Version " + str(App.MajorVersion) + "." + str(App.MinorVersion) + "." + str(App.BugVersion) + "." + str(App.StageCode) + "." + str(App.NonReleaseVersion)
 		  
-		  tmrCloseWindow.Mode = 1
-		End Sub
-	#tag EndEvent
-
-
-#tag EndWindowCode
-
-#tag Events tmrCloseWindow
-	#tag Event
-		Sub Action()
+		  // Refresh the UI
+		  App.DoEvents
+		  
 		  // Clear previous data folders from crashed executions
 		  dim file as new FolderItem
 		  
+		  // Clean the data folders
 		  Files.CleanDataFolders
 		  
-		  // Project loading
-		  // TODO: Load the default project
-		  // file = file.Child("Engines").Child("Dragon").Child("Default Project").Child("Project.sqlite")
+		  // Load fonts
+		  #if TargetWin32
+		    dim f as FolderItem=app.ExecutableFile.Parent.Child(app.ExecutableFile.Name.Replace(".exe"," Libs"))
+		    if f.Exists then
+		      f=f.Child("fonts")
+		      if f.Exists then
+		        for i as Integer = 1 to f.Count
+		          App.fonts.Append f.Item(i)
+		          trace("Located font " + f.item(i).Name, cstTraceLevelLog)
+		        next
+		      end if
+		    end if
+		    
+		    for i as integer = 0 to App.Fonts.Ubound
+		      TemporarilyInstallFont(App.fonts(i))
+		      trace("Installed font " + App.fonts(i).name,cstTraceLevelLog)
+		    next
+		  #endif
 		  
 		  //End of the initialization
 		  wndLoadingScreen.close
@@ -140,7 +139,10 @@ End
 		  wndChooseDemoengine.show
 		End Sub
 	#tag EndEvent
-#tag EndEvents
+
+
+#tag EndWindowCode
+
 #tag Events lblCopyright
 	#tag Event
 		Sub Open()

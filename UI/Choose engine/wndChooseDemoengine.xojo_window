@@ -1,7 +1,7 @@
 #tag Window
 Begin Window wndChooseDemoengine
    BackColor       =   &c19191900
-   Backdrop        =   1554413567
+   Backdrop        =   411394047
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
@@ -93,7 +93,7 @@ Begin Window wndChooseDemoengine
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   55
+      Height          =   78
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -113,14 +113,14 @@ Begin Window wndChooseDemoengine
       Text            =   "Dragon"
       TextAlign       =   1
       TextColor       =   &cFFFFFF00
-      TextFont        =   "Germany"
-      TextSize        =   50.0
+      TextFont        =   "Gold Under The Mud"
+      TextSize        =   70.0
       TextUnit        =   0
-      Top             =   326
+      Top             =   303
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   168
+      Width           =   198
    End
    Begin Label lblPhoenix
       AutoDeactivate  =   True
@@ -148,7 +148,7 @@ Begin Window wndChooseDemoengine
       Text            =   "Phoenix"
       TextAlign       =   1
       TextColor       =   &cFFFFFF00
-      TextFont        =   "Belgium"
+      TextFont        =   "Nemesis Grant"
       TextSize        =   50.0
       TextUnit        =   0
       Top             =   320
