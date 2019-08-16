@@ -532,6 +532,7 @@ Protected Class classDemo
 		    result(counter).Value("script"     ) = barsRS.Field("script"     ).StringValue
 		    result(counter).Value("srcBlending") = barsRS.Field("srcBlending").StringValue
 		    result(counter).Value("dstBlending") = barsRS.Field("dstBlending").StringValue
+		    result(counter).value("blendingEQ" ) = barsRS.Field("blendingEQ" ).StringValue
 		    result(counter).Value("srcAlpha"   ) = barsRS.Field("srcAlpha"   ).StringValue
 		    result(counter).Value("dstAlpha"   ) = barsRS.Field("dstAlpha"   ).StringValue
 		    
@@ -541,6 +542,23 @@ Protected Class classDemo
 		  wend
 		  
 		  return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getBarBlendingEquation(barID as string) As integer
+		  dim result as string
+		  dim query as string
+		  
+		  query = "SELECT blendingEQ FROM BARs where id = '" + barID + "' LIMIT 1"
+		  result = demoDB.SQLSelect(query).Field("blendingEQ").StringValue
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    return -1
+		  else
+		    return getBlendingEquationID(result)
+		  end if
 		End Function
 	#tag EndMethod
 
@@ -556,18 +574,19 @@ Protected Class classDemo
 		    return result
 		  end if
 		  
-		  result.Value("id") = barRS.Field("id").IntegerValue
-		  result.Value("type") = barRS.Field("type").StringValue
-		  result.Value("layer") = barRS.Field("layer").IntegerValue
-		  result.Value("startTime") = barRS.Field("startTime").DoubleValue
-		  result.Value("endTime") = barRS.Field("endTime").DoubleValue
-		  result.Value("enabled") = barRS.Field("enabled").BooleanValue
-		  result.Value("selected") = barRS.Field("selected").BooleanValue
-		  result.Value("script") = barRS.Field("script").StringValue
+		  result.Value("id"         ) = barRS.Field("id"         ).IntegerValue
+		  result.Value("type"       ) = barRS.Field("type"       ).StringValue
+		  result.Value("layer"      ) = barRS.Field("layer"      ).IntegerValue
+		  result.Value("startTime"  ) = barRS.Field("startTime"  ).DoubleValue
+		  result.Value("endTime"    ) = barRS.Field("endTime"    ).DoubleValue
+		  result.Value("enabled"    ) = barRS.Field("enabled"    ).BooleanValue
+		  result.Value("selected"   ) = barRS.Field("selected"   ).BooleanValue
+		  result.Value("script"     ) = barRS.Field("script"     ).StringValue
 		  result.Value("srcBlending") = barRS.Field("srcBlending").StringValue
 		  result.Value("dstBlending") = barRS.Field("dstBlending").StringValue
-		  result.Value("srcAlpha") = barRS.Field("srcAlpha").StringValue
-		  result.Value("dstAlpha") = barRS.Field("dstAlpha").StringValue
+		  result.Value("blendingEQ" ) = barRS.Field("blendingEQ" ).StringValue
+		  result.Value("srcAlpha"   ) = barRS.Field("srcAlpha"   ).StringValue
+		  result.Value("dstAlpha"   ) = barRS.Field("dstAlpha"   ).StringValue
 		  
 		  return result
 		End Function
@@ -803,7 +822,27 @@ Protected Class classDemo
 		    return "REVERSE_SUBTRACT"
 		    
 		  else
-		    return "Invalid blending equation"
+		    return "Invalid blensing equation"
+		    
+		  end select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getBlendingEquationID(mode as string) As integer
+		  select case mode
+		    
+		  case "ADD"
+		    Return 0
+		    
+		  case "SUBTRACT"
+		    return 1
+		    
+		  case "REVERSE_SUBTRACT"
+		    return 2
+		    
+		  else
+		    return -1
 		    
 		  end select
 		End Function

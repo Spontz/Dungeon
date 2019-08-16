@@ -12,9 +12,9 @@ Protected Module ScriptWriter
 		  
 		  // Start and Ending times
 		  theScript = theScript + "start " + str(round(bar.value("startTime").DoubleValue * 1000)/1000) + EndOfLine.Windows
-		  theScript = theScript + "end " + str(round(bar.value("endTime").DoubleValue * 1000)/1000) + EndOfLine.Windows
+		  theScript = theScript + "end "   + str(round(bar.value("endTime"  ).DoubleValue * 1000)/1000) + EndOfLine.Windows
 		  
-		  //Visibility
+		  // Visibility
 		  if bar.value("enabled").BooleanValue then
 		    theScript = theScript + "enabled 1" + EndOfLine.Windows
 		  else
@@ -24,9 +24,14 @@ Protected Module ScriptWriter
 		  // Layer
 		  theScript = theScript + "layer " + bar.value("layer") + EndOfLine.Windows
 		  
-		  // Blending
+		  // Blending mode
 		  if bar.value("srcBlending") <> "" and bar.value("dstBlending") <> "" then
 		    theScript = theScript + "blend " + bar.value("srcBlending") + " " + bar.value("dstBlending") + EndOfLine.Windows
+		  end if
+		  
+		  // Blending equation
+		  if bar.value("blendingEQ") <> "" then
+		    theScript = theScript + "blendequation " + bar.value("blendingEQ") + EndOfLine.Windows
 		  end if
 		  
 		  // Rest of the script

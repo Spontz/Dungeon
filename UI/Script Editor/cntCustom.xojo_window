@@ -484,14 +484,15 @@ End
 #tag WindowCode
 	#tag Method, Flags = &h21
 		Private Sub activate()
-		  btnApply.Enabled = false // Deactivated until a change happens
+		  btnApply.Enabled        = false // Deactivated until a change happens
 		  btnSaveTemplate.Enabled = true
 		  
-		  popElement.Enabled = true
+		  popElement.Enabled  = true
 		  popTemplate.Enabled = true
 		  
-		  mnuBlendEnd.Enabled = true
-		  mnuBlendStart.Enabled = true
+		  mnuBlendEnd.Enabled      = true
+		  mnuBlendStart.Enabled    = true
+		  mnuBlendEquation.Enabled = true
 		  
 		  txtSectionScript.Enabled = true
 		End Sub
@@ -557,8 +558,9 @@ End
 		    barID = ""
 		    
 		    // The blending menus
-		    mnuBlendStart.listIndex = demo.getBarSrcBlendingID(theBarID)
-		    mnuBlendEnd.listIndex = demo.getBarDstBlendingID(theBarID)
+		    mnuBlendStart.listIndex    = demo.getBarSrcBlendingID   (theBarID)
+		    mnuBlendEnd.listIndex      = demo.getBarDstBlendingID   (theBarID)
+		    mnuBlendEquation.listindex = demo.getBarBlendingEquation(theBarID)
 		    
 		    // The element name and additional script
 		    popElement.text = demo.getBarType(theBarID)
