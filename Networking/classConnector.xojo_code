@@ -53,7 +53,7 @@ Inherits TCPSocket
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SendMessage(theMessage as String, optional retry as boolean = true)
+		Sub SendMessage(theMessage as String, optional retry as boolean = false)
 		  dim theSizer as String
 		  dim theID as String
 		  dim dataLength as integer
