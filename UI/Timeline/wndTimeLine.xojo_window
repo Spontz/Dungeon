@@ -656,10 +656,11 @@ Begin Window wndTimeLine
       Scope           =   0
       TabPanelIndex   =   0
    End
-   Begin TCPSocket tcpErrorLogger
-      Address         =   "0.0.0.0"
+   Begin ServerSocket tcpErrorLogger
       Index           =   -2147483648
       LockedInPosition=   False
+      MaximumSocketsConnected=   10
+      MinimumSocketsAvailable=   2
       Port            =   28001
       Scope           =   0
       TabPanelIndex   =   0
@@ -774,8 +775,6 @@ End
 		Sub Close()
 		  // Clear the data folder pertaining to this project
 		  Files.deleteFolder demo.GetDataFolder
-		  
-		  tcpErrorLogger.Close
 		End Sub
 	#tag EndEvent
 
@@ -1065,6 +1064,12 @@ End
 		  
 		  // Show the timeline
 		  self.Visible = true
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub MessageReceived(sender as classTcpEngineMessage, theMessage as string)
+		  txtEngineComm.Text = txtEngineComm.text + theMessage
 		End Sub
 	#tag EndMethod
 
@@ -1501,14 +1506,13 @@ End
 #tag EndEvents
 #tag Events tcpErrorLogger
 	#tag Event
-		Sub DataAvailable()
-		  txtEngineComm.Text = me.ReadAll
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Error()
-		  'me.Listen
-		End Sub
+		Function AddSocket() As TCPSocket
+		  dim tcpEngineMessage as new classTcpEngineMessage
+		  
+		  AddHandler tcpEngineMessage.MessageReceived, AddressOf MessageReceived
+		  
+		  return TcpEngineMessage
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

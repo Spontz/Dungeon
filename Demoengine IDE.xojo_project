@@ -129,6 +129,7 @@ MultiImage=markeryellowvertical;UI/Timeline/Markers/markeryellowvertical.xojo_im
 MultiImage=markergreen;UI/Timeline/Markers/markergreen.xojo_image;&h00000000354CF7FF;&hFFFFFFFFBC0BC078;false
 MultiImage=Phoenix;UI/Choose engine/Phoenix.xojo_image;&h000000002A51C7FF;&h0000000034883A6E;false
 MultiImage=Dragon;UI/Choose engine/Dragon.xojo_image;&h000000005CD747FF;&h0000000034883A6E;false
+Class=classTcpEngineMessage;Networking/classTcpEngineMessage.xojo_code;&h000000002073BFFF;&h000000005FCFF4C7;false
 DefaultWindow=wndLoadingScreen
 AppMenuBar=mnuMain
 MajorVersion=3
