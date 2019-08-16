@@ -258,7 +258,7 @@ Inherits Canvas
 		    if demo.countSelectedBars > 0 then DragSections
 		    
 		    // original layer in which dragging started
-		    selectedLayer = floor((YdragStart -16) / elementHeight)
+		    selectedLayer = floor((YdragStart -16) / elementHeight) + ruleStartLayer
 		    
 		    dim startTime as integer = val(demo.getSelectedBarsStartTime)
 		    
