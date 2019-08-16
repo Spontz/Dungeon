@@ -47,6 +47,7 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   9
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   94
       Transparent     =   False
       Visible         =   True
@@ -171,6 +172,7 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   94
       Transparent     =   False
       Visible         =   True
@@ -260,6 +262,7 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   248
       Transparent     =   False
       Visible         =   True

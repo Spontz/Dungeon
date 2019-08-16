@@ -33,9 +33,6 @@ Protected Module ScriptWriter
 		  // We make the line separator CR + LF (13 + 10)
 		  theScript = theScript + EndOfLine.Windows + ReplaceLineEndings(script, EndOfLine.Windows)
 		  
-		  // Replace all the ":" characters in order to not interfere with the network protocol
-		  theScript = ReplaceAll(theScript, ":", "")
-		  
 		  return theScript
 		End Function
 	#tag EndMethod

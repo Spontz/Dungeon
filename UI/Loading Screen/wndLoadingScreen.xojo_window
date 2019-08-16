@@ -27,6 +27,7 @@ Begin Window wndLoadingScreen
    Visible         =   True
    Width           =   640
    Begin Timer tmrCloseWindow
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
