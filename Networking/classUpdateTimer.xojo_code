@@ -7,8 +7,8 @@ Inherits timer
 		  
 		  if not controller.Engine.myConnector.IsConnected then
 		    
-		    controller.Engine.fps = val(NthField(controller.Engine.myConnector.Response, controller.Engine.myConnector.paramSeparator, 3))
-		    state = NthField(controller.Engine.myConnector.Response, controller.Engine.myConnector.paramSeparator, 4)
+		    controller.Engine.fps = val(NthField(controller.Engine.myConnector.Response, controller.netSeparator, 3))
+		    state = NthField(controller.Engine.myConnector.Response, controller.netSeparator, 4)
 		    
 		    select case state
 		      
@@ -22,7 +22,7 @@ Inherits timer
 		      controller.Engine.state = "Fast Forward"
 		    end
 		    
-		    controller.Engine.runTime = val(NthField(controller.Engine.myConnector.Response, controller.Engine.myConnector.paramSeparator, 5))
+		    controller.Engine.runTime = val(NthField(controller.Engine.myConnector.Response, controller.netSeparator, 5))
 		    
 		    if Ubound(controller.Engine.myConnector.messageQueue) > -1  then controller.Engine.myConnector.Connect
 		    

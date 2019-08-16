@@ -272,9 +272,9 @@ End
 #tag Events myConnector
 	#tag Event
 		Sub DataAvailable(theData as String)
-		  lblResult.text = NthField(theData, myConnector.paramSeparator, 1) + " " + _
-		  NthField(theData, myConnector.paramSeparator, 2) + " " + _
-		  NthField(theData, myConnector.paramSeparator, 3)
+		  lblResult.text = NthField(theData, controller.netSeparator, 1) + " " + _
+		  NthField(theData, controller.netSeparator, 2) + " " + _
+		  NthField(theData, controller.netSeparator, 3)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

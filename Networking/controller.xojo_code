@@ -85,6 +85,8 @@ Protected Module controller
 		  // Check if the engine is already inited
 		  if Engine <> nil then return
 		  
+		  //
+		  netSeparator = chr(31)
 		  
 		  // All the engines are created with default properties, this means:
 		  // Name: Localhost
@@ -267,6 +269,10 @@ Protected Module controller
 
 	#tag Property, Flags = &h21
 		Private hash As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		netSeparator As string
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

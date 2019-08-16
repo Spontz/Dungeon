@@ -19,13 +19,13 @@ Inherits TCPSocket
 		Sub DataAvailable()
 		  Response = me.readall
 		  
-		  if NthField(response, paramSeparator, 5) = "ERROR" then
+		  if NthField(response, netSeparator, 5) = "ERROR" then
 		    msgbox("mierdin")
 		  end if
 		  
 		  trace(response, cstTraceLevelCommunication)
 		  
-		  if NthField(response, paramSeparator, 2) = "OK" or not messageQueue(0).Value("retry") then
+		  if NthField(response, netSeparator, 2) = "OK" or not messageQueue(0).Value("retry") then
 		    // Remove the message from the queue
 		    messageQueue.Remove(0)
 		  end if
@@ -59,7 +59,7 @@ Inherits TCPSocket
 		  dim dataLength as integer
 		  
 		  theID = CStr(Me.getID)
-		  dataLength = len(theID + me.paramSeparator + theMessage )
+		  dataLength = len(theID + controller.netSeparator + theMessage )
 		  
 		  dim binaryForm as variant
 		  binaryForm = bin(dataLength)
@@ -78,7 +78,7 @@ Inherits TCPSocket
 		  // Add the message to the message queue
 		  dim Message as new dictionary
 		  
-		  Message.value("content") = theSizer + theID + me.paramSeparator + theMessage + chr(val("&b00000000"))
+		  Message.value("content") = theSizer + theID + controller.netSeparator + theMessage + chr(val("&b00000000"))
 		  Message.value("retry"  ) = retry
 		  
 		  messageQueue.Append Message
@@ -102,10 +102,6 @@ Inherits TCPSocket
 	#tag Property, Flags = &h0
 		Response As String
 	#tag EndProperty
-
-
-	#tag Constant, Name = paramSeparator, Type = String, Dynamic = False, Default = \"::", Scope = Public
-	#tag EndConstant
 
 
 	#tag ViewBehavior

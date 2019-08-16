@@ -9,18 +9,19 @@ Protected Class classEngine
 		  myConnector.Address = IP
 		  myConnector.Port = Port
 		  
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub createBar(theBarScript as String)
-		  myConnector.SendMessage "section::new::" + theBarScript
+		  myConnector.SendMessage "section" + netSeparator + "new" + netSeparator + theBarScript
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub deleteBar(theBarID as String)
-		  myConnector.SendMessage "section::delete::" + theBarID
+		  myConnector.SendMessage "section" + netSeparator + "delete" + netSeparator + theBarID
 		End Sub
 	#tag EndMethod
 
@@ -32,25 +33,25 @@ Protected Class classEngine
 
 	#tag Method, Flags = &h0
 		Sub Pause()
-		  myConnector.SendMessage "command::pause"
+		  myConnector.SendMessage "command" + netSeparator + "pause"
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Ping()
-		  myConnector.SendMessage "command::ping"
+		  myConnector.SendMessage "command" + netSeparator + "ping"
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Play()
-		  myConnector.SendMessage "command::play"
+		  myConnector.SendMessage "command" + netSeparator + "play"
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub Quit()
-		  myConnector.SendMessage "command::end"
+		  myConnector.SendMessage "command" + netSeparator + "end"
 		End Sub
 	#tag EndMethod
 
@@ -62,49 +63,49 @@ Protected Class classEngine
 
 	#tag Method, Flags = &h0
 		Sub setCurrentTime(theTime as single)
-		  myConnector.SendMessage "command::currentTime::" + str(theTime)
+		  myConnector.SendMessage "command" + netSeparator + "currentTime" + netSeparator + str(theTime)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setEndTime(theTime as single)
-		  myConnector.SendMessage "command::endTime::" + str(theTime)
+		  myConnector.SendMessage "command" + netSeparator + "endTime" + netSeparator + str(theTime)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setSectionLayer(theSectionID as string, theLayer as single)
-		  myConnector.SendMessage "section::setLayer::" + str(theLayer) + "::" + theSectionID
+		  myConnector.SendMessage "section" + netSeparator + "setLayer" + netSeparator + str(theLayer) + netSeparator + theSectionID
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setSectionsEndTime(theSectionIDs as string, theTime as single)
-		  myConnector.SendMessage "section::setEndTime::" + str(theTime) + "::" + theSectionIDs
+		  myConnector.SendMessage "section" + netSeparator + "setEndTime" + netSeparator + str(theTime) + netSeparator + theSectionIDs
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub setSectionsStartTime(theSectionIDs as string, theTime as single)
-		  myConnector.SendMessage "section::setStartTime::" + str(theTime) + "::" + theSectionIDs
+		  myConnector.SendMessage "section" + netSeparator + "setStartTime" + netSeparator + str(theTime) + netSeparator + theSectionIDs
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub SetStartTime(theTime as single)
-		  myConnector.SendMessage "command::startTime::" + str(theTime)
+		  myConnector.SendMessage "command" + netSeparator + "startTime" + netSeparator + str(theTime)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub ToggleBars(BarIDs as String)
-		  myConnector.SendMessage "section::toggle::" + BarIDs
+		  myConnector.SendMessage "section" + netSeparator + "toggle" + netSeparator + BarIDs
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub updateBar(theBarID as String, theNewSectionScript as String)
-		  myConnector.SendMessage "section::update::" + theBarID + "::" + theNewSectionScript
+		  myConnector.SendMessage "section" + netSeparator + "update" + netSeparator + theBarID + netSeparator + theNewSectionScript
 		End Sub
 	#tag EndMethod
 
