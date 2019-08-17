@@ -1,23 +1,1 @@
-; Specify the model to load and the shader to apply
-sModelFilePath /pool/models/torus/torus.3ds
-sVShaderPath /pool/models/torus/torusVars.vert
-sFShaderPath /pool/models/torus/torusVars.frag
-
-fEnableDepthBufferClearing 0
-fEnableDrawWireframe 0
-
-; **********************
-; * OBJECT POSITIONING *
-; **********************
-; Translation for object n
-string tx:=0; ty:=0; tz:=-10;
-; Rotation for object n
-string rx:=0; ry:=30.0*sin(t/10); rz:=0;
-; Scale for object n
-string sx:=0.1; sy:=0.1; sz:=0.1;
-
-; **********************
-; ** SHADER VARIABLES **
-; **********************
-uniform vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;
-uniform float scale v1:=1+0.1*beat;
+; Specify the model to load and the shader to applysModelFilePath /pool/models/torus/torus.3dssVShaderPath /pool/models/torus/torus.vertsFShaderPath /pool/models/torus/torus.fragfEnableDepthBufferClearing 0fEnableDrawWireframe 0; **********************; * OBJECT POSITIONING *; **********************; Translation for object nstring tx:=0; ty:=0; tz:=-10;; Rotation for object nstring rx:=0; ry:=30.0*sin(t/10); rz:=0;; Scale for object nstring sx:=0.1; sy:=0.1; sz:=0.1;; **********************; ** SHADER VARIABLES **; **********************uniform vec3 add_color v1:=1.0*beat;v2:=0;v3:=0;uniform float scale v1:=1+0.1*beat;
