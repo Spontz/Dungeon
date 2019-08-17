@@ -43,7 +43,6 @@ Class=ClassCanvasPreview;UI/Loader/ClassCanvasPreview.xojo_code;&hFFFFFFFFBE50E6
 Folder=Utilities;UI/Timeline/Utilities;&h000000000F42207D;&hFFFFFFFFBC0BC062;false
 Module=controller;Networking/controller.xojo_code;&h0000000004F148E5;&h000000005FCFF4C7;false
 Class=classUpdateTimer;Networking/classUpdateTimer.xojo_code;&h000000002BC69B21;&h000000005FCFF4C7;false
-Window=wndDirectCommand;Networking/wndDirectCommand.xojo_window;&h000000007F4157FF;&h000000005FCFF4C7;false
 Window=cntCustom;UI/Script Editor/cntCustom.xojo_window;&h000000003A9480B4;&hFFFFFFFFBC0D27C0;false
 Window=wndTextEditor;UI/Editors/wndTextEditor.xojo_window;&h00000000568C0A2B;&hFFFFFFFFBC5E6987;false
 Class=popTextDataFiles;UI/Script Editor/Classes/popTextDataFiles.xojo_code;&h0000000003EFFB17;&hFFFFFFFFBC4BE758;false

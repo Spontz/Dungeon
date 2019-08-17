@@ -349,21 +349,6 @@ Begin Menu mnuMain
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem UntitledSeparator1
-         SpecialMenu = 0
-         Text = "-"
-         Index = -2147483648
-         AutoEnable = True
-         Visible = True
-      End
-      Begin MenuItem EngineDirectCommand
-         SpecialMenu = 0
-         Text = "Direct Command..."
-         Index = -2147483648
-         MacOptionKey = True
-         AutoEnable = True
-         Visible = True
-      End
    End
    Begin MenuItem Help
       SpecialMenu = 0

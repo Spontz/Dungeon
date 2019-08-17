@@ -36,12 +36,6 @@ Inherits Application
 
 
 	#tag MenuHandler
-		Function EngineDirectCommand() As Boolean Handles EngineDirectCommand.Action
-			wndDirectCommand.show
-		End Function
-	#tag EndMenuHandler
-
-	#tag MenuHandler
 		Function FileOpen() As Boolean Handles FileOpen.Action
 			dim file as folderitem = Chooseproject()
 			
