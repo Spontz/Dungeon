@@ -5,7 +5,6 @@ sBackgroundPicture /resources/textures/tv.jpg
 sVShaderPath /pool/shaders/drawImage/drawImageDistort.vert
 sFShaderPath /pool/shaders/drawImage/drawImageDistort.frag
 
-
 ; *********************
 ; * IMAGE POSITIONING *
 ; *********************
