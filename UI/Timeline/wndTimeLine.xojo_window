@@ -763,10 +763,14 @@ End
 		    end if
 		  next
 		  
+		  // Send a quit message
+		  engine.Quit
+		  
+		  // Force the message to be sent right now
+		  engine.myConnector.Connect
+		  
 		  ' If execution reaches this point, there is no other timeline open so we display the choose demoengine window
 		  wndChooseDemoengine.Show
-		  
-		  engine.Quit
 		  
 		  ' CLose the timeline
 		  return false
