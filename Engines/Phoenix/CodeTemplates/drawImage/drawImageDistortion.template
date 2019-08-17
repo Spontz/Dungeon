@@ -1,0 +1,20 @@
+; Draws an image
+
+sBackgroundPicture /resources/textures/tv.jpg
+
+sVShaderPath /pool/shaders/drawImage/drawImageDistort.vert
+sFShaderPath /pool/shaders/drawImage/drawImageDistort.frag
+
+
+; *********************
+; * IMAGE POSITIONING *
+; *********************
+; Image traslation
+string tx:=0; ty:=0; tz:=0.5+1*sin(t);
+; Image rotation
+string rx:=0; ry:=0; rz:=0;
+; Image scale
+string sx:=1.0; sy:=1.0; sz:=1.0;
+
+; Any other Shader variables can go here
+uniform vec3 distortion v1:=0.5+0.5*sin(t*2);v2:=0.5+0.5*cos(t*4);v3:=0.1-0.5*cos(t);

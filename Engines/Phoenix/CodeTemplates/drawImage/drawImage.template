@@ -1,0 +1,19 @@
+; Draws an image
+
+sBackgroundPicture /resources/textures/tv.jpg
+
+;sVShaderPath /resources/shaders/sections/drawImage.vert
+;sFShaderPath /resources/shaders/sections/drawImage.frag
+
+
+; *********************
+; * IMAGE POSITIONING *
+; *********************
+; Image traslation
+string tx:=0; ty:=0; tz:=0;
+; Image rotation
+string rx:=0; ry:=0; rz:=0;
+; Image scale
+string sx:=1.0; sy:=1.0; sz:=1.0;
+
+; Any other Shader variables can go here
