@@ -3,6 +3,7 @@ gl_info 0
 gl_accum 0
 gl_width 640
 gl_height 480
+gl_aspect 1.7777
 gl_bpp 32
 gl_stencil 0
 gl_multisampling 0
