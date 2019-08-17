@@ -47,6 +47,7 @@ Begin Window wndChooseDemoengine
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   401
       Transparent     =   True
       Visible         =   True

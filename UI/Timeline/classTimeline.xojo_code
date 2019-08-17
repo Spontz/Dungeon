@@ -143,38 +143,39 @@ Inherits Canvas
 		      // The clicked bar is selected so the user wants to move the selected bar
 		      action = "draggingBar"
 		      
-		    elseif  keyboard.OptionKey and demo.countSelectedbars > 0 then
-		      // The user wants to duplicate the selection using the pointer and the option key
-		      
-		      // TODO
-		      // We create a new section for each one of the current selected sections
-		      dim newBarIDs() as string
-		      for each selectedBarID as string in demo.getSelectedBarIDs
+		      if  keyboard.AltKey and demo.countSelectedbars > 0 then
+		        // The user wants to duplicate the selection using the pointer and the option key
 		        
-		        newBarIDs.append(demo.addBar( _
-		        demo.getBarType            (selectedBarID), _
-		        demo.getBarLayer           (selectedBarID), _
-		        demo.getBarStartTime       (selectedBarID), _
-		        demo.getBarEndTime         (selectedBarID), _
-		        demo.getBarScript          (selectedBarID), _
-		        demo.getBarSrcBlending     (selectedBarID), _
-		        demo.getBarDstBlending     (selectedBarID), _
-		        demo.getBarSrcAlpha        (selectedBarID), _
-		        demo.getBarDstAlpha        (selectedBarID), _
-		        demo.getBarBlendingEquation(selectedBarID) _
-		        ))
-		      next
-		      
-		      // Remove the original bars from the selection
-		      for each selectedBarID as string in demo.getSelectedBarIDs
-		        demo.removeBarFromSelection(selectedBarID)
-		      next
-		      
-		      // Add the new bars to the selection
-		      for each newBarID as string in newBarIDs
-		        demo.addBarToSelection(newBarID)
-		        controller.createBar(newBarID)
-		      next
+		        // TODO
+		        // We create a new section for each one of the current selected sections
+		        dim newBarIDs() as string
+		        for each selectedBarID as string in demo.getSelectedBarIDs
+		          
+		          newBarIDs.append(demo.addBar( _
+		          demo.getBarType            (selectedBarID), _
+		          demo.getBarLayer           (selectedBarID), _
+		          demo.getBarStartTime       (selectedBarID), _
+		          demo.getBarEndTime         (selectedBarID), _
+		          demo.getBarScript          (selectedBarID), _
+		          demo.getBarSrcBlending     (selectedBarID), _
+		          demo.getBarDstBlending     (selectedBarID), _
+		          demo.getBarSrcAlpha        (selectedBarID), _
+		          demo.getBarDstAlpha        (selectedBarID), _
+		          demo.getBarBlendingEquation(selectedBarID) _
+		          ))
+		        next
+		        
+		        // Remove the original bars from the selection
+		        for each selectedBarID as string in demo.getSelectedBarIDs
+		          demo.removeBarFromSelection(selectedBarID)
+		        next
+		        
+		        // Add the new bars to the selection
+		        for each newBarID as string in newBarIDs
+		          demo.addBarToSelection(newBarID)
+		          controller.createBar(newBarID)
+		        next
+		      end if
 		      
 		    else
 		      // Remove all the other selected bars and select the clicked bar
