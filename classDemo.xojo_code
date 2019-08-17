@@ -1,17 +1,18 @@
 #tag Class
 Protected Class classDemo
 	#tag Method, Flags = &h0
-		Function addBar(type as string, layer as integer, startTime as single, endTime as single, script as string, srcBlending as string, dstBlending as string, srcAlpha as string, dstAlpha as string) As string
+		Function addBar(type as string, layer as integer, startTime as single, endTime as single, script as string, srcBlending as string, dstBlending as string, srcAlpha as string, dstAlpha as string, blendingEQ as string) As string
 		  dim rec as New DatabaseRecord
 		  
-		  rec.Column("type") = type
-		  rec.IntegerColumn("layer") = layer
-		  rec.DoubleColumn("startTime") = startTime
-		  rec.DoubleColumn("endTime") = endTime
-		  rec.BooleanColumn("enabled") = true
-		  rec.Column("script") = script
-		  rec.Column("srcBlending") = srcBlending
-		  rec.Column("dstBlending") = dstBlending
+		  rec.Column       ("type"       ) = type
+		  rec.IntegerColumn("layer"      ) = layer
+		  rec.DoubleColumn ("startTime"  ) = startTime
+		  rec.DoubleColumn ("endTime"    ) = endTime
+		  rec.BooleanColumn("enabled"    ) = true
+		  rec.Column       ("script"     ) = script
+		  rec.Column       ("srcBlending") = srcBlending
+		  rec.Column       ("dstBlending") = dstBlending
+		  rec.Column       ("blendingEQ" ) = blendingEQ
 		  
 		  demoDB.InsertRecord ("BARS", rec)
 		  
@@ -546,7 +547,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarBlendingEquation(barID as string) As integer
+		Function getBarBlendingEquation(barID as string) As string
 		  dim result as string
 		  dim query as string
 		  
@@ -555,9 +556,9 @@ Protected Class classDemo
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		    return -1
+		    return ""
 		  else
-		    return getBlendingEquationID(result)
+		    return result
 		  end if
 		End Function
 	#tag EndMethod
@@ -584,27 +585,46 @@ Protected Class classDemo
 		  result.Value("script"     ) = barRS.Field("script"     ).StringValue
 		  result.Value("srcBlending") = barRS.Field("srcBlending").StringValue
 		  result.Value("dstBlending") = barRS.Field("dstBlending").StringValue
-		  result.Value("blendingEQ" ) = barRS.Field("blendingEQ" ).StringValue
 		  result.Value("srcAlpha"   ) = barRS.Field("srcAlpha"   ).StringValue
 		  result.Value("dstAlpha"   ) = barRS.Field("dstAlpha"   ).StringValue
+		  result.Value("blendingEQ" ) = barRS.Field("blendingEQ" ).StringValue
 		  
 		  return result
 		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarDstBlendingID(barID as string) As integer
+		Function getBarDstAlpha(barID as string) As string
+		  dim result as string
+		  dim query as string
+		  
+		  query = "SELECT dstAlpha FROM BARs where id = '" + barID + "' LIMIT 1"
+		  
+		  result = demoDB.SQLSelect(query).Field("dstAlpha").StringValue
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    return ""
+		  else
+		    return result
+		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getBarDstBlending(barID as string) As string
 		  dim result as string
 		  dim query as string
 		  
 		  query = "SELECT dstBlending FROM BARs where id = '" + barID + "' LIMIT 1"
+		  
 		  result = demoDB.SQLSelect(query).Field("dstBlending").StringValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		    return -1
+		    return ""
 		  else
-		    return getBlendingID(result)
+		    return result
 		  end if
 		End Function
 	#tag EndMethod
@@ -716,7 +736,25 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarSrcBlendingID(barID as string) As integer
+		Function getBarSrcAlpha(barID as string) As string
+		  dim result as string
+		  dim query as string
+		  
+		  query = "SELECT srcAlpha FROM BARs where id = '" + barID + "' LIMIT 1"
+		  
+		  result = demoDB.SQLSelect(query).Field("srcAlpha").StringValue
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    return ""
+		  else
+		    return result
+		  end if
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getBarSrcBlending(barID as string) As string
 		  dim result as string
 		  dim query as string
 		  
@@ -726,9 +764,9 @@ Protected Class classDemo
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
-		    return -1
+		    return ""
 		  else
-		    return getBlendingID(result)
+		    return result
 		  end if
 		End Function
 	#tag EndMethod
@@ -822,14 +860,14 @@ Protected Class classDemo
 		    return "REVERSE_SUBTRACT"
 		    
 		  else
-		    return "Invalid blensing equation"
+		    return "Invalid blensdng equation"
 		    
 		  end select
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Function getBlendingEquationID(mode as string) As integer
+	#tag Method, Flags = &h0
+		Function getBlendingEquationID(mode as string) As integer
 		  select case mode
 		    
 		  case "ADD"
@@ -848,8 +886,8 @@ Protected Class classDemo
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Function getBlendingID(mode as string) As integer
+	#tag Method, Flags = &h0
+		Function getBlendingID(mode as string) As integer
 		  select case mode
 		    
 		  case "ZERO"
@@ -1907,8 +1945,8 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub removeBarFromSelection(barID as integer)
-		  ExecuteSQL("UPDATE BARs SET selected = 0 WHERE id = '" + str(barID) + "'")
+		Sub removeBarFromSelection(barID as string)
+		  ExecuteSQL("UPDATE BARs SET selected = 0 WHERE id = '" + barID + "'")
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage

@@ -104,7 +104,7 @@ Inherits Canvas
 		      demo.clearBarSelection
 		      
 		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "")
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "", "")
 		      
 		      // We find the bar limits and store them for a later use
 		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)
@@ -127,7 +127,7 @@ Inherits Canvas
 		    if Keyboard.ShiftKey then
 		      if demo.getBarSelectedStatus(val(NthField(clickedItem, " ", 2))) then
 		        // The bar is selected, so remove it from the selection
-		        demo.removeBarFromSelection(val(NthField(clickedItem, " ", 2)))
+		        demo.removeBarFromSelection(NthField(clickedItem, " ", 2))
 		        
 		        // Set the mouse cursor
 		        MouseCursor = System.Cursors.StandardPointer
@@ -147,21 +147,34 @@ Inherits Canvas
 		      // The user wants to duplicate the selection using the pointer and the option key
 		      
 		      // TODO
-		      '//We create a new section for each one of the current selected sections
-		      'ReDim NewSectionList(Ubound(SelectedSections,1))
-		      'for i = 0 to Ubound(SelectedSections,1)
-		      'NewSectionList(i) = demo.sections.create(SelectedSections(i,5), SelectedSections(i,1), SelectedSections(i,2))
-		      'next
-		      '
-		      '//Now copy the original contents to the new sections
-		      'for i = 0 to Ubound(NewSectionList)
-		      'demo.sections.CopyContents(SelectedSections(i,0), NewSectionList(i))
-		      'next
+		      // We create a new section for each one of the current selected sections
+		      dim newBarIDs() as string
+		      for each selectedBarID as string in demo.getSelectedBarIDs
+		        
+		        newBarIDs.append(demo.addBar( _
+		        demo.getBarType            (selectedBarID), _
+		        demo.getBarLayer           (selectedBarID), _
+		        demo.getBarStartTime       (selectedBarID), _
+		        demo.getBarEndTime         (selectedBarID), _
+		        demo.getBarScript          (selectedBarID), _
+		        demo.getBarSrcBlending     (selectedBarID), _
+		        demo.getBarDstBlending     (selectedBarID), _
+		        demo.getBarSrcAlpha        (selectedBarID), _
+		        demo.getBarDstAlpha        (selectedBarID), _
+		        demo.getBarBlendingEquation(selectedBarID) _
+		        ))
+		      next
 		      
-		      // And inform the demoengine about the creation of the new sections
-		      'for i = 0 to Ubound(NewSectionList)
-		      'controller.createSection(NewSectionList(i))
-		      'next
+		      // Remove the original bars from the selection
+		      for each selectedBarID as string in demo.getSelectedBarIDs
+		        demo.removeBarFromSelection(selectedBarID)
+		      next
+		      
+		      // Add the new bars to the selection
+		      for each newBarID as string in newBarIDs
+		        demo.addBarToSelection(newBarID)
+		        controller.createBar(newBarID)
+		      next
 		      
 		    else
 		      // Remove all the other selected bars and select the clicked bar
@@ -281,38 +294,6 @@ Inherits Canvas
 		    end if
 		    
 		    me.refresh
-		    
-		    //Now we check for time and layer inconsistences
-		    //tempSingle = 0
-		    //tempInteger = 0
-		    
-		    'for i = 0 to Ubound(SelectedSections,1)
-		    
-		    //In time
-		    'if SelectedSections(i,3) < 0 then
-		    'if SelectedSections(i,3) < tempSingle then
-		    'tempSingle = SelectedSections(i,3)
-		    'end if
-		    'end if
-		    
-		    //InLayer
-		    'if SelectedSections(i,6) < 0 then
-		    'if SelectedSections(i,6) < tempInteger then
-		    'tempInteger = SelectedSections(i,6)
-		    'end if
-		    'end if
-		    'next
-		    
-		    //We store the final times and layers in the corresponding sections after performing the correction
-		    'for i = 0 to Ubound(SelectedSections,1)
-		    //Start and End times
-		    'demo.setBarStartTime(SelectedSections(i,0), SelectedSections(i,3) - tempSingle)
-		    'demo.setBarEndTime(SelectedSections(i,0),SelectedSections(i,4) - tempSingle)
-		    
-		    //And Layers
-		    'demo.setBarLayer(SelectedSections(i,0), SelectedSections(i,6) - tempInteger)
-		    'next
-		    
 		    
 		  elseif clickedItem = "emptyArea" then
 		    if NthField(action, " ", 1) = "drawingBar" then
@@ -525,7 +506,8 @@ Inherits Canvas
 			bardata.value("srcBlending"), _
 			bardata.value("dstBlending"), _
 			bardata.value("srcAlpha"), _
-			bardata.value("dstAlpha") _
+			bardata.value("dstAlpha"), _
+			barData.value("blendingEQ") _
 			)
 			
 			demo.addBarToSelection(newBarID)
@@ -978,8 +960,8 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub RemoveSectionFromSelection(section as integer)
-		  demo.removeBarFromSelection(section)
+		Protected Sub RemoveSectionFromSelection(barID as string)
+		  demo.removeBarFromSelection(barID)
 		End Sub
 	#tag EndMethod
 

@@ -558,9 +558,9 @@ End
 		    barID = ""
 		    
 		    // The blending menus
-		    mnuBlendStart.listIndex    = demo.getBarSrcBlendingID   (theBarID)
-		    mnuBlendEnd.listIndex      = demo.getBarDstBlendingID   (theBarID)
-		    mnuBlendEquation.listindex = demo.getBarBlendingEquation(theBarID)
+		    mnuBlendStart.listIndex    = demo.getBlendingID(demo.getBarSrcBlending             (theBarID))
+		    mnuBlendEnd.listIndex      = demo.getBlendingID(demo.getBarDstBlending             (theBarID))
+		    mnuBlendEquation.listindex = demo.getBlendingEquationID(demo.getBarBlendingEquation(theBarID))
 		    
 		    // The element name and additional script
 		    popElement.text = demo.getBarType(theBarID)
