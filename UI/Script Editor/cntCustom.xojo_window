@@ -795,11 +795,19 @@ End
 		  dim f as folderitem
 		  dim data as TextOutputStream
 		  
-		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.Text)
-		  
-		  if not f.exists then f.CreateAsFolder
-		  
-		  f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.Text)
+		    if not f.exists then f.CreateAsFolder
+		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		    
+		  case demo.phoenix
+		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.Text)
+		    if not f.exists then f.CreateAsFolder
+		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
+		    
+		  end Select
 		  
 		  data = f.CreateTextFile
 		  
