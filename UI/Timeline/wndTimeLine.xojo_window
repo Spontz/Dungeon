@@ -1113,8 +1113,8 @@ End
 		  start = round(val(demo.GetSelectedBarsStartTime) * 100) / 100
 		  ending = round(val(demo.GetSelectedbarsEndTime) * 100) / 100
 		  
-		  txtElementStartTime.text = str(start)
-		  txtElementEndTime.text = str(ending)
+		  txtElementStartTime.text = cstr(start )
+		  txtElementEndTime.text   = cstr(ending)
 		End Sub
 	#tag EndMethod
 
