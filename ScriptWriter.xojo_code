@@ -128,11 +128,17 @@ Protected Module ScriptWriter
 		  // screen attributes
 		  contents = contents + "gl_width " + str(theDemo.GetVideoScreenWidth) + EndOfLine.Windows
 		  contents = contents + "gl_height " + Str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
-		  contents = contents + "gl_bpp 32" + EndOfLine.Windows
 		  
-		  if theDemo.engine = theDemo.dragon then
+		  select case theDemo.engine
+		    
+		  case theDemo.dragon
+		    contents = contents + "gl_bpp 32" + EndOfLine.Windows
 		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
-		  end if
+		    
+		  case thedemo.phoenix
+		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight)
+		    
+		  end select
 		  
 		  contents = contents + "gl_stencil 0" + EndOfLine.Windows
 		  contents = contents + "gl_multisampling 0" + EndOfLine.Windows
