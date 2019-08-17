@@ -25,7 +25,7 @@ Begin Window wndTimeLine
    Resizeable      =   True
    Title           =   "Dungeon Demo Editor"
    Visible         =   False
-   Width           =   805
+   Width           =   900
    Begin classTimeline cnvTimeLine
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -56,7 +56,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   533
+      Width           =   628
    End
    Begin ScrollBar scrHorizontal
       AcceptFocus     =   True
@@ -85,7 +85,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       Value           =   0
       Visible         =   True
-      Width           =   533
+      Width           =   628
    End
    Begin ScrollBar scrVertical
       AcceptFocus     =   True
@@ -95,7 +95,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   789
+      Left            =   884
       LineStep        =   1
       LiveScroll      =   True
       LockBottom      =   True
@@ -128,7 +128,7 @@ Begin Window wndTimeLine
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   789
+      Left            =   884
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -232,7 +232,7 @@ Begin Window wndTimeLine
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "0.00 sg"
+      Text            =   "0.00 sec"
       TextColor       =   &c3F3F3F00
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   12.0
@@ -276,7 +276,7 @@ Begin Window wndTimeLine
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "0.00 sg"
+      Text            =   "0.00 sec"
       TextColor       =   &c3F3F3F00
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   12.0
@@ -306,7 +306,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   648
+      Left            =   741
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -350,7 +350,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   677
+      Left            =   772
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -394,7 +394,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   737
+      Left            =   832
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -438,7 +438,7 @@ Begin Window wndTimeLine
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   755
+      Left            =   850
       LimitText       =   9
       LockBottom      =   False
       LockedInPosition=   False
@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   254
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -492,7 +491,7 @@ Begin Window wndTimeLine
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   544
+      Width           =   639
    End
    Begin Canvas cnvRightMarker
       AcceptFocus     =   False
@@ -554,7 +553,7 @@ Begin Window wndTimeLine
       TabIndex        =   20
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "0.00 sg"
+      Text            =   "0.00 sec"
       TextColor       =   &c3F3F3F00
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   12.0
@@ -635,7 +634,6 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   500
       Transparent     =   False
       Value           =   0
@@ -713,7 +711,7 @@ Begin Window wndTimeLine
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   805
+      Width           =   900
    End
 End
 #tag EndWindow
@@ -857,8 +855,8 @@ End
 		    cntCustomSection.left = x + 3
 		    cntCustomSection.Width = cnvTimeLine.Width + 12
 		    
-		    txtEngineComm.left = x + 3
-		    txtEngineComm.Width = cnvTimeLine.Width + 12
+		    txtEngineComm.left = 0
+		    txtEngineComm.Width = self.Width + 12
 		    
 		    scrHorizontal.Left = x + 3
 		    scrHorizontal.Width = me.width - cnvTimeLine.Left - scrVertical.Width
@@ -1057,8 +1055,8 @@ End
 		  scrVertical.Maximum = cnvTimeLine.layer2coordinate(99)
 		  
 		  // Demo times synchronization
-		  txtStartTime.text = cstr(abs(demo.getDemoStartTime * 100) / 100) + " sg"
-		  txtEndTime.text   = cstr(abs(demo.getDemoEndTime   * 100) / 100) + " sg"
+		  txtStartTime.text = cstr(abs(demo.getDemoStartTime * 100) / 100) + " sec"
+		  txtEndTime.text   = cstr(abs(demo.getDemoEndTime   * 100) / 100) + " sec"
 		  
 		  // Link the demo with the window controls
 		  cnvTimeLine.Init demo
@@ -1173,13 +1171,13 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub SetStartTime(newTime as single)
-		  txtStartTime.text = cstr(abs(newTime * 100) / 100) + " sg"
+		  txtStartTime.text = cstr(abs(newTime * 100) / 100) + " sec"
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub SetEndTime(newTime as single)
-		  txtEndTime.text = cstr(abs(newTime * 100) / 100) + " sg"
+		  txtEndTime.text = cstr(abs(newTime * 100) / 100) + " sec"
 		  
 		End Sub
 	#tag EndEvent
@@ -1253,7 +1251,7 @@ End
 		  if key=chr(13) then
 		    
 		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoStartTime) + " sg"
+		    me.text = cstr(demo.getDemoStartTime) + " sec"
 		    
 		    controller.setStartTime(demo.getDemoStartTime)
 		    
@@ -1263,7 +1261,7 @@ End
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoStartTime) + " sg"
+		    me.text = cstr(demo.getDemoStartTime) + " sec"
 		    
 		    controller.setStartTime(demo.getDemoStartTime)
 		    
@@ -1280,7 +1278,7 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  if key=chr(13) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sg"
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
 		    
 		    controller.setEndTime(demo.getDemoEndTime)
 		    
@@ -1290,7 +1288,7 @@ End
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sg"
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
 		    
 		    controller.setEndTime(demo.getDemoEndTime)
 		    
@@ -1398,7 +1396,7 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  if key=chr(13) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sg"
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
 		    
 		    controller.setEndTime(demo.getDemoEndTime)
 		    
@@ -1408,7 +1406,7 @@ End
 		    
 		  elseif key=chr(9) then
 		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sg"
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
 		    
 		    // Pass the focus to the next time field
 		    cnvTimeLine.Invalidate
