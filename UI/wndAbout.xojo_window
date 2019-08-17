@@ -119,7 +119,7 @@ Begin Window wndAbout
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Editor Programming\rIván Fernández\r\rEngine Programming\rPere Felices\r"
+      Text            =   "Editor Programming\r\nmerlucin\r\n\r\nEngine Programming\r\nxphere\r\n\r\nMusic\r\nkhrome / AMB"
       TextAlign       =   0
       TextColor       =   &cFFFFFF00
       TextFont        =   "Arial"
