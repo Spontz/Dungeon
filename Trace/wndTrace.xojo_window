@@ -210,6 +210,7 @@ Begin Window wndTrace
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   287
       Transparent     =   False
       Value           =   0
@@ -217,6 +218,7 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
@@ -281,7 +283,7 @@ End
 		  // Write the trace to the tracing window
 		  dim lastLine as integer = lbxTrace.appendRow(logtime)
 		  lbxTrace.contents(lastLine, 1) = level
-		  lbxTrace.contents(lastLine, 2) = message
+		  lbxTrace.contents(lastLine, 2) = ReplaceAll(message, chr(31), " ")
 		  
 		  lbxTrace.AddRow(logtime, level, message)
 		  

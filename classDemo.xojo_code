@@ -660,11 +660,12 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarID(time as integer, layer as integer) As string
+		Function getBarID(time as double, layer as integer) As string
 		  dim result as string
 		  dim barRS as RecordSet
 		  
-		  barRS = demoDB.SQLSelect("SELECT id FROM BARs where layer = '" + str(layer) + "' AND startTime < '" + str(time) + "' AND endTime > '" + str(time) + "'")
+		  dim query as string = "SELECT id FROM BARs where layer = '" + str(layer) + "' AND startTime < '" + str(time) + "' AND endTime > '" + str(time) + "'"
+		  barRS = demoDB.SQLSelect(query)
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -721,10 +722,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarSelectedStatus(barID as integer) As Boolean
+		Function getBarSelectedStatus(barID as string) As Boolean
 		  dim result as Boolean
 		  
-		  result = demoDB.SQLSelect("SELECT selected FROM BARs where id = '" + str(barID) + "' LIMIT 1").Field("selected").BooleanValue
+		  result = demoDB.SQLSelect("SELECT selected FROM BARs where id = '" + barID + "' LIMIT 1").Field("selected").BooleanValue
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage

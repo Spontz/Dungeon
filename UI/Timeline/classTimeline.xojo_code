@@ -125,7 +125,7 @@ Inherits Canvas
 		  elseif NthField(clickedItem, " ", 1) = "BarID" and val(NthField(clickedItem, " ", 2)) > 0  then
 		    // The user performed a click inside a bar
 		    if Keyboard.ShiftKey then
-		      if demo.getBarSelectedStatus(val(NthField(clickedItem, " ", 2))) then
+		      if demo.getBarSelectedStatus(NthField(clickedItem, " ", 2)) then
 		        // The bar is selected, so remove it from the selection
 		        demo.removeBarFromSelection(NthField(clickedItem, " ", 2))
 		        
@@ -139,7 +139,7 @@ Inherits Canvas
 		        MouseCursor = System.Cursors.ArrowAllDirections
 		      end if
 		      
-		    elseif demo.getBarSelectedStatus(val(NthField(clickedItem, " ", 2))) then
+		    elseif demo.getBarSelectedStatus(NthField(clickedItem, " ", 2)) then
 		      // The clicked bar is selected so the user wants to move the selected bar
 		      action = "draggingBar"
 		      
@@ -339,9 +339,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
-		  dim clickeditem as string
-		  
-		  clickeditem = getClickedItem(x,y)
+		  dim clickeditem as string = getClickedItem(x,y)
 		  
 		  select case NthField(clickeditem, " ", 1)
 		    
@@ -353,7 +351,9 @@ Inherits Canvas
 		    
 		  case "BarID"
 		    // We are over a bar. If the bar is selected, set the pointer to a cross
-		    if demo.getBarSelectedStatus(val(NthField(clickedItem, " ", 2))) then MouseCursor = System.Cursors.ArrowAllDirections
+		    if demo.getBarSelectedStatus(NthField(clickedItem, " ", 2)) then
+		      MouseCursor = System.Cursors.ArrowAllDirections
+		    end if
 		    
 		  else
 		    MouseCursor = System.Cursors.StandardPointer
@@ -885,34 +885,35 @@ Inherits Canvas
 		  dim position as integer
 		  dim i as integer
 		  dim bar as string
+		  dim item as string
 		  
 		  if  y < 16 and x > 16 then
-		    //**************************************
-		    //* We are in the horizontal upper ruler  *
-		    //**************************************
+		    //****************************************
+		    //* We are in the horizontal upper ruler *  
+		    //****************************************
 		    
 		    //Check if the user clicked in the StartTime marker
 		    position = time2coordinate(demo.getDemoStartTime)
 		    if x > (position - 5) and x < (position + 5) then
-		      return "startTimeMarker" // -2
+		      item = "startTimeMarker" // -2
 		    end if
 		    
 		    //Check if the user clicked in the EndTime marker
 		    position = time2coordinate(demo.getDemoEndTime)
 		    if x > (position - 5) and x < (position + 5) then
-		      return "endTimeMarker" // -1
+		      item = "endTimeMarker" // -1
 		    end if
 		    
 		    //The user has clicked in the ruler
-		    return "horizontalRuler" // -3
+		    item = "horizontalRuler" // -3
 		    
-		  elseif y > 16 and x < 16 then
-		    //*********************************
+		  elseif y >= 16 and x < 16 then
+		    //*************************************
 		    //* We are in the vertical left ruler *
-		    //*********************************
-		    return "verticalRuler"
+		    //*************************************
+		    item = "verticalRuler"
 		    
-		  elseif x >16 and y > 16 then
+		  elseif x >= 16 and y >= 16 then
 		    //*****************************
 		    //* We are in the bars region *
 		    //*****************************
@@ -921,16 +922,20 @@ Inherits Canvas
 		    if bar = "0" then
 		      return "emptyArea"
 		    else
-		      return "barID " + bar
+		      item = "barID " + bar
 		    end if
 		    
 		  else
-		    //*********************************
+		    //**********************************
 		    //* We are in the less zoom button *
-		    //*********************************
+		    //**********************************
 		    
-		    return "lessZoom" // -4
+		    item = "lessZoom" // -4
 		  end if
+		  
+		  trace("x: " + str(x) + ",y: " + str(y) + " -> Xtime: " + str(coordinate2Time(x)) + " Item : " + item, cstTraceLevelDebug)
+		  
+		  return item
 		End Function
 	#tag EndMethod
 
