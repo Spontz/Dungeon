@@ -1467,24 +1467,28 @@ Protected Class classDemo
 		Function GetNextBarStartTime(t as double, layer as integer) As double
 		  dim result as RecordSet
 		  dim time as double
+		  dim query as string
 		  
-		  result = demoDB.SQLSelect("SELECT startTime FROM BARs where layer = " + str(layer) + " AND startTime > " + str(t) + " ORDER BY startTime ASC LIMIT 1")
+		  query = "SELECT startTime FROM BARs where layer = " + str(layer) + " AND startTime > " + str(t) + " ORDER BY startTime ASC LIMIT 1"
+		  
+		  // trace(query, cstTraceLevelDebug)
+		  
+		  result = demoDB.SQLSelect(query)
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
 		    return -1
 		  end if
 		  
-		  if result.EOF = true and result.BOF = true then
+		  if result.EOF = true then
 		    // No results were obtained
 		    return -1
 		    
-		  else
-		    time = result.Field("startTime").DoubleValue
-		    
-		    return time
-		    
 		  end if
+		  
+		  time = result.Field("startTime").DoubleValue
+		  
+		  return time
 		End Function
 	#tag EndMethod
 

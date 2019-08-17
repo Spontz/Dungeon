@@ -103,11 +103,11 @@ Inherits Canvas
 		      // The SHIFT key is not pressed. Deselect all selected items
 		      demo.clearBarSelection
 		      
-		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "", "")
-		      
 		      // We find the bar limits and store them for a later use
 		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)
+		      
+		      // The user is drawing a bar so we create a new one
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "", "")
 		      
 		      action = "drawingBar " + str(barID)
 		      
@@ -310,7 +310,7 @@ Inherits Canvas
 		      // Check that our section does not overlap the following one
 		      if coordinate2time(x) > XrightTimeLimit and XrightTimeLimit <> -1 then
 		        x = time2coordinate(XrightTimeLimit)
-		        Trace("classTimeline:MouseDrag: The user is trying to draw a bar over an existing one, so the bar duration was limited in order to avoid overlapping", cstTraceLevelLog)
+		        Trace("classTimeline:MouseDrag: The user is trying to draw a bar over an existing one, so the bar duration was limited in order to avoid overlapping.", cstTraceLevelLog)
 		      end if
 		      
 		      // Set the bar end time
