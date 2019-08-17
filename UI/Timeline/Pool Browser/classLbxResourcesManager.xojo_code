@@ -476,10 +476,10 @@ Inherits listbox
 		    dim size as string = Strings.getHRsize(newitems(i).Value("size"))
 		    if size = "0 bytes" then size = ""
 		    
-		    me.cell(me.LastIndex, me.cstColumnID) = newitems(i).Value("id")
-		    me.cell(me.LastIndex, me.cstColumnType) = newitems(i).Value("type")
-		    me.cell(me.LastIndex, me.cstColumnSize) = size
-		    me.cell(me.LastIndex, me.cstColumnDepth) = depth
+		    me.cell(me.LastIndex, me.cstColumnID    ) = newitems(i).Value("id")
+		    me.cell(me.LastIndex, me.cstColumnType  ) = newitems(i).Value("type")
+		    me.cell(me.LastIndex, me.cstColumnSize  ) = size
+		    me.cell(me.LastIndex, me.cstColumnDepth ) = depth
 		    me.cell(me.LastIndex, me.cstColumnParent) = parentID
 		  next
 		End Sub

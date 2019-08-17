@@ -793,12 +793,8 @@ Protected Class classDemo
 		  
 		  content = ReplaceAll(content, "\", "/")
 		  
-		  'Dim ps As SQLitePreparedStatement
-		  'ps = SQLitePreparedStatement(demoDB.Prepare("SELECT id FROM BARS where script LIKE ?"))
-		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%data/pool/" + content + "%'")
-		  'ps.BindType(0, SQLitePreparedStatement.SQLITE_BLOB)
-		  'ps.Bind(0, "%" + content + "%")
-		  'Dim result As RecordSet = ps.SQLSelect
+		  
+		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%/pool/" + content + "%'")
 		  
 		  while not result.EOF
 		    barIDs.Append(result.Field("id").StringValue)

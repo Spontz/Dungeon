@@ -588,7 +588,7 @@ Begin Window wndTimeLine
       Hierarchical    =   True
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Resource	Size	ID	Type	Parent	Depth	Format"
+      InitialValue    =   "Pool folder	Size	ID	Type	Parent	Depth	Format"
       Italic          =   False
       Left            =   0
       LockBottom      =   True
@@ -906,7 +906,8 @@ End
 
 	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
-			// UpdateSelectedSections
+			UpdateSelectedBars
+			
 		End Function
 	#tag EndMenuHandler
 
@@ -1100,11 +1101,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub UpdateSelectedBars()
-		  dim selectedBarsIDs() as string = demo.getSelectedBarIDs
-		  
-		  for each barID as string in selectedBarsIDs
-		    controller.updateBar(barID)
-		  next
+		  UpdateBarIDs(demo.getSelectedBarIDs)
 		End Sub
 	#tag EndMethod
 

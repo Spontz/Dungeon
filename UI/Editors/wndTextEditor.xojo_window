@@ -49,7 +49,7 @@ Begin Window wndTextEditor
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
+      TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
       Top             =   534
@@ -81,7 +81,7 @@ Begin Window wndTextEditor
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
+      TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
       Top             =   534
@@ -113,7 +113,7 @@ Begin Window wndTextEditor
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
+      TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
       Top             =   534
@@ -157,7 +157,7 @@ Begin Window wndTextEditor
       HelpTag         =   ""
       HighlightBlocksOnMouseOverGutter=   True
       HighlightMatchingBrackets=   True
-      HighlightMatchingBracketsMode=   0
+      HighlightMatchingBracketsMode=   1
       ignoreRepaint   =   False
       IndentPixels    =   16
       IndentVisually  =   False
@@ -284,8 +284,8 @@ End
 		Private Sub updateBarsUsingFile()
 		  dim filePath as string = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
 		  
-		  dim barIDs() as string
-		  barIDs = hook.demo.getBarsThatUseFile(filePath)
+		  dim barIDs() as string = hook.demo.getBarsThatUseFile(filePath)
+		  
 		  hook.updateBarIDs(barIDs)
 		End Sub
 	#tag EndMethod
