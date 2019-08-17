@@ -473,9 +473,12 @@ Inherits listbox
 		    me.CellType(me.LastIndex, me.cstColumnName) = 2
 		    if newitems(i).Value("enabled") then me.CellCheck(me.LastIndex, me.cstColumnName) = true
 		    
+		    dim size as string = Strings.getHRsize(newitems(i).Value("size"))
+		    if size = "0 bytes" then size = ""
+		    
 		    me.cell(me.LastIndex, me.cstColumnID) = newitems(i).Value("id")
 		    me.cell(me.LastIndex, me.cstColumnType) = newitems(i).Value("type")
-		    me.cell(me.LastIndex, me.cstColumnSize) = newitems(i).Value("size")
+		    me.cell(me.LastIndex, me.cstColumnSize) = size
 		    me.cell(me.LastIndex, me.cstColumnDepth) = depth
 		    me.cell(me.LastIndex, me.cstColumnParent) = parentID
 		  next
@@ -543,8 +546,11 @@ Inherits listbox
 		      
 		    end
 		    
+		    dim size as string = Strings.getHRsize(Resources(i).Value("size"))
+		    if size = "0 bytes" then size = ""
+		    
 		    // Add the remaining properties (shared amongst all the items)
-		    me.cell(me.LastIndex, cstColumnSize  ) = Resources(i).value("size")
+		    me.cell(me.LastIndex, cstColumnSize  ) = size
 		    me.cell(me.LastIndex, cstColumnID    ) = Resources(i).value("id")
 		    me.cell(me.LastIndex, cstColumnType  ) = Resources(i).value("type")
 		    me.cell(me.LastIndex, cstColumnParent) = "0" // Because this is a root folder
