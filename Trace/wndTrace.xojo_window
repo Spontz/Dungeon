@@ -105,10 +105,10 @@ Begin Window wndTrace
       Text            =   "Select some events to track time differences"
       TextAlign       =   0
       TextColor       =   &c2D2D2D00
-      TextFont        =   "System"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   12.0
       TextUnit        =   0
-      Top             =   286
+      Top             =   285
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -158,7 +158,7 @@ Begin Window wndTrace
       Visible         =   True
       Width           =   160
    End
-   Begin Label StaticText1
+   Begin Label lblFilter
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -184,8 +184,8 @@ Begin Window wndTrace
       Text            =   "Filter"
       TextAlign       =   2
       TextColor       =   &c00000000
-      TextFont        =   "System"
-      TextSize        =   0.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
       Top             =   7
       Transparent     =   False
@@ -210,7 +210,6 @@ Begin Window wndTrace
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   287
       Transparent     =   False
       Value           =   0
@@ -218,7 +217,6 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
@@ -226,6 +224,39 @@ Begin Window wndTrace
       Scope           =   0
       StackSize       =   0
       TabPanelIndex   =   0
+   End
+   Begin CheckBox chkExtendedLog
+      AutoDeactivate  =   True
+      Bold            =   False
+      Caption         =   "Display extended log"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   9
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      State           =   0
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
+      TextUnit        =   0
+      Top             =   7
+      Transparent     =   False
+      Underline       =   False
+      Value           =   False
+      Visible         =   True
+      Width           =   151
    End
 End
 #tag EndWindow
@@ -242,6 +273,11 @@ End
 
 	#tag Method, Flags = &h0
 		Sub append(logtime as string, message as string, level as string)
+		  if not chkExtendedLog.Value then
+		    if InStr(message, controller.netSeparator + "command" + controller.netSeparator + "ping") > 0then return
+		    if inStr(message, controller.netSeparator + "OK" + controller.netSeparator) > 0 then return
+		  end if
+		  
 		  // Write the trace to the tracing window
 		  dim lastLine as integer = lbxTrace.appendRow(logtime)
 		  lbxTrace.contents(lastLine, 1) = level
@@ -253,6 +289,8 @@ End
 		  if wndTrace.lbxTrace.SelCount = 0 then
 		    wndTrace.lbxTrace.ScrollPosition = 1 + wndTrace.lbxTrace.ListCount - ceil((wndTrace.lbxTrace.Height - 16) / wndTrace.lbxTrace.DefaultRowHeight)
 		  end if
+		  
+		  
 		  
 		  
 		End Sub

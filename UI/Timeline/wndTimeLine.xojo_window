@@ -856,7 +856,7 @@ End
 		    cntCustomSection.Width = cnvTimeLine.Width + 12
 		    
 		    txtEngineComm.left = 0
-		    txtEngineComm.Width = self.Width + 12
+		    txtEngineComm.Width = self.Width
 		    
 		    scrHorizontal.Left = x + 3
 		    scrHorizontal.Width = me.width - cnvTimeLine.Left - scrVertical.Width

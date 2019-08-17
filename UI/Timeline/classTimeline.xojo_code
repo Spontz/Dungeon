@@ -299,7 +299,7 @@ Inherits Canvas
 		  elseif clickedItem = "emptyArea" then
 		    if NthField(action, " ", 1) = "drawingBar" then
 		      
-		      Trace("classTimeline:MouseDrag: User is drawing bar ID " + NthField(action, " ", 2) + ". New end time: " + str(coordinate2time(x)), cstTraceLevelLog)
+		      // Trace("classTimeline:MouseDrag: User is drawing bar ID " + NthField(action, " ", 2) + ". New end time: " + str(coordinate2time(x)), cstTraceLevelLog)
 		      
 		      // Check that we are not drawing the section backwards
 		      if x <= me.XdragStart then
