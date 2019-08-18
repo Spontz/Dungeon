@@ -94,6 +94,16 @@ Protected Module Strings
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function extension(fullname as string) As string
+		  // This method returns the extension of a dile name
+		  dim elements() as string = Split(fullName, ".")
+		  
+		  // Remove the source extension from the source file and return the short name
+		  Return elements(ubound(elements))
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function getHRsize(bytes as integer) As String
 		  // This function returns an human-readable string depicting the amount of passed bytes with the closest units
 		  dim GB as string
@@ -113,7 +123,7 @@ Protected Module Strings
 		  elseif KB <> "0" then
 		    return KB + " KB"
 		  end if
-		   
+		  
 		  return B + " bytes"
 		End Function
 	#tag EndMethod
@@ -360,20 +370,16 @@ Protected Module Strings
 
 	#tag Method, Flags = &h0
 		Function shortName(fullname as string) As string
-		  // This method extends the folderitem property in order to return extensionless file names
+		  // This method returns extensionless file names
+		  dim elements() as string = Split(fullName, ".")
 		  
-		  // Dim the local variables
-		  Dim oldExtn   As String  // Source extension string
-		  Dim dotCnt    As Integer // Number of dots in the source file name
-		  
-		  // Get the number of 'dot' (.) in the source name
-		  dotCnt = CountFields(FullName,".")
-		  
-		  // Get the source extension
-		  oldExtn = NthField(FullName,".",dotCnt)
+		  if ubound(elements) = 0 then return fullname
 		  
 		  // Remove the source extension from the source file and return the short name
-		  Return Replace(FullName,"." + oldExtn,"")
+		  elements.Remove(elements.Ubound)
+		  
+		  Return join (elements, ".")
+		  
 		End Function
 	#tag EndMethod
 

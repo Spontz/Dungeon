@@ -317,16 +317,18 @@ Protected Class classDemo
 		  
 		  If f <> Nil then
 		    // Let's calculate the file name in order to avoid two files with the same name in the same folder
-		    dim newName as string = f.name
+		    dim newName as string
 		    
-		    if nameConflict(newName, parentID) then
+		    if nameConflict(f.Name, parentID) then
 		      dim counter as integer
+		      dim shortName as string = Strings.shortName(f.name)
+		      dim extension as string = Strings.extension(f.name)
 		      
-		      newName = f.Name + " Copy"
+		      newName = ShortName + " Copy." + extension
 		      
 		      while nameConflict(newName, parentID)
 		        counter = counter + 1
-		        newName = f.name + " Copy " + str(counter)
+		        newName = shortName + " Copy " + str(counter) + "." + extension
 		      wend
 		    end if
 		    
@@ -338,13 +340,13 @@ Protected Class classDemo
 		      
 		      rec = New DatabaseRecord
 		      
-		      rec.Column("name") = newName
-		      rec.IntegerColumn("parent") = val(parentID)
-		      rec.IntegerColumn("bytes") = f.Length
-		      rec.Column("type") = "File"
-		      rec.BlobColumn("data") = file
-		      rec.Column("format") = f.Type
-		      rec.Column("enabled") = "0"
+		      rec.Column       ("name"   ) = newName
+		      rec.IntegerColumn("parent" ) = val(parentID)
+		      rec.IntegerColumn("bytes"  ) = f.Length
+		      rec.Column       ("type"   ) = "File"
+		      rec.BlobColumn   ("data"   ) = file
+		      rec.Column       ("format" ) = f.Type
+		      rec.Column       ("enabled") = "0"
 		      
 		      demoDB.InsertRecord ("FILES", rec)
 		      
@@ -1163,17 +1165,13 @@ Protected Class classDemo
 	#tag Method, Flags = &h0
 		Function getFile(ID as string) As dictionary
 		  dim files as RecordSet
-		  dim folders as RecordSet
-		  dim i as integer
-		  dim row as Dictionary
 		  dim result as Dictionary
+		  result = new Dictionary
 		  
 		  Files = demoDB.SQLSelect("SELECT * FROM FILES where id='" + ID + "'")
 		  
 		  // Build the response dictionary
 		  if files.RecordCount > 0 then
-		    result = new Dictionary
-		    
 		    result.Value("type"   ) = "File"
 		    result.Value("id"     ) = files.Field("id"     ).StringValue
 		    result.Value("name"   ) = files.Field("name"   ).StringValue
@@ -1911,16 +1909,17 @@ Protected Class classDemo
 		  dim result2 as integer
 		  
 		  // First of all, get an unique name for the folder
-		  result1 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FOLDERS WHERE name = '" + name + "' AND parent = '" + parentFOlderID + "' LIMIT 1").Field("TOTAL").IntegerValue
-		  result2 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FILES WHERE name = '" + name + "' AND parent = '" + parentFolderID + "' LIMIT 1").Field("TOTAL").IntegerValue
+		  result1 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FOLDERS WHERE name = '" + name + "' AND parent = '" + parentFolderID + "' LIMIT 1").Field("TOTAL").IntegerValue
+		  result2 = demoDB.SQLSelect("SELECT COUNT(*) AS TOTAL FROM FILES   WHERE name = '" + name + "' AND parent = '" + parentFolderID + "' LIMIT 1").Field("TOTAL").IntegerValue
 		  
 		  if result1 > 0 or result2 > 0 then
 		    // A folder or a resource with the same name was found in this location
 		    return true
-		  else
-		    // No folder or resource with the same name as the one indicated was found in this location
-		    return false
 		  end if
+		  
+		  // No folder or resource with the same name as the one indicated was found in this location
+		  return false
+		  
 		End Function
 	#tag EndMethod
 

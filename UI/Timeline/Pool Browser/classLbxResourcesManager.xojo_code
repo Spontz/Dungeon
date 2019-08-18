@@ -412,23 +412,29 @@ Inherits listbox
 		  end if
 		  
 		  // Insert the item
+		  dim itemName as string
+		  
 		  if id <> "" then
 		    if type = "Folder" then
 		      me.InsertFolder(me.ListIndex+1, obj.FolderItem.Name, depth)
+		      itemName = demo.getFolderName(id)
 		      
 		    else
-		      me.InsertRow(me.ListIndex+1, obj.FolderItem.Name, depth)
-		      me.cell(me.LastIndex, me.cstColumnSize) = str(obj.FolderItem.Length)
+		      itemName = demo.getFile(id).value("name")
+		      me.InsertRow(me.ListIndex+1, itemName, depth)
+		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(obj.FolderItem.Length)
 		      
 		    end if
 		    
-		    me.cell(me.LastIndex, me.cstColumnID) = id
-		    me.cell(me.LastIndex, me.cstColumnName) = obj.FolderItem.name
-		    me.cell(me.LastIndex, me.cstColumnType) = type
-		    me.cell(me.LastIndex, me.cstColumnDepth) = str(depth)
+		    me.cell(me.LastIndex, me.cstColumnID    ) = id
+		    me.cell(me.LastIndex, me.cstColumnName  ) = itemName
+		    me.cell(me.LastIndex, me.cstColumnType  ) = type
+		    me.cell(me.LastIndex, me.cstColumnDepth ) = str(depth)
 		    me.cell(me.LastIndex, me.cstColumnParent) = parentFolderID
+		    
 		    me.CellType(me.LastIndex, me.cstColumnName) = 2
 		    me.CellCheck(me.LastIndex, me.cstColumnName) = false
+		    
 		    me.RowPicture(me.LastIndex) = icon
 		    
 		    // Select the inserted item
@@ -436,7 +442,7 @@ Inherits listbox
 		    
 		  else
 		    // The item could not be inserted because the name
-		    Notify("An item with the same name already exists in this location", "Either rename the new item before adding it to this location or remove the item that already uses the name in conflict from the demofiles")
+		    Notify("An item with the same name already exists in this location", "Either rename the new item before adding it to this location or remove the item that already uses the name in conflict from the pool.")
 		    
 		  end if
 		  
