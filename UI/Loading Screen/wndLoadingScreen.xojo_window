@@ -1,7 +1,7 @@
 #tag Window
 Begin Window wndLoadingScreen
    BackColor       =   &c5978D600
-   Backdrop        =   138932223
+   Backdrop        =   1775376383
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
@@ -26,41 +26,6 @@ Begin Window wndLoadingScreen
    Title           =   "Loading Visuals"
    Visible         =   True
    Width           =   640
-   Begin Label lblCopyright
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   11
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   4
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Multiline       =   True
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Spontz Demo Editor  ©2003-"
-      TextAlign       =   0
-      TextColor       =   &cFFFFFF00
-      TextFont        =   "Arial"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   5
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   202
-   End
    Begin Label txtVersion
       AutoDeactivate  =   True
       Bold            =   False
@@ -72,7 +37,7 @@ Begin Window wndLoadingScreen
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   433
+      Left            =   434
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -90,7 +55,112 @@ Begin Window wndLoadingScreen
       TextFont        =   "Arial"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   5
+      Top             =   466
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   202
+   End
+   Begin Label lblDungeon
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   135
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   -8
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "DUNGEON"
+      TextAlign       =   1
+      TextColor       =   &cFFFFFF00
+      TextFont        =   "Gold Under The Mud"
+      TextSize        =   120.0
+      TextUnit        =   0
+      Top             =   0
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   490
+   End
+   Begin Label lblDemoEditor
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   44
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "T h e    S p o n t z     d e m o     e d i t o r"
+      TextAlign       =   1
+      TextColor       =   &cFFFFFF00
+      TextFont        =   "Nemesis Grant"
+      TextSize        =   18.0
+      TextUnit        =   0
+      Top             =   111
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   462
+   End
+   Begin Label lblCopyright
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   11
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   5
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Multiline       =   True
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Spontz Demo Editor  ©2003-"
+      TextAlign       =   0
+      TextColor       =   &cFFFFFF00
+      TextFont        =   "Arial"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   466
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -143,6 +213,13 @@ End
 
 #tag EndWindowCode
 
+#tag Events txtVersion
+	#tag Event
+		Sub Open()
+		  me.text = "Version " + App.applicationVersion
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events lblCopyright
 	#tag Event
 		Sub Open()
@@ -156,13 +233,6 @@ End
 		  end if
 		  
 		  me.Text = me.Text + str(Year)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events txtVersion
-	#tag Event
-		Sub Open()
-		  me.text = "Version " + App.applicationVersion
 		End Sub
 	#tag EndEvent
 #tag EndEvents
