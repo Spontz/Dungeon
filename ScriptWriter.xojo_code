@@ -136,7 +136,7 @@ Protected Module ScriptWriter
 		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
 		    
 		  case thedemo.phoenix
-		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight)
+		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight) + EndOfLine.Windows
 		    
 		  end select
 		  
