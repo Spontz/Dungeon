@@ -317,7 +317,7 @@ Protected Class classDemo
 		  
 		  If f <> Nil then
 		    // Let's calculate the file name in order to avoid two files with the same name in the same folder
-		    dim newName as string
+		    dim newName as string = f.name
 		    
 		    if nameConflict(f.Name, parentID) then
 		      dim counter as integer

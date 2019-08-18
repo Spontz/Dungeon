@@ -432,7 +432,7 @@ Inherits listbox
 		    me.cell(me.LastIndex, me.cstColumnDepth ) = str(depth)
 		    me.cell(me.LastIndex, me.cstColumnParent) = parentFolderID
 		    
-		    me.CellType(me.LastIndex, me.cstColumnName) = 2
+		    me.CellType (me.LastIndex, me.cstColumnName) = 2
 		    me.CellCheck(me.LastIndex, me.cstColumnName) = false
 		    
 		    me.RowPicture(me.LastIndex) = icon
