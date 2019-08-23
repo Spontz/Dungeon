@@ -27,5 +27,6 @@ sVShaderPath /resources/shaders/sections/drawBloom_bloom.frag
 
 
 ; Bloom Shader variables
-uniform float bloom v1:=1.0; //1.0if(t<5.0)(v1:=1.0); else(v1:=0.0);
-uniform float exposure v1:=0.2; //v1:=0.4+0.2*sin(t);
+uniform float bloom v1:=1.0;
+;uniform float bloom v1:=1+1.0*sin(t*4);
+uniform float exposure v1:=0.2;
