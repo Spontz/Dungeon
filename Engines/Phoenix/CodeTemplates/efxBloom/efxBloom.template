@@ -18,12 +18,12 @@ fBlurAmount 10
 
 
 ; Blur shader files
-sVShaderPath /resources/shaders/sections/drawBloom_blur.vert
-sVShaderPath /resources/shaders/sections/drawBloom_blur.frag
+sVShaderPath /resources/shaders/sections/efxBloom_blur.vert
+sVShaderPath /resources/shaders/sections/efxBloom_blur.frag
 
 ; Bloom shader files
-sVShaderPath /resources/shaders/sections/drawBloom_bloom.vert
-sVShaderPath /resources/shaders/sections/drawBloom_bloom.frag
+sVShaderPath /resources/shaders/sections/efxBloom_bloom.vert
+sVShaderPath /resources/shaders/sections/efxBloom_bloom.frag
 
 
 ; Bloom Shader variables
