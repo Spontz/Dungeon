@@ -107,7 +107,7 @@ Inherits Canvas
 		      XrightTimeLimit = demo.getNextBarStartTime(coordinate2time(x), selectedLayer)
 		      
 		      // The user is drawing a bar so we create a new one
-		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ONE", "", "", "")
+		      barID = demo.addBar("", selectedLayer, coordinate2time(x), coordinate2time(x), "", "ONE", "ZERO", "", "", "")
 		      
 		      action = "drawingBar " + str(barID)
 		      
