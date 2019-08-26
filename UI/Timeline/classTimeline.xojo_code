@@ -2,6 +2,12 @@
 Protected Class classTimeline
 Inherits Canvas
 	#tag Event
+		Sub DoubleClick(X As Integer, Y As Integer)
+		  // Nothing to do here
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub EnableMenuItems()
 		  select case demo.countSelectedBars
 		    
