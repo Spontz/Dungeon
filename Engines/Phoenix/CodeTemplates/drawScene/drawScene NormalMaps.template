@@ -1,0 +1,33 @@
+; Specify the model to load and the shader to apply
+sModelFilePath /pool/models/cube/cube.obj
+sVShaderPath /pool/models/cube/normalmapping.vert
+sFShaderPath /pool/models/cube/normalmapping.frag
+
+fEnableDepthBufferClearing 0
+fEnableDrawWireframe 0
+
+
+; Bones animation support
+fEnableAnimation 0
+fAnimationNumber 1
+sAnimationTime aTime:=0;
+
+; **********************
+; * OBJECT POSITIONING *
+; **********************
+; Translation for object n
+string tx:=0; ty:=0; tz:=0;
+; Rotation for object n
+string rx:=180*sin(t/2); ry:=180*cos(t/4); rz:=0;
+; Scale for object n
+string sx:=1; sy:=1; sz:=1;
+
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************
+uniform vec3 lightPos v1:=light_pos_x;v2:=light_pos_y;v3:=light_pos_z;
+uniform vec3 viewPos v1:=cam_posX;v2:=cam_posY;v3:=cam_posZ;
+; Ambient and Specular Strenght between 0.1 and 1.0
+uniform float ambientStrenght v1:=0.9;
+uniform float specularStrenght v1:=0.7;
