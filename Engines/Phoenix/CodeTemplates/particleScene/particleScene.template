@@ -1,1 +1,44 @@
-; Draws particles for a given source 3d model; Each vertex of the 3d model will be a particle emittersScene /pool/models/cube/cube.obj; Particles Texture: The texture to be used on each texturestring /resources/textures/part_redglow.jpg; Time between emissions (seconds)fEmissionTime 0.1; Particles Lifetime (seconds)fParticleLifetime 20.0; Particles sizefParticleSize 0.1; *************************; * PARTICLES POSITIONING *; *************************; Translation for object nstring tx:=-4;ty:=-1.75; tz:=-8;; Rotation for object nstring rx:=90; ry:=180; rz:=180;; Scale for object nstring sx:=0.1; sy:=0.1; sz:=0.1;
+; Draws particles for a given source 3d model
+; Each vertex of the 3d model will be a particle emitter
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+; Path where the shaders are stored (update.vert/geom/frag and billboard.ver/geom/frag)
+sShader /resources/shaders/sections/particleScene/
+
+; Model to use for emitters
+sScene /pool/models/cube/cube.obj
+
+; Time between emissions (seconds)
+fEmissionTime 0.01
+; Particles Lifetime (seconds)
+fParticleLifetime 10.0
+
+; ******************************
+; * PARTICLE SCENE POSITIONING *
+; ******************************
+; Scene Translation
+string tx:=0;ty:=0; tz:=-8;
+; Scene Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scene Scale
+string sx:=1; sy:=1; sz:=1;
+
+; ***********************
+; * PARTICLE PARAMETERS *
+; ***********************
+; Variables that can be used (apart from the typical 't', 'tend', 'beat', etc):
+; nE = Current emitter
+; TnE = Total number of emitters
+
+; Speed variability (it impacts the emission time)
+string partSpeed:=1.0;
+; Particle velocity (if you want to modify this through time, use the Geometry shader, because the velocity value is only passed once)
+string velX:=0;velY:=1;velZ:=0.0;
+; Particle force to be applied (for example, gravity or wind)
+string forceX:=1*cos(t*2);forceY:=0;forceZ:=1*sin(t*2);
+; Particle color
+string colorR:=1;colorG:=1;colorB:=1;
+
+; Global values: Particle size and texture
+uniform float fParticleSize v1:=0.1;//v1:=0.5+0.5*sin(t*2);
+uniform sampler2D partTexture 0 /resources/textures/dust.png
