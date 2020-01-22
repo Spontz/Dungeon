@@ -1,0 +1,29 @@
+; Draws particles, the position, color and size of each
+; particle should be defined in the shaders
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+
+; Shaders path
+sVShaderPath /pool/shaders/drawParticles/drawParticles.vert
+sGShaderPath /pool/shaders/drawParticles/drawParticles.geom
+sFShaderPath /pool/shaders/drawParticles/drawParticles.frag
+
+; Particle number
+fNumParticles 100
+
+; ******************************
+; * PARTICLE MATRIX POSITIONING *
+; ******************************
+; Translation
+string tx:=0;ty:=0; tz:=-2;
+; Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scale
+string sx:=1; sy:=1; sz:=1;
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************
+uniform float fParticleSize v1:=0.1;
+uniform sampler2D partTexture 0 /resources/textures/dust.png
+uniform float fParticlesDrawn v1:=999999;
