@@ -1,5 +1,6 @@
 #version 440 core
 layout (location = 0) in int ID;
+layout (location = 1) in vec3 Position;
 
 uniform float gTime;
 uniform mat4 gModel;

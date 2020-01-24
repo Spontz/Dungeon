@@ -1,0 +1,29 @@
+; Draws a particle on each vertex position of the given 3d model.
+; The position, color and size of each particle should be defined
+; in the shaders
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+; Shaders path
+sVShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.vert
+sGShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.geom
+sFShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.frag
+
+; Model to place the particles
+sModelFilePath /pool/models/cube/cube.obj
+
+; ******************************
+; * PARTICLE MATRIX POSITIONING *
+; ******************************
+; Scene Translation
+string tx:=0;ty:=0; tz:=-8;
+; Scene Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scene Scale
+string sx:=1; sy:=1; sz:=1;
+
+; **********************
+; ** SHADER VARIABLES **
+; **********************
+uniform float fParticleSize v1:=0.3;
+uniform sampler2D partTexture 0 /resources/textures/dust.png
+uniform float fParticlesDrawn v1:=999999;

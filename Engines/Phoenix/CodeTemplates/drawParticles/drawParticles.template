@@ -1,5 +1,6 @@
 ; Draws particles, the position, color and size of each
 ; particle should be defined in the shaders
+; Initial position is set to (0,0,0)
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 
