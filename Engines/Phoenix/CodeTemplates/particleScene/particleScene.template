@@ -3,7 +3,7 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 ; Path where the shaders are stored (update.vert/geom/frag and billboard.ver/geom/frag)
-sShader /resources/shaders/sections/particleScene/
+sShader /pool/shaders/particleScene/
 
 ; Model to use for emitters
 sScene /pool/models/cube/cube.obj
