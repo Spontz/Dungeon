@@ -3,7 +3,7 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 ; Path where the shaders are stored (update.vert/geom/frag and billboard.ver/geom/frag)
-sShader /pool/shaders/particleScene/
+sShader /pool/shaders/drawEmitterScene/
 
 ; Model to use for emitters
 sScene /pool/models/cube/cube.obj
@@ -12,6 +12,8 @@ sScene /pool/models/cube/cube.obj
 fEmissionTime 0.01
 ; Particles Lifetime (seconds)
 fParticleLifetime 10.0
+; Randomness factor that affects the emitters (0=no random emission)
+fRandomness 0
 
 ; ******************************
 ; * PARTICLE SCENE POSITIONING *
@@ -33,9 +35,9 @@ string sx:=1; sy:=1; sz:=1;
 ; Speed variability (it impacts the emission time)
 string partSpeed:=1.0;
 ; Particle velocity (if you want to modify this through time, use the Geometry shader, because the velocity value is only passed once)
-string velX:=0;velY:=1;velZ:=0.0;
+string velX:=0;velY:=1;velZ:=0;
 ; Particle force to be applied (for example, gravity or wind)
-string forceX:=1*cos(t*2);forceY:=0;forceZ:=1*sin(t*2);
+string forceX:=1*sin(t);forceY:=0;forceZ:=1*cos(t);
 ; Particle color
 string colorR:=1;colorG:=1;colorB:=1;
 
