@@ -6,15 +6,19 @@ sFShaderPath /pool/models/cube/normalmapping.frag
 fEnableDepthBufferClearing 0
 fEnableDrawWireframe 0
 
-
-; Bones animation support
+; Animation support for objects, bones and cameras
 fEnableAnimation 0
-fAnimationNumber 1
-sAnimationTime aTime:=0;
+fAnimationNumber 0
 
-; **********************
-; * OBJECT POSITIONING *
-; **********************
+; Wich camera to use? (-1 means no camera used)
+string CameraNumber:=-1;
+
+; Animation time (normally 't')
+string aTime:=0;
+
+; ******************
+; OBJECT POSITIONING
+; ******************
 ; Translation for object n
 string tx:=0; ty:=0; tz:=0;
 ; Rotation for object n
@@ -23,9 +27,10 @@ string rx:=180*sin(t/2); ry:=180*cos(t/4); rz:=0;
 string sx:=1; sy:=1; sz:=1;
 
 
-; **********************
-; ** SHADER VARIABLES **
-; **********************
+; ********************************************************************************
+; SHADER VARIABLES
+; Any other shader uniform variables used in the shader, should be configured here
+; ********************************************************************************
 uniform vec3 lightPos v1:=light_pos_x;v2:=light_pos_y;v3:=light_pos_z;
 uniform vec3 viewPos v1:=cam_posX;v2:=cam_posY;v3:=cam_posZ;
 ; Ambient and Specular Strenght between 0.1 and 1.0
