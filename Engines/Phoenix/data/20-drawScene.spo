@@ -1,4 +1,4 @@
-[objectShader]
+[drawScene]
 id 20
 start 0
 end 100
@@ -12,6 +12,14 @@ sFShaderPath /pool/models/torus/torusVars.frag
 
 fEnableDepthBufferClearing 0
 fEnableDrawWireframe 0
+
+; Bones animation support
+fEnableAnimation 0
+fAnimationNumber 0
+
+; Wich camera to use? (-1 means no camera used)
+string CameraNumber:=-1;
+string aTime:=0;
 
 ; **********************
 ; * OBJECT POSITIONING *

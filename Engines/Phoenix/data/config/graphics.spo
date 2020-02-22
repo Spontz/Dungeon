@@ -1,12 +1,11 @@
 gl_fullscreen 0
-gl_info 0
 gl_accum 0
 gl_width 640
 gl_height 480
 gl_aspect 1.7777
-gl_bpp 32
 gl_stencil 0
-gl_multisampling 0
+; vsync (0:no vsync, 1:60fps, 2:30fps, 3:20fps)
+gl_vsync 0
 
 fbo_0_ratio 1
 fbo_0_format RGB
