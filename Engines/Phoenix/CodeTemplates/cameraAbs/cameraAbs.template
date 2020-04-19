@@ -1,0 +1,11 @@
+; Changes the camera position
+
+; FreeCamera: 0=Using spline file, 1=Free Camera (only works in debug mode)
+fFreeCamera 1
+
+; Spline file that defines the camera movement
+cCameraFile ./data/pool/cameras/camera.cam
+
+; Camera modifiers
+sValues PosX:=c_posX;	PosY:=c_posY;		PosZ:=c_posZ;
+sValues Yaw:=c_yaw;		Pitch:=c_pitch;		Zoom:=c_zoom;
