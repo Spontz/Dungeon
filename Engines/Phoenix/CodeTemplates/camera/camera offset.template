@@ -8,4 +8,4 @@ cCameraFile ./data/pool/cameras/camera.cam
 
 ; Camera offset modifiers (optional)
 sValues PosX:=10*sin(t);	PosY:=0;		PosZ:=0;
-sValues Yaw:=0;				Pitch:=0;		Zoom:=0;
+sValues Yaw:=0;				Pitch:=0;		Roll:=0;	Zoom:=0;

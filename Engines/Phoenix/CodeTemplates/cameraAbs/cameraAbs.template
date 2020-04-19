@@ -8,4 +8,4 @@ cCameraFile ./data/pool/cameras/camera.cam
 
 ; Camera modifiers
 sValues PosX:=c_posX;	PosY:=c_posY;		PosZ:=c_posZ;
-sValues Yaw:=c_yaw;		Pitch:=c_pitch;		Zoom:=c_zoom;
+sValues Yaw:=c_yaw;		Pitch:=c_pitch;		Roll:=c_roll;	Zoom:=c_zoom;
