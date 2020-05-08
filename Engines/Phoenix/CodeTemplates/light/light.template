@@ -14,7 +14,7 @@ fShadowMapSize 20.0
 
 ; Draw a cube representing the light (1=draw it, 0=do not draw) (useful for DEBUG)
 fDebugDraw 1
-
+fDebugDrawSize 0.5
 
 ; Light Properties (optional)
 ; Light position
