@@ -17,20 +17,17 @@ string /pool/videos/brp-hyper-01.mp4
 ; The video is by default sent to "uniform Sampler2D screenTexture"
 ; The model matrix is by default sent to "uniform mat4 model"
 ; Basic shader
-sVShaderPath /resources/shaders/basic/QuadTexVFlipModel.vert
-sFShaderPath /resources/shaders/basic/QuadTexVFlipModel.frag
+sShaderPath /resources/shaders/basic/QuadTexVFlipModel.glsl
 
 ; Example shader: ascii
-;sVShaderPath /pool/shaders/video_shaders/ascii.vert
-;sFShaderPath /pool/shaders/video_shaders/ascii.frag
+;sShaderPath /pool/shaders/video_shaders/ascii.glsl
 ; Shader variables
 ; ***************************************************
 ;uniform vec2 iResolution v1:=640;v2:=480;
 ;uniform float sample v1:=4.0;
 
 ; Example shader: displace channels
-;sVShaderPath /pool/shaders/video_shaders/displace_channels.vert
-;sFShaderPath /pool/shaders/video_shaders/displace_channels.frag
+;sShaderPath /pool/shaders/video_shaders/displace_channels.glsl
 ; Shader variables
 ; ***************************************************
 ;uniform float displace v1:=0.01*sin(t*2);

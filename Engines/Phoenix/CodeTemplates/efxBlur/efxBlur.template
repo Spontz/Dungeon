@@ -14,6 +14,5 @@ fFboUnit 4
 ; Blur amount (10 recommended) - It has performance impacts
 string BlurAmount:=10.0;
 
-; Blur shader files
-sVShaderPath /resources/shaders/sections/efxBlur.vert
-sVShaderPath /resources/shaders/sections/efxBlur.frag
+; Blur shader file
+sShaderPath /resources/shaders/sections/efxBlur.glsl

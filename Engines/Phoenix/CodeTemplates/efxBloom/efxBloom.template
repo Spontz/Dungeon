@@ -16,13 +16,11 @@ fFboUnit 4
 ; Blur amount (10 recommended) - It has performance impacts
 string BlurAmount:=10.0;
 
-; Blur shader files
-sVShaderPath /resources/shaders/sections/efxBloom_blur.vert
-sVShaderPath /resources/shaders/sections/efxBloom_blur.frag
+; Blur shader file
+sShaderPath /resources/shaders/sections/efxBloom_blur.glsl
 
-; Bloom shader files
-sVShaderPath /resources/shaders/sections/efxBloom_bloom.vert
-sVShaderPath /resources/shaders/sections/efxBloom_bloom.frag
+; Bloom shader file
+sShaderPath /resources/shaders/sections/efxBloom_bloom.glsl
 
 ; Bloom Shader variables
 uniform float bloom v1:=1.0;

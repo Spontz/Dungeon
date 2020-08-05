@@ -6,9 +6,8 @@ fClearScreenBuffer 0
 ; Clear the depth buffer before restoring? (1=yes, 0=no)
 fClearDepthBuffer 0
 
-; Shader files
-sVShaderPath pool/shaders/edges/edges.vert
-sFShaderPath pool/shaders/edges/edges.frag
+; Shader file
+sShaderPath pool/shaders/edges/edges.glsl
 
 ; Shader variables
 ; ***************************************************

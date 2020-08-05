@@ -1,7 +1,6 @@
 ; Specify the model to load and the shader to apply
 sModelFilePath /pool/models/cube/cube.obj
-sVShaderPath /pool/models/cube/lightsBlinnPhong.vert
-sFShaderPath /pool/models/cube/lightsBlinnPhong.frag
+sShaderPath /pool/models/cube/lightsBlinnPhong.glsl
 
 fEnableDepthBufferClearing 0
 fEnableDrawWireframe 0

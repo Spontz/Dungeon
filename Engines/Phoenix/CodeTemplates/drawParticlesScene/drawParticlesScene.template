@@ -3,10 +3,8 @@
 ; in the shaders
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shaders path
-sVShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.vert
-sGShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.geom
-sFShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.frag
+; Shader path
+sShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.glsl
 
 ; Model to place the particles
 sModelFilePath /pool/models/cube/cube.obj

@@ -3,9 +3,8 @@
 ; For better results, choose the following blend modes:
 ; SRC_ALPHA - ONE_MINUS_SRC_ALPHA
 
-; efxFader shader files
-sVShaderPath /resources/shaders/sections/efxFader.vert
-sVShaderPath /resources/shaders/sections/efxFader.frag
+; efxFader shader file
+sShaderPath /resources/shaders/sections/efxFader.glsl
 
 ; Define the blending to use form color Origin to Destiny (form 0.0 to 1.0)
 uniform float blend v1:=0.5+0.5*sin(t*10);

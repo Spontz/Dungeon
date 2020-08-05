@@ -6,9 +6,8 @@ fClearScreenBuffer 1
 ; Clear the depth buffer before restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
 
-; Shader files
-sVShaderPath /resources/shaders/lensflare/lensflare.vert
-sFShaderPath /resources/shaders/lensflare/lensflare.frag
+; Shader file
+sShaderPath /resources/shaders/lensflare/lensflare.glsl
 
 ; Shader variables
 ; ***************************************************

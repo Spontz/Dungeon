@@ -2,8 +2,7 @@
 
 sBackgroundPicture /resources/textures/tv.jpg
 
-sVShaderPath /pool/shaders/drawImage/drawImageDistort.vert
-sFShaderPath /pool/shaders/drawImage/drawImageDistort.frag
+sShaderPath /pool/shaders/drawImage/drawImageDistort.glsl
 
 ; *********************
 ; * IMAGE POSITIONING *

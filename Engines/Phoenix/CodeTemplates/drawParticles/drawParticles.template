@@ -4,10 +4,8 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 
-; Shaders path
-sVShaderPath /pool/shaders/drawParticles/drawParticles.vert
-sGShaderPath /pool/shaders/drawParticles/drawParticles.geom
-sFShaderPath /pool/shaders/drawParticles/drawParticles.frag
+; Shader path
+sShaderPath /pool/shaders/drawParticles/drawParticles.glsl
 
 ; Particle number
 fNumParticles 100

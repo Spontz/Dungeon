@@ -6,9 +6,8 @@ fClearScreenBuffer 1
 ; Clear the depth buffer before restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
 
-; Shader files
-sVShaderPath /pool/shaders/filter/filter-blur.vert
-sFShaderPath /pool/shaders/filter/filter-blur.frag
+; Shader file
+sShaderPath /pool/shaders/filter/filter-blur.glsl
 
 ; Shader variables
 ; ***************************************************

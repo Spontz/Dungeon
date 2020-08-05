@@ -2,8 +2,7 @@
 
 sBackgroundPicture /resources/textures/tv.jpg
 
-sVShaderPath /resources/shaders/sections/drawImage.vert
-sFShaderPath /resources/shaders/sections/drawImage.frag
+sShaderPath /resources/shaders/sections/drawImage.glsl
 
 ; *********************
 ; * IMAGE POSITIONING *
