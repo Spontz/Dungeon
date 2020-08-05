@@ -2,7 +2,7 @@
 ; Each vertex of the 3d model will be a particle emitter
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Path where the shaders are stored (update.vert/geom/frag and billboard.ver/geom/frag)
+; Path where the shaders are stored (update.glsl and billboard.glsl)
 sShader /pool/shaders/drawEmitterScene/
 
 ; Model to use for emitters
