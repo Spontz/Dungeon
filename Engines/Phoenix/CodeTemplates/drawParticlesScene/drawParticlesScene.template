@@ -25,4 +25,3 @@ string sx:=1; sy:=1; sz:=1;
 uniform float fParticleSize v1:=0.3;
 uniform sampler2D partTexture 0 /resources/textures/dust.png
 uniform float fParticlesDrawn v1:=999999;
-uniform vec3 gCameraPos v1:=cam_posX;v2:=cam_posY;v3:=cam_posZ;
