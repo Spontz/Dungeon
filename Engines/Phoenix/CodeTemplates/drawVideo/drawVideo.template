@@ -13,11 +13,21 @@ fFullscreen 0
 fFitToContent 1
 
 ; Video to draw
+; ***************************************************
 string /pool/videos/video01.mp4
 
-
-; Shader files
+; Shader file
+; ***************************************************
 sShaderPath /resources/shaders/sections/drawVideo.glsl
+
+; Video Position (only used when we are NOT in fullscreen)
+; ***************************************************
+; Traslation
+string tx:=0; ty:=0; tz:=0;
+; Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scale
+string sx:=1.0; sy:=1.0; sz:=1.0;
 
 ; Shader variables
 ; ***************************************************
