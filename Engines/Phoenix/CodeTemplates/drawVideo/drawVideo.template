@@ -6,28 +6,30 @@ fClearScreenBuffer 1
 ; Clear the depth buffer after restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
 
-; Fit to content: 1=respect video aspect ratio, 0=fill entire viewport window
+; View video at fullscreen
+fFullscreen 0
+
+; Fit to content (1=respect video aspect ratio, 0=fill entire window / quad)
 fFitToContent 1
 
 ; Video to draw
-string /pool/videos/brp-hyper-01.mp4
+string /pool/videos/video01.mp4
 
 
 ; Shader files
-; The video is by default sent to "uniform Sampler2D screenTexture"
-; The model matrix is by default sent to "uniform mat4 model"
-; Basic shader
-sShaderPath /resources/shaders/basic/QuadTexVFlipModel.glsl
+sShaderPath /resources/shaders/sections/drawVideo.glsl
+
+; Shader variables
+; ***************************************************
+; Variables sent by default:
+; The video frame is sent to "uniform Sampler2D screenTexture"
+; The matrix are sent to "uniform mat4 model/view/projection"
 
 ; Example shader: ascii
 ;sShaderPath /pool/shaders/video_shaders/ascii.glsl
-; Shader variables
-; ***************************************************
 ;uniform vec2 iResolution v1:=640;v2:=480;
 ;uniform float sample v1:=4.0;
 
 ; Example shader: displace channels
 ;sShaderPath /pool/shaders/video_shaders/displace_channels.glsl
-; Shader variables
-; ***************************************************
 ;uniform float displace v1:=0.01*sin(t*2);
