@@ -1,19 +1,19 @@
-; Draws an Image
+; Draws a Video
 
 ; Clear the screen buffer before restoring? (1=yes, 0=no)
-fClearScreenBuffer 0
+fClearScreenBuffer 1
 ; Clear the depth buffer after restoring? (1=yes, 0=no)
-fClearDepthBuffer 0
+fClearDepthBuffer 1
 
-; View image at fullscreen
+; View video at fullscreen
 fFullscreen 0
-; Fit to content (1=respect image aspect ratio, 0=fill entire window / quad)
+; Fit to content (1=respect video aspect ratio, 0=fill entire window / quad)
 fFitToContent 1
 
-sImagePath /resources/textures/tv.jpg
-sShaderPath /pool/shaders/drawImage/drawImageDistort.glsl
+sVideoPath /pool/videos/video01.mp4
+sShaderPath /pool/shaders/video_shaders/ascii.glsl
 
-; Image Position (only used when we are NOT in fullscreen)
+; Video Position (only used when we are NOT in fullscreen)
 ; ***************************************************
 ; Traslation
 string tx:=0; ty:=0; tz:=0;
@@ -25,6 +25,7 @@ string sx:=1.0; sy:=1.0; sz:=1.0;
 ; Shader variables
 ; ***************************************************
 ; Variables sent by default:
-; The image is sent to "uniform Sampler2D screenTexture"
+; The video frame is sent to "uniform Sampler2D screenTexture"
 ; The matrix are sent to "uniform mat4 model/view/projection"
-uniform vec3 distortion v1:=0.5+0.5*sin(t*2);v2:=0.5+0.5*cos(t*4);v3:=0.1-0.5*cos(t);
+uniform vec2 iResolution v1:=640;v2:=480;
+uniform float sample v1:=4.0;

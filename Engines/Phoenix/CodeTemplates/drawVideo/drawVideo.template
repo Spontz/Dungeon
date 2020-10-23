@@ -1,23 +1,16 @@
-; Draws a Video in fullscreen
+; Draws a Video
 
 ; Clear the screen buffer before restoring? (1=yes, 0=no)
 fClearScreenBuffer 1
-
 ; Clear the depth buffer after restoring? (1=yes, 0=no)
 fClearDepthBuffer 1
 
 ; View video at fullscreen
 fFullscreen 0
-
 ; Fit to content (1=respect video aspect ratio, 0=fill entire window / quad)
 fFitToContent 1
 
-; Video to draw
-; ***************************************************
-string /pool/videos/video01.mp4
-
-; Shader file
-; ***************************************************
+sVideoPath /pool/videos/video01.mp4
 sShaderPath /resources/shaders/sections/drawVideo.glsl
 
 ; Video Position (only used when we are NOT in fullscreen)
@@ -34,12 +27,3 @@ string sx:=1.0; sy:=1.0; sz:=1.0;
 ; Variables sent by default:
 ; The video frame is sent to "uniform Sampler2D screenTexture"
 ; The matrix are sent to "uniform mat4 model/view/projection"
-
-; Example shader: ascii
-;sShaderPath /pool/shaders/video_shaders/ascii.glsl
-;uniform vec2 iResolution v1:=640;v2:=480;
-;uniform float sample v1:=4.0;
-
-; Example shader: displace channels
-;sShaderPath /pool/shaders/video_shaders/displace_channels.glsl
-;uniform float displace v1:=0.01*sin(t*2);

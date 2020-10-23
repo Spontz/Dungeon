@@ -1,17 +1,29 @@
-; Draws an image
+; Draws an Image
 
-sBackgroundPicture /resources/textures/tv.jpg
+; Clear the screen buffer before restoring? (1=yes, 0=no)
+fClearScreenBuffer 0
+; Clear the depth buffer after restoring? (1=yes, 0=no)
+fClearDepthBuffer 0
 
+; View image at fullscreen
+fFullscreen 0
+; Fit to content (1=respect image aspect ratio, 0=fill entire window / quad)
+fFitToContent 1
+
+sImagePath /resources/textures/tv.jpg
 sShaderPath /resources/shaders/sections/drawImage.glsl
 
-; *********************
-; * IMAGE POSITIONING *
-; *********************
-; Image traslation
+; Image Position (only used when we are NOT in fullscreen)
+; ***************************************************
+; Traslation
 string tx:=0; ty:=0; tz:=0;
-; Image rotation
+; Rotation
 string rx:=0; ry:=0; rz:=0;
-; Image scale
+; Scale
 string sx:=1.0; sy:=1.0; sz:=1.0;
 
-; Any other Shader variables can go here
+; Shader variables
+; ***************************************************
+; Variables sent by default:
+; The image is sent to "uniform Sampler2D screenTexture"
+; The matrix are sent to "uniform mat4 model/view/projection"
