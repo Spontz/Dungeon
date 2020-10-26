@@ -4,25 +4,30 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 
-; Shader path
+; Shaders path
 sShaderPath /pool/shaders/drawParticles/drawParticles.glsl
 
 ; Particle number
 fNumParticles 1000
 
-; ******************************
-; * PARTICLE MATRIX POSITIONING *
-; ******************************
+; Particle system Position
+; ***************************************************
 ; Translation
-string tx:=0;ty:=0; tz:=-2;
+string tx:=0;ty:=0; tz:=-5;
 ; Rotation
 string rx:=0; ry:=0; rz:=0;
 ; Scale
 string sx:=1; sy:=1; sz:=1;
 
-; **********************
-; ** SHADER VARIABLES **
-; **********************
-uniform float fParticleSize v1:=0.1;
+; Shader variables
+; ***************************************************
+; The following variables are sent to the shader automatically:
+; uniform mat4 gModel; --> Model matrix
+; uniform mat4 gVP; --> View*projection matrix
+; uniform vec3 gCameraPos; --> Camera position
+; uniform float gTime; --> Section time (equals to 't' variable)
+; uniform float gNumParticles; --> Total number of particles to draw
+
+uniform float fParticleSize v1:=0.4;
 uniform sampler2D partTexture 0 /resources/textures/dust.png
-uniform float fParticlesDrawn v1:=999999;
+uniform float fParticlesDrawn v1:=t/tend*1000;
