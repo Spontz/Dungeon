@@ -1,0 +1,34 @@
+; Draws a particle on each vertex position of the given image.
+; The position, color and size of each particle should be defined
+; in the shaders, and initial position and color can be retrieved
+; with the "Position" and "Color" variables inside the vertex shader
+; Each pixel will generate a particle
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+; Shader path
+sShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.glsl
+
+; Image to place the particles
+sImageFilePath /pool/textures/texture1.png
+
+; Particle system Position
+; ***************************************************
+; Scene Translation
+string tx:=0;ty:=0; tz:=-8;
+; Scene Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scene Scale
+string sx:=1; sy:=1; sz:=1;
+
+; Shader variables
+; ***************************************************
+; The following variables are sent to the shader automatically:
+; uniform mat4 gModel; --> Model matrix
+; uniform mat4 gVP; --> View*projection matrix
+; uniform vec3 gCameraPos; --> Camera position
+; uniform float gTime; --> Section time (equals to 't' variable)
+; uniform float gNumParticles; --> Total number of particles to draw
+
+uniform float fParticleSize v1:=0.3;
+uniform sampler2D partTexture 0 /resources/textures/dust.png
+uniform float fParticlesDrawn v1:=999999;
