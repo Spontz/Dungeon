@@ -1,3 +1,11 @@
-; Specify the volume (from 0.0 to 1.0) and the music file
-fVolume 1.0
+
 sSoundFile /pool/music/Demo_2019_140BPM.mp3
+
+; Volume (0.0 to 1.0)
+fVolume 1
+
+; Beat ratio detection
+fBeatRatio 1.4f
+
+; FadeOut beat impact
+fBeatFadeOut 4.0f
