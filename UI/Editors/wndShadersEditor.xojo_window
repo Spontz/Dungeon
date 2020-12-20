@@ -1,5 +1,5 @@
 #tag Window
-Begin Window wndTextEditor
+Begin Window wndShadersEditor
    BackColor       =   &cF2F2F200
    Backdrop        =   0
    CloseButton     =   True
@@ -23,7 +23,7 @@ Begin Window wndTextEditor
    MinWidth        =   528
    Placement       =   3
    Resizeable      =   True
-   Title           =   "Text Editor"
+   Title           =   "Shader Editor"
    Visible         =   True
    Width           =   800
    Begin PushButton btnSave
@@ -227,6 +227,36 @@ End
 		  hook = theHook
 		  
 		  loadFile
+		  
+		  // Load the syntax definitions from the local "Definitions" folde
+		  dim defsFolder as FolderItem
+		  #if DebugBuild
+		    defsFolder = GetFolderItem( "Definitions")
+		  #else
+		    defsFolder = SpecialFolder.Resources.Child("Definitions")
+		    
+		  #endif
+		  
+		  if not defsFolder.Exists then
+		    // this is where we find it on Windows, usually
+		    defsFolder = GetFolderItem("").Parent.Child("Definitions")
+		  end
+		  
+		  dim def as new HighlightDefinition
+		  
+		  for i as Integer = 1 to defsFolder.Count
+		    dim definitionFile as FolderItem = defsFolder.Item(i)
+		    
+		    if f <> nil and definitionFile.Name.Right(4) = ".xml" then
+		      call def.loadFromXml(definitionFile)
+		    end if
+		    
+		  next
+		  
+		  txtFileContents.SyntaxDefinition = def
+		  txtFileContents.EnableLineFoldings = def <> nil and def.SupportsCodeBlocks
+		  txtFileContents.SetFocus
+		  
 		End Sub
 	#tag EndMethod
 
@@ -297,6 +327,10 @@ End
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private def As HighlightDefinition
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private editedFile As FolderItem

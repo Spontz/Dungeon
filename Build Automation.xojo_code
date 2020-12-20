@@ -84,5 +84,11 @@
 					Subdirectory = 
 					FolderItem = Li4vZm9udHMv
 				End
+				Begin CopyFilesBuildStep CopyDefinitions
+					AppliesTo = 0
+					Destination = 1
+					Subdirectory = 
+					FolderItem = Li4vRGVmaW5pdGlvbnMv
+				End
 			End
 #tag EndBuildAutomation

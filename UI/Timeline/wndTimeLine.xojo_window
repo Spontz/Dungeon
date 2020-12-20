@@ -476,6 +476,7 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   254
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -634,6 +635,7 @@ Begin Window wndTimeLine
       Scope           =   0
       TabIndex        =   22
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   500
       Transparent     =   False
       Value           =   0
@@ -1479,7 +1481,7 @@ End
 		    myWindow.init(itemID, self)
 		    
 		  case "glsl"
-		    dim myWindow as new wndTextEditor
+		    dim myWindow as new wndShadersEditor
 		    myWindow.init(itemID, self)
 		    
 		  case "shader"

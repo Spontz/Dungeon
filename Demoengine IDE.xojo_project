@@ -236,6 +236,7 @@ Folder=VB Compatibility;Windows Functionality Suite/VB Compatibility;&h000000003
 Module=VBWFS;Windows Functionality Suite/VB Compatibility/VBWFS.xojo_code;&h00000000789BF7FF;&h000000003D054FFF;false
 MultiImage=Choose;UI/Choose engine/Choose.xojo_image;&h0000000018855FFF;&h0000000034883A6E;false
 MultiImage=Loading;UI/Loading Screen/Loading.xojo_image;&h0000000069D217FF;&hFFFFFFFFBC53A71E;false
+Window=wndShadersEditor;UI/Editors/wndShadersEditor.xojo_window;&h000000006AEAF7FF;&hFFFFFFFFBC5E6987;false
 DefaultWindow=wndLoadingScreen
 AppMenuBar=mnuMain
 MajorVersion=3
