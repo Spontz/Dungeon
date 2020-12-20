@@ -102,7 +102,22 @@ Protected Module ScriptWriter
 		  contents = contents + "slave 1" + EndOfLine.Windows
 		  
 		  // Write the file to disk
-		  file = theDemo.GetDataFolder().child("control.spo").CreateTextFile
+		  select case theDemo.engine
+		    
+		  case theDemo.dragon
+		    file = theDemo.GetDataFolder().child("control.spo").CreateTextFile
+		    
+		  case theDemo.phoenix
+		    contents = contents + "log_detail 4" + EndOfLine.Windows
+		    
+		    if not theDemo.GetDataFolder().child("config").Exists then
+		      theDemo.GetDataFolder.child("config").CreateAsFolder
+		    end if
+		    
+		    file = theDemo.GetDataFolder().child("config").child("control.spo").CreateTextFile
+		    
+		  end
+		  
 		  file.Write contents
 		  file.Close
 		  
@@ -122,7 +137,6 @@ Protected Module ScriptWriter
 		    contents = contents + "gl_fullscreen 0" + EndOfLine.Windows
 		  end if
 		  
-		  contents = contents + "gl_info 0" + EndOfLine.Windows
 		  contents = contents + "gl_accum 0" + EndOfLine.Windows
 		  
 		  // screen attributes
@@ -134,14 +148,17 @@ Protected Module ScriptWriter
 		  case theDemo.dragon
 		    contents = contents + "gl_bpp 32" + EndOfLine.Windows
 		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
+		    contents = contents + "gl_multisampling 0" + EndOfLine.Windows
+		    contents = contents + "gl_info 0" + EndOfLine.Windows
 		    
 		  case thedemo.phoenix
 		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight) + EndOfLine.Windows
+		    contents = contents + "gl_vsync 0" + EndOfLine.Windows
+		    contents = contents + "gl_vsync " + str(theDemo.getVideoVerticalSync) + EndOfLine.Windows
 		    
 		  end select
 		  
 		  contents = contents + "gl_stencil 0" + EndOfLine.Windows
-		  contents = contents + "gl_multisampling 0" + EndOfLine.Windows
 		  
 		  dim theFBOs() as string
 		  theFBOs = theDemo.getFBOsList
@@ -166,8 +183,21 @@ Protected Module ScriptWriter
 		    
 		  Next
 		  
-		  // Create the file
-		  file = theDemo.GetDataFolder.child("graphics.spo").CreateTextFile
+		  // Write the file to disk
+		  select case theDemo.engine
+		    
+		  case theDemo.dragon
+		    file = theDemo.GetDataFolder().child("graphics.spo").CreateTextFile
+		    
+		  case theDemo.phoenix
+		    if not theDemo.GetDataFolder().child("config").Exists then
+		      theDemo.GetDataFolder.child("config").CreateAsFolder
+		    end if
+		    
+		    file = theDemo.GetDataFolder().child("config").child("graphics.spo").CreateTextFile
+		    
+		  end
+		  
 		  file.Write contents
 		  file.Close
 		  
@@ -180,11 +210,11 @@ Protected Module ScriptWriter
 		  dim contents as String
 		  
 		  dim file as TextOutputStream
-		  file = theDemo.GetDataFolder().child("loader.spo").CreateTextFile
 		  
 		  select case theDemo.engine
 		    
 		  case theDemo.dragon
+		    file = theDemo.GetDataFolder().child("loader.spo").CreateTextFile
 		    
 		    dim LoaderBarCoords(3) as single
 		    
@@ -234,6 +264,12 @@ Protected Module ScriptWriter
 		    end if
 		    
 		  case theDemo.phoenix
+		    if not theDemo.GetDataFolder().child("config").Exists then
+		      theDemo.GetDataFolder.child("config").CreateAsFolder
+		    end if
+		    
+		    file = theDemo.GetDataFolder().child("config").child("loader.spo").CreateTextFile
+		    
 		    contents = contents + "[loading]" + EndOfLine.Windows
 		    contents = contents + "id loader" + EndOfLine.Windows
 		    contents = contents + "string /pool/loadingback.jpg" + EndOfLine.Windows
@@ -264,8 +300,8 @@ Protected Module ScriptWriter
 		  // Create the new script files
 		  
 		  for i as integer = 0 to UBound(allBars)
-		    // Don't export a bar if the type has not been set or it is not enabled
-		    if allBars(i).Value("type") = "" or not allBars(i).Value("enabled") then continue
+		    // Don't export a bar if the type has not been set
+		    if allBars(i).Value("type") = "" then continue
 		    
 		    //We decide the bar name
 		    barName = format(allBars(i).Value("id").IntegerValue, "000000") + "_" + allBars(i).Value("type") + ".spo"

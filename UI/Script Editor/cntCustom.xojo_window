@@ -26,55 +26,6 @@ Begin ContainerControl cntCustom
    UseFocusRing    =   False
    Visible         =   True
    Width           =   548
-   Begin TextArea txtSectionScript
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cFFFFFF00
-      Bold            =   False
-      Border          =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   False
-      Format          =   ""
-      Height          =   136
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   0
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   True
-      ScrollbarVertical=   True
-      Styled          =   False
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Consolas"
-      TextSize        =   11.0
-      TextUnit        =   0
-      Top             =   49
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   548
-   End
    Begin PushButton btnApply
       AutoDeactivate  =   True
       Bold            =   False
@@ -478,6 +429,144 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   126
    End
+   Begin ScrollBar horizontalSB
+      AcceptFocus     =   True
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LineStep        =   1
+      LiveScroll      =   True
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Maximum         =   0
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   166
+      Transparent     =   True
+      Value           =   0
+      Visible         =   False
+      Width           =   532
+   End
+   Begin CustomEditField TestField
+      AcceptFocus     =   True
+      AcceptTabs      =   True
+      AutoCloseBrackets=   False
+      AutocompleteAppliesStandardCase=   True
+      AutoDeactivate  =   True
+      AutoIndentNewLines=   True
+      BackColor       =   &cFFFFFF00
+      Backdrop        =   0
+      Border          =   False
+      BorderColor     =   &c88888800
+      BracketHighlightColor=   &cFFFF0000
+      CaretColor      =   &c00000000
+      CaretLine       =   0
+      CaretPos        =   0
+      ClearHighlightedRangesOnTextChange=   False
+      DirtyLinesColor =   &cFF999900
+      disableReset    =   False
+      DisplayDirtyLines=   True
+      DisplayInvisibleCharacters=   False
+      DisplayLineNumbers=   True
+      DisplayRightMarginMarker=   False
+      DoubleBuffer    =   False
+      EnableAutocomplete=   True
+      Enabled         =   True
+      EnableLineFoldings=   True
+      enableLineFoldingSetting=   False
+      EraseBackground =   True
+      GutterBackgroundColor=   &cEEEEEE00
+      GutterSeparationLineColor=   &c88888800
+      GutterWidth     =   0
+      Height          =   118
+      HelpTag         =   ""
+      HighlightBlocksOnMouseOverGutter=   True
+      HighlightMatchingBrackets=   True
+      HighlightMatchingBracketsMode=   0
+      ignoreRepaint   =   False
+      IndentPixels    =   16
+      IndentVisually  =   True
+      Index           =   -2147483648
+      InitialParent   =   ""
+      KeepEntireTextIndented=   True
+      Left            =   0
+      leftMarginOffset=   4
+      LineNumbersColor=   &c88888800
+      LineNumbersTextFont=   "System"
+      LineNumbersTextSize=   9
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      MaxVisibleLines =   0
+      ReadOnly        =   False
+      RightMarginAtPixel=   0
+      RightScrollMargin=   150
+      Scope           =   0
+      ScrollPosition  =   0
+      ScrollPositionX =   0
+      selLength       =   0
+      selStart        =   0
+      SelText         =   ""
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TabWidth        =   4
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "smallSystem"
+      TextHeight      =   0
+      TextLength      =   0
+      TextSelectionColor=   &c00000000
+      TextSize        =   0
+      ThickInsertionPoint=   True
+      Top             =   48
+      Transparent     =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   532
+   End
+   Begin ScrollBar verticalSB
+      AcceptFocus     =   True
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   118
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   532
+      LineStep        =   1
+      LiveScroll      =   True
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Maximum         =   0
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   48
+      Transparent     =   True
+      Value           =   0
+      Visible         =   False
+      Width           =   16
+   End
 End
 #tag EndWindow
 
@@ -494,7 +583,7 @@ End
 		  mnuBlendStart.Enabled    = true
 		  mnuBlendEquation.Enabled = true
 		  
-		  txtSectionScript.Enabled = true
+		  TestField.Enabled = true
 		End Sub
 	#tag EndMethod
 
@@ -508,7 +597,7 @@ End
 		  
 		  // We store the element name and the additional script
 		  demo.setBarType(barID, ReplaceLineEndings(popElement.Text, EndOfLine.Windows))
-		  demo.setBarScript(barID, txtSectionScript.text)
+		  demo.setBarScript(barID, TestField.text)
 		  
 		  // Notify the demo editor about the update
 		  if barType = "" then
@@ -541,8 +630,8 @@ End
 		  mnuBlendEnd.Enabled = false
 		  mnuBlendStart.Enabled = false
 		  
-		  txtSectionScript.Enabled = false
-		  txtSectionScript.Text = ""
+		  TestField.Enabled = false
+		  TestField.Text = ""
 		  
 		  barID = ""
 		End Sub
@@ -564,7 +653,11 @@ End
 		    
 		    // The element name and additional script
 		    popElement.text = demo.getBarType(theBarID)
-		    txtSectionScript.text = ReplaceLineEndings(demo.getBarScript(theBarID), EndOfLine)
+		    
+		    TestField.Text = ReplaceLineEndings(demo.getBarScript(theBarID), EndOfLine)
+		    
+		    TestField.ReindentText // cleans up indentations, removing any leading blanks from the lines
+		    TestField.ResetUndo // needed so that the Reindentation doesn't become an undoable action
 		    
 		    // We populate the Elements menu
 		    LoadElements
@@ -653,7 +746,7 @@ End
 		    if f.exists then
 		      Trace("cntCustom:LoadScriptTemplate: Found script of type " + popTemplate.Text + " for " + popElement.text, cstTraceLevelLog)
 		      dim data as TextInputStream = f.OpenAsTextFile
-		      txtSectionScript.text = data.readAll
+		      TestField.text = data.readAll
 		      data.close
 		    end if
 		    
@@ -703,6 +796,24 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1
+		Protected Sub reloadBookmarks()
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub toggleBookmark()
+		  if TestField.LineHasBookmark(TestField.CaretLine) then
+		    TestField.ClearBookmark(TestField.CaretLine)
+		  else
+		    TestField.AddBookmark(TestField.CaretLine)
+		  end if
+		  
+		  reloadBookmarks
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h1
 		Protected barID As string
@@ -712,40 +823,13 @@ End
 		Private demo As classDemo
 	#tag EndProperty
 
+	#tag Property, Flags = &h1
+		Protected lastLine As Integer
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
-#tag Events txtSectionScript
-	#tag Event
-		Sub TextChange()
-		  if me.Text <> "" and barID <> "" then
-		    btnApply.Enabled = true
-		  else
-		    btnApply.Enabled = false
-		  end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if asc(key) = 3 and not keyboard.AsyncControlKey then
-		    // Apply the changes
-		    applyChanges
-		    
-		    // No further processing to be done with the key
-		    return true
-		  end if
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  if TargetWin32 then
-		    me.TextSize = 12
-		  else
-		    me.TextSize = 10
-		  end if
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events btnApply
 	#tag Event
 		Sub Action()
@@ -812,7 +896,7 @@ End
 		  data = f.CreateTextFile
 		  
 		  if data <> nil then
-		    data.Write txtSectionScript.text
+		    data.Write TestField.text
 		    data.close
 		  end if
 		  
@@ -875,6 +959,109 @@ End
 		  
 		  //We select the primer index to avoid blank selections
 		  me.listindex = 0
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events horizontalSB
+	#tag Event
+		Sub ValueChanged()
+		  testField.ScrollPositionx = me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TestField
+	#tag Event
+		Sub Open()
+		  //set the scrollbars
+		  me.setScrollbars(horizontalSB, verticalSB)
+		  
+		  TestField.ClearDirtyLines
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function ShouldTriggerAutocomplete(Key as string, hasAutocompleteOptions as boolean) As boolean
+		  'Return Keyboard.AsyncKeyDown(53) //to use ESC (xcode, mail, coda...)
+		  Return key = chr(9) and hasAutocompleteOptions and not Keyboard.OptionKey//to use tab, if there are options
+		  'Return Keyboard.AsyncControlKey and Keyboard.AsyncKeyDown(49) //to use ctrl-space as in visual studio
+		  'Return false 'no autocomplete, ever
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub SelChanged(line as integer, column as integer, length as integer)
+		  dim tmp as String = str(line)+":"+str(column)
+		  if length > 0 then tmp = tmp + " ("+str(length)+")"
+		  
+		  lastLine = line
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub TextChanged()
+		  if me.Text <> "" and barID <> "" then
+		    btnApply.Enabled = true
+		  else
+		    btnApply.Enabled = false
+		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function UseBackgroundColorForLine(lineIndex as integer, byref lineBackgroundColor as color) As boolean
+		  //Return false //remove this to have lines with alternate colors as background.
+		  
+		  
+		  //highlight the currentLine.
+		  if lineIndex = me.CaretLine then
+		    lineBackgroundColor = &cFFFEE4 //light yellow
+		    Return true
+		  end if
+		  
+		  Return true //remove this to go back to alternating blue-white lines
+		  
+		  //alternate backgrounds...
+		  if lineIndex mod 2 <> 0 then Return False
+		  
+		  lineBackgroundColor = RGB(237,243,255) //faint blue
+		  Return true
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub PaintBelowLine(lineIndex as integer, g as graphics, x as integer, y as integer, w as integer, h as integer)
+		  if lineIndex <> me.CaretLine then Return
+		  
+		  g.ForeColor = &CCCCCCC
+		  g.DrawLine x, y + h - 1, x + w, y + h - 1
+		  g.DrawLine x, y , x + w, y
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub GutterClicked(onLine as integer, x as integer, y as integer)
+		  #pragma unused onLine
+		  #pragma unused x
+		  #pragma unused y
+		  if x < 10 then _
+		  toggleBookmark
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub PlaceholderSelected(placeholderLabel as String, lineIndex as integer, line as textLine, placeholder as textPlaceholder, doubleClick as Boolean)
+		  #pragma unused placeholderLabel
+		  #pragma unused lineIndex
+		  #pragma unused line
+		  #pragma unused placeholder
+		  #pragma unused doubleClick
+		  //I guess you could use placeholders as buttons somehow here...
+		  'if doubleClick then
+		  'me.SelText = placeholderLabel
+		  'me.SelStart = line.offset + placeholder.offset
+		  'me.SelLength = placeholderLabel.len
+		  'end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events verticalSB
+	#tag Event
+		Sub ValueChanged()
+		  testField.ScrollPosition = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

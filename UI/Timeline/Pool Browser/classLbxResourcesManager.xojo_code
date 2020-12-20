@@ -82,8 +82,10 @@ Inherits listbox
 		  base.Append (New MenuItem("Duplicate"))
 		  
 		  base.Append (New MenuItem("Rename"))
+		  
 		  if me.SelCount > 1 then
-		    base.Child("Rename").Enabled = false
+		    base.Child("Rename"   ).Enabled = false
+		    base.Child("Duplicate").Enabled = false
 		  end if
 		  
 		  base.Append (New MenuItem("-"))
@@ -192,9 +194,13 @@ Inherits listbox
 		        
 		      else
 		        // If the file is published on disk, remove it
-		        f = demo.getFilePath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName))
+		        f = demo.getFilePath(me.cell(row, me.cstColumnID))
 		        
-		        if f.Exists then f.Delete
+		        if f <> nil then
+		          f = f.Child(me.cell(row, me.cstColumnName))
+		          
+		          if f.Exists then f.Delete
+		        end if
 		        
 		        // Remove the resource from the database
 		        demo.deleteResource(me.cell(row, me.cstColumnID))
@@ -214,7 +220,17 @@ Inherits listbox
 		    
 		  case "Duplicate"
 		    // Duplicates the selected item
-		    // lbxFileList.Duplicate row
+		    if me.cell(me.ListIndex, cstColumnType) = "Folder" then
+		      ' Item is a folder
+		      dim newFileID as string = demo.duplicateFolder(me.cell(me.ListIndex, me.cstColumnID))
+		      me.RefreshFolder(me.cell(me.ListIndex, cstColumnParent))
+		      
+		    else
+		      ' Item is a file
+		      dim newFileID as string = demo.duplicateFile(me.cell(me.ListIndex, me.cstColumnID))
+		      me.RefreshFolder(me.cell(me.ListIndex, cstColumnParent))
+		      
+		    end if
 		    
 		  case "Rename"
 		    renaming = true
@@ -321,26 +337,70 @@ Inherits listbox
 		  dim icon as picture
 		  dim parentFolderID as string
 		  
-		  if not obj.FolderItemAvailable then return
-		  
-		  if me.ListIndex > -1 then
-		    depth = val(me.cell(me.ListIndex, me.cstColumnDepth)) + 1
-		    parentFolderID = me.cell(me.ListIndex, me.cstColumnID)
-		    
-		    if not me.Expanded(me.ListIndex) then me.Expanded(me.ListIndex) = true
-		    
-		    if draggedItems.Ubound > -1 then
-		      // We are dragging from inside the database
-		      // The user is moving an element to a new position
-		      // If we are moving to the same position, we will ignore the move
-		      if draggedItems(0).value("parentFolderID") <> parentFolderID then
+		  do
+		    if me.ListIndex > -1 then
+		      depth = val(me.cell(me.ListIndex, me.cstColumnDepth)) + 1
+		      parentFolderID = me.cell(me.ListIndex, me.cstColumnID)
+		      
+		      if not me.Expanded(me.ListIndex) then me.Expanded(me.ListIndex) = true
+		      
+		      if draggedItems.Ubound > -1 then
+		        // We are dragging from inside the database
+		        // The user is moving an element to a new position
+		        // If we are moving to the same position, we will ignore the move
+		        if draggedItems(0).value("parentFolderID") <> parentFolderID then
+		          
+		          if me.draggedItems(0).value("type") = "File" then
+		            // We are dragging a file
+		            demo.moveFile(draggedItems(0).value("id"), parentFolderID)
+		            
+		          else
+		            // We are dragging a folder
+		            demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
+		            
+		          end if
+		          
+		          RefreshFolder(draggedItems(0).value("parentFolderID"))
+		          RefreshFolder(parentFolderID)
+		          
+		        end if
 		        
+		        draggedItems.Remove(0)
+		        return
+		        
+		      else
+		        if not obj.FolderItemAvailable then
+		          return
+		        end if
+		        
+		        // We are dragging from the filesystem
+		        if obj.FolderItem.Directory then
+		          // The user dragged a folder from the filesystem
+		          id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
+		          type = "Folder"
+		          icon = folderblue
+		          
+		        else
+		          // The user dragged a file from the filesystem
+		          id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
+		          type = "File"
+		          icon = icoDocument
+		          
+		        end if
+		        
+		      end if
+		      
+		    else
+		      'parentFolderID = "0"
+		      depth = 0
+		      
+		      if draggedItems.Ubound > -1 then
+		        // We are dragging from inside the database
+		        // The user is moving an element to a new position
 		        if me.draggedItems(0).value("type") = "File" then
-		          // We are dragging a file
 		          demo.moveFile(draggedItems(0).value("id"), parentFolderID)
 		          
 		        else
-		          // We are dragging a folder
 		          demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
 		          
 		        end if
@@ -348,103 +408,62 @@ Inherits listbox
 		        RefreshFolder(draggedItems(0).value("parentFolderID"))
 		        RefreshFolder(parentFolderID)
 		        
-		      end if
-		      
-		      draggedItems.Remove(0)
-		      return
-		      
-		    else
-		      // We are dragging from the filesystem
-		      if obj.FolderItem.Directory then
-		        // The user dragged a folder from the filesystem
-		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
-		        type = "Folder"
-		        icon = folderblue
+		        draggedItems.remove(0)
+		        
+		        return
 		        
 		      else
-		        // The user dragged a file from the filesystem
-		        id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
-		        type = "File"
-		        icon = icoDocument
-		        
-		      end if
-		      
-		      
-		    end if
-		    
-		  else
-		    parentFolderID = "0"
-		    depth = 0
-		    
-		    if draggedItems.Ubound > -1 then
-		      // We are dragging from inside the database
-		      // The user is moving an element to a new position
-		      if me.draggedItems(0).value("type") = "File" then
-		        demo.moveFile(draggedItems(0).value("id"), parentFolderID)
-		        
-		      else
-		        demo.moveFolder(draggedItems(0).value("id"), parentFolderID)
-		        
-		      end if
-		      
-		      RefreshFolder(draggedItems(0).value("parentFolderID"))
-		      RefreshFolder(parentFolderID)
-		      
-		      draggedItems.remove(0)
-		      
-		      return
-		      
-		    else
-		      
-		      // The user dragged a folderitem from the filesystem to the root
-		      if obj.FolderItem.Directory then
-		        id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
-		        type = "Folder"
-		        icon = folderblue
-		        
-		      else
-		        id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
-		        type = "File"
-		        icon = icoDocument
+		        // The user dragged a folderitem from the filesystem to the root
+		        if obj.FolderItem.Directory then
+		          id = demo.createResourceFolderFromFolderItem(obj.FolderItem, parentFolderID)
+		          type = "Folder"
+		          icon = folderblue
+		          
+		        else
+		          id = demo.createResourceFromFolderItem(obj.FolderItem, parentFolderID)
+		          type = "File"
+		          icon = icoDocument
+		          
+		        end if
 		        
 		      end if
 		    end if
-		  end if
+		    
+		    // Insert the item
+		    dim itemName as string
+		    
+		    if id <> "" then
+		      if type = "Folder" then
+		        me.InsertFolder(me.ListIndex+1, obj.FolderItem.Name, depth)
+		        itemName = demo.getFolderName(id)
+		        
+		      else
+		        itemName = demo.getFile(id).value("name")
+		        me.InsertRow(me.ListIndex+1, itemName, depth)
+		        me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(obj.FolderItem.Length)
+		        
+		      end if
+		      
+		      me.cell(me.LastIndex, me.cstColumnID    ) = id
+		      me.cell(me.LastIndex, me.cstColumnName  ) = itemName
+		      me.cell(me.LastIndex, me.cstColumnType  ) = type
+		      me.cell(me.LastIndex, me.cstColumnDepth ) = str(depth)
+		      me.cell(me.LastIndex, me.cstColumnParent) = parentFolderID
+		      
+		      me.CellType (me.LastIndex, me.cstColumnName) = 2
+		      me.CellCheck(me.LastIndex, me.cstColumnName) = false
+		      
+		      me.RowPicture(me.LastIndex) = icon
+		      
+		    else
+		      // The item could not be inserted because of the name
+		      Notify("An item with the same name already exists in this location", "Either rename the new item before adding it to this location or remove the item that already uses the name in conflict from the pool.")
+		      
+		    end if
+		  loop until not obj.NextItem
 		  
-		  // Insert the item
-		  dim itemName as string
-		  
-		  if id <> "" then
-		    if type = "Folder" then
-		      me.InsertFolder(me.ListIndex+1, obj.FolderItem.Name, depth)
-		      itemName = demo.getFolderName(id)
-		      
-		    else
-		      itemName = demo.getFile(id).value("name")
-		      me.InsertRow(me.ListIndex+1, itemName, depth)
-		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(obj.FolderItem.Length)
-		      
-		    end if
-		    
-		    me.cell(me.LastIndex, me.cstColumnID    ) = id
-		    me.cell(me.LastIndex, me.cstColumnName  ) = itemName
-		    me.cell(me.LastIndex, me.cstColumnType  ) = type
-		    me.cell(me.LastIndex, me.cstColumnDepth ) = str(depth)
-		    me.cell(me.LastIndex, me.cstColumnParent) = parentFolderID
-		    
-		    me.CellType (me.LastIndex, me.cstColumnName) = 2
-		    me.CellCheck(me.LastIndex, me.cstColumnName) = false
-		    
-		    me.RowPicture(me.LastIndex) = icon
-		    
-		    // Select the inserted item
-		    me.ListIndex = me.LastIndex
-		    
-		  else
-		    // The item could not be inserted because the name
-		    Notify("An item with the same name already exists in this location", "Either rename the new item before adding it to this location or remove the item that already uses the name in conflict from the pool.")
-		    
-		  end if
+		  // Select the inserted item
+		  me.ListIndex = me.LastIndex
 		  
 		  // Ensure that the dragged items array is empty
 		  while draggedItems.Ubound > -1
@@ -573,16 +592,24 @@ Inherits listbox
 
 	#tag Method, Flags = &h0
 		Sub RefreshFolder(folderID as string)
-		  for row as integer = me.ListCount - 1 downto 0
-		    if me.cell(row, cstColumnID) = folderID then
-		      if me.cell(row, cstColumnType) = "Folder" then
-		        expanded(row) = false
-		        expanded(row) = true
-		        
-		        exit
+		  if val(folderID) = 0 then
+		    ' Refresh everything
+		    RefreshContents
+		    
+		  else
+		    ' Only refresh the passed folder
+		    for row as integer = me.ListCount - 1 downto 0
+		      if me.cell(row, cstColumnID) = folderID then
+		        if me.cell(row, cstColumnType) = "Folder" then
+		          expanded(row) = false
+		          expanded(row) = true
+		          
+		          exit
+		        end if
 		      end if
-		    end if
-		  next
+		    next
+		    
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -640,8 +667,12 @@ Inherits listbox
 		      files.deleteFolder(demo.getFolderPath(me.cell(row, me.cstColumnID)).Child(me.cell(row, me.cstColumnName)))
 		      
 		      // If the folder is expanded, remove the check from all the childs
-		      if me.Expanded(row) then
-		        for i as integer = row to me.ListCount - 1
+		      me.CellCheck(row, cstColumnName) = false
+		      
+		      if row < me.ListCount - 1 then
+		        for i as integer = row+1 to me.ListCount - 1
+		          if me.cell(i, cstColumnDepth) <= me.cell(row, cstColumnDepth) then exit
+		          
 		          if me.cell(i, cstColumnDepth) > me.cell(row, cstColumnDepth) then
 		            me.CellCheck(i, cstColumnName) = false
 		          end if

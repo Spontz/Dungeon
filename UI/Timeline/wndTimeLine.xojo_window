@@ -465,7 +465,7 @@ Begin Window wndTimeLine
       Width           =   50
    End
    Begin cntCustom cntCustomSection
-      AcceptFocus     =   False
+      AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
       BackColor       =   &cFFFFFF00
@@ -789,6 +789,16 @@ End
 		  mnuBarsShowBarIDs.Enabled = true
 		  
 		  if demo.saved then mnuFileSave.Enabled = false
+		  
+		  if demo.getSelectedBarIDs.Ubound > -1 then
+		    ElementsToggleEnable.Enabled = true
+		    ElementsUpdateinEngine.Enabled = true
+		    ElementsSubdivide.Enabled = true
+		  else
+		    ElementsToggleEnable.Enabled = false
+		    ElementsUpdateinEngine.Enabled = false
+		    ElementsSubdivide.Enabled = false
+		  end if
 		End Sub
 	#tag EndEvent
 
@@ -891,7 +901,7 @@ End
 
 	#tag MenuHandler
 		Function ClearEngineLog() As Boolean Handles ClearEngineLog.Action
-			txtEngineComm.Text = ""
+			ClearEngineLog
 			
 			Return True
 			
@@ -1022,6 +1032,12 @@ End
 	#tag EndMenuHandler
 
 
+	#tag Method, Flags = &h0
+		Sub ClearEngineLog()
+		  txtEngineComm.Text = ""
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub demoEndTimeSet(sender as classDemo, theTime as single)
 		  scrHorizontal.maximum = theTime
@@ -1032,7 +1048,7 @@ End
 		Sub init(demoFile as folderitem)
 		  demo.init(demoFile)
 		  
-		  self.Title = "Dungeon Demo Editor [" + demo.engine + "]: " + demoFile.Name
+		  self.Title = "Spontz Demo Editor [" + demo.engine + "]: " + demoFile.Name
 		  
 		  If demo.countFBOs = 0 Then
 		    demo.initDefaultFBOs
@@ -1087,7 +1103,16 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub MessageReceived(sender as classTcpEngineMessage, theMessage as string)
-		  txtEngineComm.Text = txtEngineComm.text + theMessage
+		  // Split the message in lines
+		  dim lines() as string = Split(theMessage, EndOfLine.Windows)
+		  
+		  // Add the lines upside down to the comm log
+		  Do
+		    txtEngineComm.Text = lines(lines.Ubound) + EndOfLine + txtEngineComm.text
+		    lines.Remove(lines.Ubound)
+		  loop until lines.Ubound < 0
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1450,6 +1475,10 @@ End
 		    myWindow.init(itemID, self)
 		    
 		  case "path"
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		    
+		  case "glsl"
 		    dim myWindow as new wndTextEditor
 		    myWindow.init(itemID, self)
 		    

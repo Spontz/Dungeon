@@ -2512,10 +2512,6 @@ Implements MessageReceiver
 		    end if
 		    
 		    BlockCharsMatched(openingChar, pos, text, offset)
-		  else
-		    //no open block found
-		    break
-		    beep
 		  end
 		End Sub
 	#tag EndMethod

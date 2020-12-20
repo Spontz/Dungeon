@@ -9,7 +9,7 @@ Begin Window wndVideoSettings
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   550
+   Height          =   600
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -25,7 +25,7 @@ Begin Window wndVideoSettings
    Resizeable      =   True
    Title           =   "Video Settings"
    Visible         =   False
-   Width           =   500
+   Width           =   700
    Begin GroupBox GroupBox2
       AutoDeactivate  =   True
       Bold            =   False
@@ -53,7 +53,7 @@ Begin Window wndVideoSettings
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   484
+      Width           =   684
       Begin CheckBox chkFullScreen
          AutoDeactivate  =   True
          Bold            =   False
@@ -66,7 +66,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   111
+         Left            =   125
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -80,7 +80,7 @@ Begin Window wndVideoSettings
          TextFont        =   "Ubuntu Condensed"
          TextSize        =   14.0
          TextUnit        =   0
-         Top             =   54
+         Top             =   66
          Transparent     =   False
          Underline       =   False
          Value           =   False
@@ -93,13 +93,13 @@ Begin Window wndVideoSettings
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
-         Height          =   20
+         Height          =   24
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          InitialValue    =   "32 bits (True Color)\r16 bits (Thousands)\r8 bits (256 Colors)"
          Italic          =   False
-         Left            =   111
+         Left            =   125
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -113,11 +113,11 @@ Begin Window wndVideoSettings
          TextFont        =   "Ubuntu Condensed"
          TextSize        =   14.0
          TextUnit        =   0
-         Top             =   29
+         Top             =   31
          Transparent     =   False
          Underline       =   False
          Visible         =   True
-         Width           =   179
+         Width           =   160
       End
       Begin Label lblColorDepth
          AutoDeactivate  =   True
@@ -130,7 +130,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   21
+         Left            =   35
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -148,7 +148,7 @@ Begin Window wndVideoSettings
          TextFont        =   "Ubuntu Condensed"
          TextSize        =   14.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   32
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -165,7 +165,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   302
+         Left            =   297
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -200,7 +200,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   302
+         Left            =   297
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   False
@@ -242,7 +242,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   384
+         Left            =   381
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -261,7 +261,7 @@ Begin Window wndVideoSettings
          TextFont        =   "Ubuntu Condensed"
          TextSize        =   14.0
          TextUnit        =   0
-         Top             =   30
+         Top             =   31
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
@@ -286,7 +286,7 @@ Begin Window wndVideoSettings
          Index           =   -2147483648
          InitialParent   =   "GroupBox2"
          Italic          =   False
-         Left            =   384
+         Left            =   381
          LimitText       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -305,12 +305,79 @@ Begin Window wndVideoSettings
          TextFont        =   "Ubuntu Condensed"
          TextSize        =   14.0
          TextUnit        =   0
-         Top             =   55
+         Top             =   56
          Transparent     =   False
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
          Width           =   80
+      End
+      Begin Label lblVsync
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox2"
+         Italic          =   False
+         Left            =   473
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   8
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Text            =   "V-sync:"
+         TextAlign       =   2
+         TextColor       =   &c00000000
+         TextFont        =   "Ubuntu Condensed"
+         TextSize        =   14.0
+         TextUnit        =   0
+         Top             =   33
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   72
+      End
+      Begin PopupMenu popVsync
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   24
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox2"
+         InitialValue    =   "No limit\r\n60 fps\r\n30 fps\r\n20 fps"
+         Italic          =   False
+         Left            =   555
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   False
+         LockRight       =   True
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   9
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "Ubuntu Condensed"
+         TextSize        =   14.0
+         TextUnit        =   0
+         Top             =   31
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   131
       End
    End
    Begin PushButton btnOK
@@ -326,7 +393,7 @@ Begin Window wndVideoSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   423
+      Left            =   623
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -339,7 +406,7 @@ Begin Window wndVideoSettings
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
-      Top             =   512
+      Top             =   562
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -358,7 +425,7 @@ Begin Window wndVideoSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   344
+      Left            =   544
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -371,7 +438,7 @@ Begin Window wndVideoSettings
       TextFont        =   "Ubuntu Condensed"
       TextSize        =   14.0
       TextUnit        =   0
-      Top             =   512
+      Top             =   562
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -395,7 +462,7 @@ Begin Window wndVideoSettings
       GridLinesVertical=   2
       HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   401
+      Height          =   451
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -425,7 +492,7 @@ Begin Window wndVideoSettings
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   501
+      Width           =   701
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
@@ -469,17 +536,26 @@ End
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = width
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 4) = height
 		      
-		      
 		    Else
 		      ' Scaled FBO
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 1) = ratio
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 3) = "" 'This is to trigger cellTextPaint event
 		      lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 4) = "" 'This is to trigger cellTextPaint event
 		      
-		      
 		    End If
 		    
 		  next
+		  
+		  if demo.engine = demo.dragon then
+		    lblVsync.Visible = false
+		    popVsync.visible = false
+		    
+		  else
+		    lblVsync.Visible = true
+		    popVsync.visible = true
+		    
+		    popVsync.ListIndex = demo.GetVideoVerticalSync
+		  end if
 		  
 		  me.visible = true
 		End Sub
@@ -503,18 +579,18 @@ End
 #tag Events btnOK
 	#tag Event
 		Sub Action()
-		  dim i as integer
 		  dim result as integer
 		  
 		  demo.SetVideoFullScreen chkFullScreen.value
 		  
 		  demo.SetVideoScreenHeight val(txtVideoHeight.text)
 		  demo.SetVideoScreenWidth val(txtVideoWidth.text)
+		  demo.setVideoVerticalSync(popVsync.ListIndex)
 		  
 		  // Save the FBO information
 		  demo.clearFBOs
 		  
-		  for i=0 to lbxFBOConfiguration.ListCount - 1
+		  for i as integer = 0 to lbxFBOConfiguration.ListCount - 1
 		    result = demo.addFBO( _
 		    Val(lbxFBOConfiguration.cell(i, 3)), _
 		    Val(lbxFBOConfiguration.cell(i, 4)), _
@@ -524,7 +600,7 @@ End
 		    )
 		  next
 		  
-		  wndVideoSettings.close
+		  self.close
 		End Sub
 	#tag EndEvent
 #tag EndEvents

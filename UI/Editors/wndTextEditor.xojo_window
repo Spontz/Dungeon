@@ -274,9 +274,16 @@ End
 		  dim contents as TextOutputStream
 		  
 		  contents = editedFile.CreateTextFile
-		  contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
-		  contents.Flush
-		  contents.Close
+		  
+		  if contents <> nil then
+		    contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
+		    contents.Flush
+		    contents.Close
+		    
+		  else
+		    Notify("Nothing was update din the engine", "The file could not be written to the disk.")
+		    
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -309,13 +316,23 @@ End
 #tag Events btnSave
 	#tag Event
 		Sub Action()
-		  saveToDatabase
+		  // Clear the engine comm text box in all timelines
+		  for i as integer = 0 to windowcount-1
+		    if window(i) isa wndTimeLine then
+		      wndTimeLine(window(i)).ClearEngineLog
+		    end if
+		  next
+		  
+		  
 		  saveToDataFolder
+		  saveToDatabase
 		  
 		  updateBarsUsingFile
 		  
 		  me.Enabled = false
 		  btnTest.Enabled = false
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

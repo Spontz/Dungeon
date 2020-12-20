@@ -94,14 +94,31 @@ Inherits Canvas
 		      // The user is adjusting the demoengine time
 		      controller.setCurrentTime(time)
 		      
-		    elseif time <= demo.getDemoStartTime or time <= controller.Engine.runTime then
-		      // The user clicked before the start time marker or between the start time and the current time, so he/she is adjusting the start time
-		      SetDemoStartTime(time)
-		      
-		    elseif time >= demo.getDemoEndTime or time >= controller.Engine.runTime then
-		      // The user clicked after the end time or between the current time and the end time so he/she is adjusting the end time
-		      SetDemoEndTime(time)
-		      
+		    elseif controller.Engine.myConnector.IsConnected then
+		      // The demo engine is connected
+		      if time <= demo.getDemoStartTime or time <= controller.Engine.runTime then
+		        // The user clicked before the start time marker or between the start time and the current time, so adjust the start time
+		        SetDemoStartTime(time)
+		        
+		      elseif time >= demo.getDemoEndTime or time >= controller.Engine.runTime then
+		        // The user clicked after the end time or between the current time and the end time so adjust the end time
+		        SetDemoEndTime(time)
+		        
+		      else
+		        // The demo engine is not connected, so adjust the closer time
+		        dim distanceToStart as single = abs(time - demo.getDemoStartTime)
+		        dim distanceToEnd   as single = abs(time - demo.getDemoEndTime  )
+		        
+		        if distanceToStart < distanceToEnd then
+		          // We are close to the start. Update it
+		          SetDemoStartTime(time)
+		          
+		        else
+		          // We are close to the end, update it
+		          SetDemoEndTime(time)
+		          
+		        end if
+		      end if
 		    end if
 		    
 		  elseif  clickedItem = "emptyArea" then

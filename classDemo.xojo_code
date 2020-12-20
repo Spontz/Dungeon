@@ -343,7 +343,6 @@ Protected Class classDemo
 		      rec.Column       ("name"   ) = newName
 		      rec.IntegerColumn("parent" ) = val(parentID)
 		      rec.IntegerColumn("bytes"  ) = f.Length
-		      rec.Column       ("type"   ) = "File"
 		      rec.BlobColumn   ("data"   ) = file
 		      rec.Column       ("format" ) = f.Type
 		      rec.Column       ("enabled") = "0"
@@ -456,6 +455,117 @@ Protected Class classDemo
 		    demoDB.Commit
 		  End if
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function duplicateFile(fileID as string, optional parentID as string) As string
+		  // Let's calculate the file name in order to avoid two files with the same name in the same folder
+		  dim file as dictionary = getFile(fileID)
+		  
+		  dim newName  as string = file.Value("name")
+		  
+		  dim shortName as string = Strings.shortName(newName) + " Copy"
+		  dim extension as string = Strings.extension(newName)
+		  
+		  newName = shortName + "." + extension
+		  
+		  if parentID = "" then parentID = file.value("parentID")
+		  
+		  if nameConflict(newName, parentID) then
+		    dim counter as integer
+		    
+		    while nameConflict(newName, parentID)
+		      counter = counter + 1
+		      newName = shortName + " " + str(counter) + "." + extension
+		    wend
+		  end if
+		  
+		  Dim rec As new DatabaseRecord
+		  
+		  rec.Column       ("name"   ) = newName
+		  rec.IntegerColumn("parent" ) = val(parentID)
+		  rec.IntegerColumn("bytes"  ) = file.Value("size")
+		  rec.BlobColumn   ("data"   ) = file.Value("data")
+		  rec.Column       ("format" ) = file.Value("format")
+		  rec.Column       ("enabled") = "0"
+		  
+		  demoDB.InsertRecord ("FILES", rec)
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    
+		  else
+		    demoDB.Commit
+		    
+		    // Mark the project as not saved
+		    saved = false
+		  end if
+		  
+		  // Return the ID of the added file
+		  return demoDB.SQLSelect("SELECT id FROM FILES ORDER BY id DESC LIMIT 1").Field("id").StringValue
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function duplicateFolder(folderID as string, optional parentID as string) As string
+		  // Let's calculate the new folder name in order to avoid two folder with the same name in the same folder
+		  dim folder as dictionary = getFolder(folderID)
+		  
+		  dim newName  as string = folder.Value("name")
+		  
+		  dim shortName as string = Strings.shortName(newName) + " Copy"
+		  
+		  newName = shortName
+		  
+		  if parentID = "" then parentID = folder.value("parentID")
+		  
+		  if nameConflict(newName, parentID) then
+		    dim counter as integer
+		    
+		    while nameConflict(newName, parentID)
+		      counter = counter + 1
+		      newName = shortName + " " + str(counter)
+		    wend
+		  end if
+		  
+		  Dim rec As new DatabaseRecord
+		  
+		  rec.Column       ("name"   ) = newName
+		  rec.IntegerColumn("parent" ) = val(parentID)
+		  rec.Column       ("enabled") = "0"
+		  
+		  demoDB.InsertRecord ("FOLDERS", rec)
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    
+		  else
+		    demoDB.Commit
+		    
+		    ' Mark the project as not saved
+		    saved = false
+		  end if
+		  
+		  ' Return the ID of the added folder
+		  dim newFolderID as string = demoDB.SQLSelect("SELECT id FROM FOLDERS ORDER BY id DESC LIMIT 1").Field("id").StringValue
+		  
+		  ' Also duplicate the files (and folders) inside the original folder
+		  dim resources() as Dictionary = getFiles(folderID)
+		  
+		  for each entry as dictionary in resources
+		    if entry.value("type") = "File" then
+		      ' Duplicate file
+		      call duplicateFile(entry.value("id"), newFolderID)
+		      
+		    else
+		      ' Duplicate folder
+		      call duplicateFolder(entry.value("id"), newFolderID)
+		      
+		    end if
+		  next
+		  
+		  return newFolderID
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -797,7 +907,7 @@ Protected Class classDemo
 		  content = ReplaceAll(content, "\", "/")
 		  
 		  
-		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%/pool/" + content + "%'")
+		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%pool/" + content + "%'")
 		  
 		  while not result.EOF
 		    barIDs.Append(result.Field("id").StringValue)
@@ -1067,11 +1177,9 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function GetDemoType() As string
-		  dim result as string
+		  dim result as string = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='type' LIMIT 1").Field("value").StringValue
 		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='type' LIMIT 1").Field("value").StringValue
-		  
-		  if result = "" then result = "dragon"
+		  if result = "" then result = dragon
 		  
 		  return result
 		End Function
@@ -1165,19 +1273,20 @@ Protected Class classDemo
 	#tag Method, Flags = &h0
 		Function getFile(ID as string) As dictionary
 		  dim files as RecordSet
-		  dim result as Dictionary
-		  result = new Dictionary
+		  dim result as new Dictionary
 		  
 		  Files = demoDB.SQLSelect("SELECT * FROM FILES where id='" + ID + "'")
 		  
 		  // Build the response dictionary
 		  if files.RecordCount > 0 then
-		    result.Value("type"   ) = "File"
-		    result.Value("id"     ) = files.Field("id"     ).StringValue
-		    result.Value("name"   ) = files.Field("name"   ).StringValue
-		    result.Value("size"   ) = files.Field("bytes"  ).StringValue
-		    result.Value("data"   ) = files.Field("data"   ).NativeValue
-		    result.value("enabled") = files.field("enabled").BooleanValue
+		    result.Value("id"      ) = files.Field("id"     ).StringValue
+		    result.Value("name"    ) = files.Field("name"   ).StringValue
+		    result.Value("size"    ) = files.Field("bytes"  ).StringValue
+		    result.Value("data"    ) = files.Field("data"   ).NativeValue
+		    result.value("enabled" ) = files.field("enabled").BooleanValue
+		    result.value("parentID") = files.field("parent" ).IntegerValue
+		    result.Value("format"  ) = files.Field("format" ).StringValue
+		    
 		  end if
 		  
 		  return result
@@ -1272,6 +1381,27 @@ Protected Class classDemo
 		      
 		      Files.MoveNext
 		    next
+		  end if
+		  
+		  return result
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getFolder(ID as string) As dictionary
+		  dim files as RecordSet
+		  dim result as new Dictionary
+		  
+		  Files = demoDB.SQLSelect("SELECT * FROM FOLDERS where id='" + ID + "'")
+		  
+		  // Build the response dictionary
+		  if files.RecordCount > 0 then
+		    result.Value("type"    ) = "Folder"
+		    result.Value("id"      ) = files.Field("id"     ).StringValue
+		    result.Value("name"    ) = files.Field("name"   ).StringValue
+		    result.value("enabled" ) = files.field("enabled").BooleanValue
+		    result.value("parentID") = files.field("parent" ).IntegerValue
+		    
 		  end if
 		  
 		  return result
@@ -1597,6 +1727,24 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Function GetVideoVerticalSync() As integer
+		  dim result as string
+		  
+		  select case engine
+		    
+		  case dragon
+		    result = "0"
+		    
+		  case phoenix
+		    result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
+		    
+		  end
+		  
+		  return val(result)
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub init(optional demoFile as folderitem)
 		  ' Create the demo database in the temporary folder
 		  Dim f as FolderItem = GetTemporaryFolderItem()
@@ -1777,15 +1925,14 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub moveFile(fileID as string, parentFolderID as string)
-		  if nameConflict(getFile(fileID).value("name"), parentFolderID) then
+		  // Save a reference to the file
+		  dim fileData as dictionary = getFile(fileID)
+		  dim origFile as folderitem = getFilePath(fileID)
+		  
+		  if nameConflict(fileData.value("name"), parentFolderID) then
 		    Notify("Can't complete move", "There is already a folder or a file with the same name in the destination.")
 		    return
 		  end if
-		  
-		  // Get a reference to the file
-		  dim fileData as Dictionary = getFile(fileID)
-		  dim f as FolderItem = getFilePath(fileID)
-		  f = f.Child(fileData.value("name"))
 		  
 		  dim query as string = "UPDATE FILES SET parent=" + parentFolderID + " WHERE id=" + fileID
 		  
@@ -1800,10 +1947,11 @@ Protected Class classDemo
 		    
 		    // If the moved file is published, do also the change in the filesystem
 		    if fileData.value("enabled").BooleanValue then
-		      dim folderpath as folderitem = getFolderPath(parentFolderID)
-		      dim folderName as string = getFolderName(parentFolderID)
-		      folderpath = folderpath.child(folderName)
-		      if f.Exists then f.MoveFileTo(folderPath)
+		      dim destination as FolderItem = getFilePath(fileID)
+		      destination = destination.Child(fileData.value("name"))
+		      
+		      origFile = origFile.child(fileData.value("name"))
+		      origFile.MoveFileTo(destination)
 		    end if
 		  end if
 		End Sub
@@ -1811,6 +1959,10 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub moveFolder(folderID as string, parentFolderID as string)
+		  // Save a reference for the current file location
+		  dim folderData as Dictionary = getFolder(folderID)
+		  dim origFolder as folderitem = getFolderPath(folderID)
+		  
 		  if nameConflict(getFolderName(folderID), parentFolderID) then
 		    Notify("Can't complete move", "There is already a folder or a file with the same name in the destination.")
 		    return
@@ -1826,6 +1978,16 @@ Protected Class classDemo
 		  else
 		    demoDB.Commit
 		    saved = false
+		    
+		    // If the moved folder is published, do also the change in the filesystem
+		    // Get a reference to the folder
+		    if folderData.value("enabled").BooleanValue then
+		      dim destination as FolderItem = getFolderPath(parentFolderID)
+		      destination = destination.child(getFolderName(parentFolderID)).Child(folderData.value("name"))
+		      
+		      origFolder = origFolder.child(folderData.value("name"))
+		      origFolder.MoveFileTo(destination)
+		    end if
 		  end if
 		End Sub
 	#tag EndMethod
@@ -2225,12 +2387,19 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub SetDataFolder(folder as FolderItem)
+		  if folder = nil then
+		    Notify("Fatal error", "The data folder could not be set")
+		    
+		    return
+		  end if
+		  
 		  if not Folder.Exists then folder.CreateAsFolder
 		  
 		  // Create a pool folder
 		  if not Folder.Child("pool").Exists then Folder.Child("pool").CreateAsFolder
 		  
 		  dataFolder = folder
+		  
 		End Sub
 	#tag EndMethod
 
@@ -2537,6 +2706,40 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub setVideoVerticalSync(vsync as integer)
+		  dim result as string
+		  
+		  // Check if vsync exists in the list of variables
+		  select case engine
+		    
+		  case dragon
+		    return
+		    
+		  case phoenix
+		    result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
+		    
+		  end
+		  
+		  if result = "" then
+		    // vsync does not exist so create it
+		    ExecuteSQL("INSERT INTO VARIABLES (variable, value) Values (""vsync"", """ + str(vsync) + """)")
+		    
+		  else
+		    // vsync exists so update it
+		    ExecuteSQL("UPDATE VARIABLES SET value = '" + str(vsync) + "' WHERE variable = 'vsync'")
+		    
+		  end if
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub toggleBar(barID as string)
 		  dim enabled as boolean
 		  
@@ -2606,6 +2809,10 @@ Protected Class classDemo
 		  
 		  If f = Nil then return
 		  if f.Directory then return
+		  if not f.Exists then
+		    Notify ("The engine could not be updated", "The file " + f.ShellPath + " could not be found on disk")
+		    return
+		  end if
 		  
 		  // Read the file
 		  b = BinaryStream.Open(f,False)

@@ -129,6 +129,11 @@ Protected Module Files
 	#tag Method, Flags = &h0
 		Sub deleteFile(target as folderitem)
 		  // Function to delete a single file
+		  if target = nil then
+		    Trace("Files: deleteFile: Passed null folderitem. Nothing to do.", cstTraceLevelWarning)
+		    return
+		  end if
+		  
 		  if not target.Directory then
 		    target.Delete
 		  else
