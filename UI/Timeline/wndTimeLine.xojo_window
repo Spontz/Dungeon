@@ -643,6 +643,7 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      Enabled         =   True
       engine          =   ""
       Index           =   -2147483648
       LockedInPosition=   False
@@ -651,6 +652,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin Timer tmrRedraw
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
@@ -659,6 +661,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin ServerSocket tcpErrorLogger
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       MaximumSocketsConnected=   10
@@ -897,6 +900,21 @@ End
 		    me.MouseCursor = System.Cursors.StandardPointer
 		    
 		  end if
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Open()
+		  dim barheight as integer = self.top - self.Bounds.Top
+		  dim borders as integer = self.left - self.bounds.left
+		  
+		  Dim myBounds As New Realbasic.Rect
+		  myBounds.Left = -borders
+		  myBounds.Top = 0
+		  myBounds.Height = Screen(0).AvailableHeight + borders
+		  myBounds.Width = Screen(0).AvailableWidth / 2
+		  
+		  self.Bounds = myBounds
 		End Sub
 	#tag EndEvent
 
