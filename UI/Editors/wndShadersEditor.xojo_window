@@ -206,6 +206,23 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  dim barheight as integer = self.top - self.Bounds.Top
+		  dim borders as integer = self.left - self.bounds.left
+		  
+		  Dim myBounds As New Realbasic.Rect
+		  
+		  myBounds.Left = Screen(0).AvailableWidth / 2 - borders
+		  myBounds.Top = Screen(0).AvailableHeight / 2
+		  myBounds.Height = borders + Screen(0).AvailableHeight / 2 
+		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
+		  
+		  self.Bounds = myBounds
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub init(fileID as string, theHook as wndTimeLine)
 		  dim f as FolderItem

@@ -912,7 +912,7 @@ End
 		  myBounds.Left = -borders
 		  myBounds.Top = 0
 		  myBounds.Height = Screen(0).AvailableHeight + borders
-		  myBounds.Width = Screen(0).AvailableWidth / 2
+		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
 		  
 		  self.Bounds = myBounds
 		End Sub
