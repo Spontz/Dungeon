@@ -164,6 +164,8 @@ Protected Module Files
 	#tag Method, Flags = &h0
 		Sub deleteFolder(target as folderitem)
 		  //Recursive function to erase a directory
+		  if target = nil then return
+		  
 		  for i as integer = target.count downto 1
 		    if target.trueitem(i) <> nil and target.trueitem(i).Exists then deleteFolder(target.trueitem(i))
 		  next
