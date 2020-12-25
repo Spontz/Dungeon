@@ -214,8 +214,8 @@ End
 		  Dim myBounds As New Realbasic.Rect
 		  
 		  myBounds.Left = Screen(0).AvailableWidth / 2 - borders
-		  myBounds.Top = Screen(0).AvailableHeight / 2
-		  myBounds.Height = borders + Screen(0).AvailableHeight / 2 
+		  myBounds.Top = Screen(0).AvailableHeight / 2 + 2 * borders
+		  myBounds.Height = Screen(0).AvailableHeight / 2 - borders
 		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
 		  
 		  self.Bounds = myBounds

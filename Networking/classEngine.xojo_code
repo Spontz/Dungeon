@@ -26,12 +26,6 @@ Protected Class classEngine
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub launch()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub Pause()
 		  myConnector.SendMessage "command" + netSeparator + "pause"
 		End Sub

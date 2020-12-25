@@ -128,12 +128,20 @@ Protected Module controller
 		      end if
 		      
 		    case demo.phoenix
+		      dim barheight as integer = wndTimeLine.top - wndTimeLine.Bounds.Top
+		      dim borders as integer = wndTimeLine.left - wndTimeLine.bounds.left
+		      
+		      dim wLeft   as integer = Screen(0).AvailableWidth
+		      dim wTop    as integer = barHeight
+		      dim wHeight as integer = Screen(0).Height - 2 * borders - barHeight
+		      dim wWidth  as integer = Screen(0).AvailableWidth
+		      
 		      VisualsEngine = GetFolderItem("Engines").child("Phoenix")
 		      
 		      //And launch it
 		      If VisualsEngine.exists Then
 		        Dim command As String
-		        command = "cd " + VisualsEngine.ShellPath +" && " + "Phoenix.exe"
+		        command = "cd " + VisualsEngine.ShellPath +" && " + "Phoenix.exe -window " + wLeft.ToText + " " + wTop.ToText + " " + wWidth.totext + " " + wHeight.toText
 		        Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
 		        
 		        Engine.engineShell = new classEngineShell
