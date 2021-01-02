@@ -210,7 +210,6 @@ Begin Window wndTrace
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
       Top             =   287
       Transparent     =   False
       Value           =   0
@@ -218,7 +217,6 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
@@ -424,6 +422,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  base.Append(New MenuItem("Clear"))
+		  base.Append(New MenuItem("-"))
 		  base.Append(New Menuitem(cns_ExportToHTML))
 		  
 		  return true
@@ -432,6 +432,9 @@ End
 	#tag Event
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
 		  select case hitItem.Text
+		    
+		  case "Clear"
+		    lbxTrace.DeleteAllRows
 		    
 		  case cns_ExportToHTML
 		    exportToHTML
@@ -475,8 +478,7 @@ End
 		  
 		  //Cada Bloque va entre valores <tr></tr>
 		  dim i as integer
-		  pgrBarExport.Maximum=lbxTrace.ListCount-1
-		  pgrBarExport.Value=0
+		  
 		  For i = 0 to  lbxTrace.listcount - 1
 		    'For j=0 to lbxTrace.columncount -1
 		    select case  lbxTrace.cell(i,cstColumnLevel)
@@ -518,8 +520,7 @@ End
 		      "</tr>"+EndOfLine
 		    end select
 		    'next
-		    pgrBarExport.Value=pgrBarExport.Value+1
-		    pgrBarExport.Refresh
+		    
 		  next
 		  
 		  //Una vez generada la tabla, la cerramos y cerramos el html
