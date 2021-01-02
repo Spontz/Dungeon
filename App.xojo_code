@@ -110,6 +110,14 @@ Inherits Application
 		fonts() As folderItem
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		WindowBorderWidth As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		WindowTopBarHeight As Integer
+	#tag EndProperty
+
 
 	#tag ViewBehavior
 		#tag ViewProperty

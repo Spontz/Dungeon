@@ -208,15 +208,12 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  dim barheight as integer = self.top - self.Bounds.Top
-		  dim borders as integer = self.left - self.bounds.left
-		  
 		  Dim myBounds As New Realbasic.Rect
 		  
-		  myBounds.Left = Screen(0).AvailableWidth / 2 - borders
-		  myBounds.Top = Screen(0).AvailableHeight / 2 + 2 * borders
-		  myBounds.Height = Screen(0).AvailableHeight / 2 - borders
-		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
+		  myBounds.Left   = Screen(0).AvailableWidth  / 2 - App.WindowBorderWidth
+		  myBounds.Top    = Screen(0).AvailableHeight / 2 + 2 * App.WindowBorderWidth
+		  myBounds.Height = Screen(0).AvailableHeight / 2 - App.WindowBorderWidth
+		  myBounds.Width  = Screen(0).AvailableWidth  / 2 + 2 * App.WindowBorderWidth
 		  
 		  Trace("wndShadersEditor: Open: Window opened at: " + myBounds.Left.ToText + "," + myBounds.Top.ToText + " with size: " + myBounds.Width.ToText + "x" + myBounds.Height.ToText, cstTraceLevelLog)
 		  

@@ -130,13 +130,10 @@ Protected Module controller
 		    case demo.phoenix
 		      Trace("Engines.launchLocal: Screen size: " + Screen(0).Width.ToText + "x" + Screen(0).Height.ToText + " pixels", cstTraceLevelLog)
 		      
-		      dim barheight as integer = wndTimeLine.top - wndTimeLine.Bounds.Top
-		      dim borders as integer = wndTimeLine.left - wndTimeLine.bounds.left
-		      
-		      dim wLeft   as integer = Screen(0).Width / 2
-		      dim wTop    as integer = barHeight
-		      dim wHeight as integer = Screen(0).Height / 2 - 2 * borders - barHeight
-		      dim wWidth  as integer = Screen(0).Width / 2
+		      dim wLeft   as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
+		      dim wTop    as integer = Screen(0).ScaleFactor * App.WindowTopBarHeight
+		      dim wHeight as integer = Screen(0).ScaleFactor * (Screen(0).Height / 2 - App.WindowTopBarHeight)
+		      dim wWidth  as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
 		      
 		      VisualsEngine = GetFolderItem("Engines").child("Phoenix")
 		      
@@ -163,12 +160,6 @@ Protected Module controller
 		Sub ping()
 		  Engine.Ping
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub quit(demo as classDemo)
-		  Engine.Quit
 		End Sub
 	#tag EndMethod
 
@@ -227,6 +218,14 @@ Protected Module controller
 	#tag Method, Flags = &h0
 		Sub setStartTime(startTime as single)
 		  Engine.SetStartTime(startTime)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub stopLocal()
+		  Trace("Engines.quit: Asking the demo engine to terminate...", cstTraceLevelLog)
+		  
+		  Engine.Quit
 		End Sub
 	#tag EndMethod
 
