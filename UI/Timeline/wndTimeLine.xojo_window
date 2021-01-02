@@ -630,7 +630,7 @@ Begin Window wndTimeLine
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   257
+      Left            =   2
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -659,28 +659,7 @@ Begin Window wndTimeLine
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   643
-   End
-   Begin HTMLViewer htmlPreview
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   82
-      HelpTag         =   ""
-      Index           =   -2147483648
-      Left            =   0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Renderer        =   0
-      Scope           =   0
-      TabIndex        =   24
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   518
-      Visible         =   True
-      Width           =   252
+      Width           =   898
    End
    Begin classLbxResourcesManager lbxResourcesManager
       AutoDeactivate  =   True

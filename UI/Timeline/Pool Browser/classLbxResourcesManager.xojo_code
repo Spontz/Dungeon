@@ -63,8 +63,17 @@ Inherits listbox
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
 		  base.Append (New MenuItem("New Root Folder"))
-		  
 		  base.Append (New MenuItem("New Folder Inside"))
+		  base.Append (New MenuItem("-"))
+		  base.Append (New MenuItem("Open Resource"))
+		  base.Append (New MenuItem("Copy Path"))
+		  base.Append (New MenuItem("Toggle selected"))
+		  base.Append (New MenuItem("-"))
+		  base.Append (New MenuItem("Delete"))
+		  base.Append (New MenuItem("Duplicate"))
+		  base.Append (New MenuItem("Rename"))
+		  base.Append (New MenuItem("-"))
+		  base.Append (New MenuItem("Open Data Folder"))
 		  
 		  dim tags as dictionary = me.RowTag(me.listindex)
 		  
@@ -72,30 +81,20 @@ Inherits listbox
 		    base.Child("New folder inside").Enabled = false
 		  end if
 		  
-		  base.Append (New MenuItem("-"))
-		  
-		  base.Append (New MenuItem("Open Resource"))
-		  if tags.value("type") <> "File" then
-		    base.Child("Open Resource").Enabled = false
-		  end if
-		  
-		  base.Append (New MenuItem("Toggle selected"))
-		  
-		  base.Append (New MenuItem("-"))
-		  
-		  base.Append (New MenuItem("Delete"))
-		  base.Append (New MenuItem("Duplicate"))
-		  
-		  base.Append (New MenuItem("Rename"))
-		  
 		  if me.SelCount > 1 then
 		    base.Child("Rename"   ).Enabled = false
 		    base.Child("Duplicate").Enabled = false
+		    base.Child("Copy Path").Enabled = false
 		  end if
 		  
-		  base.Append (New MenuItem("-"))
+		  if not me.CellCheck(me.ListIndex, me.cstColumnName) then
+		    base.Child("Copy Path").Enabled = false
+		  end if
 		  
-		  base.Append (New MenuItem("Open Data Folder"))
+		  if tags.value("type") <> "File" then
+		    base.Child("Open Resource").Enabled = false
+		    base.Child("Copy Path").Enabled = false
+		  end if
 		  
 		  return true
 		End Function
@@ -108,6 +107,19 @@ Inherits listbox
 		  dim finalName as string
 		  
 		  select case hitItem.Text
+		    
+		  case "Copy Path"
+		    if me.ListIndex < -1 then return true
+		    
+		    dim tags as dictionary = me.RowTag(me.ListIndex)
+		    if tags.value("type") = "Folder" then return true
+		    
+		    dim filePath as string = demo.getFilePath(tags.Value("id")).Child(me.cell(me.ListIndex, me.cstColumnName)).NativePath
+		    dim poolPath as string = demo.GetDataFolder.NativePath
+		    
+		    dim c As New Clipboard
+		    c.Text = Replace(Replace(filePath, poolPath, ""), "\", "/")
+		    c.Close
 		    
 		  case "New Root Folder"
 		    dim id as string = demo.createResourceFolder(demo.getUniqueName("New Folder", "0"), "0")
