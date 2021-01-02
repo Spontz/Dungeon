@@ -603,6 +603,17 @@ Inherits listbox
 
 	#tag Method, Flags = &h21
 		Private Sub RefreshContents()
+		  ' Create a list of the open folders inside the listbox
+		  dim openFolderIDs() as integer
+		  
+		  for row as integer = 0 to me.ListCount - 1
+		    dim tags as dictionary = me.RowTag(row)
+		    
+		    if tags.value("type") = "Folder" and me.Expanded(row) then
+		      openFolderIDs.Append tags.value("id")
+		    end if
+		  next
+		  
 		  // Retrieve all the files and folders with parent = 0 (root items) and paint them
 		  me.DeleteAllRows
 		  me.ColumnType(cstColumnName) = Listbox.TypeCheckbox
@@ -646,6 +657,38 @@ Inherits listbox
 		    end if
 		    
 		  next
+		  
+		  RefreshExpandedFolders(openFolderIDs)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub RefreshExpandedFolders(openFolderIDs() as integer)
+		  while openFolderIDs.Ubound > -1
+		    dim somethingWasExpanded as boolean
+		    
+		    for row as integer = me.ListCount - 1 downto 0
+		      
+		      dim tags as dictionary = me.RowTag(row)
+		      
+		      if tags.value("type") = "Folder" then
+		        dim positionInArray as integer = openFolderIDs.IndexOf(tags.value("id"))
+		        
+		        if positionInArray > -1 then
+		          ' We are in one of the folders to refresh
+		          me.Expanded(row) = false
+		          me.expanded(row) = true
+		          
+		          somethingWasExpanded = true
+		          
+		          openFolderIDs.Remove(positionInArray)
+		        end if
+		      end if
+		    next
+		    
+		    ' Stop if nothing was expanded in the previous iteration
+		    if not somethingWasExpanded then exit
+		  wend
 		End Sub
 	#tag EndMethod
 
@@ -656,25 +699,43 @@ Inherits listbox
 		    RefreshContents
 		    
 		  else
-		    ' Only refresh the passed folder
+		    ' Locate the row for the folder that we are refreshing
+		    dim rowToRefresh as integer
+		    
 		    for row as integer = me.ListCount - 1 downto 0
 		      dim tags as dictionary = me.RowTag(row)
 		      
 		      if tags.value("id") = folderID and tags.value("type") = "Folder" then
-		        ' Create a list of the open folders inside
-		        dim enclosedItems() as dictionary = demo.getFiles(tags.value("id"))
-		        
-		        ' Check the list and geta list of the expanded folders
-		        
+		        rowToRefresh = row
+		        exit
+		      end if
+		    next
+		    
+		    ' Create a list of the open folders inside that row
+		    dim openFolderIDs() as integer
+		    
+		    for row as integer = rowToRefresh to me.ListCount - 1
+		      dim tags as dictionary = me.RowTag(row)
+		      
+		      if tags.value("type") = "Folder" and me.Expanded(row) then
+		        openFolderIDs.Append tags.value("id")
+		      end if
+		    next
+		    
+		    ' Refresh the passed folder
+		    for row as integer = me.ListCount - 1 downto 0
+		      dim tags as dictionary = me.RowTag(row)
+		      
+		      if tags.value("id") = folderID and tags.value("type") = "Folder" then
 		        expanded(row) = false
 		        expanded(row) = true
-		        
-		        
 		        
 		        exit
 		      end if
 		    next
 		    
+		    ' Reopen the expanded folders
+		    RefreshExpandedFolders(openFolderIDs)
 		  end if
 		End Sub
 	#tag EndMethod
