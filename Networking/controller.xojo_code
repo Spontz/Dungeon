@@ -128,13 +128,15 @@ Protected Module controller
 		      end if
 		      
 		    case demo.phoenix
+		      Trace("Engines.launchLocal: Screen size: " + Screen(0).Width.ToText + "x" + Screen(0).Height.ToText + " pixels", cstTraceLevelLog)
+		      
 		      dim barheight as integer = wndTimeLine.top - wndTimeLine.Bounds.Top
 		      dim borders as integer = wndTimeLine.left - wndTimeLine.bounds.left
 		      
-		      dim wLeft   as integer = Screen(0).AvailableWidth
+		      dim wLeft   as integer = Screen(0).Width / 2
 		      dim wTop    as integer = barHeight
-		      dim wHeight as integer = Screen(0).Height - 2 * borders - barHeight
-		      dim wWidth  as integer = Screen(0).AvailableWidth
+		      dim wHeight as integer = Screen(0).Height / 2 - 2 * borders - barHeight
+		      dim wWidth  as integer = Screen(0).Width / 2
 		      
 		      VisualsEngine = GetFolderItem("Engines").child("Phoenix")
 		      
@@ -161,6 +163,12 @@ Protected Module controller
 		Sub ping()
 		  Engine.Ping
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub quit(demo as classDemo)
+		  Engine.Quit
 		End Sub
 	#tag EndMethod
 
@@ -212,13 +220,7 @@ Protected Module controller
 
 	#tag Method, Flags = &h0
 		Sub setPlay()
-		  Engine.Play
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub setRestart()
-		  Engine.Restart
+		  Engine.play
 		End Sub
 	#tag EndMethod
 

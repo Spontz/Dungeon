@@ -203,7 +203,7 @@ Begin Window wndAbout
       TextAlign       =   1
       TextColor       =   &cFFFFFF00
       TextFont        =   "Gold Under The Mud"
-      TextSize        =   120.0
+      TextSize        =   100.0
       TextUnit        =   0
       Top             =   -11
       Transparent     =   True

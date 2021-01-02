@@ -1927,6 +1927,12 @@ Protected Class classDemo
 		Sub moveFile(fileID as string, parentFolderID as string)
 		  // Save a reference to the file
 		  dim fileData as dictionary = getFile(fileID)
+		  
+		  if fileData.value("parentID") = parentFolderID then
+		    ' We are moving the file to the actual file location no nothing to do
+		    return
+		  end if
+		  
 		  dim origFile as folderitem = getFilePath(fileID)
 		  
 		  if nameConflict(fileData.value("name"), parentFolderID) then

@@ -50,12 +50,6 @@ Protected Class classEngine
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Restart()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub setCurrentTime(theTime as single)
 		  myConnector.SendMessage "command" + netSeparator + "currentTime" + netSeparator + str(theTime)
 		End Sub

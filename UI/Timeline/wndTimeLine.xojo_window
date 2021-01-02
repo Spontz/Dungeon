@@ -4,7 +4,7 @@ Begin Window wndTimeLine
    Backdrop        =   0
    CloseButton     =   True
    Compatibility   =   ""
-   Composite       =   False
+   Composite       =   True
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
@@ -476,7 +476,6 @@ Begin Window wndTimeLine
       HasBackColor    =   False
       Height          =   254
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   257
       LockBottom      =   True
@@ -566,14 +565,131 @@ Begin Window wndTimeLine
       Visible         =   True
       Width           =   47
    End
+   Begin ProgressBar barProgress
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   2
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   False
+      Maximum         =   100
+      Scope           =   0
+      TabIndex        =   22
+      TabPanelIndex   =   0
+      Top             =   500
+      Transparent     =   False
+      Value           =   0
+      Visible         =   True
+      Width           =   252
+   End
+   Begin classDemo demo
+      engine          =   ""
+      Index           =   -2147483648
+      LockedInPosition=   False
+      saved           =   True
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin Timer tmrRedraw
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Mode            =   2
+      Period          =   100
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin ServerSocket tcpErrorLogger
+      Index           =   -2147483648
+      LockedInPosition=   False
+      MaximumSocketsConnected=   10
+      MinimumSocketsAvailable=   2
+      Port            =   28001
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
+   Begin TextArea txtEngineComm
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cEFEDC700
+      Bold            =   False
+      Border          =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   82
+      HelpTag         =   ""
+      HideSelection   =   True
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   257
+      LimitText       =   0
+      LineHeight      =   0.0
+      LineSpacing     =   1.0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Mask            =   ""
+      Multiline       =   True
+      ReadOnly        =   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollbarVertical=   True
+      Styled          =   True
+      TabIndex        =   23
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "Consolas"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   518
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   643
+   End
+   Begin HTMLViewer htmlPreview
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   82
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Left            =   0
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Renderer        =   0
+      Scope           =   0
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   518
+      Visible         =   True
+      Width           =   252
+   End
    Begin classLbxResourcesManager lbxResourcesManager
       AutoDeactivate  =   True
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   False
-      ColumnCount     =   6
+      ColumnCount     =   2
       ColumnsResizable=   False
-      ColumnWidths    =   "*,50,0,0,0,0,0"
+      ColumnWidths    =   "*,50"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -617,106 +733,6 @@ Begin Window wndTimeLine
       Width           =   252
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
-   End
-   Begin ProgressBar barProgress
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   16
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   2
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Maximum         =   100
-      Scope           =   0
-      TabIndex        =   22
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   500
-      Transparent     =   False
-      Value           =   0
-      Visible         =   True
-      Width           =   252
-   End
-   Begin classDemo demo
-      Enabled         =   True
-      engine          =   ""
-      Index           =   -2147483648
-      LockedInPosition=   False
-      saved           =   True
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
-   Begin Timer tmrRedraw
-      Enabled         =   True
-      Index           =   -2147483648
-      LockedInPosition=   False
-      Mode            =   2
-      Period          =   100
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
-   Begin ServerSocket tcpErrorLogger
-      Enabled         =   True
-      Index           =   -2147483648
-      LockedInPosition=   False
-      MaximumSocketsConnected=   10
-      MinimumSocketsAvailable=   2
-      Port            =   28001
-      Scope           =   0
-      TabPanelIndex   =   0
-   End
-   Begin TextArea txtEngineComm
-      AcceptTabs      =   False
-      Alignment       =   0
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cEFEDC700
-      Bold            =   False
-      Border          =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   82
-      HelpTag         =   ""
-      HideSelection   =   True
-      Index           =   -2147483648
-      Italic          =   False
-      Left            =   0
-      LimitText       =   0
-      LineHeight      =   0.0
-      LineSpacing     =   1.0
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   False
-      Mask            =   ""
-      Multiline       =   True
-      ReadOnly        =   False
-      Scope           =   0
-      ScrollbarHorizontal=   False
-      ScrollbarVertical=   True
-      Styled          =   True
-      TabIndex        =   23
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "Consolas"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   518
-      Transparent     =   False
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   900
    End
 End
 #tag EndWindow
@@ -786,6 +802,9 @@ End
 		Sub Close()
 		  // Clear the data folder pertaining to this project
 		  Files.deleteFolder demo.GetDataFolder
+		  
+		  // Close the demoengine
+		  engine.quit
 		End Sub
 	#tag EndEvent
 
@@ -937,6 +956,14 @@ End
 	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
 			UpdateSelectedBars
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function EngineCOmmand(index as Integer) As Boolean Handles EngineCOmmand.Action
+			
+			Return True
 			
 		End Function
 	#tag EndMenuHandler
@@ -1466,6 +1493,38 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
+#tag Events demo
+	#tag Event
+		Sub demoEndTimeSet(newEndTime as single)
+		  controller.setEndTime(newEndTime)
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub demoStartTimeSet(newStartTime as single)
+		  controller.setStartTime(newStartTime)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events tmrRedraw
+	#tag Event
+		Sub Action()
+		  cnvTimeLine.Invalidate
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events tcpErrorLogger
+	#tag Event
+		Function AddSocket() As TCPSocket
+		  dim tcpEngineMessage as new classTcpEngineMessage
+		  
+		  AddHandler tcpEngineMessage.MessageReceived, AddressOf MessageReceived
+		  
+		  return TcpEngineMessage
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events lbxResourcesManager
 	#tag Event
 		Sub DoubleClickedItem(itemID as string)
@@ -1544,38 +1603,6 @@ End
 		    
 		  end select
 		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events demo
-	#tag Event
-		Sub demoEndTimeSet(newEndTime as single)
-		  controller.setEndTime(newEndTime)
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub demoStartTimeSet(newStartTime as single)
-		  controller.setStartTime(newStartTime)
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events tmrRedraw
-	#tag Event
-		Sub Action()
-		  cnvTimeLine.Invalidate
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events tcpErrorLogger
-	#tag Event
-		Function AddSocket() As TCPSocket
-		  dim tcpEngineMessage as new classTcpEngineMessage
-		  
-		  AddHandler tcpEngineMessage.MessageReceived, AddressOf MessageReceived
-		  
-		  return TcpEngineMessage
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

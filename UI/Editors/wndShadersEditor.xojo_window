@@ -218,6 +218,8 @@ End
 		  myBounds.Height = Screen(0).AvailableHeight / 2 - borders
 		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
 		  
+		  Trace("wndShadersEditor: Open: Window opened at: " + myBounds.Left.ToText + "," + myBounds.Top.ToText + " with size: " + myBounds.Width.ToText + "x" + myBounds.Height.ToText, cstTraceLevelLog)
+		  
 		  self.Bounds = myBounds
 		End Sub
 	#tag EndEvent
