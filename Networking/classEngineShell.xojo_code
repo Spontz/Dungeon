@@ -2,6 +2,12 @@
 Protected Class classEngineShell
 Inherits shell
 	#tag Event
+		Sub Completed()
+		  Trace("classEngineShell: ...done")
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub DataAvailable()
 		  trace(me.ReadAll, cstTraceLevelCommunication)
 		End Sub
