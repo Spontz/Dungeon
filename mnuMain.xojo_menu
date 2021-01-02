@@ -322,12 +322,12 @@ Begin Menu mnuMain
          AutoEnable = True
          Visible = True
       End
-      Begin MenuItem EngineCommand
+      Begin MenuItem EngineStop
          SpecialMenu = 0
-         Text = "Send Command..."
+         Text = "Stop Local Engine"
          Index = 1
-         ShortcutKey = "K"
-         Shortcut = "Cmd+K"
+         ShortcutKey = "."
+         Shortcut = "Cmd+."
          MenuModifier = True
          AutoEnable = True
          Visible = True

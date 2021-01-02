@@ -776,19 +776,19 @@ End
 		    
 		  end if
 		  
+		  // Send a quit message
+		  controller.stopLocal
+		  
+		  // Force the message to be sent right now
+		  engine.myConnector.Connect
+		  
 		  ' Check if we are the last timeline open. In this case, open the choose demoproject window
-		  for i as integer = 0 to windowcount-1
+		  for i as integer = 0 to windowcount - 1
 		    if window(i) isa wndTimeLine and window(i) <> self then
 		      // There is another timeline open so we can safely close
 		      return false
 		    end if
 		  next
-		  
-		  // Send a quit message
-		  engine.Quit
-		  
-		  // Force the message to be sent right now
-		  engine.myConnector.Connect
 		  
 		  ' If execution reaches this point, there is no other timeline open so we display the choose demoengine window
 		  wndChooseDemoengine.Show
@@ -802,9 +802,6 @@ End
 		Sub Close()
 		  // Clear the data folder pertaining to this project
 		  Files.deleteFolder demo.GetDataFolder
-		  
-		  // Close the demoengine
-		  engine.quit
 		End Sub
 	#tag EndEvent
 
@@ -924,14 +921,15 @@ End
 
 	#tag Event
 		Sub Open()
-		  dim barheight as integer = self.top - self.Bounds.Top
-		  dim borders as integer = self.left - self.bounds.left
+		  App.WindowTopBarHeight = self.top - self.Bounds.Top
+		  App.WindowBorderWidth = self.left - self.bounds.left
 		  
 		  Dim myBounds As New Realbasic.Rect
-		  myBounds.Left = -borders
+		  
+		  myBounds.Left = -App.WindowBorderWidth
 		  myBounds.Top = 0
-		  myBounds.Height = Screen(0).AvailableHeight + borders
-		  myBounds.Width = 2 * borders + Screen(0).AvailableWidth / 2
+		  myBounds.Height = Screen(0).AvailableHeight + App.WindowBorderWidth
+		  myBounds.Width = 2 * App.WindowBorderWidth + Screen(0).AvailableWidth / 2
 		  
 		  self.Bounds = myBounds
 		End Sub
@@ -956,14 +954,6 @@ End
 	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
 			UpdateSelectedBars
-			
-		End Function
-	#tag EndMenuHandler
-
-	#tag MenuHandler
-		Function EngineCOmmand(index as Integer) As Boolean Handles EngineCOmmand.Action
-			
-			Return True
 			
 		End Function
 	#tag EndMenuHandler
@@ -997,6 +987,14 @@ End
 			// Launch the engine
 			controller.resetEngine
 			controller.LaunchLocal(demo)
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
+		Function EngineStop(index as Integer) As Boolean Handles EngineStop.Action
+			controller.stopLocal
+			
+			return true
 		End Function
 	#tag EndMenuHandler
 
