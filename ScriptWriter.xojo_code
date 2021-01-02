@@ -137,8 +137,6 @@ Protected Module ScriptWriter
 		    contents = contents + "gl_fullscreen 0" + EndOfLine.Windows
 		  end if
 		  
-		  contents = contents + "gl_accum 0" + EndOfLine.Windows
-		  
 		  // screen attributes
 		  contents = contents + "gl_width " + str(theDemo.GetVideoScreenWidth) + EndOfLine.Windows
 		  contents = contents + "gl_height " + Str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
@@ -146,6 +144,7 @@ Protected Module ScriptWriter
 		  select case theDemo.engine
 		    
 		  case theDemo.dragon
+		    contents = contents + "gl_accum 0" + EndOfLine.Windows
 		    contents = contents + "gl_bpp 32" + EndOfLine.Windows
 		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
 		    contents = contents + "gl_multisampling 0" + EndOfLine.Windows
@@ -153,7 +152,6 @@ Protected Module ScriptWriter
 		    
 		  case thedemo.phoenix
 		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight) + EndOfLine.Windows
-		    contents = contents + "gl_vsync 0" + EndOfLine.Windows
 		    contents = contents + "gl_vsync " + str(theDemo.getVideoVerticalSync) + EndOfLine.Windows
 		    
 		  end select
