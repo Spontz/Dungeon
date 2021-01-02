@@ -93,6 +93,12 @@
 				<string>protected</string>
 				<string>private</string>
 				<string>this</string>
+				<string>vec2</string>
+				<string>vec3</string>
+				<string>vec4</string>
+				<string>mat3</string>
+				<string>mat4</string>
+
             </keywords>
         </highlightContext>
         <highlightContext name="Numbers" highlightColor="#FF">
