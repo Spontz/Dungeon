@@ -491,6 +491,7 @@ Inherits listbox
 		    
 		    // Insert the item
 		    dim itemName as string
+		    dim size as UInt64 = obj.FolderItem.Length
 		    
 		    if id <> "" then
 		      if type = "Folder" then
@@ -501,7 +502,7 @@ Inherits listbox
 		        dim item as dictionary = demo.getFile(id)
 		        itemName = item.value("name")
 		        me.InsertRow(me.ListIndex + 1, itemName, depth)
-		        me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(obj.FolderItem.Length)
+		        me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(size)
 		        
 		      end if
 		      
@@ -512,7 +513,7 @@ Inherits listbox
 		      newTags.value("id"      ) = id
 		      newTags.value("type"    ) = type
 		      newTags.value("depth"   ) = depth
-		      newTags.value("size"    ) = obj.FolderItem.Length
+		      newTags.value("size"    ) = size
 		      newTags.value("parentID") = parentFolderID
 		      
 		      me.RowTag(me.lastindex) = tags
@@ -552,6 +553,8 @@ Inherits listbox
 		  newItems = demo.getFiles(parentID)
 		  
 		  for i as integer = 0 to UBound(newitems)
+		    dim size as UInt64 = newitems(i).Value("size")
+		    
 		    if newitems(i).Value("type") = "Folder" then
 		      me.AddFolder(newitems(i).Value("name"))
 		      me.RowPicture(me.LastIndex) = folderblue
@@ -561,13 +564,11 @@ Inherits listbox
 		      nombre = newitems(i).Value("name")
 		      me.AddRow(nombre)
 		      me.RowPicture(me.LastIndex) = icoDocument
+		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(size)
 		    end if
 		    
 		    me.CellType(me.LastIndex, me.cstColumnName) = 2
 		    if newitems(i).Value("enabled") then me.CellCheck(me.LastIndex, me.cstColumnName) = true
-		    
-		    dim size as string = Strings.getHRsize(newitems(i).Value("size"))
-		    if size = "0 bytes" then size = ""
 		    
 		    dim newtags as new Dictionary
 		    
@@ -633,6 +634,8 @@ Inherits listbox
 		  dim Resources() as dictionary = demo.getFiles("0") // We ask for all thefiles
 		  
 		  for i as integer = 0 to UBound(Resources)
+		    dim size as UInt64 = Resources(i).Value("size")
+		    
 		    select case Resources(i).value("type")
 		      
 		    case "Folder"
@@ -642,15 +645,12 @@ Inherits listbox
 		    case "File"
 		      me.AddRow(Resources(i).value("name").stringValue)
 		      me.RowPicture(me.LastIndex) = icoDocument
-		      
+		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(size)
 		    else
 		      Trace("classLbxResourcesManager:RefreshContents: Unknown item of type " + Resources(i).value("type") + " was not added to the tree", cstTraceLevelError)
 		      continue
 		      
 		    end
-		    
-		    dim size as string = Strings.getHRsize(Resources(i).Value("size"))
-		    if size = "0 bytes" then size = ""
 		    
 		    // Add the remaining properties (shared amongst all the items)
 		    dim tags as new dictionary
