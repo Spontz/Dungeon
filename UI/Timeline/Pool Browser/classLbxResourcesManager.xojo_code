@@ -41,6 +41,7 @@ Inherits listbox
 		      
 		    else
 		      ToggleRow(row)
+		      
 		    end if
 		    
 		    me.CellType(row, me.cstColumnName) = 2
@@ -792,10 +793,10 @@ Inherits listbox
 		    // Put a checkmark in the resource's parent folders
 		    dim parent as integer = tags.value("parentID")
 		    
-		    for i as integer = row-1 DownTo 0
+		    for i as integer = row - 1 DownTo 0
 		      dim examinedTags as Dictionary = me.RowTag(i)
 		      
-		      if examinedTags.Value("type") = "Folder" and tags.value("id") = parent then
+		      if examinedTags.Value("type") = "Folder" and examinedtags.value("id") = parent then
 		        me.CellCheck(i, me.cstColumnName) = true
 		        parent = examinedTags.value("parentID")
 		        

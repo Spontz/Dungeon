@@ -210,6 +210,7 @@ Begin Window wndTrace
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   287
       Transparent     =   False
       Value           =   0
@@ -217,6 +218,7 @@ Begin Window wndTrace
       Width           =   179
    End
    Begin Thread ThrExportHTML
+      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LockedInPosition=   False
