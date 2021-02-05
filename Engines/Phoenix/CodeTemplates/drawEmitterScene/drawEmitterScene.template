@@ -43,4 +43,4 @@ string colorR:=1;colorG:=1;colorB:=1;
 
 ; Global values: Particle size and texture
 uniform float fParticleSize v1:=0.1;//v1:=0.5+0.5*sin(t*2);
-uniform sampler2D partTexture 0 /resources/textures/dust.png
+uniform sampler2D partTexture /resources/textures/dust.png

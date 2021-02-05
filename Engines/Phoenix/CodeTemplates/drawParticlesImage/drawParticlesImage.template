@@ -30,5 +30,5 @@ string sx:=1; sy:=1; sz:=1;
 ; uniform float gNumParticles; --> Total number of particles to draw
 
 uniform float fParticleSize v1:=0.3;
-uniform sampler2D partTexture 0 /resources/textures/dust.png
+uniform sampler2D partTexture /resources/textures/dust.png
 uniform float fParticlesDrawn v1:=999999;
