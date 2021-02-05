@@ -11,5 +11,5 @@ sShaderPath /resources/shaders/basic/QuadTex.glsl
 
 ; Shader variables
 ; ***************************************************
-uniform sampler2D screenTexture 0 /resources/textures/tv.jpg
-;uniform sampler2D screenTexture 0 fbo0
+uniform sampler2D screenTexture /resources/textures/tv.jpg
+;uniform sampler2D screenTexture fbo0

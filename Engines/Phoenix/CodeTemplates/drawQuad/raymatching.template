@@ -11,6 +11,6 @@ sShaderPath /pool/shaders/raymatching/raymatching.glsl
 
 ; Shader variables
 ; ***************************************************
-uniform sampler2D texture_diffuse1 0 /pool/shaders/raymatching/text512_tiled2.jpg
+uniform sampler2D texture_diffuse1 /pool/shaders/raymatching/text512_tiled2.jpg
 uniform float iTime v1:=t;
 uniform float beat v1:=beat;

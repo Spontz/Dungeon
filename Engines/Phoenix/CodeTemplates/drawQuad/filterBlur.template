@@ -11,5 +11,5 @@ sShaderPath /pool/shaders/filter/filter-blur.glsl
 
 ; Shader variables
 ; ***************************************************
-uniform sampler2D screenTexture 0 fbo0
+uniform sampler2D screenTexture fbo0
 uniform float steps v1:=5*beat;

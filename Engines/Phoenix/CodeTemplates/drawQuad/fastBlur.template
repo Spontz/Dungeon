@@ -11,5 +11,5 @@ sShaderPath /pool/shaders/blur/fastblur.glsl
 
 ; Shader variables
 ; ***************************************************
-uniform sampler2D screenTexture 0 fbo0
+uniform sampler2D screenTexture fbo0
 uniform vec2 direction v1:=3*beat;v2:=1;

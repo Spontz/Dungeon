@@ -13,4 +13,4 @@ sShaderPath /pool/shaders/ascii/ascii.glsl
 ; ***************************************************
 uniform vec2 iResolution v1:=fbo0Width;v2:=fbo0Height;
 uniform float sample v1:=4.0;
-uniform sampler2D screenTexture 0 fbo0
+uniform sampler2D screenTexture fbo0
