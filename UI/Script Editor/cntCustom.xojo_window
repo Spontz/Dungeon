@@ -833,6 +833,9 @@ End
 #tag Events btnApply
 	#tag Event
 		Sub Action()
+		  TestField.ResetUndo
+		  TestField.ResetUndoDirtyFlag
+		  
 		  applyChanges
 		End Sub
 	#tag EndEvent

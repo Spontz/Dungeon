@@ -1141,6 +1141,48 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub openShadersEditor(itemID as string)
+		  dim windowFound as boolean
+		  
+		  for i as integer = 0 to WindowCount - 1
+		    if Window(i) isA wndShadersEditor then
+		      if wndShadersEditor(window(i)).itemID = itemID then
+		        wndShadersEditor(window(i)).Show
+		        windowFound = true
+		        exit
+		      end if
+		    end if
+		  next
+		  
+		  if not windowFound then
+		    dim myWindow as new wndShadersEditor
+		    myWindow.init(itemID, self)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub openTextsEditor(itemID as string)
+		  dim windowFound as boolean
+		  
+		  for i as integer = 0 to WindowCount - 1
+		    if Window(i) isA wndTextEditor then
+		      if wndTextEditor(window(i)).itemID = itemID then
+		        wndTextEditor(window(i)).Show
+		        windowFound = true
+		        exit
+		      end if
+		    end if
+		  next
+		  
+		  if not windowFound then
+		    dim myWindow as new wndTextEditor
+		    myWindow.init(itemID, self)
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub UpdateBarIDs(barIDs() as string)
 		  for each barID as string in barIDs
 		    controller.updateBar(barID)
@@ -1515,60 +1557,46 @@ End
 		  select case extension
 		    
 		  case "cam"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openTextsEditor(itemID)
 		    
 		  case "txt"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openTextsEditor(itemID)
 		    
 		  case "layer"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openTextsEditor(itemID)
 		    
 		  case "pth"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openTextsEditor(itemID)
 		    
 		  case "path"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openTextsEditor(itemID)
 		    
 		  case "glsl"
-		    dim myWindow as new wndShadersEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "shader"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "vertex"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "vs"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "fragment"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "frag"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "vert"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "geom"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  case "fs"
-		    dim myWindow as new wndTextEditor
-		    myWindow.init(itemID, self)
+		    openShadersEditor(itemID)
 		    
 		  else
 		    dim f as folderitem

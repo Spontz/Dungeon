@@ -63,6 +63,10 @@ Inherits listbox
 
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  base.Append (New MenuItem("Open Data Folder"))
+		  
+		  if me.ListIndex < 0 then return true
+		  
 		  base.Append (New MenuItem("New Root Folder"))
 		  base.Append (New MenuItem("New Folder Inside"))
 		  base.Append (New MenuItem("-"))
@@ -74,7 +78,6 @@ Inherits listbox
 		  base.Append (New MenuItem("Duplicate"))
 		  base.Append (New MenuItem("Rename"))
 		  base.Append (New MenuItem("-"))
-		  base.Append (New MenuItem("Open Data Folder"))
 		  
 		  dim tags as dictionary = me.RowTag(me.listindex)
 		  
