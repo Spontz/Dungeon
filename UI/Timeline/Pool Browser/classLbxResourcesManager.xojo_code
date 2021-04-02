@@ -520,7 +520,7 @@ Inherits listbox
 		      newTags.value("size"    ) = size
 		      newTags.value("parentID") = parentFolderID
 		      
-		      me.RowTag(me.lastindex) = tags
+		      me.RowTag(me.lastindex) = newtags
 		      
 		      me.CellType (me.LastIndex, me.cstColumnName) = 2
 		      me.CellCheck(me.LastIndex, me.cstColumnName) = false
