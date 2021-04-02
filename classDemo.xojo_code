@@ -346,6 +346,7 @@ Protected Class classDemo
 		      rec.BlobColumn   ("data"   ) = file
 		      rec.Column       ("format" ) = f.Type
 		      rec.Column       ("enabled") = "0"
+		      rec.column       ("type"   ) = "File"
 		      
 		      demoDB.InsertRecord ("FILES", rec)
 		      
