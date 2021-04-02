@@ -64,20 +64,22 @@ Inherits listbox
 	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
 		  base.Append (New MenuItem("Open Data Folder"))
+		  base.Append (New MenuItem("Show on disk"    ))
+		  base.Append (New MenuItem("-"               ))
 		  
 		  if me.ListIndex < 0 then return true
 		  
-		  base.Append (New MenuItem("New Root Folder"))
+		  base.Append (New MenuItem("New Root Folder"  ))
 		  base.Append (New MenuItem("New Folder Inside"))
-		  base.Append (New MenuItem("-"))
-		  base.Append (New MenuItem("Open Resource"))
-		  base.Append (New MenuItem("Copy Path"))
-		  base.Append (New MenuItem("Toggle selected"))
-		  base.Append (New MenuItem("-"))
-		  base.Append (New MenuItem("Delete"))
-		  base.Append (New MenuItem("Duplicate"))
-		  base.Append (New MenuItem("Rename"))
-		  base.Append (New MenuItem("-"))
+		  base.Append (New MenuItem("-"                ))
+		  base.Append (New MenuItem("Open Resource"    ))
+		  base.Append (New MenuItem("Copy Path"        ))
+		  base.Append (New MenuItem("Toggle selected"  ))
+		  base.Append (New MenuItem("-"                ))
+		  base.Append (New MenuItem("Delete"           ))
+		  base.Append (New MenuItem("Duplicate"        ))
+		  base.Append (New MenuItem("Rename"           ))
+		  base.Append (New MenuItem("-"                ))
 		  
 		  dim tags as dictionary = me.RowTag(me.listindex)
 		  
@@ -86,13 +88,15 @@ Inherits listbox
 		  end if
 		  
 		  if me.SelCount > 1 then
-		    base.Child("Rename"   ).Enabled = false
-		    base.Child("Duplicate").Enabled = false
-		    base.Child("Copy Path").Enabled = false
+		    base.Child("Rename"      ).Enabled = false
+		    base.Child("Duplicate"   ).Enabled = false
+		    base.Child("Copy Path"   ).Enabled = false
+		    base.child("Show on disk").Enabled = false
 		  end if
 		  
 		  if not me.CellCheck(me.ListIndex, me.cstColumnName) then
-		    base.Child("Copy Path").Enabled = false
+		    base.Child("Copy Path"   ).Enabled = false
+		    base.child("Show on disk").Enabled = false
 		  end if
 		  
 		  if tags.value("type") <> "File" then
@@ -271,6 +275,22 @@ Inherits listbox
 		  case "Open Data Folder"
 		    // Open the Pool folder in the Finder
 		    demo.GetDataFolder.Launch
+		    
+		  case "Show on disk"
+		    // Open the parent folder in the explorer
+		    dim tags as dictionary = me.RowTag(me.ListIndex)
+		    
+		    select case tags.Value("type")
+		      
+		    case "File"
+		      f = demo.getFilePath(tags.value("ID"))
+		      
+		    case "Folder"
+		      f = demo.getFolderPath(tags.value("ID"))
+		      
+		    end
+		    
+		    if f.Directory then f.Launch
 		    
 		  case "Duplicate"
 		    dim tags as dictionary = me.RowTag(me.ListIndex)

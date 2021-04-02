@@ -1431,12 +1431,7 @@ Protected Class classDemo
 		  
 		  queryResult = demoDB.SQLSelect("SELECT parent FROM FOLDERS where id='" + ID + "'")
 		  
-		  parent = queryResult.Field("parent").StringValue
-		  //name = queryResult.Field("name").StringValue
-		  //ident = queryResult.Field("id").StringValue
-		  
-		  //path.append(name)
-		  //ids.Append(ident)
+		  parent = queryResult.Field("parent").getString
 		  
 		  while parent <> "0"
 		    queryResult = demoDB.SQLSelect("SELECT id, parent, name FROM FOLDERS where id='" + parent + "'")
@@ -1444,6 +1439,11 @@ Protected Class classDemo
 		    parent = queryResult.Field("parent").StringValue
 		    name = queryResult.Field("name").StringValue
 		    ident = queryResult.Field("id").StringValue
+		    
+		    if parent = "" then
+		      Trace("classDemo:getFolderPath: Error looking for parent for item ID " + ID, cstTraceLevelError)
+		      exit
+		    end if
 		    
 		    path.Append(name)
 		    ids.append(ident)
