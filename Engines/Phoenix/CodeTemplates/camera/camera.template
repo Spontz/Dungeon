@@ -1,7 +1,0 @@
-; Changes the camera position
-
-; FreeCamera: 0=Using spline file, 1=Free Camera (only works in debug mode)
-fFreeCamera 1
-
-; Spline file that defines the camera movement
-cCameraFile ./data/pool/cameras/camera.cam
