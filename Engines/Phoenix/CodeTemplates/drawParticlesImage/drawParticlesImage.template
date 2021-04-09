@@ -6,7 +6,7 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 ; Shader path
-sShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.glsl
+sShaderPath /pool/shaders/drawParticlesImage/drawParticlesImage.glsl
 
 ; Image to place the particles
 sImageFilePath /pool/textures/texture1.png
