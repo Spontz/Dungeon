@@ -4,6 +4,7 @@ sShaderPath /pool/models/cube/lightsBlinnPhong.glsl
 
 fEnableDepthBufferClearing 0
 fEnableDepthTest 1
+fEnableDepthMask 1
 fEnableDrawWireframe 0
 
 ; Animation support for objects, bones and cameras
