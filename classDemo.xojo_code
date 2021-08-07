@@ -905,10 +905,7 @@ Protected Class classDemo
 		  // Get a list of sections containing the passed string
 		  dim barIDs() as String
 		  
-		  content = ReplaceAll(content, "\", "/")
-		  
-		  
-		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%pool/" + content + "%'")
+		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%" + content + "%'")
 		  
 		  while not result.EOF
 		    barIDs.Append(result.Field("id").StringValue)
