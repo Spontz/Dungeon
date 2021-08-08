@@ -644,17 +644,19 @@ End
 		  demo = theDemo
 		  
 		  if thebarID <> "" then
+		    dim barData as dictionary = demo.getBarData(theBarID)
+		    
 		    barID = ""
 		    
 		    // The blending menus
-		    mnuBlendStart.listIndex    = demo.getBlendingID(demo.getBarSrcBlending             (theBarID))
-		    mnuBlendEnd.listIndex      = demo.getBlendingID(demo.getBarDstBlending             (theBarID))
-		    mnuBlendEquation.listindex = demo.getBlendingEquationID(demo.getBarBlendingEquation(theBarID))
+		    mnuBlendStart.listIndex    = demo.getBlendingID(barData.value("srcBlending"))
+		    mnuBlendEnd.listIndex      = demo.getBlendingID(barData.value("dstBlending"))
+		    mnuBlendEquation.listindex = demo.getBlendingEquationID(barData.value("blendingEQ"))
 		    
 		    // The element name and additional script
-		    popElement.text = demo.getBarType(theBarID)
+		    popElement.text = barData.value("type")
 		    
-		    TestField.Text = ReplaceLineEndings(demo.getBarScript(theBarID), EndOfLine)
+		    TestField.Text = ReplaceLineEndings(barData.value("script"), EndOfLine)
 		    
 		    TestField.ReindentText // cleans up indentations, removing any leading blanks from the lines
 		    TestField.ResetUndo // needed so that the Reindentation doesn't become an undoable action

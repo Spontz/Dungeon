@@ -387,8 +387,6 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  dim i as integer
-		  
 		  if keyboard.AsyncShiftKey then
 		    //*************************************
 		    //* The user is modifying the selection *
@@ -552,7 +550,6 @@ Inherits Canvas
 			demo.clearBarSelection
 			
 			//And Select all the sections
-			dim i as integer
 			
 			// TODO
 			'for i=0 to demo.sections.Count - 1
@@ -638,9 +635,9 @@ Inherits Canvas
 		  barData = demo.getBarData(barID)
 		  
 		  startTime = time2coordinate(barData.Value("startTime").SingleValue)
-		  endTime = time2coordinate(barData.Value("endTime").SingleValue)
-		  layer = layer2coordinate(barData.Value("layer").SingleValue)
-		  selected = barData.Value("selected").BooleanValue
+		  endTime   = time2coordinate(barData.Value("endTime").SingleValue)
+		  layer     = layer2coordinate(barData.Value("layer").SingleValue)
+		  selected  = barData.Value("selected").BooleanValue
 		  
 		  // If the element is out of the time scope then exit
 		  if startTime > me.width or endTime < 16 then exit
@@ -809,7 +806,6 @@ Inherits Canvas
 		  
 		  // TimeLine Time Divisions and timing (text)
 		  dim x as integer
-		  dim i as integer
 		  
 		  x = time2coordinate(me.RulestartTime)
 		  g.textSize = 9
@@ -883,8 +879,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub elementsToggleEnable()
+	#tag Method, Flags = &h0
+		Sub elementsToggleEnable()
 		  dim i as integer
 		  dim selection() as string
 		  
@@ -906,7 +902,6 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Function getClickedItem(x as integer, y as integer) As string
 		  dim position as integer
-		  dim i as integer
 		  dim bar as string
 		  dim item as string
 		  
@@ -1067,7 +1062,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h1
 		Protected Sub SetSelectionSquare(x0 as double, y0 as double, x1 as double, y1 as double)
-		  Dim i As Integer
 		  dim temp as single
 		  dim startTime, endTime, startLayer, endLayer as single
 		  

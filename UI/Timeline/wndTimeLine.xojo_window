@@ -933,6 +933,13 @@ End
 	#tag EndMenuHandler
 
 	#tag MenuHandler
+		Function ElementsToggleEnable() As Boolean Handles ElementsToggleEnable.Action
+			cnvTimeLine.elementsToggleEnable
+			
+		End Function
+	#tag EndMenuHandler
+
+	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
 			UpdateSelectedBars
 			
