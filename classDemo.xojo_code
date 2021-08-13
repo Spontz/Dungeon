@@ -901,22 +901,6 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getBarsThatUseFile(content as string) As String()
-		  // Get a list of sections containing the passed string
-		  dim barIDs() as String
-		  
-		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%" + content + "%'")
-		  
-		  while not result.EOF
-		    barIDs.Append(result.Field("id").StringValue)
-		    result.MoveNext
-		  wend
-		  
-		  return barIDs
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function GetBarsToDraw(startTime as double, endTime as double) As string()
 		  dim result as RecordSet
 		  dim IDs() as string
@@ -935,6 +919,22 @@ Protected Class classDemo
 		  end if
 		  
 		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function getBarsWithText(content as string) As String()
+		  // Get a list of sections containing the passed string
+		  dim barIDs() as String
+		  
+		  dim result as recordset = demoDB.SQLSelect("SELECT id FROM BARS where script LIKE '%" + content + "%'")
+		  
+		  while not result.EOF
+		    barIDs.Append(result.Field("id").StringValue)
+		    result.MoveNext
+		  wend
+		  
+		  return barIDs
 		End Function
 	#tag EndMethod
 

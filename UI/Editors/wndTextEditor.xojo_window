@@ -291,7 +291,7 @@ End
 		Private Sub updateBarsUsingFile()
 		  dim filePath as string = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
 		  
-		  dim barIDs() as string = hook.demo.getBarsThatUseFile(filePath)
+		  dim barIDs() as string = hook.demo.getBarsWithText(filePath)
 		  
 		  hook.updateBarIDs(barIDs)
 		End Sub

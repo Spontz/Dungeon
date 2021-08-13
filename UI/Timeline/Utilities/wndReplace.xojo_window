@@ -5,11 +5,11 @@ Begin Window wndReplace
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
-   Frame           =   1
+   Frame           =   7
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   True
-   Height          =   241
+   Height          =   350
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -18,14 +18,14 @@ Begin Window wndReplace
    MaxWidth        =   32000
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   64
+   MinHeight       =   300
    MinimizeButton  =   True
-   MinWidth        =   64
+   MinWidth        =   676
    Placement       =   3
    Resizeable      =   True
-   Title           =   "Scripts Replacing"
+   Title           =   "Search / Replace in bar scripts"
    Visible         =   False
-   Width           =   414
+   Width           =   676
    Begin TextArea txtBefore
       AcceptTabs      =   True
       Alignment       =   0
@@ -44,14 +44,14 @@ Begin Window wndReplace
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   110
+      Left            =   88
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
@@ -68,14 +68,14 @@ Begin Window wndReplace
       TextFont        =   "Courier"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   46
+      Top             =   8
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   284
+      Width           =   234
    End
-   Begin Label StaticText1
+   Begin Label lblSearch
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -86,7 +86,7 @@ Begin Window wndReplace
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   22
+      Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -98,14 +98,14 @@ Begin Window wndReplace
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Replace this:"
+      Text            =   "Search"
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   47
-      Transparent     =   False
+      Top             =   9
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   76
@@ -128,14 +128,14 @@ Begin Window wndReplace
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   110
+      Left            =   422
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Mask            =   ""
       Multiline       =   True
@@ -152,14 +152,14 @@ Begin Window wndReplace
       TextFont        =   "Courier"
       TextSize        =   10.0
       TextUnit        =   0
-      Top             =   121
+      Top             =   8
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   284
+      Width           =   234
    End
-   Begin Label StaticText2
+   Begin Label lblReplace
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -170,7 +170,7 @@ Begin Window wndReplace
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   22
+      Left            =   334
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -182,14 +182,14 @@ Begin Window wndReplace
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "with this:"
+      Text            =   "Replace"
       TextAlign       =   2
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   121
-      Transparent     =   False
+      Top             =   8
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   76
@@ -201,13 +201,13 @@ Begin Window wndReplace
       Cancel          =   False
       Caption         =   "Replace"
       Default         =   True
-      Enabled         =   True
-      Height          =   22
+      Enabled         =   False
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   325
+      Left            =   564
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -220,11 +220,11 @@ Begin Window wndReplace
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   203
+      Top             =   305
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   69
+      Width           =   100
    End
    Begin PushButton btnCancel
       AutoDeactivate  =   True
@@ -234,12 +234,12 @@ Begin Window wndReplace
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   244
+      Left            =   452
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -252,51 +252,82 @@ Begin Window wndReplace
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   203
+      Top             =   305
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   69
+      Width           =   100
    End
-   Begin Label StaticText3
+   Begin ListBox lbxSearchResults
       AutoDeactivate  =   True
+      AutoHideScrollbars=   True
       Bold            =   False
+      Border          =   True
+      ColumnCount     =   5
+      ColumnsResizable=   True
+      ColumnWidths    =   ""
       DataField       =   ""
       DataSource      =   ""
+      DefaultRowHeight=   24
       Enabled         =   True
-      Height          =   20
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   2
+      HasHeading      =   True
+      HeadingIndex    =   -1
+      Height          =   207
       HelpTag         =   ""
+      Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
+      InitialValue    =   "Bar ID	Layer	From	To	Type"
       Italic          =   False
-      Left            =   115
-      LockBottom      =   False
+      Left            =   0
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Multiline       =   False
+      RequiresSelection=   False
       Scope           =   0
-      Selectable      =   False
+      ScrollbarHorizontal=   True
+      ScrollBarVertical=   True
+      SelectionType   =   1
+      ShowDropIndicator=   False
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "In all selected Scripts:"
-      TextAlign       =   1
-      TextColor       =   &c00000000
       TextFont        =   "System"
-      TextSize        =   12.0
+      TextSize        =   0.0
       TextUnit        =   0
-      Top             =   15
+      Top             =   86
       Transparent     =   False
       Underline       =   False
+      UseFocusRing    =   False
       Visible         =   True
-      Width           =   184
+      Width           =   676
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h0
+		Sub checkReplaceButton()
+		  btnReplace.Enabled = false
+		  btnReplace.Caption = "Replace"
+		  
+		  if txtAfter.Text = "" then return
+		  if txtBefore.text = "" then return
+		  if lbxSearchResults.ListCount = 0 then return
+		  
+		  btnReplace.Enabled = true
+		  btnReplace.Caption = "Replace " + str(lbxSearchResults.ListCount)
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub init(theDemo as classDemo, theTimeLine as classTimeline)
 		  demo = theDemo
@@ -318,6 +349,38 @@ End
 
 #tag EndWindowCode
 
+#tag Events txtBefore
+	#tag Event
+		Sub TextChange()
+		  dim IDs() as string = demo.getBarsWithText(me.text)
+		  
+		  lbxSearchResults.DeleteAllRows
+		  
+		  for each ID as string in IDs
+		    dim data as dictionary = demo.getBarData(ID)
+		    
+		    dim layer     as string = cstr(1 + data.value("layer"))
+		    dim startTime as string = cstr(abs(data.value("startTime") * 100) / 100) + " sec"
+		    dim endTime   as string = cstr(abs(data.value("endTime") * 100) / 100) + " sec"
+		    dim type      as string = data.value("type").StringValue
+		    
+		    dim script    as string = data.value("script")
+		    dim lines()   as integer
+		    
+		    lbxSearchResults.AddRow(ID, layer, startTime, endTime, type)
+		  next
+		  
+		  checkReplaceButton
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtAfter
+	#tag Event
+		Sub TextChange()
+		  checkReplaceButton
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events btnReplace
 	#tag Event
 		Sub Action()
@@ -326,6 +389,8 @@ End
 		  dim count as integer
 		  
 		  // TODO
+		  
+		  
 		  '// Now, we perform the replacement
 		  'for i=0 to timeLine.GetNumSelectedSections - 1
 		  'for j=1 to 3
@@ -350,6 +415,17 @@ End
 	#tag Event
 		Sub Action()
 		  window.close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events lbxSearchResults
+	#tag Event
+		Sub DoubleClick()
+		  // Select the clicked row in the timeline
+		  dim barID as string = me.cell(me.ListIndex, 0)
+		  
+		  demo.clearBarSelection
+		  demo.addBarToSelection(barID)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
