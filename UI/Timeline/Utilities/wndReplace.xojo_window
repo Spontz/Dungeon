@@ -231,7 +231,7 @@ Begin Window wndReplace
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   True
-      Caption         =   "Cancel"
+      Caption         =   "Close"
       Default         =   False
       Enabled         =   True
       Height          =   32
@@ -393,22 +393,9 @@ End
 		End Sub
 	#tag EndMethod
 
-
-	#tag Property, Flags = &h0
-		demo As classDemo
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		timeLine As classTimeline
-	#tag EndProperty
-
-
-#tag EndWindowCode
-
-#tag Events txtBefore
-	#tag Event
-		Sub TextChange()
-		  dim IDs() as string = demo.getBarsWithText(me.text)
+	#tag Method, Flags = &h0
+		Sub Search(content as string)
+		  dim IDs() as string = demo.getBarsWithText(content)
 		  
 		  lbxSearchResults.DeleteAllRows
 		  
@@ -424,13 +411,32 @@ End
 		    dim lines()   as string = split(script, EndOfLine)
 		    
 		    for i as integer = 0 to Ubound(lines)
-		      if inStr(lines(i), me.text) > 0 then
-		        lbxSearchResults.AddRow(ID, layer, startTime + " to " + endTime + "sg.", type, "Line " + str(i) + ": " + lines(i))
+		      if inStr(lines(i), content) > 0 then
+		        lbxSearchResults.AddRow(ID, layer, startTime + " to " + endTime + "sg.", type, "Line " + str(i+1) + ": " + lines(i))
 		      end if
 		    next
 		  next
 		  
 		  checkReplaceButton
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h0
+		demo As classDemo
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		timeLine As classTimeline
+	#tag EndProperty
+
+
+#tag EndWindowCode
+
+#tag Events txtBefore
+	#tag Event
+		Sub TextChange()
+		  Search(me.text)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -444,30 +450,44 @@ End
 #tag Events btnReplace
 	#tag Event
 		Sub Action()
-		  dim i,j as integer
-		  dim tempScript as string
 		  dim count as integer
+		  dim barID as string
 		  
-		  // TODO
+		  for row as integer = 0 to lbxSearchResults.ListCount - 1
+		    if lbxSearchResults.Selected(row) or lbxSearchResults.ListIndex < 0 then
+		      // The row is selected or there are not rows selected, so do the search / replace
+		      
+		      // Get the barID
+		      barID = lbxSearchResults.cell(row, 0)
+		      
+		      // Get the script and split it in lines
+		      dim script as string = demo.getBarScript(barID)
+		      
+		      // Separate the script in lines
+		      dim lines() as string = split(script, EndOfLine)
+		      
+		      // Get the specified line
+		      dim lineNumber as integer = val(NthField(NthField(lbxSearchResults.cell(row, 4), ":", 1), " ", 2)) - 1
+		      dim line as string = lines(lineNumber)
+		      
+		      // Replace the specified line
+		      lines(lineNumber) = ReplaceAll(line, txtBefore.text, txtAfter.Text)
+		      
+		      // Regenerate the script
+		      script = join(lines, EndOfLine)
+		      
+		      // Write the script back to the database
+		      demo.setBarScript(barID, script)
+		      
+		      count = count + 1
+		    end if
+		  next
 		  
+		  lblCount.text = str(count) + " replacements done."
 		  
-		  '// Now, we perform the replacement
-		  'for i=0 to timeLine.GetNumSelectedSections - 1
-		  'for j=1 to 3
-		  'tempScript = demo.sections.getString(timeline.getSelectedSectionID(i), j)
-		  'if inStr(tempScript, txtBefore.text) > 0 then
-		  'count = count + 1
-		  'demo.sections.SetString(timeLine.getSelectedSectionID(i), j, ReplaceAll(tempScript, txtBefore.text, txtAfter.Text))
-		  '
-		  '// Notify the engines about the change
-		  'controller.updateSection(timeLine.getSelectedSectionID(i))
-		  'end if
-		  'next
-		  'next
+		  // Refresh the results field
+		  Search(txtBefore.text)
 		  
-		  MsgBox cstr(count) + " elements have been modified"
-		  
-		  self.close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
