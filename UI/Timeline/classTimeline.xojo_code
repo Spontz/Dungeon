@@ -12,14 +12,11 @@ Inherits Canvas
 		  select case demo.countSelectedBars
 		    
 		  case 0
-		    EditReplace.Enabled = false
 		    EditCopy.Enabled = false
-		    
 		    ElementsMenu.Enabled = false
+		    
 		  else
 		    EditCopy.Enabled = true
-		    EditReplace.Enabled = true
-		    
 		    ElementsSubdivide.Enabled = true
 		    ElementsMenu.Enabled = true
 		    ElementsBringStarttoMarker.Enabled = true

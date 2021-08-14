@@ -591,6 +591,7 @@ Begin Window wndTimeLine
       Width           =   252
    End
    Begin classDemo demo
+      Enabled         =   True
       engine          =   ""
       Index           =   -2147483648
       LockedInPosition=   False
@@ -599,6 +600,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin Timer tmrRedraw
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       Mode            =   2
@@ -607,6 +609,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
    End
    Begin ServerSocket tcpErrorLogger
+      Enabled         =   True
       Index           =   -2147483648
       LockedInPosition=   False
       MaximumSocketsConnected=   10
@@ -796,10 +799,12 @@ End
 		    ElementsToggleEnable.Enabled = true
 		    ElementsUpdateinEngine.Enabled = true
 		    ElementsSubdivide.Enabled = true
+		    
 		  else
 		    ElementsToggleEnable.Enabled = false
 		    ElementsUpdateinEngine.Enabled = false
 		    ElementsSubdivide.Enabled = false
+		    
 		  end if
 		End Sub
 	#tag EndEvent

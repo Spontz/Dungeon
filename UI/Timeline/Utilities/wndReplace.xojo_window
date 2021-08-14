@@ -265,7 +265,7 @@ Begin Window wndReplace
       Border          =   True
       ColumnCount     =   5
       ColumnsResizable=   True
-      ColumnWidths    =   ""
+      ColumnWidths    =   "50,50,70,100,*"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   24
@@ -281,7 +281,7 @@ Begin Window wndReplace
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "Bar ID	Layer	From	To	Type"
+      InitialValue    =   "Bar ID	Layer	From / To	Type	Content"
       Italic          =   False
       Left            =   0
       LockBottom      =   True
@@ -310,12 +310,53 @@ Begin Window wndReplace
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
+   Begin Label lblCount
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   32
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "Consolas"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   305
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   420
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h0
 		Sub checkReplaceButton()
+		  if lbxSearchResults.ListCount > 0 then
+		    lblCount.Text = "Found " + str(lbxSearchResults.ListCount) + " items"
+		  else
+		    lblCount.Text = ""
+		  end if
+		  
 		  btnReplace.Enabled = false
 		  btnReplace.Caption = "Replace"
 		  
@@ -324,7 +365,22 @@ End
 		  if lbxSearchResults.ListCount = 0 then return
 		  
 		  btnReplace.Enabled = true
-		  btnReplace.Caption = "Replace " + str(lbxSearchResults.ListCount)
+		  
+		  dim selectedRows() as integer
+		  
+		  for row as integer = 0 to lbxSearchResults.ListCount - 1
+		    if lbxSearchResults.Selected(row) then
+		      selectedRows.append(row)
+		    end if
+		  next
+		  
+		  if selectedRows.Ubound > -1 then
+		    btnReplace.Caption = "Replace " + str(selectedRows.Ubound + 1)
+		    
+		  else
+		    btnReplace.Caption = "Replace " + str(lbxSearchResults.ListCount)
+		    
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -360,14 +416,18 @@ End
 		    dim data as dictionary = demo.getBarData(ID)
 		    
 		    dim layer     as string = cstr(1 + data.value("layer"))
-		    dim startTime as string = cstr(abs(data.value("startTime") * 100) / 100) + " sec"
-		    dim endTime   as string = cstr(abs(data.value("endTime") * 100) / 100) + " sec"
+		    dim startTime as string = cstr(abs(data.value("startTime") * 100) / 100)
+		    dim endTime   as string = cstr(abs(data.value("endTime") * 100) / 100)
 		    dim type      as string = data.value("type").StringValue
 		    
 		    dim script    as string = data.value("script")
-		    dim lines()   as integer
+		    dim lines()   as string = split(script, EndOfLine)
 		    
-		    lbxSearchResults.AddRow(ID, layer, startTime, endTime, type)
+		    for i as integer = 0 to Ubound(lines)
+		      if inStr(lines(i), me.text) > 0 then
+		        lbxSearchResults.AddRow(ID, layer, startTime + " to " + endTime + "sg.", type, "Line " + str(i) + ": " + lines(i))
+		      end if
+		    next
 		  next
 		  
 		  checkReplaceButton
@@ -426,6 +486,11 @@ End
 		  
 		  demo.clearBarSelection
 		  demo.addBarToSelection(barID)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  checkReplaceButton
 		End Sub
 	#tag EndEvent
 #tag EndEvents
