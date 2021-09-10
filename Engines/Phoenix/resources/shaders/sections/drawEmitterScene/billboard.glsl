@@ -1,5 +1,5 @@
 #type vertex
-#version 440 core
+#version 450 core
 
 layout (location = 0) in vec3 Position;
 layout (location = 2) in vec3 Color;
@@ -10,9 +10,9 @@ uniform mat4 view;
 
 out VS_OUT
 {
-	vec4	Position;
-	vec3	Color;
-	flat int		Type;
+	vec4		Position;
+	vec3		Color;
+	flat int	Type;
 } vs_out;
 
 #define PARTICLE_TYPE_EMITTER 1
@@ -30,7 +30,7 @@ void main()
 
 
 #type geometry
-#version 440 core
+#version 450 core
 
 layout(points) in;
 layout(triangle_strip, max_vertices = 4) out;
@@ -89,7 +89,7 @@ void main()
 }
 
 #type fragment
-#version 440 core
+#version 450 core
 
 uniform sampler2D partTexture;
 
@@ -104,8 +104,8 @@ out vec4 FragColor;
 
 void main()
 {
-	if (fs_in.Type != 0)
+	//if (fs_in.Type != 0)
 		FragColor = texture(partTexture, fs_in.TexCoord) * vec4(fs_in.Color.rgb, 1.0f);
-	else
-		discard;
+	//else
+		//discard;
 }
