@@ -5,26 +5,30 @@
 ; *********************************************************************
 ; Section under development!! it may fail on shitty intel video cards!!
 ; *********************************************************************
+
 ; Path where the shaders are stored (update.glsl and billboard.glsl)
 sShader /resources/shaders/sections/drawEmitterScene/
 
-; Model to use for emitters
-sScene /pool/models/cube/cube.obj
+; Each vertex of the 3d model will be a particle emitter
+;sScene /pool/models/anim/anim.md5mesh
+;sScene /pool/models/cube/cube.obj
+sScene /pool/models/logo/logo_silouette.obj
 
 ; Time between emissions (seconds)
-fEmissionTime 0.01
+fEmissionTime 0.02
 ; Particles Lifetime (seconds)
-fParticleLifetime 10.0
-; Randomness factor that affects the direction of particles when they are emitted (0=no random emission)
-fRandomness 1
+fParticleLifetime 5
+; Randomness
+fRandomness 0.8
 
 ; ******************************
 ; * PARTICLE SCENE POSITIONING *
 ; ******************************
 ; Scene Translation
-string tx:=0;ty:=0; tz:=-8;
+string tx:=0;ty:=0; tz:=0;
+;string tx:=0;ty:=0; tz:=0;
 ; Scene Rotation
-string rx:=0; ry:=0; rz:=0;
+string rx:=0; ry:=-90; rz:=0;
 ; Scene Scale
 string sx:=1; sy:=1; sz:=1;
 
@@ -37,13 +41,14 @@ string sx:=1; sy:=1; sz:=1;
 
 ; Speed variability (it impacts the emission time)
 string partSpeed:=1.0;
-; Particle velocity: This is the velocity that the particles will have when are generated (the value is only passed once)
-string velX:=0;velY:=2;velZ:=0;
-; Particle force to be applied (for example, gravity or wind, it can be modified through time)
-string forceX:=0.5+0.5*sin(t);forceY:=0;forceZ:=0;
-; Particle color (it can be modified through time)
-string colorR:=1;colorG:=1;colorB:=1;
+; Particle velocity (if you want to modify this through time, use the Geometry shader, because the velocity value is only passed once)
+string velX:=0;velY:=0;velZ:=1;
+; Particle force to be applied (for example, gravity or wind)
+string forceX:=0;forceY:=-3;forceZ:=0;
+;string forceX:=0;forceY:=0;forceZ:=0;
+; Particle color: When a aprticle is generated, this color will be assigned
+string colorR:=0.5+0.5*sin(t/2);colorG:=1;colorB:=0;
 
 ; Global values: Particle size and texture
-uniform float fParticleSize v1:=0.1;
+uniform float fParticleSize v1:=0.1;//v1:=0.5+0.5*sin(t*2);
 uniform sampler2D partTexture /resources/textures/dust.png

@@ -1,0 +1,54 @@
+; Draws particles for a given source 3d model
+; Each vertex of the 3d model will be a particle emitter
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+; ***************************
+; Section under development!!
+; ***************************
+
+; Path where the shaders are stored (update.glsl and billboard.glsl)
+sShader /resources/shaders/sections/drawEmitterSceneEx/
+
+; Draws particles for a given source 3d model
+; Each vertex of the 3d model will be a particle emitter
+sScene /pool/models/cube/cube.obj
+
+; Particles per emitter
+fParticlesPerEmitter 300
+; Particles Lifetime (seconds)
+fParticleLifetime 1
+
+; ******************************
+; * PARTICLE SCENE POSITIONING *
+; ******************************
+; Scene Translation
+;string tx:=-5+10*sin(t/2);ty:=0; tz:=0;
+string tx:=-2;ty:=0; tz:=0;
+; Scene Rotation
+;string rx:=0; ry:=-90; rz:=0;
+string rx:=0; ry:=0; rz:=0;
+; Scene Scale
+string sx:=1; sy:=1; sz:=1;
+
+; ***********************
+; * PARTICLE PARAMETERS *
+; ***********************
+; Variables that can be used (apart from the typical 't', 'tend', 'beat', etc):
+; nE = Current emitter
+; TnE = Total number of emitters
+
+; Time of the particles
+string particleSystemTime:=t;
+; Randomness factor on the generated particles (0 to infnite)
+;string partRandomness:=0.1+0.1*sin(t);
+string partRandomness:=0.2+abs(0.2*sin(t*20));
+; Particle force to be applied (for example, gravity or wind)
+string forceX:=0;forceY:=-3;forceZ:=0;
+;string forceX:=0;forceY:=0;forceZ:=0;
+; Particle color: When a aprticle is generated, this color will be assigned
+;string colorR:=0.5+0.5*sin(t/2);colorG:=0;colorB:=0.5+0.5*cos(t/2);
+string colorR:=1;colorG:=0;colorB:=0;
+
+; Global values: Particle size and texture
+uniform float fParticleSize v1:=0.2;//v1:=0.5+0.5*sin(t*2);
+uniform sampler2D partTexture /resources/textures/dust.png

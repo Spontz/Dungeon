@@ -1,19 +1,25 @@
-; Draws a particle on each vertex position of the given 3d model.
+; Draws a particle on each vertex position of the given scene
 ; The position, color and size of each particle should be defined
-; in the shaders, and initial position can be retrieved with
-; the "Position" variable inside the vertex shader
+; in the shaders
+; The initial position of the emitters and particles will be based on
+; the given scene
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 ; Shader path
-sShaderPath /pool/shaders/drawParticlesScene/drawParticlesScene.glsl
+sShaderPath /resources/shaders/sections/drawParticlesScene/drawParticlesScene.glsl
 
-; Model to place the particles
-sModelFilePath /pool/models/cube/cube.obj
+; 3D scene Model
+sScene /pool/models/cube/cube.obj
+
+; Particles per emitter
+fParticlePerEmitter 300
+; Particle LifeTime
+fParticleLifeTime 1.0
 
 ; Particle system Position
 ; ***************************************************
 ; Scene Translation
-string tx:=0;ty:=0; tz:=-8;
+string tx:=2*sin(t);ty:=0; tz:=0;
 ; Scene Rotation
 string rx:=0; ry:=0; rz:=0;
 ; Scene Scale
@@ -22,12 +28,10 @@ string sx:=1; sy:=1; sz:=1;
 ; Shader variables
 ; ***************************************************
 ; The following variables are sent to the shader automatically:
-; uniform mat4 gModel; --> Model matrix
-; uniform mat4 gVP; --> View*projection matrix
-; uniform vec3 gCameraPos; --> Camera position
-; uniform float gTime; --> Section time (equals to 't' variable)
-; uniform float gNumParticles; --> Total number of particles to draw
+; uniform mat4 m4ViewModel; --> View*Model matrix
+; uniform mat4 m4Projection; --> Projection matrix
 
-uniform float fParticleSize v1:=0.3;
+uniform float fTime v1:=t;
+uniform float fParticleSize v1:=0.2;
+uniform float fRandomnessFactor v1:=0.2;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform float fParticlesDrawn v1:=999999;

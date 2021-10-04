@@ -1,33 +1,41 @@
-; Draws particles, the position, color and size of each
-; particle should be defined in the shaders
-; Initial position is set to (0,0,0)
+; Draws particles
+; The initial position, color and life of each particles is defined
+; in this script, and in the shader should be defined the behaviours
+; over time
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
+; Shader path
+sShaderPath /resources/shaders/sections/drawParticles/drawParticles.glsl
 
-; Shaders path
-sShaderPath /pool/shaders/drawParticles/drawParticles.glsl
-
-; Particle number
+; Particles per emitter
 fNumParticles 1000
 
 ; Particle system Position
 ; ***************************************************
-; Translation
-string tx:=0;ty:=0; tz:=-5;
-; Rotation
+; Scene Translation
+string tx:=0;ty:=0; tz:=0;
+; Scene Rotation
 string rx:=0; ry:=0; rz:=0;
-; Scale
-string sx:=1; sy:=1; sz:=1;
+; Scene Scale
+string sx:=0.1; sy:=0.1; sz:=0.1;
+
+; Particles data
+; ***************************************************
+; nPart=Number of partciles, nP=Number of particle
+; Particles Initial position
+string px:=10*sin(nP/nPart*2*3.1415);py:=1*cos(nP/nPart*80);pz:=10*cos(nP/nPart*2*3.1415);
+; Particles Initial color (0 to 1)
+string cr:=1;cg:=1;cb:=1;ca:=nP/nPart;
+; Particles Lifetime (seconds)
+string pLife:=1;
+
 
 ; Shader variables
 ; ***************************************************
 ; The following variables are sent to the shader automatically:
-; uniform mat4 gModel; --> Model matrix
-; uniform mat4 gVP; --> View*projection matrix
-; uniform vec3 gCameraPos; --> Camera position
-; uniform float gTime; --> Section time (equals to 't' variable)
-; uniform float gNumParticles; --> Total number of particles to draw
+; uniform mat4 m4ViewModel; --> View*Model matrix
+; uniform mat4 m4Projection; --> Projection matrix
 
-uniform float fParticleSize v1:=0.4;
+uniform float fTime v1:=t;
+uniform float fParticleSize v1:=0.1;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform float fParticlesDrawn v1:=t/tend*1000;

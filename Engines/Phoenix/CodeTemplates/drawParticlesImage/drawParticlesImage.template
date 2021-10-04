@@ -1,4 +1,4 @@
-; Draws a particle on each vertex position of the given image.
+; Draws an emitter on each pixel of the given image.
 ; The position, color and size of each particle should be defined
 ; in the shaders, and initial position and color can be retrieved
 ; with the "Position" and "Color" variables inside the vertex shader
@@ -6,10 +6,16 @@
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
 ; Shader path
-sShaderPath /pool/shaders/drawParticlesImage/drawParticlesImage.glsl
+sShaderPath /resources/shaders/sections/drawParticlesImage/drawParticlesImage.glsl
 
 ; Image to place the particles
-sImageFilePath /pool/textures/texture1.png
+sImageFilePath /pool/textures/pouet1.png
+
+; Particles per emitter
+fParticlesPerEmitter 0
+; Particles Lifetime (seconds)
+fParticleLifetime 1
+
 
 ; Particle system Position
 ; ***************************************************
@@ -18,17 +24,15 @@ string tx:=0;ty:=0; tz:=-8;
 ; Scene Rotation
 string rx:=0; ry:=0; rz:=0;
 ; Scene Scale
-string sx:=1; sy:=1; sz:=1;
+string sx:=0.1; sy:=0.1; sz:=0.1;
 
 ; Shader variables
 ; ***************************************************
 ; The following variables are sent to the shader automatically:
-; uniform mat4 gModel; --> Model matrix
-; uniform mat4 gVP; --> View*projection matrix
-; uniform vec3 gCameraPos; --> Camera position
-; uniform float gTime; --> Section time (equals to 't' variable)
-; uniform float gNumParticles; --> Total number of particles to draw
+; uniform mat4 m4ViewModel; --> View*Model matrix
+; uniform mat4 m4Projection; --> Projection matrix
 
-uniform float fParticleSize v1:=0.3;
+uniform float fTime v1:=t;
+uniform float fParticleSize v1:=0.1;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform float fParticlesDrawn v1:=999999;
+uniform float particlesDrawn v1:=140000*(t/10);
