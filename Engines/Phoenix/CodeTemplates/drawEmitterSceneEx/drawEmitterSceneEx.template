@@ -18,21 +18,17 @@ fParticlesPerEmitter 300
 ; Particles Lifetime (seconds)
 fParticleLifetime 1
 
-; ******************************
-; * PARTICLE SCENE POSITIONING *
-; ******************************
-; Scene Translation
-;string tx:=-5+10*sin(t/2);ty:=0; tz:=0;
-string tx:=-2;ty:=0; tz:=0;
-; Scene Rotation
-;string rx:=0; ry:=-90; rz:=0;
+; Particle system Position
+; ***************************************************
+; Translation
+string tx:=;ty:=0; tz:=0;
+; Rotation
 string rx:=0; ry:=0; rz:=0;
-; Scene Scale
+; Scale
 string sx:=1; sy:=1; sz:=1;
 
-; ***********************
-; * PARTICLE PARAMETERS *
-; ***********************
+; Particle Parameters
+; ***************************************************
 ; Variables that can be used (apart from the typical 't', 'tend', 'beat', etc):
 ; nE = Current emitter
 ; TnE = Total number of emitters

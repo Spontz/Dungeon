@@ -1,54 +1,46 @@
-; Draws particles for a given source 3d model
-; Each vertex of the 3d model will be a particle emitter
+; Draws an emitter on each vertex position of the given scene
+; The velocity
+; The initial position of the emitters and particles will be based on
+; the given scene
 ; Recommended to use blend mode: SRC_ALPHA - ONE
-
-; *********************************************************************
-; Section under development!! it may fail on shitty intel video cards!!
-; *********************************************************************
 
 ; Path where the shaders are stored (update.glsl and billboard.glsl)
 sShader /resources/shaders/sections/drawEmitterScene/
 
 ; Each vertex of the 3d model will be a particle emitter
-;sScene /pool/models/anim/anim.md5mesh
-;sScene /pool/models/cube/cube.obj
-sScene /pool/models/logo/logo_silouette.obj
+sScene /pool/models/cube/cube.obj
 
 ; Time between emissions (seconds)
-fEmissionTime 0.02
+fEmissionTime 0.1
 ; Particles Lifetime (seconds)
-fParticleLifetime 5
-; Randomness
-fRandomness 0.8
+fParticleLifetime 2
 
-; ******************************
-; * PARTICLE SCENE POSITIONING *
-; ******************************
-; Scene Translation
+; Particle system Position
+; ***************************************************
+; Translation
 string tx:=0;ty:=0; tz:=0;
-;string tx:=0;ty:=0; tz:=0;
-; Scene Rotation
+; Rotation
 string rx:=0; ry:=-90; rz:=0;
-; Scene Scale
+; Scale
 string sx:=1; sy:=1; sz:=1;
 
-; ***********************
-; * PARTICLE PARAMETERS *
-; ***********************
+; Particle Parameters
+; ***************************************************
 ; Variables that can be used (apart from the typical 't', 'tend', 'beat', etc):
 ; nE = Current emitter
 ; TnE = Total number of emitters
 
 ; Speed variability (it impacts the emission time)
 string partSpeed:=1.0;
+; Randomness factor on the generated particles (0 to infnite)
+string partRandomness:=0.1+0.1*sin(t);
 ; Particle velocity (if you want to modify this through time, use the Geometry shader, because the velocity value is only passed once)
-string velX:=0;velY:=0;velZ:=1;
+string velX:=0;velY:=0;velZ:=0;
 ; Particle force to be applied (for example, gravity or wind)
-string forceX:=0;forceY:=-3;forceZ:=0;
-;string forceX:=0;forceY:=0;forceZ:=0;
+string forceX:=0;forceY:=0;forceZ:=0;
 ; Particle color: When a aprticle is generated, this color will be assigned
-string colorR:=0.5+0.5*sin(t/2);colorG:=1;colorB:=0;
+string colorR:=1;colorG:=1;colorB:=1;
 
 ; Global values: Particle size and texture
-uniform float fParticleSize v1:=0.1;//v1:=0.5+0.5*sin(t*2);
+uniform float fParticleSize v1:=0.1;
 uniform sampler2D partTexture /resources/textures/dust.png

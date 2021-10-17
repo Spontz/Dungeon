@@ -5,11 +5,11 @@
 ; Each pixel will generate a particle
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shader path
-sShaderPath /resources/shaders/sections/drawParticlesImage/drawParticlesImage.glsl
+; Shader
+sShader /resources/shaders/sections/drawParticlesImage/drawParticlesImage.glsl
 
 ; Image to place the particles
-sImageFilePath /pool/textures/pouet1.png
+sImageFilePath /resources/textures/tv.jpg
 
 ; Particles per emitter
 fParticlesPerEmitter 0
@@ -35,4 +35,4 @@ string sx:=0.1; sy:=0.1; sz:=0.1;
 uniform float fTime v1:=t;
 uniform float fParticleSize v1:=0.1;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform float particlesDrawn v1:=140000*(t/10);
+uniform float particlesDrawn v1:=9999999;

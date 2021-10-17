@@ -4,19 +4,19 @@
 ; over time
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shader path
-sShaderPath /resources/shaders/sections/drawParticles/drawParticles.glsl
+; Shader
+sShader /resources/shaders/sections/drawParticles/drawParticles.glsl
 
 ; Particles per emitter
 fNumParticles 1000
 
 ; Particle system Position
 ; ***************************************************
-; Scene Translation
+; Translation
 string tx:=0;ty:=0; tz:=0;
-; Scene Rotation
+; Rotation
 string rx:=0; ry:=0; rz:=0;
-; Scene Scale
+; Scale
 string sx:=0.1; sy:=0.1; sz:=0.1;
 
 ; Particles data
@@ -37,5 +37,5 @@ string pLife:=1;
 ; uniform mat4 m4Projection; --> Projection matrix
 
 uniform float fTime v1:=t;
-uniform float fParticleSize v1:=0.1;
+uniform float fParticleSize v1:=0.01;
 uniform sampler2D partTexture /resources/textures/dust.png
