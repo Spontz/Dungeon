@@ -10,8 +10,11 @@ fFullscreen 0
 ; Fit to content (1=respect image aspect ratio, 0=fill entire window / quad)
 fFitToContent 1
 
-sImagePath /resources/textures/tv.jpg
-sShaderPath /pool/shaders/drawImage/drawImageDistort.glsl
+; Use Bilinear Filter?
+fUseFilter 0
+
+sImage /resources/textures/tv.jpg
+sShader /pool/shaders/drawImage/drawImageDistort.glsl
 
 ; Image Position (only used when we are NOT in fullscreen)
 ; ***************************************************
