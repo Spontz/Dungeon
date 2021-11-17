@@ -933,7 +933,7 @@ End
 
 	#tag MenuHandler
 		Function EditReplace() As Boolean Handles EditReplace.Action
-			wndReplace.init(demo, cnvTimeLine)
+			wndReplace.init(demo, cnvTimeLine, self)
 		End Function
 	#tag EndMenuHandler
 
@@ -1083,8 +1083,11 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(demoFile as folderitem)
-		  demo.init(demoFile)
+		Function init(demoFile as folderitem) As boolean
+		  if not demo.init(demoFile) then
+		    ' There was a problem initing the demo
+		    return false
+		  end if
 		  
 		  self.Title = "Spontz Demo Editor [" + demo.engine + "]: " + demoFile.Name
 		  
@@ -1136,7 +1139,9 @@ End
 		  
 		  // Show the timeline
 		  self.Visible = true
-		End Sub
+		  
+		  return true
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21

@@ -449,9 +449,9 @@ Begin Window wndVideoSettings
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   6
+      ColumnCount     =   7
       ColumnsResizable=   True
-      ColumnWidths    =   "*,*,80,*,*,*"
+      ColumnWidths    =   ",*"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   16
@@ -467,7 +467,7 @@ Begin Window wndVideoSettings
       Hierarchical    =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "FBO	Ratio	Format	Width	Height	Attachments"
+      InitialValue    =   "FBO	Ratio	Format	Width	Height	Attachments	Filter"
       Italic          =   False
       Left            =   -1
       LockBottom      =   True
@@ -523,12 +523,14 @@ End
 		    Dim width            As String = NthField(theFBOs(i), " ", 3)
 		    Dim height           As String = NthField(theFBOs(i), " ", 4)
 		    Dim colorAttachments as String = NthField(theFBOs(i), " ", 5)
+		    Dim filter           as string = NthField(theFBOs(i), " ", 6)
 		    
 		    lbxFBOConfiguration.AddRow(Str(i))
 		    
 		    ' Format
 		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 2) = Format
 		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, 5) = colorAttachments
+		    lbxFBOConfiguration.cell(lbxFBOConfiguration.LastIndex, cstColumnFilter) = filter
 		    
 		    If ratio = "0" Then
 		      ' Fixed size FBO
@@ -567,6 +569,9 @@ End
 	#tag EndProperty
 
 
+	#tag Constant, Name = cstColumnFilter, Type = Double, Dynamic = False, Default = \"6", Scope = Public
+	#tag EndConstant
+
 	#tag Constant, Name = cstCreateFBO, Type = String, Dynamic = False, Default = \"Create FBO", Scope = Private
 	#tag EndConstant
 
@@ -596,7 +601,8 @@ End
 		    Val(lbxFBOConfiguration.cell(i, 4)), _
 		    Val(lbxFBOConfiguration.cell(i, 1)), _
 		    lbxFBOConfiguration.cell(i, 2), _
-		    Val(lbxFBOConfiguration.cell(i, 5)) _
+		    Val(lbxFBOConfiguration.cell(i, 5)), _
+		    lbxFBOConfiguration.cell(i, cstColumnFilter) _
 		    )
 		  next
 		  
@@ -822,11 +828,22 @@ End
 		    me.cell(row, 1) = ""
 		    
 		  case 5
-		    ' The user clicked in the ratio column
+		    ' The user clicked in the FBO attachments column
 		    cmnFBOOptions.Append(new menuItem("1"))
 		    cmnFBOOptions.Append(new menuItem("2"))
 		    cmnFBOOptions.Append(new menuItem("3"))
 		    cmnFBOOptions.Append(new menuItem("4"))
+		    
+		    selectedMenu = cmnFBOOptions.PopUp
+		    
+		    if selectedMenu = nil then return true
+		    
+		    me.cell(row, column) = selectedMenu.text
+		    
+		  case cstColumnFilter
+		    ' The user clicked in the FBO filters column
+		    cmnFBOOptions.Append(new menuItem("Bilinear"))
+		    cmnFBOOptions.Append(new menuItem("No"))
 		    
 		    selectedMenu = cmnFBOOptions.PopUp
 		    

@@ -78,7 +78,7 @@ Begin Window wndChooseDemoengine
          Text            =   "Open existing demo"
          TextAlign       =   1
          TextColor       =   &cBFBFBF00
-         TextFont        =   "System"
+         TextFont        =   "Ubuntu Condensed"
          TextSize        =   20.0
          TextUnit        =   0
          Top             =   401
@@ -184,7 +184,7 @@ Begin Window wndChooseDemoengine
       Text            =   "Choose wisely"
       TextAlign       =   1
       TextColor       =   &cBFBFBF00
-      TextFont        =   "System"
+      TextFont        =   "Ubuntu Condensed"
       TextSize        =   20.0
       TextUnit        =   0
       Top             =   87
@@ -232,10 +232,11 @@ End
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init(demofile)
-		  
-		  // And close the selector window
-		  self.close
+		  if not myWndTimeLine.init(demofile) then
+		    
+		    // And close the selector window
+		    self.close
+		  end if
 		End Sub
 	#tag EndMethod
 
@@ -246,10 +247,11 @@ End
 		  If file <> Nil Then
 		    // Load the project
 		    dim mywindow as new wndTimeLine
-		    myWindow.init(file)
-		    
-		    // And close the selector window
-		    Self.close
+		    if not myWindow.init(file) then
+		      
+		      // And close the selector window
+		      Self.close
+		    end if
 		  end if
 		End Sub
 	#tag EndMethod
@@ -289,10 +291,11 @@ End
 		  Dim myWndTimeLine As New wndTimeLine
 		  
 		  // Load the project
-		  myWndTimeLine.init(demofile)
-		  
-		  // And close the selector window
-		  self.close
+		  if not myWndTimeLine.init(demofile) then
+		    
+		    // And close the selector window
+		    self.close
+		  end if
 		End Sub
 	#tag EndMethod
 

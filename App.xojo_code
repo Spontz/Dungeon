@@ -42,7 +42,7 @@ Inherits Application
 			if file <> nil then
 			// And load the project
 			dim newTimeline as new wndTimeLine
-			newTimeline.init(file)
+			call newTimeline.init(file)
 			end if
 		End Function
 	#tag EndMenuHandler

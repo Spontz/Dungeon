@@ -179,6 +179,12 @@ Protected Module ScriptWriter
 		    contents = contents + "fbo_" + Str(i) + "_format "           + NthField(theFBOs(i), " ", 2) + EndOfLine.Windows
 		    contents = contents + "fbo_" + Str(i) + "_colorAttachments " + NthField(theFBOs(i), " ", 5) + EndOfLine.Windows
 		    
+		    if NthField(theFBOs(i), " ", 6) = "Bilinear" then
+		      contents = contents + "fbo_" + Str(i) + "_useFilter 1" + EndOfLine.Windows
+		    else
+		      contents = contents + "fbo_" + Str(i) + "_useFilter 0" + EndOfLine.Windows
+		    end if
+		    
 		  Next
 		  
 		  // Write the file to disk

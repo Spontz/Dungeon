@@ -58,7 +58,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function addFBO(width as integer, height as integer, ratio as integer, format as string, colorAttachments as integer) As integer
+		Function addFBO(width as integer, height as integer, ratio as integer, format as string, colorAttachments as integer, filter as string) As integer
 		  Dim myRatio As String
 		  Dim myWidth As String
 		  Dim myHeight As String
@@ -85,7 +85,7 @@ Protected Class classDemo
 		  
 		  myRatio = str(ratio)
 		  
-		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, ratio, format, colorAttachments) Values (" + myWidth + "," + myHeight + "," + myRatio + ",'" + Format + "'," + str(colorAttachments) + ")")
+		  demoDB.sqlexecute ("INSERT INTO FBOs (width, height, ratio, format, colorAttachments, filter) Values (" + myWidth + "," + myHeight + "," + myRatio + ",'" + Format + "'," + str(colorAttachments) + ",'" + filter + "')")
 		  
 		  If demoDB.error Then
 		    MsgBox demoDB.errormessage
@@ -121,6 +121,43 @@ Protected Class classDemo
 		    demoDB.Commit
 		  End if
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function checkVersion() As boolean
+		  ' Check the current databse version
+		  dim currentVersion as integer = getDatabaseVersion
+		  dim latestVersion as integer = 2
+		  
+		  select case currentVersion
+		    
+		  case 1
+		    Notify("This project needs to be updated in order to continue", "You can preserve the project contents if you don't save it")
+		    
+		    ' Add the filter column to the FBOs table with default value "Bilinear"
+		    ExecuteSQL("ALTER TABLE FBOs ADD COLUMN Filter VARCHAR DEFAULT 'Bilinear'")
+		    
+		    If demoDB.error then
+		      MsgBox demoDB.errormessage
+		      return false
+		    end if
+		    
+		    demoDB.Commit
+		    
+		    ' Set the version
+		    setDatabaseVersion(2)
+		    
+		  case 2
+		    'This is the latest database version
+		    
+		  else
+		    'Unknown version
+		    Notify("The database has an unknown version number (" + str(currentVersion) + ").", "This could mean that the database is corrupt. This version of the editor could corrupt the project if you save it. Proceed at your own risk!")
+		    
+		  end select
+		  
+		  return true
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1098,6 +1135,22 @@ Protected Class classDemo
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Function getDatabaseVersion() As integer
+		  ' Return the current databse version
+		  dim result as integer
+		  
+		  result = demoDB.SQLSelect("SELECT value FROM VARIABLES where variable = 'DBversion'").Field("value").IntegerValue
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		    return 0
+		  else
+		    return result
+		  end if
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Function GetDataFolder() As FolderItem
 		  return dataFolder
@@ -1258,6 +1311,7 @@ Protected Class classDemo
 		    params.Append(theRecordset.Field("width"           ).StringValue)
 		    params.Append(theRecordset.Field("height"          ).StringValue)
 		    params.append(theRecordset.Field("colorAttachments").StringValue)
+		    params.append(theRecordset.Field("filter"          ).StringValue)
 		    
 		    result(i) = Join(params, " ")
 		    
@@ -1743,7 +1797,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(optional demoFile as folderitem)
+		Function init(optional demoFile as folderitem) As Boolean
 		  ' Create the demo database in the temporary folder
 		  Dim f as FolderItem = GetTemporaryFolderItem()
 		  
@@ -1756,7 +1810,7 @@ Protected Class classDemo
 		  
 		  if not demoDB.Connect then
 		    Notify("Could not connect to the database", f.ShellPath)
-		    return
+		    return false
 		  end if
 		  
 		  engine = me.getEngineType
@@ -1764,7 +1818,12 @@ Protected Class classDemo
 		  ' Connect to the database
 		  If not demoDB.Connect() then
 		    MsgBox "Could not connect to the project database."
-		    return
+		    return false
+		  end if
+		  
+		  ' Check the version of the file and update it if needed
+		  if not checkVersion then
+		    return false
 		  end if
 		  
 		  ' The engine localization
@@ -1781,8 +1840,8 @@ Protected Class classDemo
 		    
 		  end
 		  
-		  
-		End Sub
+		  return true
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
@@ -1790,62 +1849,62 @@ Protected Class classDemo
 		  select case me.engine
 		    
 		  case me.phoenix
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 2)
-		    Call addFBO(0, 0, 1, "RGB", 2)
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
 		    
-		    Call addFBO(0, 0, 1, "RGBA_16F", 1)
-		    Call addFBO(0, 0, 1, "RGBA_16F", 1)
-		    Call addFBO(0, 0, 1, "RGBA_16F", 2)
-		    Call addFBO(0, 0, 1, "RGBA_16F", 2)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
 		    
-		    Call addFBO(512, 512, 0, "RGB", 1)
-		    Call addFBO(256, 256, 0, "RGB", 1)
-		    Call addFBO(128, 128, 0, "RGB", 1)
-		    Call addFBO( 64,  64, 0, "RGB", 1)
-		    Call addFBO( 32,  32, 0, "RGB", 1)
+		    Call addFBO(512, 512, 0, "RGB", 1, "Bilinear")
+		    Call addFBO(256, 256, 0, "RGB", 1, "Bilinear")
+		    Call addFBO(128, 128, 0, "RGB", 1, "Bilinear")
+		    Call addFBO( 64,  64, 0, "RGB", 1, "Bilinear")
+		    Call addFBO( 32,  32, 0, "RGB", 1, "Bilinear")
 		    
 		  else
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 2)
-		    Call addFBO(0, 0, 1, "RGB", 2)
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
 		    
-		    Call addFBO(0, 0, 1, "RGBA16F", 1)
-		    Call addFBO(0, 0, 1, "RGBA16F", 1)
-		    Call addFBO(0, 0, 1, "RGBA16F", 2)
-		    Call addFBO(0, 0, 1, "RGBA16F", 2)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGBA", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
-		    Call addFBO(0, 0, 1, "RGB", 1)
+		    Call addFBO(0, 0, 1, "RGBA16F", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA16F", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA16F", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA16F", 2, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
 		    
-		    Call addFBO(512, 512, 0, "RGB", 1)
-		    Call addFBO(256, 256, 0, "RGB", 1)
-		    Call addFBO(128, 128, 0, "RGB", 1)
-		    Call addFBO( 64,  64, 0, "RGB", 1)
-		    Call addFBO( 32,  32, 0, "RGB", 1)
+		    Call addFBO(512, 512, 0, "RGB", 1, "Bilinear")
+		    Call addFBO(256, 256, 0, "RGB", 1, "Bilinear")
+		    Call addFBO(128, 128, 0, "RGB", 1, "Bilinear")
+		    Call addFBO( 64,  64, 0, "RGB", 1, "Bilinear")
+		    Call addFBO( 32,  32, 0, "RGB", 1, "Bilinear")
 		    
 		  end select
 		End Sub
@@ -1896,7 +1955,7 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('engine','" + type + "')")
 		  
 		  // Default FBOs
-		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER);")
+		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER, filter TEXT default 'Bilinear');")
 		  
 		  initDefaultFBOs
 		  
@@ -2386,6 +2445,18 @@ Protected Class classDemo
 		  
 		  
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub setDatabaseVersion(version as integer)
+		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(version) + "' WHERE variable = 'DBversion'")
+		  
+		  If demoDB.error then
+		    MsgBox demoDB.errormessage
+		  else
+		    demoDB.Commit
+		  End if
 		End Sub
 	#tag EndMethod
 

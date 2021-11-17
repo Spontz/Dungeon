@@ -26,21 +26,22 @@
 					Destination = 0
 					Subdirectory = Engines/Phoenix
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2Jhc3MuZGxs
-					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2RlbW9fbG9nLnR4dA==
-					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2ZyZWV0eXBlLmRsbA==
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L1Bob2VuaXguZXhl
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2F2Y29kZWMtNTguZGxs
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2F2Zm9ybWF0LTU4LmRsbA==
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2F2dXRpbC01Ni5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3N3cmVzYW1wbGUtMy5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3N3c2NhbGUtNS5kbGw=
-					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2Fzc2ltcC12YzE0MC1tdC5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2J6Mi5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2dsZnczLmRsbA==
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2xpYnBuZzE2LmRsbA==
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3N3cmVzYW1wbGUtMy5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3N3c2NhbGUtNS5kbGw=
 					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L3psaWIxLmRsbA==
+					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2Fzc2ltcC12YzE0Mi1tdC5kbGw=
+					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2xpYngyNjQtMTU3LmRsbA==
+					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L0lycmxpY2h0LmRsbA==
+					FolderItem = Li4vRW5naW5lcy9QaG9lbml4L2pwZWc2Mi5kbGw=
 				End
 				Begin CopyFilesBuildStep CopyDragonCodeTemplates
 					AppliesTo = 0

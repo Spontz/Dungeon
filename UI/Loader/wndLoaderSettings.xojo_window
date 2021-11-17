@@ -34,7 +34,7 @@ Begin Window wndLoaderSettings
       Caption         =   "OK"
       Default         =   True
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -49,10 +49,10 @@ Begin Window wndLoaderSettings
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   487
+      Top             =   485
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -66,7 +66,7 @@ Begin Window wndLoaderSettings
       Caption         =   "Cancel"
       Default         =   False
       Enabled         =   True
-      Height          =   22
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -81,10 +81,10 @@ Begin Window wndLoaderSettings
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   487
+      Top             =   485
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -568,7 +568,6 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line1
       BorderWidth     =   1
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000
@@ -586,7 +585,6 @@ Begin Window wndLoaderSettings
    End
    Begin Line Line2
       BorderWidth     =   1
-      Enabled         =   True
       Index           =   -2147483648
       InitialParent   =   ""
       LineColor       =   &c00000000

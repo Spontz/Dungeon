@@ -385,9 +385,10 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub init(theDemo as classDemo, theTimeLine as classTimeline)
+		Sub init(theDemo as classDemo, theTimeLine as classTimeline, theTimelineWindow as wndTimeline)
 		  demo = theDemo
 		  timeLine = theTimeLine
+		  timelineWindow = theTimelineWindow
 		  
 		  me.Visible = true
 		End Sub
@@ -430,6 +431,10 @@ End
 		timeLine As classTimeline
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		timeLineWindow As wndTimeline
+	#tag EndProperty
+
 
 #tag EndWindowCode
 
@@ -452,6 +457,7 @@ End
 		Sub Action()
 		  dim count as integer
 		  dim barID as string
+		  dim updatedBarIDs() as string
 		  
 		  for row as integer = 0 to lbxSearchResults.ListCount - 1
 		    if lbxSearchResults.Selected(row) or lbxSearchResults.ListIndex < 0 then
@@ -459,6 +465,11 @@ End
 		      
 		      // Get the barID
 		      barID = lbxSearchResults.cell(row, 0)
+		      
+		      // Save the bar ID
+		      if updatedBarIDs.IndexOf(barID) < 0 then
+		        updatedBarIDs.Append(barID)
+		      end if
 		      
 		      // Get the script and split it in lines
 		      dim script as string = demo.getBarScript(barID)
@@ -483,11 +494,11 @@ End
 		    end if
 		  next
 		  
-		  lblCount.text = str(count) + " replacements done."
-		  
 		  // Refresh the results field
 		  Search(txtBefore.text)
 		  
+		  // Refresh the updated bars in the engine
+		  timelineWindow.updateBarIDs(updatedBarIDs)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
