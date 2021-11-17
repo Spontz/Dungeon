@@ -126,7 +126,7 @@ Inherits listbox
 		    dim poolPath as string = demo.GetDataFolder.NativePath
 		    
 		    dim c As New Clipboard
-		    c.Text = Replace(Replace(filePath, poolPath, ""), "\", "/")
+		    c.Text = ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
 		    c.Close
 		    
 		  case "New Root Folder"
@@ -142,7 +142,7 @@ Inherits listbox
 		      end if
 		    next
 		    
-		    // Get the final name of the created folder
+		    'Get the final name of the created folder
 		    finalName = demo.getFolderName(id)
 		    
 		    // Insert the folder

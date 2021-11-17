@@ -581,12 +581,6 @@ Inherits Canvas
 		End Function
 	#tag EndMenuHandler
 
-	#tag MenuHandler
-		Function ElementsToggleEnable() As Boolean Handles ElementsToggleEnable.Action
-			elementsToggleEnable
-		End Function
-	#tag EndMenuHandler
-
 
 	#tag Method, Flags = &h1
 		Protected Function coordinate2layer(y as single) As single
