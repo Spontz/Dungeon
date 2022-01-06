@@ -157,7 +157,7 @@ Protected Module VBWFS
 	#tag Method, Flags = &h1
 		Protected Function CurDir(unused as String = "") As String
 		  // The user just wants the path to the current directory
-		  return GetCurrentDirectory.AbsolutePath
+		  return GetCurrentDirectory.ShellPath
 		  #pragma unused unused
 		  
 		End Function
@@ -617,7 +617,7 @@ Protected Module VBWFS
 		  // FolderItem.Delete on them.
 		  
 		  // Make sure the path points to our current directory as well
-		  dim curDir as String = GetCurrentDirectory.AbsolutePath
+		  dim curDir as String = GetCurrentDirectory.ShellPath
 		  path = curDir + path
 		  
 		  dim toBeDeleted( -1 ) as FolderItem
@@ -1607,6 +1607,7 @@ Protected Module VBWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1614,18 +1615,23 @@ Protected Module VBWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1633,6 +1639,7 @@ Protected Module VBWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

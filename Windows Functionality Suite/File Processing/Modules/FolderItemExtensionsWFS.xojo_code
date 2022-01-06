@@ -16,10 +16,10 @@ Protected Module FolderItemExtensionsWFS
 		      // This is just a cheap hack to tell whether we're on NT or not without
 		      // having to rely on the Win32DeclareLibrary module
 		      if System.IsFunctionAvailable( "CreateWindowExW", "User32" ) then
-		        path = DefineEncoding( f.AbsolutePath + Chr( 0 ), Encodings.UTF16 )
+		        path = DefineEncoding( f.ShellPath + Chr( 0 ), Encodings.UTF16 )
 		        type = SHARED_PATHW
 		      else
-		        path = DefineEncoding( f.AbsolutePath + Chr( 0 ), Encodings.ASCII )
+		        path = DefineEncoding( f.ShellPath + Chr( 0 ), Encodings.ASCII )
 		        type = SHARED_PATHA
 		      end if
 		      
@@ -101,7 +101,7 @@ Protected Module FolderItemExtensionsWFS
 		      exten = exten.AddFolder( "command" )
 		    end
 		    
-		    exten.DefaultValue = """" + App.ExecutableFile.AbsolutePath + """" + " ""%1"""
+		    exten.DefaultValue = """" + App.ExecutableFile.ShellPath + """" + " ""%1"""
 		  else
 		    // We want to delete the extension folder
 		    exten.Delete( theExtension )
@@ -147,11 +147,11 @@ Protected Module FolderItemExtensionsWFS
 		    dim fromStr as MemoryBlock
 		    
 		    if unicodeSavvy then
-		      fromFilePath = ConvertEncoding( fromFile.AbsolutePath, Encodings.UTF16 )
+		      fromFilePath = ConvertEncoding( fromFile.ShellPath, Encodings.UTF16 )
 		      fromStr = new MemoryBlock( LenB( fromFilePath ) + 4 )
 		      fromStr.WString( 0 ) = fromFilePath
 		    else
-		      fromFilePath = ConvertEncoding( fromFile.AbsolutePath, Encodings.SystemDefault )
+		      fromFilePath = ConvertEncoding( fromFile.ShellPath, Encodings.SystemDefault )
 		      fromStr = new MemoryBlock( LenB( fromFilePath ) + 2 )
 		      fromStr.CString( 0 ) = fromFilePath
 		    end if
@@ -161,11 +161,11 @@ Protected Module FolderItemExtensionsWFS
 		    dim toFilePath as String
 		    dim toStr as MemoryBlock
 		    if unicodeSavvy then
-		      toFilePath = ConvertEncoding( toFile.AbsolutePath, Encodings.UTF16 )
+		      toFilePath = ConvertEncoding( toFile.ShellPath, Encodings.UTF16 )
 		      toStr = new MemoryBlock( LenB( toFilePath ) + 4 )
 		      toStr.WString( 0 ) = toFilePath
 		    else
-		      toFilePath = ConvertEncoding( toFile.AbsolutePath, Encodings.SystemDefault )
+		      toFilePath = ConvertEncoding( toFile.ShellPath, Encodings.SystemDefault )
 		      toStr = new MemoryBlock( LenB( toFilePath ) + 2 )
 		      toStr.CString( 0 ) = toFilePath
 		    end if
@@ -203,9 +203,9 @@ Protected Module FolderItemExtensionsWFS
 		    Soft Declare Sub DecryptFileW Lib "AdvApi32" ( file as WString, zero as Integer )
 		    
 		    if System.IsFunctionAvailable( "DecryptFileW", "AdvApi32" ) then
-		      DecryptFileW( item.AbsolutePath, 0 )
+		      DecryptFileW( item.ShellPath, 0 )
 		    else
-		      DecryptFileA( item.AbsolutePath, 0 )
+		      DecryptFileA( item.ShellPath, 0 )
 		    end if
 		    
 		  #endif
@@ -223,9 +223,9 @@ Protected Module FolderItemExtensionsWFS
 		    Soft Declare Sub MoveFileExA Lib "Kernel32"( OldFilename As CString, NewFileName As Integer, nWord As Integer )
 		    
 		    if System.IsFunctionAvailable( "MoveFileExW", "Kernel32" ) then
-		      MoveFileExW( f.AbsolutePath, 0, MOVEFILE_DELAY_UNTIL_REBOOT )
+		      MoveFileExW( f.ShellPath, 0, MOVEFILE_DELAY_UNTIL_REBOOT )
 		    else
-		      MoveFileExA( ConvertEncoding( f.AbsolutePath, Encodings.SystemDefault ), 0, MOVEFILE_DELAY_UNTIL_REBOOT )
+		      MoveFileExA( ConvertEncoding( f.ShellPath, Encodings.SystemDefault ), 0, MOVEFILE_DELAY_UNTIL_REBOOT )
 		    end if
 		    
 		  #else
@@ -278,9 +278,9 @@ Protected Module FolderItemExtensionsWFS
 		    
 		    dim updateIcon as Boolean
 		    if System.IsFunctionAvailable( "SHEmptyRecycleBinW", "shell32" ) then
-		      updateIcon = SHEmptyRecycleBinW( 0, f.AbsolutePath, 0 ) = 0
+		      updateIcon = SHEmptyRecycleBinW( 0, f.ShellPath, 0 ) = 0
 		    elseif System.IsFunctionAvailable( "SHEmptyRecycleBinA", "shell32" ) then
-		      updateIcon = SHEmptyRecycleBinA( 0, f.AbsolutePath, 0 ) = 0
+		      updateIcon = SHEmptyRecycleBinA( 0, f.ShellPath, 0 ) = 0
 		    end if
 		    
 		    if updateIcon and System.IsFunctionAvailable( "SHUpdateRecycleBinIcon", "shell32" ) then
@@ -304,9 +304,9 @@ Protected Module FolderItemExtensionsWFS
 		    Soft Declare Sub EncryptFileW Lib "AdvApi32" ( file as CString )
 		    
 		    if System.IsFunctionAvailable( "EncryptFileW", "AdvApi32" ) then
-		      EncryptFileW( item.AbsolutePath )
+		      EncryptFileW( item.ShellPath )
 		    else
-		      EncryptFileA( item.AbsolutePath )
+		      EncryptFileA( item.ShellPath )
 		    end if
 		  #endif
 		End Sub
@@ -327,10 +327,10 @@ Protected Module FolderItemExtensionsWFS
 		    
 		    if System.IsFunctionAvailable( "GetShortPathNameW", "Kernel32" ) then
 		      // We do 512 here because it's the number of characters, not bytes
-		      res = GetShortPathNameW( f.AbsolutePath, TruncatedPath, 512 )
+		      res = GetShortPathNameW( f.ShellPath, TruncatedPath, 512 )
 		      if res > 0 then return TruncatedPath.WString( 0 )
 		    else
-		      res = GetShortPathNameA( f.AbsolutePath, TruncatedPath, 1024 )
+		      res = GetShortPathNameA( f.ShellPath, TruncatedPath, 1024 )
 		      
 		      if res > 0 then return TruncatedPath.CString( 0 )
 		    end if
@@ -362,9 +362,9 @@ Protected Module FolderItemExtensionsWFS
 		    newInfo.Long( 0 ) = newInfo.Size
 		    dim x as Integer
 		    if System.IsFunctionAvailable( "SHQueryRecycleBinW", "shell32" ) then
-		      x = shQueryrecyclebinW( f.AbsolutePath, newInfo )
+		      x = shQueryrecyclebinW( f.ShellPath, newInfo )
 		    elseif System.IsFunctionAvailable( "SHQueryRecycleBinA", "shell32" ) then
-		      x = shQueryrecyclebinA( f.AbsolutePath, newInfo )
+		      x = shQueryrecyclebinA( f.ShellPath, newInfo )
 		    end if
 		    
 		    if x = 0 then
@@ -400,9 +400,9 @@ Protected Module FolderItemExtensionsWFS
 		    newInfo.Long( 0 ) = newInfo.Size
 		    dim x as Integer
 		    if System.IsFunctionAvailable( "SHQueryRecycleBinW", "shell32" ) then
-		      x = shQueryrecyclebinW( f.AbsolutePath, newInfo )
+		      x = shQueryrecyclebinW( f.ShellPath, newInfo )
 		    elseif System.IsFunctionAvailable( "SHQueryRecycleBinA", "shell32" ) then
-		      x = shQueryrecyclebinA( f.AbsolutePath, newInfo )
+		      x = shQueryrecyclebinA( f.ShellPath, newInfo )
 		    end if
 		    
 		    if x = 0 then
@@ -434,10 +434,10 @@ Protected Module FolderItemExtensionsWFS
 		    dim size as Integer
 		    if isUnicode then
 		      dim ignored as Integer
-		      size = GetFileVersionInfoSizeW( f.AbsolutePath, ignored )
+		      size = GetFileVersionInfoSizeW( f.ShellPath, ignored )
 		    else
 		      dim ignored as Integer
-		      size = GetFileVersionInfoSizeA( ConvertEncoding( f.AbsolutePath, Encodings.SystemDefault ), ignored )
+		      size = GetFileVersionInfoSizeA( ConvertEncoding( f.ShellPath, Encodings.SystemDefault ), ignored )
 		    end if
 		    
 		    // If our size is legit, then we know how much data to allocate
@@ -449,9 +449,9 @@ Protected Module FolderItemExtensionsWFS
 		    // Now obtain the data itself
 		    dim success as Boolean
 		    if isUnicode then
-		      success = GetFileVersionInfoW( f.AbsolutePath, 0, size, buffer )
+		      success = GetFileVersionInfoW( f.ShellPath, 0, size, buffer )
 		    else
-		      success = GetFileVersionInfoA( ConvertEncoding( f.AbsolutePath, Encodings.SystemDefault ), 0, size, buffer )
+		      success = GetFileVersionInfoA( ConvertEncoding( f.ShellPath, Encodings.SystemDefault ), 0, size, buffer )
 		    end if
 		    
 		    // If we couldn't get the data, then bail out
@@ -659,7 +659,7 @@ Protected Module FolderItemExtensionsWFS
 		    // Check to see if this folder item has a handle in the map
 		    dim handle as Integer
 		    try
-		      handle = mCHangeHandles.Value( f.AbsolutePath )
+		      handle = mCHangeHandles.Value( f.ShellPath )
 		    catch
 		      // If this didn't work, then something's wrong!  Either there's
 		      // no map, or the folder item isn't in it.  Either way, bail out
@@ -796,9 +796,9 @@ Protected Module FolderItemExtensionsWFS
 		    
 		    dim ret as Boolean
 		    if unicodeSavvy then
-		      ret = CreateProcessW( f.AbsolutePath, params, 0, 0, false, 0, 0, 0, startupInfo, procInfo )
+		      ret = CreateProcessW( f.ShellPath, params, 0, 0, false, 0, 0, 0, startupInfo, procInfo )
 		    else
-		      ret = CreateProcessA( f.AbsolutePath, params, 0, 0, false, 0, 0, 0, startupInfo, procInfo )
+		      ret = CreateProcessA( f.ShellPath, params, 0, 0, false, 0, 0, 0, startupInfo, procInfo )
 		    end if
 		    
 		    if not ret then return
@@ -842,9 +842,9 @@ Protected Module FolderItemExtensionsWFS
 		    params = Join( args, " " )
 		    
 		    if System.IsFunctionAvailable( "ShellExecuteW", "Shell32" ) then
-		      ShellExecuteW( 0, "runas", f.AbsolutePath, params, "", 1 )
+		      ShellExecuteW( 0, "runas", f.ShellPath, params, "", 1 )
 		    else
-		      ShellExecuteA( 0, "runas", f.AbsolutePath, params, "", 1 )
+		      ShellExecuteA( 0, "runas", f.ShellPath, params, "", 1 )
 		    end if
 		    
 		  #else
@@ -869,9 +869,9 @@ Protected Module FolderItemExtensionsWFS
 		    params = Join( args, " " )
 		    
 		    if System.IsFunctionAvailable( "ShellExecuteW", "Shell32" ) then
-		      ShellExecuteW( 0, "open", f.AbsolutePath, params, "", 1 )
+		      ShellExecuteW( 0, "open", f.ShellPath, params, "", 1 )
 		    else
-		      ShellExecuteA( 0, "open", f.AbsolutePath, params, "", 1 )
+		      ShellExecuteA( 0, "open", f.ShellPath, params, "", 1 )
 		    end if
 		    
 		  #else
@@ -905,7 +905,7 @@ Protected Module FolderItemExtensionsWFS
 		Sub RevealWFS(extends f as FolderItem)
 		  #if TargetWin32
 		    
-		    dim param as String = "/select, """ + f.AbsolutePath + """"
+		    dim param as String = "/select, """ + f.ShellPath + """"
 		    
 		    Soft Declare Sub ShellExecuteA Lib "Shell32" ( hwnd as Integer, op as CString, file as CString, _
 		    params as CString, directory as Integer, cmd as Integer )
@@ -943,7 +943,7 @@ Protected Module FolderItemExtensionsWFS
 		    
 		    dim theAppName, theAppPath as String
 		    theAppName =  nthField( f.Name, ".", 1 )
-		    theAppPath = """" + f.AbsolutePath + """"
+		    theAppPath = """" + f.ShellPath + """"
 		    if set then
 		      runItem.Value( theAppName ) = theAppPath
 		    else
@@ -976,9 +976,9 @@ Protected Module FolderItemExtensionsWFS
 		    // Try to start watching for changes
 		    dim handle as Integer
 		    if System.IsFunctionAvailable( "FindFirstChangeNotificationW", "Kernel32" ) then
-		      handle = FindFirstChangeNotificationA( f.AbsolutePath, watchSubDirs, FILE_NOTIFY_CHANGE_FILE_NAME + FILE_NOTIFY_CHANGE_DIR_NAME )
+		      handle = FindFirstChangeNotificationA( f.ShellPath, watchSubDirs, FILE_NOTIFY_CHANGE_FILE_NAME + FILE_NOTIFY_CHANGE_DIR_NAME )
 		    else
-		      handle = FindFirstChangeNotificationW( f.AbsolutePath, watchSubDirs, FILE_NOTIFY_CHANGE_FILE_NAME + FILE_NOTIFY_CHANGE_DIR_NAME )
+		      handle = FindFirstChangeNotificationW( f.ShellPath, watchSubDirs, FILE_NOTIFY_CHANGE_FILE_NAME + FILE_NOTIFY_CHANGE_DIR_NAME )
 		    end if
 		    
 		    if handle <> -1 then
@@ -986,7 +986,7 @@ Protected Module FolderItemExtensionsWFS
 		      if mChangeHandles = nil then mChangeHandles = new Dictionary
 		      
 		      // And store this handle since we'll need it
-		      mChangeHandles.Value( f.AbsolutePath ) = handle
+		      mChangeHandles.Value( f.ShellPath ) = handle
 		    end
 		    
 		  #else
@@ -1005,7 +1005,7 @@ Protected Module FolderItemExtensionsWFS
 		    // Check to see if this folder item has a handle in the map
 		    dim handle as Integer
 		    try
-		      handle = mCHangeHandles.Value( f.AbsolutePath )
+		      handle = mCHangeHandles.Value( f.ShellPath )
 		    catch
 		      // If this didn't work, then something's wrong!  Either there's
 		      // no map, or the folder item isn't in it.  Either way, bail out
@@ -1017,7 +1017,7 @@ Protected Module FolderItemExtensionsWFS
 		    FindCloseChangeNotification( handle )
 		    
 		    // And remove the item from the map
-		    mChangeHandles.Remove( f.AbsolutePath )
+		    mChangeHandles.Remove( f.ShellPath )
 		    
 		  #else
 		    
@@ -1040,6 +1040,7 @@ Protected Module FolderItemExtensionsWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1047,18 +1048,23 @@ Protected Module FolderItemExtensionsWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1066,6 +1072,7 @@ Protected Module FolderItemExtensionsWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

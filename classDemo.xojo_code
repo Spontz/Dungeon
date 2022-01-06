@@ -624,7 +624,7 @@ Protected Class classDemo
 		  'if left(theFile.Name, 1) = "." then return false
 		  '
 		  '// Get the path of the file
-		  'filepath = Replace(theFile.AbsolutePath, GetPoolFolder.AbsolutePath, "")
+		  'filepath = Replace(theFile.ShellPath, GetPoolFolder.ShellPath, "")
 		  '
 		  'if TargetMacOS then
 		  'filePath = ReplaceAll(filepath, ":", "/")
@@ -2309,7 +2309,7 @@ Protected Class classDemo
 		  destination = destination.Child(resource.value("name"))
 		  
 		  if destination.Exists then
-		    trace("classDemo:saveResource: the file """ + destination.AbsolutePath + """ already exists. The file has been deleted.", cstTraceLevelLog)
+		    trace("classDemo:saveResource: the file """ + destination.ShellPath + """ already exists. The file has been deleted.", cstTraceLevelLog)
 		    destination.Delete
 		  end if
 		  
@@ -2321,11 +2321,11 @@ Protected Class classDemo
 		    WriteToFile.Write resource.Value("data")
 		    WriteToFile.close
 		    
-		    trace("classDemo:saveResource: the file """ + destination.AbsolutePath + """ has been written to the disk.", cstTraceLevelLog)
+		    trace("classDemo:saveResource: the file """ + destination.ShellPath + """ has been written to the disk.", cstTraceLevelLog)
 		    return destination
 		    
 		  else
-		    trace("classDemo:saveResource: the file """ + destination.AbsolutePath + """ could not be written to the disk.", cstTraceLevelLog)
+		    trace("classDemo:saveResource: the file """ + destination.ShellPath + """ could not be written to the disk.", cstTraceLevelLog)
 		    return nil
 		    
 		  end if
@@ -2967,6 +2967,7 @@ Protected Class classDemo
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -2974,24 +2975,31 @@ Protected Class classDemo
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="saved"
+			Visible=false
 			Group="Behavior"
 			InitialValue="true"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -2999,10 +3007,13 @@ Protected Class classDemo
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="engine"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="string"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty

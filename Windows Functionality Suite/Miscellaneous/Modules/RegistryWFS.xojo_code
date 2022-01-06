@@ -257,7 +257,7 @@ Protected Module RegistryWFS
 		      oldMask = policies.Value( "NoDrives" )
 		    end
 		    
-		    return BitwiseAnd( oldMask, REALbasic.Pow( 2, driveNum ) ) = 0
+		    return BitwiseAnd( oldMask, Pow( 2, driveNum ) ) = 0
 		    
 		  #else
 		    
@@ -289,9 +289,9 @@ Protected Module RegistryWFS
 		    end
 		    
 		    if not set then
-		      oldMask = BitwiseOr( oldMask, REALbasic.Pow( 2, driveNum ) )
+		      oldMask = BitwiseOr( oldMask, Pow( 2, driveNum ) )
 		    else
-		      oldMask = BitwiseAnd( oldMask, Bitwise.OnesComplement( REALbasic.Pow( 2, driveNum ) ) )
+		      oldMask = BitwiseAnd( oldMask, Bitwise.OnesComplement( Pow( 2, driveNum ) ) )
 		    end
 		    
 		    policies.Value( "NoDrives" ) = oldMask
@@ -1331,6 +1331,7 @@ Protected Module RegistryWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1338,18 +1339,23 @@ Protected Module RegistryWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1357,6 +1363,7 @@ Protected Module RegistryWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

@@ -273,12 +273,12 @@ Protected Module SystemInformationWFS
 		    dim volSerial, maxCompLength, sysFlags as Integer
 		    
 		    if System.IsFunctionAvailable( "GetVolumeInformationW", "Kernel32" ) then
-		      Call GetVolumeInformationW( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationW( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		      
 		      return sysName.WString( 0 )
 		    else
-		      Call GetVolumeInformationA( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationA( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		      
 		      return sysName.CString( 0 )
@@ -950,6 +950,7 @@ Protected Module SystemInformationWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -957,18 +958,23 @@ Protected Module SystemInformationWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -976,6 +982,7 @@ Protected Module SystemInformationWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

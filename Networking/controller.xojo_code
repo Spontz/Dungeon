@@ -2,7 +2,7 @@
 Protected Module controller
 	#tag Method, Flags = &h0
 		Sub activateDemo(theDemo as classDemo)
-		  if demo.GetDataFolder.AbsolutePath <> theDemo.GetDataFolder.AbsolutePath or left(demo.GetDataFolder.Name, 5) = "data_" then
+		  if demo.GetDataFolder.ShellPath <> theDemo.GetDataFolder.ShellPath or left(demo.GetDataFolder.Name, 5) = "data_" then
 		    dim tempFolderItem as FolderItem
 		    
 		    // Remove the current Data Folder
@@ -296,6 +296,7 @@ Protected Module controller
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -303,18 +304,23 @@ Protected Module controller
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -322,10 +328,13 @@ Protected Module controller
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="netSeparator"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="string"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty

@@ -308,10 +308,10 @@ Inherits InternetSessionWFS
 		    
 		    dim success as Boolean
 		    if System.IsFunctionAvailable( "FtpGetFileW", "WinInet" ) then
-		      success = FtpGetFileW( mFTPHandle, remoteName, local.AbsolutePath, bFailIfExists, _
+		      success = FtpGetFileW( mFTPHandle, remoteName, local.ShellPath, bFailIfExists, _
 		      FILE_ATTRIBUTE_NORMAL, flags, 0 )
 		    else
-		      success = FtpGetFileW( mFTPHandle, remoteName, local.AbsolutePath, bFailIfExists, _
+		      success = FtpGetFileW( mFTPHandle, remoteName, local.ShellPath, bFailIfExists, _
 		      FILE_ATTRIBUTE_NORMAL, flags, 0 )
 		    end if
 		    
@@ -457,9 +457,9 @@ Inherits InternetSessionWFS
 		    // Set the directory
 		    dim success as Boolean
 		    if System.IsFunctionAvailable( "SetCurrentDirectoryW", "Kernel32" ) then
-		      success = SetCurrentDirectoryW( dir.AbsolutePath )
+		      success = SetCurrentDirectoryW( dir.ShellPath )
 		    else
-		      success = SetCurrentDirectoryA( dir.AbsolutePath )
+		      success = SetCurrentDirectoryA( dir.ShellPath )
 		    end if
 		    
 		  #else
@@ -517,6 +517,7 @@ Inherits InternetSessionWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -524,30 +525,39 @@ Inherits InternetSessionWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Passive"
+			Visible=false
 			Group="Behavior"
 			InitialValue="true"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Port"
+			Visible=false
 			Group="Behavior"
 			InitialValue="21"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -555,12 +565,15 @@ Inherits InternetSessionWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TransferType"
+			Visible=false
 			Group="Behavior"
 			InitialValue="kTransferTypeBinary"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -16,7 +16,7 @@ Protected Module ServiceManagerWFS
 		    if mManager = 0 then return
 		    
 		    dim path as String
-		    path = """" + serv.ExecutableFile.AbsolutePath + """"
+		    path = """" + serv.ExecutableFile.ShellPath + """"
 		    
 		    if serv.StartupParameters <> "" then
 		      path = path + " " + serv.StartupParameters
@@ -222,7 +222,7 @@ Protected Module ServiceManagerWFS
 		    displayName as WString )
 		    
 		    dim path as String
-		    path = """" + serv.ExecutableFile.AbsolutePath + """"
+		    path = """" + serv.ExecutableFile.ShellPath + """"
 		    
 		    if serv.StartupParameters <> "" then
 		      path = path + " " + serv.StartupParameters
@@ -408,6 +408,7 @@ Protected Module ServiceManagerWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -415,18 +416,23 @@ Protected Module ServiceManagerWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -434,6 +440,7 @@ Protected Module ServiceManagerWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

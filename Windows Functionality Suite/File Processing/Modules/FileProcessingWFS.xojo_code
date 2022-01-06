@@ -67,7 +67,7 @@ Protected Module FileProcessingWFS
 		    
 		    dim rootStr as String
 		    if root <> nil then
-		      rootStr = root.AbsolutePath
+		      rootStr = root.ShellPath
 		    end
 		    
 		    dim type as Integer
@@ -121,19 +121,19 @@ Protected Module FileProcessingWFS
 		    totalFree = new MemoryBlock( 8 )
 		    
 		    if System.IsFunctionAvailable( "GetFreeDiskSpaceExW", "Kernel32" ) then
-		      GetDiskFreeSpaceExW( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExW( root.ShellPath, free, total, totalFree )
 		    else
-		      GetDiskFreeSpaceExA( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExA( root.ShellPath, free, total, totalFree )
 		    end if
 		    
 		    dim ret as Double
 		    dim high as double = free.Long( 4 )
 		    dim low as double = free.Long( 0 )
 		    
-		    if high < 0 then high = high + REALbasic.Pow( 2, 32 )
-		    if low < 0 then low= low + REALbasic.Pow( 2, 32 )
+		    if high < 0 then high = high + Pow( 2, 32 )
+		    if low < 0 then low= low + Pow( 2, 32 )
 		    
-		    ret = high * REALbasic.Pow( 2, 32 )
+		    ret = high * Pow( 2, 32 )
 		    ret = ret + low
 		    
 		    return ret
@@ -201,19 +201,19 @@ Protected Module FileProcessingWFS
 		    totalFree = new MemoryBlock( 8 )
 		    
 		    if System.IsFunctionAvailable( "GetDiskFreeSpaceExW", "Kernel32" ) then
-		      GetDiskFreeSpaceExW( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExW( root.ShellPath, free, total, totalFree )
 		    else
-		      GetDiskFreeSpaceExA( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExA( root.ShellPath, free, total, totalFree )
 		    end if
 		    
 		    dim ret as Double
 		    dim high as double = total.Long( 4 )
 		    dim low as double = total.Long( 0 )
 		    
-		    if high < 0 then high = high + REALbasic.Pow( 2, 32 )
-		    if low < 0 then low= low + REALbasic.Pow( 2, 32 )
+		    if high < 0 then high = high + Pow( 2, 32 )
+		    if low < 0 then low= low + Pow( 2, 32 )
 		    
-		    ret = high * REALbasic.Pow( 2, 32 )
+		    ret = high * Pow( 2, 32 )
 		    ret = ret + low
 		    
 		    return ret
@@ -243,19 +243,19 @@ Protected Module FileProcessingWFS
 		    totalFree = new MemoryBlock( 8 )
 		    
 		    if System.IsFunctionAvailable( "GetDiskFreeSpaceExW", "Kernel32" ) then
-		      GetDiskFreeSpaceExW( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExW( root.ShellPath, free, total, totalFree )
 		    else
-		      GetDiskFreeSpaceExA( root.AbsolutePath, free, total, totalFree )
+		      GetDiskFreeSpaceExA( root.ShellPath, free, total, totalFree )
 		    end if
 		    
 		    dim ret as Double
 		    dim high as double = totalFree.Long( 4 )
 		    dim low as double = totalFree.Long( 0 )
 		    
-		    if high < 0 then high = high + REALbasic.Pow( 2, 32 )
-		    if low < 0 then low= low + REALbasic.Pow( 2, 32 )
+		    if high < 0 then high = high + Pow( 2, 32 )
+		    if low < 0 then low= low + Pow( 2, 32 )
 		    
-		    ret = high * REALbasic.Pow( 2, 32 )
+		    ret = high * Pow( 2, 32 )
 		    ret = ret + low
 		    
 		    return ret
@@ -337,12 +337,12 @@ Protected Module FileProcessingWFS
 		    dim volSerial, maxCompLength, sysFlags as Integer
 		    
 		    if System.IsFunctionAvailable( "GetVolumeInformationW", "Kernel32" ) then
-		      Call GetVolumeInformationW( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationW( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		      
 		      return volName.WString( 0 )
 		    else
-		      Call GetVolumeInformationA( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationA( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		      
 		      return volName.CString( 0 )
@@ -375,10 +375,10 @@ Protected Module FileProcessingWFS
 		    dim volSerial, maxCompLength, sysFlags as Integer
 		    
 		    if System.IsFunctionAvailable( "GetVolumeInformationW", "Kernel32" ) then
-		      Call GetVolumeInformationW( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationW( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		    else
-		      Call GetVolumeInformationA( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationA( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		    end if
 		    
@@ -412,10 +412,10 @@ Protected Module FileProcessingWFS
 		    dim volSerial, maxCompLength, sysFlags as Integer
 		    
 		    if System.IsFunctionAvailable( "GetVolumeInformationW", "Kernel32" ) then
-		      Call GetVolumeInformationW( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationW( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		    else
-		      Call GetVolumeInformationA( left( root.AbsolutePath, 3 ), volName, 256, volSerial, maxCompLength, _
+		      Call GetVolumeInformationA( left( root.ShellPath, 3 ), volName, 256, volSerial, maxCompLength, _
 		      sysFlags, sysName, 256 )
 		    end if
 		    return volSerial
@@ -717,6 +717,7 @@ Protected Module FileProcessingWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -724,18 +725,23 @@ Protected Module FileProcessingWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -743,6 +749,7 @@ Protected Module FileProcessingWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

@@ -509,16 +509,16 @@ Protected Module GraphicsHelpersWFS
 		    dim moduleHandle as Integer = 0
 		    if appInstance <> nil then
 		      if unicodeSavvy then
-		        moduleHandle = GetModuleHandleW( appInstance.AbsolutePath )
+		        moduleHandle = GetModuleHandleW( appInstance.ShellPath )
 		      else
-		        moduleHandle = GetModuleHandleA( appInstance.AbsolutePath )
+		        moduleHandle = GetModuleHandleA( appInstance.ShellPath )
 		      end if
 		      
 		      if moduleHandle = 0 then
 		        if unicodeSavvy then
-		          moduleHandle = LoadLibraryW( appInstance.AbsolutePath )
+		          moduleHandle = LoadLibraryW( appInstance.ShellPath )
 		        else
-		          moduleHandle = LoadLibraryA( appInstance.AbsolutePath )
+		          moduleHandle = LoadLibraryA( appInstance.ShellPath )
 		        end if
 		      end
 		    end
@@ -535,9 +535,9 @@ Protected Module GraphicsHelpersWFS
 		      ' The user wants us to just load it as a file (usually a .ico file)
 		      loadFlags = Bitwise.BitOr( loadFlags, &h10 )
 		      if unicodeSavvy then
-		        iconHandle = LoadImageW( 0, appInstance.AbsolutePath, 1, 0, 0, loadFlags )
+		        iconHandle = LoadImageW( 0, appInstance.ShellPath, 1, 0, 0, loadFlags )
 		      else
-		        iconHandle = LoadImageA( 0, appInstance.AbsolutePath, 1, 0, 0, loadFlags )
+		        iconHandle = LoadImageA( 0, appInstance.ShellPath, 1, 0, 0, loadFlags )
 		      end if
 		    else
 		      ' The user wants us to load the file from a resource
@@ -571,6 +571,7 @@ Protected Module GraphicsHelpersWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -578,18 +579,23 @@ Protected Module GraphicsHelpersWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -597,6 +603,7 @@ Protected Module GraphicsHelpersWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

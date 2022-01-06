@@ -203,7 +203,7 @@ Protected Module SystemParametersWFS
 		    return
 		  end
 		  
-		  dim wallpaper as String = newWallpaper.AbsolutePath
+		  dim wallpaper as String = newWallpaper.ShellPath
 		  dim wallpaperPicture as Picture
 		  dim saveSpot as FolderItem
 		  
@@ -229,7 +229,7 @@ Protected Module SystemParametersWFS
 		    wallpaperPicture.Save( saveSpot, Picture.SaveAsWindowsBMP )
 		    
 		    // And be sure to get the new absolute path
-		    wallpaper = saveSpot.AbsolutePath
+		    wallpaper = saveSpot.ShellPath
 		  end
 		  
 		  // Set the memory block to point to the new wallpaper
@@ -1644,6 +1644,7 @@ Protected Module SystemParametersWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -1651,18 +1652,23 @@ Protected Module SystemParametersWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -1670,6 +1676,7 @@ Protected Module SystemParametersWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

@@ -17,7 +17,7 @@ Protected Module Files
 		  'filename = cstr(undoFolder.Count)
 		  'end if
 		  '
-		  'SaveProject GetFolderItem(GetProjectFolder.AbsolutePath).child("undo").child(filename)
+		  'SaveProject GetFolderItem(GetProjectFolder.ShellPath).child("undo").child(filename)
 		End Sub
 	#tag EndMethod
 
@@ -137,7 +137,7 @@ Protected Module Files
 		  if not target.Directory then
 		    target.Delete
 		  else
-		    Trace("Files: deleteFile: Passed folderitem (" + target.AbsolutePath + ") is not a file", cstTraceLevelWarning)
+		    Trace("Files: deleteFile: Passed folderitem (" + target.ShellPath + ") is not a file", cstTraceLevelWarning)
 		  end if
 		End Sub
 	#tag EndMethod
@@ -284,7 +284,7 @@ Protected Module Files
 		  elementName = file.name
 		  
 		  // And get the relative path
-		  if InStr(0, file.AbsolutePath, "pool") = 0 then return ""
+		  if InStr(0, file.ShellPath, "pool") = 0 then return ""
 		  
 		  while elementName <> "pool"
 		    theRelativePath = elementName + "/" + theRelativePath
@@ -344,6 +344,7 @@ Protected Module Files
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -351,18 +352,23 @@ Protected Module Files
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -370,6 +376,7 @@ Protected Module Files
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

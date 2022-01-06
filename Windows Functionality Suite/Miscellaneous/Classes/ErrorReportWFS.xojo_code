@@ -40,7 +40,7 @@ Protected Class ErrorReportWFS
 		    Soft Declare Sub WerReportAddFile Lib "Wer" ( handle as Integer, path as WString, type as Integer, flags as Integer )
 		    
 		    if System.IsFunctionAvailable( "WerReportAddFile", "Wer" ) and mHandle <> 0 then
-		      WerReportAddFile( mHandle, f.AbsolutePath, type, flags )
+		      WerReportAddFile( mHandle, f.ShellPath, type, flags )
 		    end if
 		    
 		  #else
@@ -91,7 +91,7 @@ Protected Class ErrorReportWFS
 		    Soft Declare Sub WerRegisterFile Lib "Wer" ( path as WString, type as Integer, flags as Integer )
 		    
 		    if System.IsFunctionAvailable( "WerRegisterFile", "Wer" ) then
-		      WerRegisterFile( f.AbsolutePath, type, flags )
+		      WerRegisterFile( f.ShellPath, type, flags )
 		    end if
 		    
 		  #else
@@ -473,43 +473,57 @@ Protected Class ErrorReportWFS
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="AdditionalDataHeader"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CloseBody"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CloseButtonCaption"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CloseHeader"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CloseText"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ConsentBody"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ConsentHeader"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -519,6 +533,7 @@ Protected Class ErrorReportWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -526,22 +541,29 @@ Protected Class ErrorReportWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="OfflineSolutionCheckText"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="OnlineSolutionCheckText"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -549,7 +571,9 @@ Protected Class ErrorReportWFS
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -557,6 +581,7 @@ Protected Class ErrorReportWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

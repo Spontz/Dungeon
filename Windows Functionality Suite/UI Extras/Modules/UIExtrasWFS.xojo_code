@@ -112,14 +112,14 @@ Protected Module UIExtrasWFS
 		      // the private flag is specified, we have to check to make sure
 		      // we can load the API as well.  We won't bother with the A
 		      // version of the call since we know the W version will be there.
-		      AddFontResourceExW( fontFile.AbsolutePath, FR_PRIVATE, 0 )
+		      AddFontResourceExW( fontFile.ShellPath, FR_PRIVATE, 0 )
 		    else
 		      // The user wants to install it as a public font, or they are running
 		      // on an OS without the ability to make private fonts
 		      if System.IsFunctionAvailable( "AddFontResourceW", "Gdi32" ) then
-		        AddFontResourceW( fontFile.AbsolutePath )
+		        AddFontResourceW( fontFile.ShellPath )
 		      else
-		        AddFontResourceA( fontFile.AbsolutePath )
+		        AddFontResourceA( fontFile.ShellPath )
 		      end if
 		    end if
 		    
@@ -143,13 +143,13 @@ Protected Module UIExtrasWFS
 		    Const FR_PRIVATE = &h10
 		    
 		    if System.IsFunctionAvailable( "RemoveFontResourceExW", "Gdi32" ) then
-		      RemoveFontResourceExW( fontFile.AbsolutePath, FR_PRIVATE, 0 )
+		      RemoveFontResourceExW( fontFile.ShellPath, FR_PRIVATE, 0 )
 		    end if
 		    
 		    if System.IsFunctionAvailable( "RemoveFontResourceW", "Gdi32" ) then
-		      RemoveFontResourceW( fontFile.AbsolutePath )
+		      RemoveFontResourceW( fontFile.ShellPath )
 		    else
-		      RemoveFontResourceA( fontFile.AbsolutePath )
+		      RemoveFontResourceA( fontFile.ShellPath )
 		    end if
 		    
 		  #else
@@ -168,6 +168,7 @@ Protected Module UIExtrasWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -175,18 +176,23 @@ Protected Module UIExtrasWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -194,6 +200,7 @@ Protected Module UIExtrasWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

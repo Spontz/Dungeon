@@ -18,9 +18,9 @@ Protected Module IniFileWFS
 		    
 		    Dim intLen As Integer
 		    if System.IsFunctionAvailable ( "GetPrivateProfileStringW", "kernel32" ) then
-		      intLen = WritePrivateProfileStringW( Key, Name, Text, iniFile.AbsolutePath )
+		      intLen = WritePrivateProfileStringW( Key, Name, Text, iniFile.ShellPath )
 		    ElseIf  System.IsFunctionAvailable ( "GetPrivateProfileStringA", "kernel32" ) then
-		      intLen = WritePrivateProfileStringA( Key, Name, Text, iniFile.AbsolutePath )
+		      intLen = WritePrivateProfileStringA( Key, Name, Text, iniFile.ShellPath )
 		    end if
 		    
 		  #else
@@ -42,6 +42,7 @@ Protected Module IniFileWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -49,18 +50,23 @@ Protected Module IniFileWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -68,6 +74,7 @@ Protected Module IniFileWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module

@@ -629,7 +629,7 @@ Implements WndProcSubclassWFS
 		    p.Save( main, Picture.SaveAsWindowsBMP )
 		    Const IMAGE_BITMAP = 0
 		    Const LR_LOADFROMFILE = &H10
-		    return LoadImageW( 0, main.AbsolutePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
+		    return LoadImageW( 0, main.ShellPath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
 		  #endif
 		End Function
 	#tag EndMethod
@@ -791,6 +791,7 @@ Implements WndProcSubclassWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -798,18 +799,23 @@ Implements WndProcSubclassWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -817,6 +823,7 @@ Implements WndProcSubclassWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -547,11 +547,11 @@ Protected Module WindowExtensionsWFS
 		    Const IMAGE_BITMAP = 0
 		    Const LR_LOADFROMFILE = &h10
 		    Const LR_CREATEDIBSECTION = &h2000
-		    iconInfo.Long( 16 ) = LoadImageW( 0, main.AbsolutePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
+		    iconInfo.Long( 16 ) = LoadImageW( 0, main.ShellPath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
 		    
 		    dim mask as FolderItem = SpecialFolder.Temporary.Child( "mask" )
 		    test.Save( mask, Picture.SaveAsWindowsBMP )
-		    iconInfo.Long( 12 ) = LoadImageW( 0, mask.AbsolutePath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
+		    iconInfo.Long( 12 ) = LoadImageW( 0, mask.ShellPath, IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE )
 		    
 		    p.Mask = test
 		  #endif
@@ -969,6 +969,7 @@ Protected Module WindowExtensionsWFS
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -976,18 +977,23 @@ Protected Module WindowExtensionsWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -995,6 +1001,7 @@ Protected Module WindowExtensionsWFS
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module
