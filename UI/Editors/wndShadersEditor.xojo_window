@@ -393,7 +393,7 @@ End
 		Private Sub updateBarsUsingFile()
 		  dim filePath as string = Replace(editedFile.NativePath, hook.demo.GetDataFolderItem("").NativePath, "")
 		  
-		  dim barIDs() as string = hook.demo.getBarsWithText(filePath)
+		  dim barIDs() as string = hook.demo.getBarsWithText(ReplaceAll(filePath, "\", "/"))
 		  
 		  hook.updateBarIDs(barIDs)
 		End Sub
@@ -428,7 +428,6 @@ End
 		      wndTimeLine(window(i)).ClearEngineLog
 		    end if
 		  next
-		  
 		  
 		  saveToDataFolder
 		  saveToDatabase
