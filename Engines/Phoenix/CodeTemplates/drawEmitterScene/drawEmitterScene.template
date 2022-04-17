@@ -4,8 +4,9 @@
 ; the given scene
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Path where the shaders are stored (update.glsl and billboard.glsl)
-sShader /resources/shaders/sections/drawEmitterScene/
+; Path where the shaders are stored
+sParticleSystemShader /resources/shaders/sections/drawEmitterScene/update.glsl
+sBillboardShader /resources/shaders/sections/drawEmitterScene/billboard.glsl
 
 ; Each vertex of the 3d model will be a particle emitter
 sScene /pool/models/cube/cube.obj

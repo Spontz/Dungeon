@@ -6,8 +6,9 @@
 ; Section under development!!
 ; ***************************
 
-; Path where the shaders are stored (update.glsl and billboard.glsl)
-sShader /resources/shaders/sections/drawEmitterSceneEx/
+; Path where the shaders are stored
+sParticleSystemShader /resources/shaders/sections/drawEmitterSceneEx/update.glsl
+sBillboardShader /resources/shaders/sections/drawEmitterSceneEx/billboard.glsl
 
 ; Draws particles for a given source 3d model
 ; Each vertex of the 3d model will be a particle emitter
@@ -21,7 +22,7 @@ fParticleLifetime 1
 ; Particle system Position
 ; ***************************************************
 ; Translation
-string tx:=;ty:=0; tz:=0;
+string tx:=0;ty:=0; tz:=0;
 ; Rotation
 string rx:=0; ry:=0; rz:=0;
 ; Scale
