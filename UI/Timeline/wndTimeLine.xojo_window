@@ -7,7 +7,7 @@ Begin Window wndTimeLine
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
-   HasBackColor    =   True
+   HasBackColor    =   False
    Height          =   600
    ImplicitInstance=   True
    LiveResize      =   "True"
@@ -233,7 +233,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -277,7 +277,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -321,7 +321,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -365,7 +365,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -409,7 +409,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -453,7 +453,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -554,7 +554,7 @@ Begin Window wndTimeLine
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   2
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -580,7 +580,7 @@ Begin Window wndTimeLine
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   500
-      Transparent     =   False
+      Transparent     =   True
       Value           =   0.0
       Visible         =   True
       Width           =   252

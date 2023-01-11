@@ -122,7 +122,7 @@ Begin ContainerControl cntCustom
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   19
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -192,7 +192,7 @@ Begin ContainerControl cntCustom
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   20
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -257,7 +257,7 @@ Begin ContainerControl cntCustom
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   207
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   126
@@ -289,7 +289,7 @@ Begin ContainerControl cntCustom
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   207
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   126
@@ -391,7 +391,7 @@ Begin ContainerControl cntCustom
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   207
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   126
