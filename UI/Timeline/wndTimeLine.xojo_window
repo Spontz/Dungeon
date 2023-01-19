@@ -195,270 +195,6 @@ Begin Window wndTimeLine
       Visible         =   True
       Width           =   11
    End
-   Begin TextField txtStartTime
-      AcceptTabs      =   False
-      Alignment       =   1
-      AutoDeactivate  =   False
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   271
-      LimitText       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Mask            =   ""
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0.00 sec"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   47
-   End
-   Begin TextField txtCurrentTime
-      AcceptTabs      =   False
-      Alignment       =   1
-      AutoDeactivate  =   False
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   337
-      LimitText       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Mask            =   ""
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0.00 sec"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   47
-   End
-   Begin TextField lblFrom
-      AcceptTabs      =   False
-      Alignment       =   3
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   741
-      LimitText       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   ""
-      Password        =   False
-      ReadOnly        =   True
-      Scope           =   0
-      TabIndex        =   7
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "from:"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   30
-   End
-   Begin TextField txtElementStartTime
-      AcceptTabs      =   False
-      Alignment       =   1
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   772
-      LimitText       =   9
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   "99999.999"
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "-"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   50
-   End
-   Begin TextField lblTo
-      AcceptTabs      =   False
-      Alignment       =   3
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   832
-      LimitText       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   ""
-      Password        =   False
-      ReadOnly        =   True
-      Scope           =   0
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "to:"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   17
-   End
-   Begin TextField txtElementEndTime
-      AcceptTabs      =   False
-      Alignment       =   1
-      AutoDeactivate  =   True
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   850
-      LimitText       =   9
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   True
-      Mask            =   "99999.999"
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "-"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   50
-   End
    Begin cntCustom cntCustomSection
       AcceptFocus     =   True
       AcceptTabs      =   False
@@ -515,50 +251,6 @@ Begin Window wndTimeLine
       UseFocusRing    =   False
       Visible         =   True
       Width           =   11
-   End
-   Begin TextField txtEndTime
-      AcceptTabs      =   False
-      Alignment       =   1
-      AutoDeactivate  =   False
-      AutomaticallyCheckSpelling=   False
-      BackColor       =   &cF2F2F200
-      Bold            =   False
-      Border          =   False
-      CueText         =   ""
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Format          =   ""
-      Height          =   14
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   404
-      LimitText       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Mask            =   ""
-      Password        =   False
-      ReadOnly        =   False
-      Scope           =   0
-      TabIndex        =   20
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "0.00 sec"
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   2
-      Transparent     =   True
-      Underline       =   False
-      UseFocusRing    =   False
-      Visible         =   True
-      Width           =   47
    End
    Begin ProgressBar barProgress
       AutoDeactivate  =   True
@@ -710,6 +402,295 @@ Begin Window wndTimeLine
       Width           =   252
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
+   End
+   Begin TextField txtStartTime
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   False
+      CueText         =   "Loop Start Time"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      Italic          =   False
+      Left            =   271
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   24
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "0.00 sec"
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   47
+   End
+   Begin TextField txtCurrentTime
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   False
+      CueText         =   "Current Time"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   337
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   25
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "0.00 sec"
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   47
+   End
+   Begin TextField txtEndTime
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   False
+      CueText         =   "Loop End Time"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   404
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   26
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "0.00 sec"
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   47
+   End
+   Begin Label lblFrom
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   741
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   28
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "from:"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   30
+   End
+   Begin Label lblTo
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   832
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   29
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "to:"
+      TextAlign       =   2
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   17
+   End
+   Begin TextField txtElementStartTime
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   False
+      CueText         =   "Element Start Time"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   772
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   30
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "-"
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   50
+   End
+   Begin TextField txtElementEndTime
+      AcceptTabs      =   False
+      Alignment       =   0
+      AutoDeactivate  =   True
+      AutomaticallyCheckSpelling=   False
+      BackColor       =   &cFFFFFF00
+      Bold            =   False
+      Border          =   False
+      CueText         =   "Element Start Time"
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Format          =   ""
+      Height          =   14
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   850
+      LimitText       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Mask            =   ""
+      Password        =   False
+      ReadOnly        =   False
+      Scope           =   0
+      TabIndex        =   31
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "-"
+      TextColor       =   &c00000000
+      TextFont        =   "Arial Narrow"
+      TextSize        =   10.0
+      TextUnit        =   0
+      Top             =   2
+      Transparent     =   True
+      Underline       =   False
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   50
    End
 End
 #tag EndWindow
@@ -1349,181 +1330,6 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events txtStartTime
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if key=chr(13) then
-		    
-		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoStartTime) + " sec"
-		    
-		    controller.setStartTime(demo.getDemoStartTime)
-		    
-		    // Pass the focus to the timeline
-		    cnvTimeLine.SetFocus
-		    cnvTimeLine.Invalidate
-		    
-		  elseif key=chr(9) then
-		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoStartTime) + " sec"
-		    
-		    controller.setStartTime(demo.getDemoStartTime)
-		    
-		    // Pass the focus to the next time field
-		    cnvTimeLine.Invalidate
-		    txtEndTime.SelStart = 0
-		    txtEndTime.SelLength = len(txtEndTime.text)
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events txtCurrentTime
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if key=chr(13) then
-		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sec"
-		    
-		    controller.setEndTime(demo.getDemoEndTime)
-		    
-		    // Pass the focus to the timeline
-		    cnvTimeLine.SetFocus
-		    cnvTimeLine.Invalidate
-		    
-		  elseif key=chr(9) then
-		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sec"
-		    
-		    controller.setEndTime(demo.getDemoEndTime)
-		    
-		    // Pass the focus to the next time field
-		    cnvTimeLine.Invalidate
-		    
-		    txtStartTime.SetFocus
-		    txtStartTime.SelStart = 0
-		    txtStartTime.SelLength = len(txtStartTime.text)
-		    
-		    return true
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events lblFrom
-	#tag Event
-		Sub GotFocus()
-		  txtElementStartTime.SetFocus
-		  txtElementStartTime.SelStart = 0
-		  txtElementStartTime.SelLength = len(txtElementStartTime.text)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events txtElementStartTime
-	#tag Event
-		Sub TextChange()
-		  if me.text="-" then
-		    me.ReadOnly = true
-		    
-		    // We return the focus to the timeline to allow receiving key events
-		    cnvTimeLine.SetFocus
-		  else
-		    me.ReadOnly = false
-		  end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if me.Text="-" then return false
-		  
-		  if key = chr(3) or key = chr(13) then
-		    cnvTimeLine.SetSelectionStartTime val(ReplaceAll(me.text, ",", "."))
-		    
-		    // We return the focus to the timeline to allow receiving key events
-		    cnvTimeLine.SetFocus
-		    
-		  elseif key=chr(9) then
-		    cnvTimeLine.SetSelectionStartTime val(ReplaceAll(me.text, ",", "."))
-		    
-		    // Select the end element time control
-		    // txtElementEndTime.SetFocus
-		    txtElementEndTime.SelStart = 0
-		    txtElementEndTime.SelLength = len(txtElementEndTime.text)
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events lblTo
-	#tag Event
-		Sub GotFocus()
-		  txtElementEndTime.SetFocus
-		  txtElementEndTime.SelStart = 0
-		  txtElementEndTime.SelLength = len(txtElementEndTime.text)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events txtElementEndTime
-	#tag Event
-		Sub TextChange()
-		  if me.text="-" then
-		    me.ReadOnly = true
-		    
-		    // We return the focus to the timeline to allow receiving key events
-		    cnvTimeLine.SetFocus
-		  else
-		    me.ReadOnly = false
-		  end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if me.Text="-" then return false
-		  
-		  if key = chr(3) or key = chr(13) then
-		    cnvTimeLine.SetSelectionEndTime val(ReplaceAll(me.text, ",", "."))
-		    
-		    // We return the focus to the timeline to allow receiving key events
-		    cnvTimeLine.SetFocus
-		  elseif key = chr(9) then
-		    cnvTimeLine.SetSelectionEndTime val(ReplaceAll(me.text, ",", "."))
-		    
-		    // We return the focus to the timeline to allow receiving key events
-		    txtElementStartTime.SetFocus
-		    txtElementStartTime.SelStart = 0
-		    txtElementStartTime.SelLength = len(txtElementStartTime.text)
-		    
-		    return true
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events txtEndTime
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if key=chr(13) then
-		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sec"
-		    
-		    controller.setEndTime(demo.getDemoEndTime)
-		    
-		    // Pass the focus to the timeline
-		    cnvTimeLine.SetFocus
-		    cnvTimeLine.Invalidate
-		    
-		  elseif key=chr(9) then
-		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
-		    me.text = cstr(demo.getDemoEndTime) + " sec"
-		    
-		    // Pass the focus to the next time field
-		    cnvTimeLine.Invalidate
-		    
-		    txtStartTime.SetFocus
-		    txtStartTime.SelStart = 0
-		    txtStartTime.SelLength = len(txtStartTime.text)
-		    
-		    return true
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
 #tag Events demo
 	#tag Event
 		Sub demoEndTimeSet(newEndTime as single)
@@ -1619,6 +1425,163 @@ End
 		    f.launch
 		    
 		  end select
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtStartTime
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if key=chr(13) then
+		    
+		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoStartTime) + " sec"
+		    
+		    controller.setStartTime(demo.getDemoStartTime)
+		    
+		    // Pass the focus to the timeline
+		    cnvTimeLine.SetFocus
+		    cnvTimeLine.Invalidate
+		    
+		  elseif key=chr(9) then
+		    demo.setDemoStartTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoStartTime) + " sec"
+		    
+		    controller.setStartTime(demo.getDemoStartTime)
+		    
+		    // Pass the focus to the next time field
+		    cnvTimeLine.Invalidate
+		    txtEndTime.SelStart = 0
+		    txtEndTime.SelLength = len(txtEndTime.text)
+		  end if
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtCurrentTime
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if key=chr(13) then
+		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
+		    
+		    controller.setEndTime(demo.getDemoEndTime)
+		    
+		    // Pass the focus to the timeline
+		    cnvTimeLine.SetFocus
+		    cnvTimeLine.Invalidate
+		    
+		  elseif key=chr(9) then
+		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
+		    
+		    controller.setEndTime(demo.getDemoEndTime)
+		    
+		    // Pass the focus to the next time field
+		    cnvTimeLine.Invalidate
+		    
+		    txtStartTime.SetFocus
+		    txtStartTime.SelStart = 0
+		    txtStartTime.SelLength = len(txtStartTime.text)
+		    
+		    return true
+		  end if
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtEndTime
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if key=chr(13) then
+		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
+		    
+		    controller.setEndTime(demo.getDemoEndTime)
+		    
+		    // Pass the focus to the timeline
+		    cnvTimeLine.SetFocus
+		    cnvTimeLine.Invalidate
+		    
+		  elseif key=chr(9) then
+		    demo.setDemoEndTime (val(ReplaceAll(trim(replaceall(me.text, "sg", "")), ",", ".")))
+		    me.text = cstr(demo.getDemoEndTime) + " sec"
+		    
+		    // Pass the focus to the next time field
+		    cnvTimeLine.Invalidate
+		    
+		    txtStartTime.SetFocus
+		    txtStartTime.SelStart = 0
+		    txtStartTime.SelLength = len(txtStartTime.text)
+		    
+		    return true
+		  end if
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtElementStartTime
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if me.Text="-" then return false
+		  
+		  if key = chr(3) or key = chr(13) then
+		    cnvTimeLine.SetSelectionStartTime val(ReplaceAll(me.text, ",", "."))
+		    
+		    // We return the focus to the timeline to allow receiving key events
+		    cnvTimeLine.SetFocus
+		    
+		  elseif key=chr(9) then
+		    cnvTimeLine.SetSelectionStartTime val(ReplaceAll(me.text, ",", "."))
+		    
+		    // Select the end element time control
+		    // txtElementEndTime.SetFocus
+		    txtElementEndTime.SelStart = 0
+		    txtElementEndTime.SelLength = len(txtElementEndTime.text)
+		  end if
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  if me.text="-" then
+		    me.ReadOnly = true
+		    
+		    // We return the focus to the timeline to allow receiving key events
+		    cnvTimeLine.SetFocus
+		  else
+		    me.ReadOnly = false
+		  end if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtElementEndTime
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if me.Text="-" then return false
+		  
+		  if key = chr(3) or key = chr(13) then
+		    cnvTimeLine.SetSelectionEndTime val(ReplaceAll(me.text, ",", "."))
+		    
+		    // We return the focus to the timeline to allow receiving key events
+		    cnvTimeLine.SetFocus
+		  elseif key = chr(9) then
+		    cnvTimeLine.SetSelectionEndTime val(ReplaceAll(me.text, ",", "."))
+		    
+		    // We return the focus to the timeline to allow receiving key events
+		    txtElementStartTime.SetFocus
+		    txtElementStartTime.SelStart = 0
+		    txtElementStartTime.SelLength = len(txtElementStartTime.text)
+		    
+		    return true
+		  end if
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub TextChange()
+		  if me.text="-" then
+		    me.ReadOnly = true
+		    
+		    // We return the focus to the timeline to allow receiving key events
+		    cnvTimeLine.SetFocus
+		  else
+		    me.ReadOnly = false
+		  end if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
