@@ -5,7 +5,7 @@ Inherits Application
 		Sub Open()
 		  // Obtain the version string
 		  applicationVersion=str(App.MajorVersion) + "." + str(app.MinorVersion) + "." + str(App.BugVersion) + "." + str(app.StageCode)+ "." +  str(App.NonReleaseVersion)
-		  applicationName=self.LongVersion
+		  applicationName=self.applicationName
 		  
 		  // Open the trace window if in debug mode
 		  if DebugBuild then
@@ -122,25 +122,35 @@ Inherits Application
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="applicationName"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="applicationVersion"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WindowBorderWidth"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WindowTopBarHeight"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
