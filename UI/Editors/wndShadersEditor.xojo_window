@@ -7,7 +7,7 @@ Begin Window wndShadersEditor
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   True
-   HasBackColor    =   True
+   HasBackColor    =   False
    Height          =   576
    ImplicitInstance=   True
    LiveResize      =   "True"
