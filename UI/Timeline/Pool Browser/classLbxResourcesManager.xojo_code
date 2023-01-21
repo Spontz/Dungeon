@@ -803,14 +803,14 @@ Inherits listbox
 		      demo.checkResourceFolder (tags.value("id"))
 		      
 		      // Save the folder under the pool folder
-		      dim result as folderitem = demo.saveFolder(tags.value("id"), demo.getFolderPath(tags.value("id")))
+		      call demo.saveFolder(tags.value("id"), demo.getFolderPath(tags.value("id")))
 		    end if
 		    
 		    if tags.value("type") = "File" then
 		      demo.checkResource (tags.value("id"))
 		      
 		      // Save the resource under the pool folder
-		      dim result as folderitem = demo.saveResource(tags.value("id"), demo.getFilePath(tags.value("id")))
+		      call demo.saveResource(tags.value("id"), demo.getFilePath(tags.value("id")))
 		      
 		    end if
 		    

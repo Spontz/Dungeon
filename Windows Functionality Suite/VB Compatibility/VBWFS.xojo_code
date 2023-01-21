@@ -1423,7 +1423,7 @@ Protected Module VBWFS
 		    
 		    // We should wait for the input idle so that we can switch to the app
 		    Declare Function WaitForInputIdle Lib "User32" ( handle as Integer, wait as Integer ) as Integer
-		    dim wait as Integer = WaitForInputIdle( procInfo.Long( 0 ), 2500 )
+		    call WaitForInputIdle( procInfo.Long( 0 ), 2500 )
 		    
 		    // Clean the application up
 		    Declare Sub CloseHandle Lib "Kernel32" ( handle as Integer )

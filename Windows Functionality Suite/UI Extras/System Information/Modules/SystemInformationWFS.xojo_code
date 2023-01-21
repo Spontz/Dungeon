@@ -301,7 +301,6 @@ Protected Module SystemInformationWFS
 		    info.Long( 0 ) = info.Size
 		    
 		    GetVersionExA( info )
-		    dim str as String
 		    
 		    if info.Long( 4 ) = 4 then
 		      return false
