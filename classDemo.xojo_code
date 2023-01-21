@@ -127,13 +127,18 @@ Protected Class classDemo
 		Private Function checkVersion() As boolean
 		  ' Check the current databse version
 		  dim currentVersion as integer = getDatabaseVersion
-		  dim latestVersion as integer = 2
+		  dim latestVersion as integer = cstLatestDBversion
 		  
-		  select case currentVersion
-		    
-		  case 1
+		  if currentVersion < latestVersion then
 		    Notify("This project needs to be updated in order to continue", "You can preserve the project contents if you don't save it")
 		    
+		  elseif currentVersion > latestVersion then
+		    Notify("The database has an unknown version number (" + str(currentVersion) + ").", "This could mean that the database is corrupt. This version of the editor could corrupt the project if you save it. Proceed at your own risk!")
+		    return true
+		    
+		  end if
+		  
+		  if currentVersion = 1 then
 		    ' Add the filter column to the FBOs table with default value "Bilinear"
 		    ExecuteSQL("ALTER TABLE FBOs ADD COLUMN Filter VARCHAR DEFAULT 'Bilinear'")
 		    
@@ -146,15 +151,22 @@ Protected Class classDemo
 		    
 		    ' Set the version
 		    setDatabaseVersion(2)
+		  end if
+		  
+		  if currentVersion = 2 then
+		    ' Add the sections table to the database
+		    ExecuteSQL(cstQueryNewTableSections)
 		    
-		  case 2
-		    'This is the latest database version
+		    If demoDB.error then
+		      MsgBox demoDB.errormessage
+		      return false
+		    end if
 		    
-		  else
-		    'Unknown version
-		    Notify("The database has an unknown version number (" + str(currentVersion) + ").", "This could mean that the database is corrupt. This version of the editor could corrupt the project if you save it. Proceed at your own risk!")
+		    demoDB.Commit
 		    
-		  end select
+		    ' Set the version
+		    setDatabaseVersion(3)
+		  end if
 		  
 		  return true
 		End Function
@@ -186,9 +198,6 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub CompileDataFolder()
-		  // This function copies the entire contents of the pool folder to the data folder
-		  dim result as string
-		  
 		  // We create the data folder, if it does not exists
 		  if GetDataFolder.exists then
 		    Trace ("classDemo:CompileDataFolder: deleted " + GetDataFolder.ShellPath + " folder.", cstTraceLevelLog)
@@ -197,10 +206,6 @@ Protected Class classDemo
 		  
 		  // And create a new empty one
 		  GetDataFolder.createAsFolder
-		  
-		  // Get a list of the sections in scope
-		  Dim i as Integer
-		  dim theUsedSections(-1) as Integer
 		  
 		  // Create the pool folder in the data folder
 		  GetDataFolder.child("pool").CreateAsFolder
@@ -233,7 +238,6 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function countBars() As integer
-		  dim result as integer
 		  dim barRS as RecordSet
 		  
 		  barRS = demoDB.SQLSelect("SELECT COUNT(*) AS Total FROM BARs")
@@ -259,7 +263,6 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function countSelectedBars() As integer
-		  dim result as integer
 		  dim barRS as RecordSet
 		  
 		  barRS = demoDB.SQLSelect("SELECT COUNT(*) AS Total FROM BARs where selected = 1")
@@ -347,7 +350,6 @@ Protected Class classDemo
 	#tag Method, Flags = &h0
 		Function createResourceFromFolderItem(f as FolderItem, parentID as string) As string
 		  Dim b As BinaryStream
-		  Dim comment As String
 		  Dim rec As DatabaseRecord
 		  Dim file as string
 		  dim id as string
@@ -1916,43 +1918,44 @@ Protected Class classDemo
 		  demoDB.SQLExecute ("CREATE TABLE VARIABLES (variable TEXT PRIMARY KEY, value TEXT);")
 		  
 		  // Database version
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('DBversion','1')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('DBversion','2')")
 		  
 		  // Demo type
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('type','" + type + "')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('type','" + type + "')")
 		  
 		  // Insert the default values for a project
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('startTime','0')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('time','0')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('endTime','30')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('startTime','0')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('time'     ,'0')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('endTime'  ,'30')")
 		  
 		  // Video defaults initialization
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('fullScreen','0')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('screenWidth','640')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('screenHeight','400')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('fullScreen'  ,'0')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('screenWidth' ,'640')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('screenHeight','400')")
 		  
 		  // Default demo Settings
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('demoName','Untitled')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('demoLoop','1')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('demoName','Untitled')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('demoLoop','" + str(cstLatestDBVersion) + "')")
 		  
 		  // Default loader configuration
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarCoordx0','0.4')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarCoordy0','0.3')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarCoordx1','0.6')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarCoordy1','0.35')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarCoordx0','0.4' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarCoordy0','0.3' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarCoordx1','0.6' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarCoordy1','0.35')")
 		  
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderCoordx0','0.4')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderCoordy0','0.3')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderCoordx1','0.6')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderCoordy1','0.35')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordx0','0.4' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordy0','0.3' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordx1','0.6' )")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordy1','0.35')")
 		  
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarColor','FFFFFF')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderColor','FFFFFF')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarAlpha','1.0')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderBarBorderAlpha','1.0')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderInitialGraphic','')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
-		  demoDB.sqlexecute ("insert into VARIABLES (variable,value) Values ('engine','" + type + "')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarColor','FFFFFF')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderColor','FFFFFF')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarAlpha','1.0')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderAlpha','1.0')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderInitialGraphic','')")
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
+		  
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('engine','" + type + "')")
 		  
 		  // Default FBOs
 		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER, filter TEXT default 'Bilinear');")
@@ -1962,9 +1965,12 @@ Protected Class classDemo
 		  // Creates the structure for bars
 		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), blendingEQ VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")
 		  
-		  // Creates the structure for thefiles
+		  // Creates the structure for the files
 		  ExecuteSQL("CREATE TABLE FILES (id INTEGER PRIMARY KEY, name TEXT, parent INTEGER, bytes INTEGER, type TEXT, data BLOB, format TEXT, enabled BOOLEAN);")
 		  ExecuteSQL("CREATE TABLE FOLDERS (id INTEGER PRIMARY KEY, name TEXT, parent INTEGER, enabled BOOLEAN);")
+		  
+		  // Creates the structure for the sections
+		  ExecuteSQL(cstQueryNewTableSections)
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -2149,7 +2155,7 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub openDatabaseinspector()
+		Sub openDatabaseInspector()
 		  dim myWindow as new wndDBShow
 		  
 		  myWindow.init demoDB
@@ -2952,6 +2958,12 @@ Protected Class classDemo
 		saved As Boolean = true
 	#tag EndProperty
 
+
+	#tag Constant, Name = cstLatestDBVersion, Type = Double, Dynamic = False, Default = \"3", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = cstQueryNewTableSections, Type = String, Dynamic = False, Default = \"CREATE TABLE SECTIONs (id INTEGER PRIMARY KEY\x2C name TEXT\x2C startTime DECIMAL(12\x2C3)\x2C endTime DECIMAL(12\x2C3)\x2C selected BOOLEAN);", Scope = Private
+	#tag EndConstant
 
 	#tag Constant, Name = dragon, Type = String, Dynamic = False, Default = \"dragon", Scope = Public
 	#tag EndConstant
