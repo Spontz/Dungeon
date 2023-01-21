@@ -6,7 +6,7 @@ Begin Window wndTimeLine
    Composite       =   True
    Frame           =   0
    FullScreen      =   False
-   FullScreenButton=   False
+   FullScreenButton=   True
    HasBackColor    =   False
    Height          =   600
    ImplicitInstance=   True
@@ -32,7 +32,7 @@ Begin Window wndTimeLine
       Backdrop        =   0
       DoubleBuffer    =   True
       Enabled         =   True
-      Height          =   225
+      Height          =   209
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -50,7 +50,7 @@ Begin Window wndTimeLine
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   18
+      Top             =   34
       Transparent     =   False
       UseFocusRing    =   False
       Visible         =   True
@@ -89,7 +89,7 @@ Begin Window wndTimeLine
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
-      Height          =   209
+      Height          =   187
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -108,7 +108,7 @@ Begin Window wndTimeLine
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   34
+      Top             =   56
       Transparent     =   False
       Value           =   0
       Visible         =   True
@@ -135,7 +135,7 @@ Begin Window wndTimeLine
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   18
+      Top             =   34
       Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -692,6 +692,33 @@ Begin Window wndTimeLine
       Visible         =   True
       Width           =   50
    End
+   Begin Canvas cnvSections
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      Height          =   16
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   273
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   True
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   32
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   18
+      Transparent     =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   612
+   End
 End
 #tag EndWindow
 
@@ -944,7 +971,6 @@ End
 			case demo.dragon
 			
 			case demo.phoenix
-			
 			
 			else
 			Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
