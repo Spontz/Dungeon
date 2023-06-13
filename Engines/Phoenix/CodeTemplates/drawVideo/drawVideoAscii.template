@@ -10,8 +10,8 @@ fFullscreen 0
 ; Fit to content (1=respect video aspect ratio, 0=fill entire window / quad)
 fFitToContent 1
 
-sVideoPath /pool/videos/video01.mp4
-sShaderPath /pool/shaders/video_shaders/ascii.glsl
+sVideoPath /resources/videos/1080p.mp4
+sShaderPath /resources/shaders/ascii/ascii.glsl
 
 ; Video Position (only used when we are NOT in fullscreen)
 ; ***************************************************
@@ -27,5 +27,5 @@ string sx:=1.0; sy:=1.0; sz:=1.0;
 ; Variables sent by default:
 ; The video frame is sent to "uniform Sampler2D screenTexture"
 ; The matrix are sent to "uniform mat4 model/view/projection"
-uniform vec2 iResolution v1:=640;v2:=480;
+uniform vec2 iResolution v1:=1920;v2:=1080;
 uniform float sample v1:=4.0;
