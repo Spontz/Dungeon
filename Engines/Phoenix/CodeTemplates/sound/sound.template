@@ -3,9 +3,3 @@ sSoundFile /pool/music/Demo_2019_140BPM.mp3
 
 ; Volume (0.0 to 1.0)
 fVolume 1
-
-; Beat configuration (beatID goes from 0 to 4) and can
-; be used in formulas by using 'beatX' variable
-fBeatID 0
-fBeatRatio 1.4
-fBeatFadeOut 4.0
