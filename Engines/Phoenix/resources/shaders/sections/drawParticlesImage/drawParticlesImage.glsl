@@ -99,7 +99,6 @@ void main()
 layout (location = 0) out vec4 FragColor;
 
 uniform sampler2D partTexture;
-uniform float particlesDrawn;
 
 in GS_OUT
 {
@@ -111,8 +110,5 @@ in GS_OUT
 
 void main(void)
 {
-	if (fs_in.ID<particlesDrawn)
-		FragColor = texture(partTexture, fs_in.TexCoord) * fs_in.Color;
-	else
-		discard;
+	FragColor = texture(partTexture, fs_in.TexCoord) * fs_in.Color;
 }

@@ -11,6 +11,9 @@ sShader /resources/shaders/sections/drawParticlesImage/drawParticlesImage.glsl
 ; Image to place the particles
 sImageFilePath /resources/textures/tv.jpg
 
+; Fit to content (1=respect image aspect ratio, 0=fill entire window / quad)
+fFitToContent 1
+
 ; Particles per emitter
 fParticlesPerEmitter 0
 ; Particles Lifetime (seconds)
@@ -20,11 +23,11 @@ fParticleLifetime 1
 ; Particle system Position
 ; ***************************************************
 ; Scene Translation
-string tx:=0;ty:=0; tz:=-8;
+string tx:=0;ty:=0; tz:=0;
 ; Scene Rotation
 string rx:=0; ry:=0; rz:=0;
 ; Scene Scale
-string sx:=0.1; sy:=0.1; sz:=0.1;
+string sx:=1; sy:=1; sz:=1;
 
 ; Shader variables
 ; ***************************************************
@@ -33,6 +36,5 @@ string sx:=0.1; sy:=0.1; sz:=0.1;
 ; uniform mat4 m4Projection; --> Projection matrix
 
 uniform float fTime v1:=t;
-uniform float fParticleSize v1:=0.1;
+uniform float fParticleSize v1:=1/400;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform float particlesDrawn v1:=9999999;
