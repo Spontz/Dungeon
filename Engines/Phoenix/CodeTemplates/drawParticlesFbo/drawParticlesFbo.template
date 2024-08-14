@@ -1,0 +1,41 @@
+; Draws an emitter on each pixel of the given Fbo.
+; The position, color and size of each particle should be defined
+; in the shaders, and initial position and color can be retrieved
+; with the "Position" and "Color" variables inside the vertex shader
+; Each pixel will generate a particle
+; Recommended to use blend mode: SRC_ALPHA - ONE
+
+; Shader
+sShader /resources/shaders/sections/drawParticlesFbo/drawParticlesFbo.glsl
+
+; Fbo parameters (number and attachment)
+fFboNumber 0
+fFboAttachment 0
+
+; Fit to content (1=respect image aspect ratio, 0=fill entire window / quad)
+fFitToContent 1
+
+; Particles per emitter
+fParticlesPerEmitter 0
+; Particles Lifetime (seconds)
+fParticleLifetime 1
+
+
+; Particle system Position
+; ***************************************************
+; Scene Translation
+string tx:=0;ty:=0; tz:=0;
+; Scene Rotation
+string rx:=0; ry:=0; rz:=0;
+; Scene Scale
+string sx:=1; sy:=1; sz:=1;
+
+; Shader variables
+; ***************************************************
+; The following variables are sent to the shader automatically:
+; uniform mat4 m4ViewModel; --> View*Model matrix
+; uniform mat4 m4Projection; --> Projection matrix
+
+uniform float fTime v1:=t;
+uniform float fParticleSize v1:=1/400;
+uniform sampler2D partTexture /resources/textures/dust.png
