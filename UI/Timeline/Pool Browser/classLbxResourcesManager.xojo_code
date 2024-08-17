@@ -50,19 +50,6 @@ Inherits listbox
 	#tag EndEvent
 
 	#tag Event
-		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
-		  '
-		  'If row Mod 2=0 then
-		  'g.foreColor=RGB(255,255,255)
-		  'else
-		  'g.foreColor=RGB(240,240,240)
-		  'end if
-		  '
-		  'g.FillRect 0,0,g.width,g.height
-		End Function
-	#tag EndEvent
-
-	#tag Event
 		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
 		  base.Append (New MenuItem("Open Data Folder"))
 		  base.Append (New MenuItem("Show on disk"    ))
@@ -171,7 +158,7 @@ Inherits listbox
 		    
 		    me.CellType  (me.LastIndex, me.cstColumnName) = 2
 		    me.CellCheck (me.LastIndex, me.cstColumnName) = false
-		    me.RowPicture(me.LastIndex) = folderblue
+		    me.RowPicture(me.LastIndex) = folderblue.ResizeToFit(16,16)
 		    
 		    // Select the recently created folder
 		    me.ListIndex = row
@@ -232,7 +219,7 @@ Inherits listbox
 		      
 		      me.CellType(me.LastIndex, me.cstColumnName) = 2
 		      me.CellCheck(me.LastIndex, me.cstColumnName) = false
-		      me.RowPicture(me.LastIndex) = folderblue
+		      me.RowPicture(me.LastIndex) = folderblue.ResizeToFit(16,16)
 		      
 		      // Select the recently created folder
 		      me.ListIndex = me.LastIndex
@@ -556,7 +543,7 @@ Inherits listbox
 		      me.CellType (me.LastIndex, me.cstColumnName) = 2
 		      me.CellCheck(me.LastIndex, me.cstColumnName) = false
 		      
-		      me.RowPicture(me.LastIndex) = icon
+		      me.RowPicture(me.LastIndex) = icon.ResizeToFit(16,16)
 		      
 		    else
 		      // The item could not be inserted because of the name
@@ -592,13 +579,13 @@ Inherits listbox
 		    
 		    if newitems(i).Value("type") = "Folder" then
 		      me.AddFolder(newitems(i).Value("name"))
-		      me.RowPicture(me.LastIndex) = folderblue
+		      me.RowPicture(me.LastIndex) = folderblue.ResizeToFit(16,16)
 		    else
 		      dim nombre as string
 		      
 		      nombre = newitems(i).Value("name")
 		      me.AddRow(nombre)
-		      me.RowPicture(me.LastIndex) = icoDocument
+		      me.RowPicture(me.LastIndex) = icoDocument.ResizeToFit(16,16)
 		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(size)
 		    end if
 		    
@@ -679,7 +666,7 @@ Inherits listbox
 		      
 		    case "File"
 		      me.AddRow(Resources(i).value("name").stringValue)
-		      me.RowPicture(me.LastIndex) = icoDocument
+		      me.RowPicture(me.LastIndex) = icoDocument.ResizeToFit(16,16)
 		      me.cell(me.LastIndex, me.cstColumnSize) = Strings.getHRsize(size)
 		    else
 		      Trace("classLbxResourcesManager:RefreshContents: Unknown item of type " + Resources(i).value("type") + " was not added to the tree", cstTraceLevelError)
