@@ -127,7 +127,17 @@ Inherits listbox
 		    dim poolPath as string = demo.GetDataFolder.NativePath
 		    
 		    dim c As New Clipboard
-		    c.Text = ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
+		    
+		    select case demo.engine
+		      
+		    case demo.phoenix
+		      c.Text = ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
+		      
+		    else
+		      c.Text = "data/" + ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
+		      
+		    end select
+		    
 		    c.Close
 		    
 		  case "New Root Folder"
