@@ -125,7 +125,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h21
 		Private Function checkVersion() As boolean
-		  ' Check the current databse version
+		  ' Check the current database version
 		  dim currentVersion as integer = getDatabaseVersion
 		  dim latestVersion as integer = cstLatestDBversion
 		  
@@ -1520,120 +1520,10 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetLoaderBarAlpha() As single
-		  dim result as single
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarAlpha' LIMIT 1").Field("value").DoubleValue
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderBarBorderAlpha() As single
-		  dim result as single
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderAlpha' LIMIT 1").Field("value").DoubleValue
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderBarBorderColor() As Color
-		  dim result as string
-		  dim loaderBarColor as Color
-		  
-		  dim red as integer
-		  dim green as integer
-		  dim blue as integer
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderColor' LIMIT 1").Field("value").StringValue
-		  
-		  red = val("&h"+mid(result, 1, 2))
-		  green = val("&h"+mid(result, 3, 2))
-		  blue = val("&h"+mid(result, 5, 2))
-		  
-		  loaderBarColor = Rgb(red, green, blue)
-		  
-		  return loaderBarColor
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderBarBorderCoords() As single()
-		  dim result() as single
-		  dim x0,y0,x1,y1 as single
-		  
-		  x0 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderCoordx0' LIMIT 1").Field("value").DoubleValue
-		  y0 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderCoordy0' LIMIT 1").Field("value").DoubleValue
-		  x1 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderCoordx1' LIMIT 1").Field("value").DoubleValue
-		  y1 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarBorderCoordy1' LIMIT 1").Field("value").DoubleValue
-		  
-		  result.Append x0
-		  result.Append y0
-		  result.Append x1
-		  result.Append Y1
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderBarColor() As Color
-		  dim result as string
-		  dim loaderBarColor as Color
-		  
-		  dim red as integer
-		  dim green as integer
-		  dim blue as integer
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarColor' LIMIT 1").Field("value").StringValue
-		  
-		  red = val("&h"+mid(result, 1, 2))
-		  green = val("&h"+mid(result, 3, 2))
-		  blue = val("&h"+mid(result, 5, 2))
-		  
-		  loaderBarColor = Rgb(red, green, blue)
-		  
-		  return loaderBarColor
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderBarCoords() As single()
-		  dim result() as single
-		  dim x0,y0,x1,y1 as single
-		  
-		  x0 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarCoordx0' LIMIT 1").Field("value").DoubleValue
-		  y0 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarCoordy0' LIMIT 1").Field("value").DoubleValue
-		  x1 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarCoordx1' LIMIT 1").Field("value").DoubleValue
-		  y1 = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderBarCoordy1' LIMIT 1").Field("value").DoubleValue
-		  
-		  result.Append x0
-		  result.Append y0
-		  result.Append x1
-		  result.Append Y1
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderFinalGraphic() As string
-		  dim result as string
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderFinalGraphic' LIMIT 1").Field("value").StringValue
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function GetLoaderInitialGraphic() As string
+		Function GetLoaderCode() As string
 		  dim result as String
 		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderInitialGraphic' LIMIT 1").Field("value").StringValue
+		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='loaderCode' LIMIT 1").Field("value").StringValue
 		  
 		  return result
 		End Function
@@ -1948,19 +1838,13 @@ Protected Class classDemo
 		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordx1','0.6' )")
 		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderCoordy1','0.35')")
 		  
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarColor','FFFFFF')")
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderColor','FFFFFF')")
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarAlpha','1.0')")
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderBarBorderAlpha','1.0')")
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderInitialGraphic','')")
-		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderFinalGraphic','')")
-		  
 		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('engine','" + type + "')")
 		  
 		  // Default FBOs
 		  demoDB.SQLExecute ("CREATE TABLE FBOs (id INTEGER PRIMARY KEY, ratio INTEGER, width INTEGER, height INTEGER, format TEXT, colorAttachments INTEGER, filter TEXT default 'Bilinear');")
 		  
 		  initDefaultFBOs
+		  initLoaderCode
 		  
 		  // Creates the structure for bars
 		  demoDB.SQLExecute ("CREATE TABLE BARS (id INTEGER PRIMARY KEY, type TEXT, layer INTEGER, startTime DECIMAL(12,3), endTime DECIMAL(12,3), enabled BOOLEAN, selected BOOLEAN, script TEXT, srcBlending VARCHAR(50), dstBlending VARCHAR(50), blendingEQ VARCHAR(50), srcAlpha VARCHAR(50), dstAlpha VARCHAR(50));")
@@ -1983,6 +1867,20 @@ Protected Class classDemo
 		    wndDBShow.init demoDB
 		  end if
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub initLoaderCode()
+		  select case me.engine
+		    
+		  case me.phoenix
+		    demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderCode',cstLoaderPhoenix)")
+		    
+		  else
+		    demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderCode',cstLoaderDragon)")
+		    
+		  end select
 		End Sub
 	#tag EndMethod
 
@@ -2581,119 +2479,8 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetLoaderBarAlpha(alpha as single)
-		  dim myTime as string
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(alpha) + "' WHERE variable = 'loaderBarAlpha'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderBarBorderAlpha(alpha as single)
-		  dim myTime as string
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(alpha) + "' WHERE variable = 'loaderBarBorderAlpha'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderBarBorderColor(red as single, green as single, blue as single)
-		  dim myParameter as string
-		  
-		  myParameter = hex(red * 255) + hex(green * 255) + hex(blue*255)
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + myParameter + "' WHERE variable = 'loaderBarBorderColor'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderBarBorderCoords(x0 as single, y0 as single, x1 as single, y1 as single)
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(x0) + "' WHERE variable = 'loaderBarBorderCoordx0'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(y0) + "' WHERE variable = 'loaderBarBorderCoordy0'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(x1) + "' WHERE variable = 'loaderBarBorderCoordx1'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(y1) + "' WHERE variable = 'loaderBarBorderCoordy1'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderBarColor(red as single, green as single, blue as single)
-		  dim myParameter as string
-		  
-		  myParameter = hex(red * 255) + hex(green * 255) + hex(blue*255)
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + myParameter + "' WHERE variable = 'loaderBarColor'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderBarCoords(x0 as single, y0 as single, x1 as single, y1 as single)
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(x0) + "' WHERE variable = 'loaderBarCoordx0'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(y0) + "' WHERE variable = 'loaderBarCoordy0'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(x1) + "' WHERE variable = 'loaderBarCoordx1'")
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + str(y1) + "' WHERE variable = 'loaderBarCoordy1'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderFinalGraphic(path as string)
-		  dim myTime as string
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + path + "' WHERE variable = 'loaderFinalGraphic'")
-		  
-		  If demoDB.error then
-		    MsgBox demoDB.errormessage
-		  else
-		    demoDB.Commit
-		  End if
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub SetLoaderInitialGraphic(path as string)
-		  dim myTime as string
-		  
-		  ExecuteSQL("UPDATE VARIABLES SET value = '" + path + "' WHERE variable = 'loaderInitialGraphic'")
+		Sub SetLoaderCode(code as string)
+		  ExecuteSQL("INSERT OR REPLACE INTO VARIABLES (variable, value) VALUES ('loaderCode', '" + code + "');")
 		  
 		  If demoDB.error then
 		    MsgBox demoDB.errormessage
@@ -2960,6 +2747,12 @@ Protected Class classDemo
 
 
 	#tag Constant, Name = cstLatestDBVersion, Type = Double, Dynamic = False, Default = \"3", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = cstLoaderDragon, Type = String, Dynamic = False, Default = \"string data/pool/loadingfront.jpg\r\nstring data/pool/loadingback.jpg\r\nfProgressBarColor 0.2 0.2 0.498 0\r\nfProgressBarPosition 0.42 0.29 0.61 0.42 \r\nfProgressBarBorderColor 0 0 0 0\r\nfProgressBarBorderPosition 0.25 0.10 0.75 0.12\r\nfBorderWidth 0.002", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = cstLoaderPhoenix, Type = String, Dynamic = False, Default = \"id loader\r\nstring /resources/loading/loadingback.png\r\nstring /resources/loading/loadingfront.png\r\nstring /resources/loading/loadingbar.jpg\r\n;Postion goes from -1.0 to 1.0\r\nfBarStartPositionX -0.60042\r\nfBarStartPositionY -0.11111\r\nfBarEndPositionX 0.60042\r\nfBarEndPositionY -0.11111\r\nfBarSWidth 0.07", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = cstQueryNewTableSections, Type = String, Dynamic = False, Default = \"CREATE TABLE SECTIONs (id INTEGER PRIMARY KEY\x2C name TEXT\x2C startTime DECIMAL(12\x2C3)\x2C endTime DECIMAL(12\x2C3)\x2C selected BOOLEAN);", Scope = Private

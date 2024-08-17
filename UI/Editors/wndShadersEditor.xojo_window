@@ -124,8 +124,8 @@ Begin Window wndShadersEditor
    Begin CustomEditField txtFileContents
       AcceptFocus     =   True
       AcceptTabs      =   True
-      AutoCloseBrackets=   False
-      AutocompleteAppliesStandardCase=   True
+      AutoCloseBrackets=   True
+      AutocompleteAppliesStandardCase=   False
       AutoDeactivate  =   False
       AutoIndentNewLines=   True
       BackColor       =   &cFFFFFF00
@@ -139,7 +139,7 @@ Begin Window wndShadersEditor
       ClearHighlightedRangesOnTextChange=   True
       DirtyLinesColor =   &cFF999900
       disableReset    =   False
-      DisplayDirtyLines=   False
+      DisplayDirtyLines=   True
       DisplayInvisibleCharacters=   False
       DisplayLineNumbers=   True
       DisplayRightMarginMarker=   False
@@ -158,15 +158,15 @@ Begin Window wndShadersEditor
       HighlightMatchingBracketsMode=   1
       ignoreRepaint   =   False
       IndentPixels    =   16
-      IndentVisually  =   True
+      IndentVisually  =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      KeepEntireTextIndented=   True
+      KeepEntireTextIndented=   False
       Left            =   0
       leftMarginOffset=   4
       LineNumbersColor=   &c88888800
       LineNumbersTextFont=   "System"
-      LineNumbersTextSize=   10
+      LineNumbersTextSize=   12
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
@@ -195,7 +195,7 @@ Begin Window wndShadersEditor
       TextSize        =   12
       ThickInsertionPoint=   True
       Top             =   0
-      Transparent     =   False
+      Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
       Width           =   784

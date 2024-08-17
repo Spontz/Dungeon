@@ -3,7 +3,6 @@ Begin Window wndLoaderSettings
    BackColor       =   &cF3F3F300
    Backdrop        =   0
    CloseButton     =   True
-   Compatibility   =   ""
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
@@ -11,7 +10,7 @@ Begin Window wndLoaderSettings
    HasBackColor    =   False
    Height          =   526
    ImplicitInstance=   True
-   LiveResize      =   True
+   LiveResize      =   "True"
    MacProcID       =   0
    MaxHeight       =   32000
    MaximizeButton  =   True
@@ -25,21 +24,21 @@ Begin Window wndLoaderSettings
    Resizeable      =   True
    Title           =   "Loader Settings"
    Visible         =   False
-   Width           =   620
+   Width           =   600
    Begin PushButton btnOK
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   False
       Caption         =   "OK"
       Default         =   True
-      Enabled         =   True
+      Enabled         =   False
       Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   540
+      Left            =   520
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -61,7 +60,7 @@ Begin Window wndLoaderSettings
    Begin PushButton btnCancel
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "0"
+      ButtonStyle     =   0
       Cancel          =   True
       Caption         =   "Cancel"
       Default         =   False
@@ -71,7 +70,7 @@ Begin Window wndLoaderSettings
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   459
+      Left            =   439
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
@@ -90,515 +89,174 @@ Begin Window wndLoaderSettings
       Visible         =   True
       Width           =   69
    End
-   Begin popGraphic popInitialGFX
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   18
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   359
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   23
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   250
-   End
-   Begin popGraphic popFinalGFX
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   18
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   359
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   True
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   51
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   250
-   End
-   Begin Slider sldBarAlpha
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   16
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   13
-      LineStep        =   1
-      LiveScroll      =   True
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   100
-      Minimum         =   0
-      PageStep        =   20
-      Scope           =   0
-      TabIndex        =   6
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickStyle       =   "0"
-      Top             =   51
-      Transparent     =   False
-      Value           =   100
-      Visible         =   True
-      Width           =   100
-   End
-   Begin Label StaticText4
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   72
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Alpha"
-      TextAlign       =   2
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   24
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   36
-   End
-   Begin RadioButton radInitial
-      AutoDeactivate  =   True
-      Bold            =   False
-      Caption         =   "Initial"
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   295
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   25
-      Transparent     =   False
-      Underline       =   False
-      Value           =   True
-      Visible         =   True
-      Width           =   58
-   End
-   Begin RadioButton radFinal
-      AutoDeactivate  =   True
-      Bold            =   False
-      Caption         =   "Final"
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   295
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   53
-      Transparent     =   False
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   58
-   End
-   Begin ClassCanvasPreview cnvPreview
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+   Begin CustomEditField txtFileContents
+      AcceptFocus     =   True
+      AcceptTabs      =   True
+      AutoCloseBrackets=   True
+      AutocompleteAppliesStandardCase=   False
+      AutoDeactivate  =   False
+      AutoIndentNewLines=   True
+      BackColor       =   &cFFFFFF00
       Backdrop        =   0
+      Border          =   False
+      BorderColor     =   &c88888800
+      BracketHighlightColor=   &cFFFF0000
+      CaretColor      =   &c00000000
+      CaretLine       =   0
+      CaretPos        =   0
+      ClearHighlightedRangesOnTextChange=   True
+      DirtyLinesColor =   &cFF999900
+      disableReset    =   False
+      DisplayDirtyLines=   True
+      DisplayInvisibleCharacters=   False
+      DisplayLineNumbers=   True
+      DisplayRightMarginMarker=   False
       DoubleBuffer    =   False
+      EnableAutocomplete=   False
       Enabled         =   True
-      EraseBackground =   True
-      Height          =   387
+      EnableLineFoldings=   True
+      enableLineFoldingSetting=   False
+      GutterBackgroundColor=   &cEEEEEE00
+      GutterSeparationLineColor=   &c88888800
+      GutterWidth     =   0
+      Height          =   457
       HelpTag         =   ""
+      HighlightBlocksOnMouseOverGutter=   True
+      HighlightMatchingBrackets=   True
+      HighlightMatchingBracketsMode=   1
+      ignoreRepaint   =   False
+      IndentPixels    =   16
+      IndentVisually  =   False
       Index           =   -2147483648
       InitialParent   =   ""
+      KeepEntireTextIndented=   False
       Left            =   0
+      leftMarginOffset=   4
+      LineNumbersColor=   &c88888800
+      LineNumbersTextFont=   "System"
+      LineNumbersTextSize=   12
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
+      MaxVisibleLines =   0
+      ReadOnly        =   False
+      RightMarginAtPixel=   0
+      RightScrollMargin=   150
       Scope           =   0
-      TabIndex        =   11
+      ScrollPosition  =   0
+      ScrollPositionX =   0
+      selLength       =   0
+      selStart        =   0
+      SelText         =   ""
+      TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   88
-      Transparent     =   False
+      TabWidth        =   4
+      Text            =   ""
+      TextColor       =   &c00000000
+      TextFont        =   "Consolas"
+      TextHeight      =   0
+      TextLength      =   0
+      TextSelectionColor=   &c00000000
+      TextSize        =   12
+      ThickInsertionPoint=   True
+      Top             =   0
+      Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   620
+      Width           =   584
    End
-   Begin Label txtBarAlpha
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   115
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "1"
-      TextAlign       =   0
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   24
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   24
-   End
-   Begin Label StaticText3
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   13
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Bar"
-      TextAlign       =   2
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   24
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   25
-   End
-   Begin Slider Slider1
+   Begin ScrollBar horizontalSB
+      AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
       Height          =   16
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   153
+      Left            =   0
       LineStep        =   1
       LiveScroll      =   True
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Maximum         =   100
+      LockRight       =   True
+      LockTop         =   False
+      Maximum         =   0
       Minimum         =   0
       PageStep        =   20
       Scope           =   0
-      TabIndex        =   14
+      TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
-      TickStyle       =   "0"
-      Top             =   51
-      Transparent     =   False
-      Value           =   100
+      Top             =   457
+      Transparent     =   True
+      Value           =   0
       Visible         =   True
-      Width           =   100
+      Width           =   585
    End
-   Begin Label StaticText6
+   Begin ScrollBar verticalSB
+      AcceptFocus     =   True
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   457
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   584
+      LineStep        =   1
+      LiveScroll      =   True
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      Maximum         =   0
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   0
+      TabIndex        =   4
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   0
+      Transparent     =   True
+      Value           =   0
+      Visible         =   True
+      Width           =   16
+   End
+   Begin PushButton btnDefault
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
+      ButtonStyle     =   0
+      Cancel          =   True
+      Caption         =   "Default"
+      Default         =   False
       Enabled         =   True
-      Height          =   20
+      Height          =   32
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   225
-      LockBottom      =   False
+      Left            =   20
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
       Scope           =   0
-      Selectable      =   False
-      TabIndex        =   15
+      TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Alpha"
-      TextAlign       =   2
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
+      TextFont        =   "Ubuntu Condensed"
+      TextSize        =   14.0
       TextUnit        =   0
-      Top             =   24
+      Top             =   485
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   36
-   End
-   Begin Label txtBorderAlpha
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   268
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   16
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "1"
-      TextAlign       =   0
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   24
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   24
-   End
-   Begin Label StaticText8
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   137
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   17
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Border"
-      TextAlign       =   2
-      TextColor       =   &c3F3F3F00
-      TextFont        =   "System"
-      TextSize        =   10.0
-      TextUnit        =   0
-      Top             =   24
-      Transparent     =   False
-      Underline       =   False
-      Visible         =   True
-      Width           =   38
-   End
-   Begin ColorSelector borderColorSelector
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   183
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   30
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   23
-      Transparent     =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   40
-   End
-   Begin ColorSelector barColorSelector
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   33
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   31
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   22
-      Transparent     =   False
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   40
-   End
-   Begin Line Line1
-      BorderWidth     =   1
-      Index           =   -2147483648
-      InitialParent   =   ""
-      LineColor       =   &c00000000
-      LockedInPosition=   False
-      Scope           =   0
-      TabIndex        =   "17"
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Transparent     =   False
-      Visible         =   True
-      X1              =   132
-      X2              =   132
-      Y1              =   0
-      Y2              =   87
-   End
-   Begin Line Line2
-      BorderWidth     =   1
-      Index           =   -2147483648
-      InitialParent   =   ""
-      LineColor       =   &c00000000
-      LockedInPosition=   False
-      Scope           =   0
-      TabIndex        =   "18"
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Transparent     =   False
-      Visible         =   True
-      X1              =   287
-      X2              =   287
-      Y1              =   0
-      Y2              =   87
+      Width           =   69
    End
 End
 #tag EndWindow
@@ -608,85 +266,15 @@ End
 		Sub init(theDemo as classDemo)
 		  demo = theDemo
 		  
-		  // We select the loader graphics, if exists
-		  dim i as integer
-		  dim theProgressBarCoords(4) as Single
-		  dim theProgressBarBorderCoords(4) as single
-		  
-		  popFinalGFX.Init(demo)
-		  popInitialGFX.Init(demo)
-		  
-		  //Initial Graphic
-		  for i=0 to popInitialGFX.listcount - 1
-		    if popInitialGFX.List(i) = demo.GetLoaderInitialGraphic then
-		      popInitialGFX.listindex = i
-		      exit
-		    end if
-		  next
-		  
-		  // Final Graphic
-		  for i=0 to popFinalGFX.listcount - 1
-		    if popFinalGFX.List(i) = demo.GetLoaderFinalGraphic then
-		      popFinalGFX.listindex = i
-		      exit
-		    end if
-		  next
-		  
-		  // Loader Bar Colors and Alpha
-		  barColorSelector.SetColor demo.GetLoaderBarColor.red / 255, demo.GetLoaderBarColor.green / 255, demo.GetLoaderBarColor.blue / 255
-		  barColorSelector.refresh
-		  
-		  sldBarAlpha.Value = demo.GetLoaderBarAlpha * 100
-		  txtBarAlpha.text = str(demo.GetLoaderBarAlpha)
-		  
-		  // And the progress bar coordinates
-		  theProgressBarCoords = demo.getLoaderBarCoords
-		  progressBarCoords(0) = theProgressBarCoords(0)
-		  progressBarCoords(1) = theProgressBarCoords(1)
-		  progressBarCoords(2) = theProgressBarCoords(2)
-		  progressBarCoords(3) = theProgressBarCoords(3)
-		  
-		  progressBarColor = demo.GetLoaderBarColor
-		  
-		  theProgressBarBorderCoords = demo.getLoaderBarBorderCoords
-		  progressBarBorderCoords(0) = theProgressBarBorderCoords(0)
-		  progressBarBorderCoords(1) = theProgressBarBorderCoords(1)
-		  progressBarBorderCoords(2) = theProgressBarBorderCoords(2)
-		  progressBarBorderCoords(3) = theProgressBarBorderCoords(3)
-		  
-		  progressBarBorderColor = demo.GetLoaderBarBorderColor
-		  
-		  cnvPreview.SetBackgroundColor RGB(45,45,45)
+		  txtFileContents.Text = demo.GetLoaderCode
 		  
 		  me.Visible = true
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub refreshProgressBar()
-		  cnvPreview.Invalidate
 		End Sub
 	#tag EndMethod
 
 
 	#tag Property, Flags = &h21
 		Private demo As classDemo
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private progressBarBorderColor As color = &cFF0000
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private progressBarBorderCoords(3) As single
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private progressBarColor As color = &cFFFFFF
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private progressBarCoords(3) As single
 	#tag EndProperty
 
 
@@ -698,24 +286,8 @@ End
 		  // We save the undo item
 		  AddUndoAction
 		  
-		  if popInitialGFX.listIndex > -1 then
-		    demo.SetLoaderInitialGraphic popInitialGFX.list(popInitialGFX.listIndex)
-		  end if
-		  
-		  if popFinalGFX.listIndex > -1 then
-		    demo.SetLoaderFinalGraphic popFinalGFX.list(popFinalGFX.listIndex)
-		  end if
-		  
-		  // Saving the Loader Bar Color
-		  demo.SetLoaderBarColor barColorSelector.GetColorRed, barColorSelector.GetColorGreen, barColorSelector.GetColorBlue
-		  demo.SetLoaderBarAlpha val(txtBarAlpha.text)
-		  
 		  // Saving the Loader Bar coordinates
-		  demo.setLoaderBarCoords( _
-		  progressBarCoords(0), _
-		  progressBarCoords(1), _
-		  progressBarCoords(2), _
-		  progressBarCoords(3))
+		  demo.setLoaderCode(txtFileContents.Text)
 		  
 		  window.close
 		End Sub
@@ -728,240 +300,100 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events popInitialGFX
+#tag Events txtFileContents
 	#tag Event
-		Sub Change()
-		  dim f as new folderitem
+		Sub TextChanged()
+		  btnOK.Enabled = true
 		  
-		  if radInitial.value = true then
-		    // Display the initial loading graphic
-		    f = demo.GetDataFolderItem(me.list(me.listIndex))
-		    
-		    cnvPreview.showPicture  f.OpenAsPicture
-		    
-		    refreshProgressBar
-		  end if
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X as integer, Y as integer) As boolean
+		  #pragma unused X
+		  #pragma unused Y
+		  
+		  // this is just a cheap trick to cause a redraw for debugging
+		  txtFileContents.Redraw
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  //set the scrollbars
+		  me.setScrollbars(horizontalSB, verticalSB)
+		  
+		  me.ClearDirtyLines
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events popFinalGFX
-	#tag Event
-		Sub Change()
-		  dim f as new folderitem
-		  
-		  if radFinal.value = true then
-		    // Display the final loading graphic
-		    f = demo.GetDataFolderItem(me.list(me.listIndex))
-		    
-		    cnvPreview.showPicture  f.OpenAsPicture
-		    
-		    refreshProgressBar
-		  end if
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events sldBarAlpha
+#tag Events horizontalSB
 	#tag Event
 		Sub ValueChanged()
-		  txtBarAlpha.text = str(me.value * 0.01)
+		  txtFileContents.ScrollPositionx = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events radInitial
+#tag Events verticalSB
+	#tag Event
+		Sub ValueChanged()
+		  txtFileContents.ScrollPosition = me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnDefault
 	#tag Event
 		Sub Action()
-		  dim f as folderitem
-		  
-		  radFinal.value = false
-		  
-		  // Display the initial loading graphic
-		  f = demo.GetDataFolderItem(popInitialGFX.list(popInitialGFX.listIndex))
-		  cnvPreview.showPicture  f.OpenAsPicture
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events radFinal
-	#tag Event
-		Sub Action()
-		  dim f as folderitem
-		  
-		  radInitial.value = false
-		  
-		  // Display the final loading graphic
-		  f = demo.GetDataFolderItem(popFinalGFX.list(popFinalGFX.listIndex))
-		  cnvPreview.showPicture  f.OpenAsPicture
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events cnvPreview
-	#tag Event
-		Sub Refreshed()
-		  refreshProgressBar
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Paint(g as graphics)
-		  if cnvPreview.getImageWidth < 0 or cnvPreview.getImageHeight < 0 then return
-		  
-		  dim theOrigin(2) as integer
-		  theOrigin = cnvPreview.getOrigin()
-		  
-		  dim theLeft, theTop, theWidth, theHeight as integer
-		  
-		  // Set the colors
-		  g.ForeColor = barColorSelector.getColor
-		  
-		  // Draw the progress bar
-		  theLeft = theOrigin(0) + progressBarCoords(0) * cnvPreview.getImageWidth
-		  theTop = theOrigin(1) + (1 - progressBarCoords(1)) * cnvPreview.getImageHeight
-		  
-		  theWidth = (progressBarCoords(2) - progressBarCoords(0)) * cnvPreview.getImageWidth
-		  theHeight = (progressBarCoords(3) - progressBarCoords(1)) * cnvPreview.getImageHeight
-		  
-		  g.ForeColor = progressBarColor
-		  g.FillRect(theLeft, theTop, theWidth, theHeight)
-		  
-		  // Draw the progress bar border
-		  theLeft = theOrigin(0) + progressBarBorderCoords(0) * cnvPreview.getImageWidth
-		  theTop = theOrigin(1) + (1 - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
-		  
-		  theWidth = (progressBarBorderCoords(2) - progressBarBorderCoords(0)) * cnvPreview.getImageWidth
-		  theHeight = (progressBarBorderCoords(3) - progressBarBorderCoords(1)) * cnvPreview.getImageHeight
-		  
-		  g.ForeColor = progressBarBorderColor
-		  g.DrawRect(theLeft, theTop, theWidth, theHeight)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseMove(X As Integer, Y As Integer)
-		  dim theLeft, theTop, theWidth, theHeight as integer
-		  
-		  dim theOrigin(2) as integer
-		  theOrigin = cnvPreview.getOrigin()
-		  
-		  // Draw the progress bar
-		  
-		  theLeft = theOrigin(0) + progressBarCoords(0) * me.getImageWidth
-		  theTop = theOrigin(1) + (1 - progressBarCoords(1)) * me.getImageHeight
-		  
-		  theWidth = (progressBarCoords(2) - progressBarCoords(0)) * me.getImageWidth
-		  theHeight = (progressBarCoords(3) - progressBarCoords(1)) * me.getImageHeight
-		  
-		  // Check the left corner
-		  if x > theLeft - 3 and x < theLeft + 3 and y > theTop and y < theTop + theHeight then
-		    me.MouseCursor = System.Cursors.ArrowEastWest
+		  select case demo.engine
 		    
-		    // Check the right corner
-		  elseif x > theLeft + theWidth - 3 and x < theLeft + theWidth + 3  and y > theTop and y < theTop + theHeight then
-		    me.MouseCursor = System.Cursors.ArrowEastWest
-		    
-		    // Check the upper corner
-		  elseif x > theLeft and x < theLeft + theWidth  and y < theTop + 3 and y > theTop - 3 then
-		    me.MouseCursor = System.Cursors.ArrowNorthSouth
-		    
-		    // Check the lower corner
-		  elseif x > theLeft and x < theLeft + theWidth  and y > theTop + theHeight - 3 and y < theTop + theHeight + 3 then
-		    me.MouseCursor = System.Cursors.ArrowNorthSouth
-		    
-		    // Check if we are inside
-		  elseif x > theLeft and x < theLeft + theWidth  and y > theTop and y < theTop + theHeight then
-		    me.MouseCursor = System.Cursors.ArrowAllDirections
-		    
-		    // Check if we are moving inside the drawing
-		  elseif x > theOrigin(0) and x < me.getImageWidth + theOrigin(0) and y > theOrigin(1) and y < theOrigin(1) + me.getImageHeight then
-		    me.MouseCursor = System.Cursors.HandOpen
+		  case demo.phoenix
+		    txtFileContents.Text = demo.cstLoaderPhoenix
 		    
 		  else
-		    // We are outside the drawing
-		    me.MouseCursor = System.Cursors.StandardPointer
+		    txtFileContents.Text = demo.cstLoaderDragon
 		    
-		  end if
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseDrag(X as integer, Y as Integer)
-		  dim theDragStart(1) as integer
-		  theDragStart = me.getDragStart
-		  
-		  if me.MouseCursor = System.Cursors.ArrowAllDirections then
-		    progressBarCoords(0) = progressBarCoords(0) + (x - theDragStart(0)) / me.getImageWidth
-		    progressBarCoords(2) = progressBarCoords(2) + (x - theDragStart(0)) / me.getImageWidth
-		    progressBarCoords(1) = progressBarCoords(1) + (theDragStart(1) - y) / me.getImageHeight
-		    progressBarCoords(3) = progressBarCoords(3) + (theDragStart(1) - y) / me.getImageHeight
-		  end if
-		  
-		  me.setDragStart(x, y)
-		  
-		  me.refreshPicture
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseExit()
-		  Self.MouseCursor = System.Cursors.StandardPointer
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Slider1
-	#tag Event
-		Sub ValueChanged()
-		  txtBorderAlpha.text = str(me.value * 0.01)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events borderColorSelector
-	#tag Event
-		Sub ColorChanged(newColor as color)
-		  progressBarBorderColor = newColor
-		  
-		  cnvPreview.refreshPicture
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events barColorSelector
-	#tag Event
-		Sub ColorChanged(newColor as color)
-		  progressBarColor = newColor
-		  
-		  cnvPreview.refreshPicture
+		  end select
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Backdrop"
-		Visible=true
-		Group="Appearance"
-		Type="Picture"
-		EditorType="Picture"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composite"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Frame"
-		Visible=true
-		Group="Appearance"
-		InitialValue="0"
+		Group="Size"
+		InitialValue="64"
 		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -978,137 +410,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Position"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Interfaces"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MacProcID"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Appearance"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Appearance"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -1119,19 +457,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Position"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=true
+		Group="Appearance"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -1139,6 +574,7 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -1146,7 +582,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -1154,5 +590,6 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

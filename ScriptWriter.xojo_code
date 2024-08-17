@@ -212,81 +212,18 @@ Protected Module ScriptWriter
 	#tag Method, Flags = &h1
 		Protected Sub WriteLoaderSPO(theDemo as classDemo)
 		  dim contents as String
-		  
 		  dim file as TextOutputStream
 		  
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    file = theDemo.GetDataFolder().child("loader.spo").CreateTextFile
-		    
-		    dim LoaderBarCoords(3) as single
-		    
-		    dim loaderInitialGraphicPath as string
-		    dim loaderFinalGraphicPath as string
-		    
-		    loaderInitialGraphicPath = theDemo.GetLoaderInitialGraphic
-		    loaderFinalGraphicPath = theDemo.GetLoaderFinalGraphic
-		    
-		    if loaderInitialGraphicPath <> "" and loaderFinalGraphicPath <> "" then
-		      contents = contents + "[loading]" + EndOfLine.Windows
-		      contents = contents + "string data/pool/" + loaderInitialGraphicPath + EndOfLine.Windows
-		      contents = contents + "string data/pool/" + loaderFinalGraphicPath + EndOfLine.Windows
-		      
-		      // Progress bar color
-		      contents = contents + "fProgressBarColor " + _
-		      str(round(1000 * theDemo.GetLoaderBarColor.red / 255) / 1000) + " " + _
-		      str(round(1000 * theDemo.GetLoaderBarColor.green / 255) / 1000) + " " + _
-		      str(round(1000 * theDemo.GetLoaderBarColor.blue / 255) / 1000) + " " + _
-		      str(theDemo.GetLoaderBarAlpha) + EndOfLine.Windows
-		      
-		      // Progress bar position
-		      // file.WriteLine "fProgressBarPosition 0.42 0.29 0.61 0.332" + EndOfLine.Windows
-		      LoaderBarCoords = theDemo.getLoaderBarCoords
-		      contents = contents + "fProgressBarPosition " + _
-		      str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + _
-		      str(round(1000 * LoaderBarCoords(1)) / 1000) + " " + _
-		      str(round(1000 * LoaderBarCoords(2)) / 1000) + " " + _
-		      str(round(1000 * LoaderBarCoords(0)) / 1000) + " " + EndOfLine.Windows
-		      
-		      // progress bar border color
-		      contents = contents + "fProgressBarBorderColor 0 0 0 0" + EndOfLine.Windows
-		      
-		      // Progress bar border position
-		      contents = contents + "fProgressBarBorderPosition 0.25 0.10 0.75 0.12" + EndOfLine.Windows
-		      
-		      // Progress bar border width
-		      contents = contents + "fBorderWidth 0.002" + EndOfLine.Windows
-		      
-		      file.Write contents
-		      
-		      Trace("ScriptWriter:WriteLoaderSPO: Loader configuration written successfuly.", cstTraceLevelLog)
-		      
-		    else
-		      Trace("ScriptWriter:WriteLoaderSPO: Loader configuration not defined. File was not written.", cstTraceLevelWarning)
-		      
-		    end if
-		    
-		  case theDemo.phoenix
-		    if not theDemo.GetDataFolder().child("config").Exists then
-		      theDemo.GetDataFolder.child("config").CreateAsFolder
-		    end if
-		    
-		    file = theDemo.GetDataFolder().child("config").child("loader.spo").CreateTextFile
-		    
-		    contents = contents + "[loading]" + EndOfLine.Windows
-		    contents = contents + "id loader" + EndOfLine.Windows
-		    contents = contents + "string /pool/loadingback.jpg" + EndOfLine.Windows
-		    contents = contents + "string /pool/loadingfront.jpg" + EndOfLine.Windows
-		    contents = contents + "string /pool/loadingbar.jpg" + EndOfLine.Windows
-		    contents = contents + "fProgressBarPositionX 0" + EndOfLine.Windows
-		    contents = contents + "fProgressBarPositionY -0.4" + EndOfLine.Windows
-		    contents = contents + "fBorderWidth 0.1" + EndOfLine.Windows
-		    
-		    file.Write contents
-		    
-		  end select
+		  if not theDemo.GetDataFolder().child("config").Exists then
+		    theDemo.GetDataFolder.child("config").CreateAsFolder
+		  end if
 		  
+		  file = theDemo.GetDataFolder().child("config").child("loader.spo").CreateTextFile
+		  
+		  contents = contents + "[loading]" + EndOfLine.Windows
+		  contents = contents + theDemo.GetLoaderCode
+		  
+		  file.Write contents
 		  file.Close
 		End Sub
 	#tag EndMethod
@@ -330,6 +267,7 @@ Protected Module ScriptWriter
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -337,18 +275,23 @@ Protected Module ScriptWriter
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -356,6 +299,7 @@ Protected Module ScriptWriter
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Module
