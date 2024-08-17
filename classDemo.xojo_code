@@ -2752,7 +2752,7 @@ Protected Class classDemo
 	#tag Constant, Name = cstLoaderDragon, Type = String, Dynamic = False, Default = \"string data/pool/loadingfront.jpg\r\nstring data/pool/loadingback.jpg\r\nfProgressBarColor 0.2 0.2 0.498 0\r\nfProgressBarPosition 0.42 0.29 0.61 0.42 \r\nfProgressBarBorderColor 0 0 0 0\r\nfProgressBarBorderPosition 0.25 0.10 0.75 0.12\r\nfBorderWidth 0.002", Scope = Public
 	#tag EndConstant
 
-	#tag Constant, Name = cstLoaderPhoenix, Type = String, Dynamic = False, Default = \"id loader\r\nstring /resources/loading/loadingback.png\r\nstring /resources/loading/loadingfront.png\r\nstring /resources/loading/loadingbar.jpg\r\n;Postion goes from -1.0 to 1.0\r\nfBarStartPositionX -0.60042\r\nfBarStartPositionY -0.11111\r\nfBarEndPositionX 0.60042\r\nfBarEndPositionY -0.11111\r\nfBarSWidth 0.07", Scope = Public
+	#tag Constant, Name = cstLoaderPhoenix, Type = String, Dynamic = False, Default = \"id loader\r\nstring /resources/loading/loadingback.jpg\r\nstring /resources/loading/loadingfront.jpg\r\nstring /resources/loading/loadingbar.jpg\r\n;Postion goes from -1.0 to 1.0\r\nfBarStartPositionX -0.60042\r\nfBarStartPositionY -0.11111\r\nfBarEndPositionX 0.60042\r\nfBarEndPositionY -0.11111\r\nfBarSWidth 0.07", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = cstQueryNewTableSections, Type = String, Dynamic = False, Default = \"CREATE TABLE SECTIONs (id INTEGER PRIMARY KEY\x2C name TEXT\x2C startTime DECIMAL(12\x2C3)\x2C endTime DECIMAL(12\x2C3)\x2C selected BOOLEAN);", Scope = Private
