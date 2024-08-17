@@ -925,147 +925,152 @@ End
 
 	#tag MenuHandler
 		Function ClearEngineLog() As Boolean Handles ClearEngineLog.Action
-			ClearEngineLog
-			
-			Return True
-			
+		  ClearEngineLog
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditReplace() As Boolean Handles EditReplace.Action
-			wndReplace.init(demo, cnvTimeLine, self)
+		  wndReplace.init(demo, cnvTimeLine, self)
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ElementsToggleEnable() As Boolean Handles ElementsToggleEnable.Action
-			cnvTimeLine.elementsToggleEnable
-			
+		  cnvTimeLine.elementsToggleEnable
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ElementsUpdateinEngine() As Boolean Handles ElementsUpdateinEngine.Action
-			UpdateSelectedBars
-			
+		  UpdateSelectedBars
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EngineLaunchLocal() As Boolean Handles EngineLaunchLocal.Action
-			// Make the current project active
-			activateDemo demo
-			
-			// Delete existing script files
-			Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
-			
-			// Create the configuration scripts and copy needed files to the data folder
-			ScriptWriter.CreateConfiguration(demo)
-			
-			// Create the section scripts
-			ScriptWriter.WriteScriptsSPO(demo)
-			
-			select case demo.engine
-			
-			case demo.dragon
-			
-			case demo.phoenix
-			
-			else
-			Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
-			
-			end
-			
-			// Launch the engine
-			controller.resetEngine
-			controller.LaunchLocal(demo)
+		  // Make the current project active
+		  activateDemo demo
+		  
+		  // Delete existing script files
+		  Files.deleteFilesOfExtension(demo.GetDataFolder, "spo")
+		  
+		  // Create the configuration scripts and copy needed files to the data folder
+		  ScriptWriter.CreateConfiguration(demo)
+		  
+		  // Create the section scripts
+		  ScriptWriter.WriteScriptsSPO(demo)
+		  
+		  select case demo.engine
+		    
+		  case demo.dragon
+		    
+		  case demo.phoenix
+		    
+		  else
+		    Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
+		    
+		  end
+		  
+		  // Launch the engine
+		  controller.resetEngine
+		  controller.LaunchLocal(demo)
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EngineStop(index as Integer) As Boolean Handles EngineStop.Action
-			controller.stopLocal
-			
-			return true
+		  controller.stopLocal
+		  
+		  return true
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function FileClose() As Boolean Handles FileClose.Action
-			self.close
-			
-			Return True
+		  self.close
+		  
+		  Return True
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function mnuBarsShowBarIDs() As Boolean Handles mnuBarsShowBarIDs.Action
-			if mnuBarsShowBarIDs.text = "Hide Bar IDs" then
-			mnuBarsShowBarIDs.text = "Show Bar IDs"
-			cnvTimeLine.showBarIDs = false
-			else
-			mnuBarsShowBarIDs.text = "Hide Bar IDs"
-			cnvTimeLine.showBarIDs = true
-			end if
-			
-			cnvTimeLine.Invalidate
-			
-			Return True
-			
+		  if mnuBarsShowBarIDs.text = "Hide Bar IDs" then
+		    mnuBarsShowBarIDs.text = "Show Bar IDs"
+		    cnvTimeLine.showBarIDs = false
+		  else
+		    mnuBarsShowBarIDs.text = "Hide Bar IDs"
+		    cnvTimeLine.showBarIDs = true
+		  end if
+		  
+		  cnvTimeLine.Invalidate
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function mnuEditDatabase() As Boolean Handles mnuEditDatabase.Action
-			demo.OpenDatabaseInspector
-			
-			Return True
-			
+		  demo.OpenDatabaseInspector
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function mnuFileSave() As Boolean Handles mnuFileSave.Action
-			demo.saveProject(false)
+		  demo.saveProject(false)
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function mnuFileSaveAs() As Boolean Handles mnuFileSaveAs.Action
-			demo.saveProject(true)
+		  demo.saveProject(true)
+		  
+		  if demo.projectFolder <> nil then
+		    self.Title = "Spontz Demo Editor [" + demo.engine + "]: " + demo.projectFolder.DisplayName
+		  end if
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ProjectCompile() As Boolean Handles ProjectCompile.Action
-			// Simple compilation
-			demo.CompileDataFolder
+		  // Simple compilation
+		  demo.CompileDataFolder
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ProjectDemoSettings() As Boolean Handles ProjectDemoSettings.Action
-			wndDemoSettings.show
-			wndDemoSettings.init demo
+		  wndDemoSettings.show
+		  wndDemoSettings.init demo
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ProjectLoader() As Boolean Handles ProjectLoader.Action
-			wndLoaderSettings.init demo
+		  wndLoaderSettings.init demo
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ProjectVideoSettings() As Boolean Handles ProjectVideoSettings.Action
-			wndVideoSettings.init demo
+		  wndVideoSettings.init demo
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function WindowTextEditor() As Boolean Handles WindowTextEditor.Action
-			wndTextEditor.show
+		  wndTextEditor.show
 		End Function
 	#tag EndMenuHandler
 

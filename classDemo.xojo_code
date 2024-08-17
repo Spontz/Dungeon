@@ -2737,8 +2737,8 @@ Protected Class classDemo
 		Protected enginesFolder As FolderItem
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private projectFolder As FolderItem
+	#tag Property, Flags = &h0
+		projectFolder As FolderItem
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
