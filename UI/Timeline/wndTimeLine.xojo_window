@@ -548,8 +548,8 @@ Begin Window wndTimeLine
       Left            =   741
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       Multiline       =   False
       Scope           =   0
@@ -626,8 +626,8 @@ Begin Window wndTimeLine
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       Mask            =   ""
       Password        =   False
@@ -670,8 +670,8 @@ Begin Window wndTimeLine
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
+      LockLeft        =   False
+      LockRight       =   True
       LockTop         =   True
       Mask            =   ""
       Password        =   False
@@ -1391,6 +1391,19 @@ End
 		  
 		  return TcpEngineMessage
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events txtEngineComm
+	#tag Event
+		Sub Open()
+		  if Color.IsDarkMode then
+		    me.BackgroundColor = &c000000 // Black
+		    me.TextColor = &cffffff // White
+		  else
+		    me.BackgroundColor = &cefed8b // Yellow
+		    me.TextColor = &c000000 // Black
+		  end if
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events lbxResourcesManager
