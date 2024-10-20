@@ -654,11 +654,36 @@ End
 		  #If TargetMacOS
 		    HorizontalScrollBar.Visible = False
 		    VerticalScrollBar.Visible = False
+		    
 		    CodeEditor.Width = CodeEditor.Width + VerticalScrollBar.Width
 		    CodeEditor.Height = CodeEditor.Height + HorizontalScrollBar.Height
+		    
 		  #Else
 		    Me.SetScrollbars(HorizontalScrollBar, VerticalScrollBar)
+		    
 		  #EndIf
+		  
+		  if Color.IsDarkMode then
+		    CodeEditor.LoadTheme(SyntaxArea.EditorTheme.FromFile(SpecialFolder.Resource("Nova Dark.json")))
+		    
+		  else
+		    CodeEditor.LoadTheme(SyntaxArea.EditorTheme.FromFile(SpecialFolder.Resource("Nova Light.json")))
+		    
+		  end if
+		  
+		  Var syntaxDefinition As SyntaxArea.HighlightDefinition
+		  
+		  // GLSL
+		  syntaxDefinition = New SyntaxArea.HighlightDefinition(CodeEditor)
+		  
+		  If Not syntaxDefinition.LoadFromXml(SpecialFolder.Resource("GLSL.xml")) Then
+		    Raise New UnsupportedOperationException("Unable to load the GLSL definition")
+		    
+		  else
+		    CodeEditor.SyntaxDefinition = syntaxDefinition
+		    
+		  End If
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event

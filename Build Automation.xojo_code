@@ -111,6 +111,9 @@
 					Destination = 1
 					Subdirectory = 
 					FolderItem = Li4vQ29kZSUyMEVkaXRvci9kZWZpbml0aW9ucy9HTFNMLnhtbA==
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci9kZWZpbml0aW9ucy9TY3JpcHQueG1s
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci9kZWZpbml0aW9ucy9Mb2FkZXIueG1s
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci9kZWZpbml0aW9ucy9UZXh0LnhtbA==
 				End
 				Begin CopyFilesBuildStep CopyThemes
 					AppliesTo = 0

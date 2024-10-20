@@ -69,7 +69,7 @@ Begin Window wndPathsEditor
       TextSize        =   11.0
       TextUnit        =   0
       Top             =   38
-      Transparent     =   False
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -214,7 +214,7 @@ End
 #tag WindowCode
 	#tag MenuHandler
 		Function FileClose() As Boolean Handles FileClose.Action
-			window.close
+		  window.close
 		End Function
 	#tag EndMenuHandler
 

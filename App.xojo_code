@@ -11,6 +11,9 @@ Inherits Application
 		  if DebugBuild then
 		    wndTrace.Show
 		  end if
+		  
+		  // Create a new global undo manager for the application.
+		  UndoManager = New UndoKit.UndoManager
 		End Sub
 	#tag EndEvent
 

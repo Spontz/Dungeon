@@ -89,7 +89,7 @@ Begin Window wndLoaderSettings
       Visible         =   True
       Width           =   69
    End
-   Begin SyntaxArea.Editor txtFileContents
+   Begin SyntaxArea.Editor codeEditor
       AllowFocusRing  =   False
       AutoCloseBrackets=   False
       AutocompleteAppliesStandardCase=   True
@@ -255,7 +255,7 @@ End
 		Sub init(theDemo as classDemo)
 		  demo = theDemo
 		  
-		  txtFileContents.Text = demo.GetLoaderCode
+		  codeEditor.Text = demo.GetLoaderCode
 		  
 		  me.Visible = true
 		End Sub
@@ -276,7 +276,7 @@ End
 		  AddUndoAction
 		  
 		  // Saving the Loader Bar coordinates
-		  demo.setLoaderCode(txtFileContents.Text)
+		  demo.setLoaderCode(codeEditor.Text)
 		  
 		  window.close
 		End Sub
@@ -289,7 +289,7 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events txtFileContents
+#tag Events codeEditor
 	#tag Event
 		Sub TextChanged()
 		  btnOK.Enabled = true
@@ -306,23 +306,46 @@ End
 		    VerticalScrollBar.Visible = False
 		    CodeEditor.Width = CodeEditor.Width + VerticalScrollBar.Width
 		    CodeEditor.Height = CodeEditor.Height + HorizontalScrollBar.Height
+		    
 		  #Else
 		    Me.SetScrollbars(HorizontalScrollBar, VerticalScrollBar)
+		    
 		  #EndIf
+		  
+		  if Color.IsDarkMode then
+		    CodeEditor.LoadTheme(SyntaxArea.EditorTheme.FromFile(SpecialFolder.Resource("Nova Dark.json")))
+		    
+		  else
+		    CodeEditor.LoadTheme(SyntaxArea.EditorTheme.FromFile(SpecialFolder.Resource("Nova Light.json")))
+		    
+		  end if
+		  
+		  
+		  Var syntaxDefinition As SyntaxArea.HighlightDefinition
+		  
+		  syntaxDefinition = New SyntaxArea.HighlightDefinition(CodeEditor)
+		  
+		  If Not syntaxDefinition.LoadFromXml(SpecialFolder.Resource("Loader.xml")) Then
+		    Raise New UnsupportedOperationException("Unable to load the GLSL definition")
+		    
+		  else
+		    CodeEditor.SyntaxDefinition = syntaxDefinition
+		    
+		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events horizontalScrollBar
 	#tag Event
 		Sub ValueChanged()
-		  txtFileContents.ScrollPositionx = me.Value
+		  codeEditor.ScrollPositionx = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events verticalScrollBar
 	#tag Event
 		Sub ValueChanged()
-		  txtFileContents.ScrollPosition = me.Value
+		  codeEditor.ScrollPosition = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -332,10 +355,10 @@ End
 		  select case demo.engine
 		    
 		  case demo.phoenix
-		    txtFileContents.Text = demo.cstLoaderPhoenix
+		    codeEditor.Text = demo.cstLoaderPhoenix
 		    
 		  else
-		    txtFileContents.Text = demo.cstLoaderDragon
+		    codeEditor.Text = demo.cstLoaderDragon
 		    
 		  end select
 		End Sub
