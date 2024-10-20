@@ -91,7 +91,7 @@ Begin Window wndLoaderSettings
    End
    Begin SyntaxArea.Editor codeEditor
       AllowFocusRing  =   False
-      AutoCloseBrackets=   False
+      AutoCloseBrackets=   True
       AutocompleteAppliesStandardCase=   True
       AutocompleteCombo=   "SyntaxArea.AutocompleteCombos.Tab"
       AutoDeactivate  =   True
@@ -106,13 +106,13 @@ Begin Window wndLoaderSettings
       CaretColor      =   &c00000000
       ClearHighlightedRangesOnTextChange=   True
       DirtyLinesColor =   &c00000000
-      DisplayDirtyLines=   False
+      DisplayDirtyLines=   True
       DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
       DisplayVerticalRuler=   False
-      EnableAutocomplete=   False
+      EnableAutocomplete=   True
       Enabled         =   True
-      FontName        =   "System"
+      FontName        =   "Consolas"
       FontSize        =   12
       GutterBackColor =   &c00000000
       GutterBorderColor=   &c00000000
@@ -130,7 +130,7 @@ Begin Window wndLoaderSettings
       Left            =   0
       LeftMarginOffset=   5
       LineNumbersColor=   &c00000000
-      LineNumbersFontName=   "System"
+      LineNumbersFontName=   "Consolas"
       LineNumbersFontSize=   12
       LockBottom      =   False
       LockedInPosition=   False

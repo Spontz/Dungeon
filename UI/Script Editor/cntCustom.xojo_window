@@ -231,7 +231,7 @@ Begin ContainerControl cntCustom
       Width           =   110
    End
    Begin popBlending mnuBlendStart
-      AutoDeactivate  =   False
+      AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
@@ -365,7 +365,7 @@ Begin ContainerControl cntCustom
       Width           =   126
    End
    Begin PopupMenu mnuBlendEquation
-      AutoDeactivate  =   False
+      AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
@@ -483,7 +483,7 @@ Begin ContainerControl cntCustom
       DisplayVerticalRuler=   False
       EnableAutocomplete=   False
       Enabled         =   True
-      FontName        =   "System"
+      FontName        =   "Consolas"
       FontSize        =   12
       GutterBackColor =   &c00000000
       GutterBorderColor=   &c00000000
@@ -501,7 +501,7 @@ Begin ContainerControl cntCustom
       Left            =   0
       LeftMarginOffset=   5
       LineNumbersColor=   &c00000000
-      LineNumbersFontName=   "System"
+      LineNumbersFontName=   "Consolas"
       LineNumbersFontSize=   12
       LockBottom      =   True
       LockedInPosition=   False

@@ -144,7 +144,7 @@ Begin Window wndTextEditor
       DisplayVerticalRuler=   False
       EnableAutocomplete=   False
       Enabled         =   True
-      FontName        =   "System"
+      FontName        =   "Consolas"
       FontSize        =   12
       GutterBackColor =   &c00000000
       GutterBorderColor=   &c00000000
@@ -162,7 +162,7 @@ Begin Window wndTextEditor
       Left            =   0
       LeftMarginOffset=   5
       LineNumbersColor=   &c00000000
-      LineNumbersFontName=   "System"
+      LineNumbersFontName=   "Consolas"
       LineNumbersFontSize=   12
       LockBottom      =   False
       LockedInPosition=   False
