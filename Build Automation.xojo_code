@@ -110,7 +110,16 @@
 					Target = 0
 					Destination = 1
 					Subdirectory = 
-					FolderItem = Li4vRGVmaW5pdGlvbnMv
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci9kZWZpbml0aW9ucy9HTFNMLnhtbA==
+				End
+				Begin CopyFilesBuildStep CopyThemes
+					AppliesTo = 0
+					Architecture = 0
+					Target = 0
+					Destination = 1
+					Subdirectory = 
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci90aGVtZXMvTm92YSUyMERhcmsuanNvbg==
+					FolderItem = Li4vQ29kZSUyMEVkaXRvci90aGVtZXMvTm92YSUyMExpZ2h0Lmpzb24=
 				End
 			End
 #tag EndBuildAutomation

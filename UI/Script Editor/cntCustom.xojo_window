@@ -431,7 +431,7 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   126
    End
-   Begin ScrollBar horizontalSB
+   Begin DesktopScrollBar horizontalScrollBar
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
@@ -460,86 +460,75 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   532
    End
-   Begin CustomEditField TestField
-      AcceptFocus     =   True
-      AcceptTabs      =   True
+   Begin SyntaxArea.Editor codeEditor
+      AllowFocusRing  =   False
       AutoCloseBrackets=   False
       AutocompleteAppliesStandardCase=   True
+      AutocompleteCombo=   "SyntaxArea.AutocompleteCombos.Tab"
       AutoDeactivate  =   True
       AutoIndentNewLines=   True
-      BackColor       =   &cFFFFFF00
-      Backdrop        =   0
-      Border          =   False
-      BorderColor     =   &c88888800
-      BracketHighlightColor=   &cFFFF0000
+      BackColor       =   &c00000000
+      BlockFoldedColor=   &c00000000
+      BlockFoldedEllipsisColor=   &c00000000
+      BlockFoldMarkerColor=   &c00000000
+      BookmarkColor   =   &c00000000
+      BorderColor     =   &c00000000
+      BracketHighlightColor=   &c00000000
       CaretColor      =   &c00000000
-      CaretLine       =   0
-      CaretPos        =   0
-      ClearHighlightedRangesOnTextChange=   False
-      DirtyLinesColor =   &cFF999900
-      disableReset    =   False
-      DisplayDirtyLines=   True
+      ClearHighlightedRangesOnTextChange=   True
+      DirtyLinesColor =   &c00000000
+      DisplayDirtyLines=   False
+      DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
-      DisplayLineNumbers=   True
-      DisplayRightMarginMarker=   False
-      DoubleBuffer    =   False
-      EnableAutocomplete=   True
+      DisplayVerticalRuler=   False
+      EnableAutocomplete=   False
       Enabled         =   True
-      EnableLineFoldings=   True
-      enableLineFoldingSetting=   False
-      GutterBackgroundColor=   &cEEEEEE00
-      GutterSeparationLineColor=   &c88888800
-      GutterWidth     =   0
+      FontName        =   "System"
+      FontSize        =   12
+      GutterBackColor =   &c00000000
+      GutterBorderColor=   &c00000000
+      HasBottomBorder =   True
+      HasLeftBorder   =   True
+      HasRightBorder  =   True
+      HasTopBorder    =   True
       Height          =   118
-      HelpTag         =   ""
-      HighlightBlocksOnMouseOverGutter=   True
       HighlightMatchingBrackets=   True
-      HighlightMatchingBracketsMode=   0
-      ignoreRepaint   =   False
+      HighlightMatchingBracketsMode=   "SyntaxArea.BracketsHighlightModes.Circle"
       IndentPixels    =   16
-      IndentVisually  =   True
       Index           =   -2147483648
       InitialParent   =   ""
-      KeepEntireTextIndented=   True
+      InvisibleCharacterColor=   &c00000000
       Left            =   0
-      leftMarginOffset=   4
-      LineNumbersColor=   &c88888800
-      LineNumbersTextFont=   "System"
-      LineNumbersTextSize=   9
+      LeftMarginOffset=   5
+      LineNumbersColor=   &c00000000
+      LineNumbersFontName=   "System"
+      LineNumbersFontSize=   12
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      MaxVisibleLines =   0
       ReadOnly        =   False
-      RightMarginAtPixel=   0
       RightScrollMargin=   150
       Scope           =   0
-      ScrollPosition  =   0
-      ScrollPositionX =   0
-      selLength       =   0
-      selStart        =   0
-      SelText         =   ""
-      TabIndex        =   12
+      SuggestionPopupBackColor=   &c00000000
+      SuggestionPopupSelectedTextColor=   &c00000000
+      SuggestionPopupTextColor=   &c00000000
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TabWidth        =   4
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "smallSystem"
-      TextHeight      =   0
-      TextLength      =   0
       TextSelectionColor=   &c00000000
-      TextSize        =   0
-      ThickInsertionPoint=   True
+      ThickInsertionPoint=   False
+      Tooltip         =   ""
       Top             =   48
-      Transparent     =   True
-      UseFocusRing    =   False
+      UseLighterLineFoldingBackColor=   True
+      UseSystemTextSelectionColor=   True
+      VerticalRulerColor=   &c00000000
+      VerticalRulerPosition=   80
       Visible         =   True
       Width           =   532
    End
-   Begin ScrollBar verticalSB
+   Begin DesktopScrollBar verticalScrollBar
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
@@ -584,7 +573,7 @@ End
 		  mnuBlendStart.Enabled    = true
 		  mnuBlendEquation.Enabled = true
 		  
-		  TestField.Enabled = true
+		  codeEditor.Enabled = true
 		End Sub
 	#tag EndMethod
 
@@ -598,7 +587,7 @@ End
 		  
 		  // We store the element name and the additional script
 		  demo.setBarType(barID, ReplaceLineEndings(popElement.Text, EndOfLine.Windows))
-		  demo.setBarScript(barID, TestField.text)
+		  demo.setBarScript(barID, codeEditor.text)
 		  
 		  // Notify the demo editor about the update
 		  if barType = "" then
@@ -631,8 +620,8 @@ End
 		  mnuBlendEnd.Enabled = false
 		  mnuBlendStart.Enabled = false
 		  
-		  TestField.Enabled = false
-		  TestField.Text = ""
+		  codeEditor.Enabled = false
+		  codeEditor.Text = ""
 		  
 		  barID = ""
 		End Sub
@@ -657,10 +646,10 @@ End
 		    // The element name and additional script
 		    popElement.text = barData.value("type")
 		    
-		    TestField.Text = ReplaceLineEndings(barData.value("script"), EndOfLine)
+		    codeEditor.Text = ReplaceLineEndings(barData.value("script"), EndOfLine)
 		    
-		    TestField.ReindentText // cleans up indentations, removing any leading blanks from the lines
-		    TestField.ResetUndo // needed so that the Reindentation doesn't become an undoable action
+		    codeEditor.ReindentText // cleans up indentations, removing any leading blanks from the lines
+		    'TODO: codeEditor.ResetUndo // needed so that the Reindentation doesn't become an undoable action
 		    
 		    // We populate the Elements menu
 		    LoadElements
@@ -749,7 +738,7 @@ End
 		    if f.exists then
 		      Trace("cntCustom:LoadScriptTemplate: Found script of type " + popTemplate.Text + " for " + popElement.text, cstTraceLevelLog)
 		      dim data as TextInputStream = f.OpenAsTextFile
-		      TestField.text = data.readAll
+		      codeEditor.text = data.readAll
 		      data.close
 		    end if
 		    
@@ -799,24 +788,6 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Protected Sub reloadBookmarks()
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h1
-		Protected Sub toggleBookmark()
-		  if TestField.LineHasBookmark(TestField.CaretLine) then
-		    TestField.ClearBookmark(TestField.CaretLine)
-		  else
-		    TestField.AddBookmark(TestField.CaretLine)
-		  end if
-		  
-		  reloadBookmarks
-		End Sub
-	#tag EndMethod
-
 
 	#tag Property, Flags = &h1
 		Protected barID As string
@@ -836,8 +807,7 @@ End
 #tag Events btnApply
 	#tag Event
 		Sub Action()
-		  TestField.ResetUndo
-		  TestField.ResetUndoDirtyFlag
+		  'TODO: codeEditor.ResetUndoDirtyFlag
 		  
 		  applyChanges
 		End Sub
@@ -902,7 +872,7 @@ End
 		  data = f.CreateTextFile
 		  
 		  if data <> nil then
-		    data.Write TestField.text
+		    data.Write codeEditor.text
 		    data.close
 		  end if
 		  
@@ -968,39 +938,14 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events horizontalSB
+#tag Events horizontalScrollBar
 	#tag Event
 		Sub ValueChanged()
-		  testField.ScrollPositionx = me.Value
+		  codeEditor.ScrollPositionx = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events TestField
-	#tag Event
-		Sub Open()
-		  //set the scrollbars
-		  me.setScrollbars(horizontalSB, verticalSB)
-		  
-		  TestField.ClearDirtyLines
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function ShouldTriggerAutocomplete(Key as string, hasAutocompleteOptions as boolean) As boolean
-		  'Return Keyboard.AsyncKeyDown(53) //to use ESC (xcode, mail, coda...)
-		  Return key = chr(9) and hasAutocompleteOptions and not Keyboard.OptionKey//to use tab, if there are options
-		  'Return Keyboard.AsyncControlKey and Keyboard.AsyncKeyDown(49) //to use ctrl-space as in visual studio
-		  'Return false 'no autocomplete, ever
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub SelChanged(line as integer, column as integer, length as integer)
-		  dim tmp as String = str(line)+":"+str(column)
-		  if length > 0 then tmp = tmp + " ("+str(length)+")"
-		  
-		  lastLine = line
-		End Sub
-	#tag EndEvent
+#tag Events codeEditor
 	#tag Event
 		Sub TextChanged()
 		  if me.Text <> "" and barID <> "" then
@@ -1010,64 +955,26 @@ End
 		  end if
 		End Sub
 	#tag EndEvent
-	#tag Event
-		Function UseBackgroundColorForLine(lineIndex as integer, byref lineBackgroundColor as color) As boolean
-		  //Return false //remove this to have lines with alternate colors as background.
+	#tag Event , Description = 54686520656469746F72206973206F70656E696E672E
+		Sub Opening()
+		  Me.UndoManager = App.UndoManager
 		  
-		  
-		  //highlight the currentLine.
-		  if lineIndex = me.CaretLine then
-		    lineBackgroundColor = &cFFFEE4 //light yellow
-		    Return true
-		  end if
-		  
-		  Return true //remove this to go back to alternating blue-white lines
-		  
-		  //alternate backgrounds...
-		  if lineIndex mod 2 <> 0 then Return False
-		  
-		  lineBackgroundColor = RGB(237,243,255) //faint blue
-		  Return true
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub PaintBelowLine(lineIndex as integer, g as graphics, x as integer, y as integer, w as integer, h as integer)
-		  if lineIndex <> me.CaretLine then Return
-		  
-		  g.ForeColor = &CCCCCCC
-		  g.DrawLine x, y + h - 1, x + w, y + h - 1
-		  g.DrawLine x, y , x + w, y
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub GutterClicked(onLine as integer, x as integer, y as integer)
-		  #pragma unused onLine
-		  #pragma unused x
-		  #pragma unused y
-		  if x < 10 then _
-		  toggleBookmark
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub PlaceholderSelected(placeholderLabel as String, lineIndex as integer, line as textLine, placeholder as textPlaceholder, doubleClick as Boolean)
-		  #pragma unused placeholderLabel
-		  #pragma unused lineIndex
-		  #pragma unused line
-		  #pragma unused placeholder
-		  #pragma unused doubleClick
-		  //I guess you could use placeholders as buttons somehow here...
-		  'if doubleClick then
-		  'me.SelText = placeholderLabel
-		  'me.SelStart = line.offset + placeholder.offset
-		  'me.SelLength = placeholderLabel.len
-		  'end if
+		  // Set the scrollbars on Windows and Linux (they are native on macOS).
+		  #If TargetMacOS
+		    HorizontalScrollBar.Visible = False
+		    VerticalScrollBar.Visible = False
+		    CodeEditor.Width = CodeEditor.Width + VerticalScrollBar.Width
+		    CodeEditor.Height = CodeEditor.Height + HorizontalScrollBar.Height
+		  #Else
+		    Me.SetScrollbars(HorizontalScrollBar, VerticalScrollBar)
+		  #EndIf
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events verticalSB
+#tag Events verticalScrollBar
 	#tag Event
 		Sub ValueChanged()
-		  testField.ScrollPosition = me.Value
+		  codeEditor.ScrollPosition = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

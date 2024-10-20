@@ -121,84 +121,130 @@ Begin Window wndTextEditor
       Visible         =   True
       Width           =   86
    End
-   Begin CustomEditField txtFileContents
-      AcceptFocus     =   True
-      AcceptTabs      =   True
+   Begin SyntaxArea.Editor codeEditor
+      AllowFocusRing  =   False
       AutoCloseBrackets=   False
       AutocompleteAppliesStandardCase=   True
-      AutoDeactivate  =   False
+      AutocompleteCombo=   "SyntaxArea.AutocompleteCombos.Tab"
+      AutoDeactivate  =   True
       AutoIndentNewLines=   True
-      BackColor       =   &cFFFFFF00
-      Backdrop        =   0
-      Border          =   False
-      BorderColor     =   &c88888800
-      BracketHighlightColor=   &cFFFF0000
+      BackColor       =   &c00000000
+      BlockFoldedColor=   &c00000000
+      BlockFoldedEllipsisColor=   &c00000000
+      BlockFoldMarkerColor=   &c00000000
+      BookmarkColor   =   &c00000000
+      BorderColor     =   &c00000000
+      BracketHighlightColor=   &c00000000
       CaretColor      =   &c00000000
-      CaretLine       =   0
-      CaretPos        =   0
       ClearHighlightedRangesOnTextChange=   True
-      DirtyLinesColor =   &cFF999900
-      disableReset    =   False
+      DirtyLinesColor =   &c00000000
       DisplayDirtyLines=   False
+      DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
-      DisplayLineNumbers=   True
-      DisplayRightMarginMarker=   False
-      DoubleBuffer    =   False
+      DisplayVerticalRuler=   False
       EnableAutocomplete=   False
       Enabled         =   True
-      EnableLineFoldings=   True
-      enableLineFoldingSetting=   False
-      GutterBackgroundColor=   &cEEEEEE00
-      GutterSeparationLineColor=   &c88888800
-      GutterWidth     =   0
-      Height          =   522
-      HelpTag         =   ""
-      HighlightBlocksOnMouseOverGutter=   True
+      FontName        =   "System"
+      FontSize        =   12
+      GutterBackColor =   &c00000000
+      GutterBorderColor=   &c00000000
+      HasBottomBorder =   True
+      HasLeftBorder   =   True
+      HasRightBorder  =   True
+      HasTopBorder    =   True
+      Height          =   504
       HighlightMatchingBrackets=   True
-      HighlightMatchingBracketsMode=   1
-      ignoreRepaint   =   False
+      HighlightMatchingBracketsMode=   "SyntaxArea.BracketsHighlightModes.Circle"
       IndentPixels    =   16
-      IndentVisually  =   True
       Index           =   -2147483648
       InitialParent   =   ""
-      KeepEntireTextIndented=   True
+      InvisibleCharacterColor=   &c00000000
       Left            =   0
-      leftMarginOffset=   4
-      LineNumbersColor=   &c88888800
-      LineNumbersTextFont=   "System"
-      LineNumbersTextSize=   10
+      LeftMarginOffset=   5
+      LineNumbersColor=   &c00000000
+      LineNumbersFontName=   "System"
+      LineNumbersFontSize=   12
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      ReadOnly        =   False
+      RightScrollMargin=   150
+      Scope           =   0
+      SuggestionPopupBackColor=   &c00000000
+      SuggestionPopupSelectedTextColor=   &c00000000
+      SuggestionPopupTextColor=   &c00000000
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextSelectionColor=   &c00000000
+      ThickInsertionPoint=   False
+      Tooltip         =   ""
+      Top             =   0
+      UseLighterLineFoldingBackColor=   True
+      UseSystemTextSelectionColor=   True
+      VerticalRulerColor=   &c00000000
+      VerticalRulerPosition=   80
+      Visible         =   True
+      Width           =   783
+   End
+   Begin DesktopScrollbar VerticalScrollBar
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowLiveScrolling=   False
+      Enabled         =   True
+      Height          =   504
+      Index           =   -2147483648
+      Left            =   783
+      LineStep        =   1
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   True
+      MaximumValue    =   100
+      MinimumValue    =   0
+      PageStep        =   20
+      Scope           =   2
+      TabIndex        =   5
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   0
+      Transparent     =   False
+      Value           =   0
+      Visible         =   True
+      Width           =   17
+   End
+   Begin DesktopScrollBar HorizontalScrollBar
+      AcceptFocus     =   True
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   17
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LineStep        =   1
+      LiveScroll      =   False
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
-      LockTop         =   True
-      MaxVisibleLines =   0
-      ReadOnly        =   False
-      RightMarginAtPixel=   0
-      RightScrollMargin=   150
-      Scope           =   0
-      ScrollPosition  =   0
-      ScrollPositionX =   0
-      selLength       =   0
-      selStart        =   0
-      SelText         =   ""
-      TabIndex        =   5
+      LockTop         =   False
+      Maximum         =   100
+      Minimum         =   0
+      PageStep        =   20
+      Scope           =   2
+      TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      TabWidth        =   4
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "Consolas"
-      TextHeight      =   0
-      TextLength      =   0
-      TextSelectionColor=   &c00000000
-      TextSize        =   12
-      ThickInsertionPoint=   True
-      Top             =   0
+      Top             =   505
       Transparent     =   False
-      UseFocusRing    =   False
+      Value           =   0
       Visible         =   True
-      Width           =   800
+      Width           =   783
    End
 End
 #tag EndWindow
@@ -237,13 +283,13 @@ End
 		  try
 		    contents = editedFile.OpenAsTextFile
 		    
-		    txtFileContents.text = contents.ReadAll
+		    codeEditor.text = contents.ReadAll
 		    
 		    // Note: If you handle large text, e.g. more than a few 100 lines, and if you also want to use
 		    // indentation, then the syntax definition should be set to nil before setting the new text,
 		    
-		    txtFileContents.ReindentText // cleans up indentations, removing any leading blanks from the lines
-		    txtFileContents.ResetUndo // needed so that the Reindentation doesn't become an undoable action
+		    codeEditor.ReindentText // cleans up indentations, removing any leading blanks from the lines
+		    'TODO: codeEditor.ResetUndo // needed so that the Reindentation doesn't become an undoable action
 		    
 		    btnSave.Enabled = true
 		    btnTest.Enabled = true
@@ -274,7 +320,7 @@ End
 		  contents = editedFile.CreateTextFile
 		  
 		  if contents <> nil then
-		    contents.Write ReplaceLineEndings(txtFileContents.text, EndOfLine.Unix)
+		    contents.Write ReplaceLineEndings(codeEditor.text, EndOfLine.Unix)
 		    contents.Flush
 		    contents.Close
 		    
@@ -352,47 +398,27 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events txtFileContents
-	#tag Event
-		Function KeyDown(key as string) As boolean
-		  if key = decodeHex("3") and not Keyboard.AsyncControlKey then
-		    // User pressed the ENTER key
-		    // Apply the changes to the data folder
-		    saveToDataFolder
-		    
-		    updateBarsUsingFile
-		    
-		    // No further processing to be done with the key
-		    return true
-		    
-		  elseif asc(key) = 9 then
-		    // tab key pressed
-		    me.Insert(me.CaretPos, "    ")
-		    return true
-		    
-		  elseif Keyboard.AsyncControlKey and key = decodehex("1A") then
-		    me.Undo
-		    
-		  elseif Keyboard.AsyncControlKey and key = DecodeHex("19") then
-		    me.Redo
-		    
-		  end if
-		End Function
-	#tag EndEvent
+#tag Events codeEditor
 	#tag Event
 		Sub TextChanged()
 		  btnSave.Enabled = true
 		  btnTest.Enabled = true
 		End Sub
 	#tag EndEvent
-	#tag Event
-		Function MouseDown(X as integer, Y as integer) As boolean
-		  #pragma unused X
-		  #pragma unused Y
+	#tag Event , Description = 54686520656469746F72206973206F70656E696E672E
+		Sub Opening()
+		  Me.UndoManager = App.UndoManager
 		  
-		  // this is just a cheap trick to cause a redraw for debugging
-		  txtFileContents.Redraw
-		End Function
+		  // Set the scrollbars on Windows and Linux (they are native on macOS).
+		  #If TargetMacOS
+		    HorizontalScrollBar.Visible = False
+		    VerticalScrollBar.Visible = False
+		    CodeEditor.Width = CodeEditor.Width + VerticalScrollBar.Width
+		    CodeEditor.Height = CodeEditor.Height + HorizontalScrollBar.Height
+		  #Else
+		    Me.SetScrollbars(HorizontalScrollBar, VerticalScrollBar)
+		  #EndIf
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

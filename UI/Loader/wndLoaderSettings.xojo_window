@@ -89,86 +89,75 @@ Begin Window wndLoaderSettings
       Visible         =   True
       Width           =   69
    End
-   Begin CustomEditField txtFileContents
-      AcceptFocus     =   True
-      AcceptTabs      =   True
-      AutoCloseBrackets=   True
-      AutocompleteAppliesStandardCase=   False
-      AutoDeactivate  =   False
+   Begin SyntaxArea.Editor txtFileContents
+      AllowFocusRing  =   False
+      AutoCloseBrackets=   False
+      AutocompleteAppliesStandardCase=   True
+      AutocompleteCombo=   "SyntaxArea.AutocompleteCombos.Tab"
+      AutoDeactivate  =   True
       AutoIndentNewLines=   True
-      BackColor       =   &cFFFFFF00
-      Backdrop        =   0
-      Border          =   False
-      BorderColor     =   &c88888800
-      BracketHighlightColor=   &cFFFF0000
+      BackColor       =   &c00000000
+      BlockFoldedColor=   &c00000000
+      BlockFoldedEllipsisColor=   &c00000000
+      BlockFoldMarkerColor=   &c00000000
+      BookmarkColor   =   &c00000000
+      BorderColor     =   &c00000000
+      BracketHighlightColor=   &c00000000
       CaretColor      =   &c00000000
-      CaretLine       =   0
-      CaretPos        =   0
       ClearHighlightedRangesOnTextChange=   True
-      DirtyLinesColor =   &cFF999900
-      disableReset    =   False
-      DisplayDirtyLines=   True
+      DirtyLinesColor =   &c00000000
+      DisplayDirtyLines=   False
+      DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
-      DisplayLineNumbers=   True
-      DisplayRightMarginMarker=   False
-      DoubleBuffer    =   False
+      DisplayVerticalRuler=   False
       EnableAutocomplete=   False
       Enabled         =   True
-      EnableLineFoldings=   True
-      enableLineFoldingSetting=   False
-      GutterBackgroundColor=   &cEEEEEE00
-      GutterSeparationLineColor=   &c88888800
-      GutterWidth     =   0
+      FontName        =   "System"
+      FontSize        =   12
+      GutterBackColor =   &c00000000
+      GutterBorderColor=   &c00000000
+      HasBottomBorder =   True
+      HasLeftBorder   =   True
+      HasRightBorder  =   True
+      HasTopBorder    =   True
       Height          =   457
-      HelpTag         =   ""
-      HighlightBlocksOnMouseOverGutter=   True
       HighlightMatchingBrackets=   True
-      HighlightMatchingBracketsMode=   1
-      ignoreRepaint   =   False
+      HighlightMatchingBracketsMode=   "SyntaxArea.BracketsHighlightModes.Circle"
       IndentPixels    =   16
-      IndentVisually  =   False
       Index           =   -2147483648
       InitialParent   =   ""
-      KeepEntireTextIndented=   False
+      InvisibleCharacterColor=   &c00000000
       Left            =   0
-      leftMarginOffset=   4
-      LineNumbersColor=   &c88888800
-      LineNumbersTextFont=   "System"
-      LineNumbersTextSize=   12
-      LockBottom      =   True
+      LeftMarginOffset=   5
+      LineNumbersColor=   &c00000000
+      LineNumbersFontName=   "System"
+      LineNumbersFontSize=   12
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
-      MaxVisibleLines =   0
       ReadOnly        =   False
-      RightMarginAtPixel=   0
       RightScrollMargin=   150
       Scope           =   0
-      ScrollPosition  =   0
-      ScrollPositionX =   0
-      selLength       =   0
-      selStart        =   0
-      SelText         =   ""
-      TabIndex        =   2
+      SuggestionPopupBackColor=   &c00000000
+      SuggestionPopupSelectedTextColor=   &c00000000
+      SuggestionPopupTextColor=   &c00000000
+      TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TabWidth        =   4
-      Text            =   ""
-      TextColor       =   &c00000000
-      TextFont        =   "Consolas"
-      TextHeight      =   0
-      TextLength      =   0
       TextSelectionColor=   &c00000000
-      TextSize        =   12
-      ThickInsertionPoint=   True
+      ThickInsertionPoint=   False
+      Tooltip         =   ""
       Top             =   0
-      Transparent     =   True
-      UseFocusRing    =   False
+      UseLighterLineFoldingBackColor=   True
+      UseSystemTextSelectionColor=   True
+      VerticalRulerColor=   &c00000000
+      VerticalRulerPosition=   80
       Visible         =   True
-      Width           =   584
+      Width           =   585
    End
-   Begin ScrollBar horizontalSB
+   Begin DesktopScrollBar horizontalScrollBar
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
@@ -197,7 +186,7 @@ Begin Window wndLoaderSettings
       Visible         =   True
       Width           =   585
    End
-   Begin ScrollBar verticalSB
+   Begin DesktopScrollBar verticalScrollBar
       AcceptFocus     =   True
       AutoDeactivate  =   True
       Enabled         =   True
@@ -307,33 +296,30 @@ End
 		  
 		End Sub
 	#tag EndEvent
-	#tag Event
-		Function MouseDown(X as integer, Y as integer) As boolean
-		  #pragma unused X
-		  #pragma unused Y
+	#tag Event , Description = 54686520656469746F72206973206F70656E696E672E
+		Sub Opening()
+		  Me.UndoManager = App.UndoManager
 		  
-		  // this is just a cheap trick to cause a redraw for debugging
-		  txtFileContents.Redraw
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  //set the scrollbars
-		  me.setScrollbars(horizontalSB, verticalSB)
-		  
-		  me.ClearDirtyLines
-		  
+		  // Set the scrollbars on Windows and Linux (they are native on macOS).
+		  #If TargetMacOS
+		    HorizontalScrollBar.Visible = False
+		    VerticalScrollBar.Visible = False
+		    CodeEditor.Width = CodeEditor.Width + VerticalScrollBar.Width
+		    CodeEditor.Height = CodeEditor.Height + HorizontalScrollBar.Height
+		  #Else
+		    Me.SetScrollbars(HorizontalScrollBar, VerticalScrollBar)
+		  #EndIf
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events horizontalSB
+#tag Events horizontalScrollBar
 	#tag Event
 		Sub ValueChanged()
 		  txtFileContents.ScrollPositionx = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events verticalSB
+#tag Events verticalScrollBar
 	#tag Event
 		Sub ValueChanged()
 		  txtFileContents.ScrollPosition = me.Value
