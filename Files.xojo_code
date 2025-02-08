@@ -34,7 +34,7 @@ Protected Module Files
 		  #endif
 		  
 		  #if TargetWin32
-		    dialog.filter = "*.sqlite"
+		    dialog.filter = "*.spz"
 		  #endif
 		  
 		  file = dialog.showModal()
