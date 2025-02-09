@@ -9,10 +9,10 @@ fClearScreenBuffer 1
 fClearDepthBuffer 1
 
 ; Fbo unit to apply the effect
-fFboUnit 4
+fFboUnit 0
 
-; Blur amount (10 recommended) - It has performance impacts
-string BlurAmount:=10.0;
+[shader]
+path /resources/shaders/sections/efxBlur.glsl
 
-; Blur shader file
-sShaderPath /resources/shaders/sections/efxBlur.glsl
+[expression:run]
+BlurAmount:=10.0;

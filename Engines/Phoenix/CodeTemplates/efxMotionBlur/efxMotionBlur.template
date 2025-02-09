@@ -8,4 +8,5 @@ fFboUnit 4
 ; Scale FPS (recommended values 10 to 60)
 fFPSScale 15
 
-sShaderPath /resources/shaders/sections/efxMotionBlur.glsl
+[shader]
+path /resources/shaders/sections/efxMotionBlur.glsl

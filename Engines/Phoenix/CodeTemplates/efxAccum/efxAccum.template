@@ -11,11 +11,12 @@ fClearDepthBuffer 1
 ; Fbo unit to apply the effect
 fFboUnit 0
 
-; Accum shader file
-sShaderPath /resources/shaders/sections/efxAccum.glsl
+[shader]
+path /resources/shaders/sections/efxAccum.glsl
 
+[expression:run]
 ; Accumulation influence for source image (fbo) and Accumulation (both from 0 to 1)
-string SourceInfluence:=0.1;
-string AccumInfluence:=0.05;
+SourceInfluence:=0.1;
+AccumInfluence:=0.05;
 
 
