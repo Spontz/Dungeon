@@ -2168,7 +2168,7 @@ Protected Class classDemo
 		Sub saveProject(saveAs as boolean)
 		  if projectFolder = nil or saveAs then
 		    // The demo has not been saved before, so ask for a location
-		    projectFolder = GetSaveFolderItem(FileTypes.DungeonProject, "Untitled Project.spz")
+		    projectFolder = FolderItem.ShowSaveFileDialog(FileTypes.DungeonProject, "Untitled Project.spz")
 		    
 		    if projectFolder = nil then
 		      Trace("classDemo:saveProject: The user canceled the selection of the destination place for the project", cstTraceLevelLog)
@@ -2176,7 +2176,7 @@ Protected Class classDemo
 		    end if
 		  end if
 		  
-		  // Recover empty space from thew Database
+		  // Recover empty space from the Database
 		  me.optimize
 		  
 		  dim newProjectFolder as new FolderItem(projectFolder)
