@@ -25,172 +25,75 @@ Begin Window wndChooseDemoengine
    Title           =   "Dungeon Demo Editor"
    Visible         =   True
    Width           =   512
-   Begin RoundRectangle rctOpenExistingDemo
-      AutoDeactivate  =   True
-      BorderColor     =   &c7F7F7F00
-      BorderWidth     =   2.0
-      Enabled         =   True
-      FillColor       =   &c3F3F3F00
-      Height          =   34
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   141
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      OvalHeight      =   16.0
-      OvalWidth       =   16.0
-      Scope           =   0
-      TabIndex        =   11
-      TabPanelIndex   =   0
-      TabStop         =   "True"
-      Top             =   401
-      Transparent     =   True
-      Visible         =   True
-      Width           =   230
-      Begin Label lblOpenExistingDemo
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   31
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "rctOpenExistingDemo"
-         Italic          =   False
-         Left            =   153
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   1
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "Open existing demo"
-         TextAlign       =   1
-         TextColor       =   &cBFBFBF00
-         TextFont        =   "Ubuntu Condensed"
-         TextSize        =   20.0
-         TextUnit        =   0
-         Top             =   401
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   206
-      End
-   End
-   Begin Label lblDragon
+   Begin Label lblOpenProject
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   78
+      Height          =   27
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   28
-      LockBottom      =   False
+      Left            =   296
+      LockBottom      =   True
       LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   14
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Dragon"
-      TextAlign       =   1
-      TextColor       =   &cFFFFFF00
-      TextFont        =   "Gold Under The Mud"
-      TextSize        =   70.0
-      TextUnit        =   0
-      Top             =   303
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   198
-   End
-   Begin Label lblPhoenix
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   55
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   290
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   50
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Text            =   "Phoenix"
-      TextAlign       =   1
-      TextColor       =   &cFFFFFF00
-      TextFont        =   "Nemesis Grant"
-      TextSize        =   50.0
-      TextUnit        =   0
-      Top             =   320
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   189
-   End
-   Begin Label lblChooseWisely
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   34
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   181
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
+      LockLeft        =   False
       LockRight       =   True
-      LockTop         =   True
+      LockTop         =   False
       Multiline       =   False
-      Scope           =   0
+      Scope           =   2
       Selectable      =   False
-      TabIndex        =   12
+      TabIndex        =   51
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Choose wisely"
-      TextAlign       =   1
-      TextColor       =   &cBFBFBF00
-      TextFont        =   "Ubuntu Condensed"
-      TextSize        =   20.0
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
       TextUnit        =   0
-      Top             =   87
+      Top             =   404
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   150
+      Width           =   205
+   End
+   Begin Label lblNewProject
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   27
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   9
+      LockBottom      =   True
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   True
+      LockTop         =   False
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   52
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   ""
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   404
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   205
    End
 End
 #tag EndWindow
@@ -241,11 +144,12 @@ End
 
 	#tag Method, Flags = &h0
 		Sub openProject()
-		  Dim file As folderitem = Chooseproject
+		  Dim file As folderitem = Files.Chooseproject
 		  
 		  If file <> Nil Then
 		    // Load the project
 		    dim mywindow as new wndTimeLine
+		    
 		    if not myWindow.init(file) then
 		      
 		      // And close the selector window
@@ -301,57 +205,18 @@ End
 
 #tag EndWindowCode
 
-#tag Events rctOpenExistingDemo
+#tag Events lblOpenProject
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  openProject
 		End Function
 	#tag EndEvent
 #tag EndEvents
-#tag Events lblOpenExistingDemo
-	#tag Event
-		Sub MouseEnter()
-		  me.TextColor = &cFF0000
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseExit()
-		  me.TextColor = &cFFFFFF
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events lblDragon
-	#tag Event
-		Sub MouseEnter()
-		  me.TextColor = &cFF0000
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseExit()
-		  me.TextColor = &cFFFFFF
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Dragon
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events lblPhoenix
+#tag Events lblNewProject
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  phoenix
 		End Function
-	#tag EndEvent
-	#tag Event
-		Sub MouseEnter()
-		  me.TextColor = &cFF0000
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseExit()
-		  me.TextColor = &cFFFFFF
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
