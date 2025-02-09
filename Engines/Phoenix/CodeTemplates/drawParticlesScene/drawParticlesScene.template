@@ -11,27 +11,22 @@ sShader /resources/shaders/sections/drawParticlesScene/drawParticlesScene.glsl
 ; 3D scene Model
 sScene /pool/models/cube/cube.obj
 
-; Particles per emitter
 fParticlePerEmitter 300
-; Particle LifeTime
 fParticleLifeTime 1.0
 
-; Particle system Position
-; ***************************************************
-; Scene Translation
-string tx:=2*sin(t);ty:=0; tz:=0;
-; Scene Rotation
-string rx:=0; ry:=0; rz:=0;
-; Scene Scale
-string sx:=1; sy:=1; sz:=1;
-
-; Shader variables
-; ***************************************************
+[shader]
+path /resources/shaders/sections/drawParticlesScene/drawParticlesScene.glsl
 ; The following variables are sent to the shader automatically:
 ; uniform mat4 m4ViewModel; --> View*Model matrix
 ; uniform mat4 m4Projection; --> Projection matrix
-
-uniform float fTime v1:=t;
-uniform float fParticleSize v1:=0.2;
+; uniform int iNumParticlesPerEmitter; --> Particles per emitter
+uniform float fTime v1:=t*10;
+uniform float fParticleSize v1:=0.1;
 uniform float fRandomnessFactor v1:=0.2;
 uniform sampler2D partTexture /resources/textures/dust.png
+uniform vec3 force v1:=0;v2:=-2;v3:=0;
+
+[expression:run]
+tx:=0;	ty:=0;	tz:=0;
+rx:=0;	ry:=0;	rz:=0;
+sx:=1;	sy:=1;	sz:=1;

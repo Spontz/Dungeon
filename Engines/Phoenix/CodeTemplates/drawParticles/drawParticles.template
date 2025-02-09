@@ -4,38 +4,24 @@
 ; over time
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shader
-sShader /resources/shaders/sections/drawParticles/drawParticles.glsl
-
-; Particles per emitter
+; Particle number
 fNumParticles 1000
 
-; Particle system Position
-; ***************************************************
-; Translation
-string tx:=0;ty:=0; tz:=0;
-; Rotation
-string rx:=0; ry:=0; rz:=0;
-; Scale
-string sx:=0.1; sy:=0.1; sz:=0.1;
-
-; Particles data
-; ***************************************************
-; nPart=Number of partciles, nP=Number of particle
-; Particles Initial position
-string px:=10*sin(nP/nPart*2*3.1415);py:=1*cos(nP/nPart*80);pz:=10*cos(nP/nPart*2*3.1415);
-; Particles Initial color (0 to 1)
-string cr:=1;cg:=1;cb:=1;ca:=nP/nPart;
-; Particles Lifetime (seconds)
-string pLife:=1;
-
-
-; Shader variables
-; ***************************************************
-; The following variables are sent to the shader automatically:
-; uniform mat4 m4ViewModel; --> View*Model matrix
-; uniform mat4 m4Projection; --> Projection matrix
-
+[shader]
+path /resources/shaders/sections/drawParticles/drawParticles.glsl
 uniform float fTime v1:=t;
 uniform float fParticleSize v1:=0.01;
 uniform sampler2D partTexture /resources/textures/dust.png
+
+[expression:run]
+; Variables available: Number of partciles (nPart), Particle Number (nP)
+tx:=0;ty:=0; tz:=0;
+rx:=0; ry:=0; rz:=0;
+sx:=0.1; sy:=0.1; sz:=0.1;
+
+; Particles Initial position
+px:=10*sin(nP/nPart*2*3.1415);py:=1*cos(nP/nPart*80);pz:=10*cos(nP/nPart*2*3.1415);
+; Particles Initial color (0 to 1)
+cr:=1;cg:=1;cb:=1;ca:=nP/nPart;
+; Particles Lifetime (seconds)
+pLife:=1;
