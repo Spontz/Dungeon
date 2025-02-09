@@ -483,101 +483,101 @@ Inherits Canvas
 
 	#tag MenuHandler
 		Function EditCopy() As Boolean Handles EditCopy.Action
-			copiedBarIDs = demo.getSelectedBarIDs
-			
-			me.Invalidate
+		  copiedBarIDs = demo.getSelectedBarIDs
+		  
+		  me.Invalidate
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditPaste() As Boolean Handles EditPaste.Action
-			// The paste process requires some steps
-			
-			// Calculate the start time and top layerof the copied bars
-			dim firstBarStartTime as single = -1
-			dim topLayer as integer = -1
-			dim pastedSections() as string
-			
-			for each barID as string in copiedBarIDs
-			dim barStartTime as single = demo.getBarStartTime(barID)
-			if barStartTime < firstBarStartTime or firstBarStartTime = -1 then firstBarStartTime = barStartTime
-			
-			dim barLayer as integer = demo.getBarLayer(barID)
-			if barLayer < topLayer or topLayer = -1 then topLayer = barLayer
-			next
-			
-			dim timeIncrement as single = selectedTime - firstBarStartTime
-			dim layerIncrement as single = selectedLayer - topLayer
-			
-			// Mark the pasted sections as selected
-			demo.clearBarSelection
-			
-			// Add a copy of the copied sections with time increments
-			for each barID as string in copiedBarIDs
-			dim barData as dictionary = demo.getBarData(barID)
-			
-			dim newBarID as string = demo.addBar( _
-			bardata.value("type"), _
-			bardata.value("layer").IntegerValue + layerIncrement, _
-			bardata.value("startTime").SingleValue + timeIncrement, _
-			bardata.value("endTime").SingleValue + timeIncrement, _
-			bardata.value("script"), _
-			bardata.value("srcBlending"), _
-			bardata.value("dstBlending"), _
-			bardata.value("srcAlpha"), _
-			bardata.value("dstAlpha"), _
-			barData.value("blendingEQ") _
-			)
-			
-			demo.addBarToSelection(newBarID)
-			pastedSections.Append(NewBarID)
-			next
-			
-			me.Invalidate
-			
-			PasteSections(pastedSections)
-			
-			Return True
+		  // The paste process requires some steps
+		  
+		  // Calculate the start time and top layerof the copied bars
+		  dim firstBarStartTime as single = -1
+		  dim topLayer as integer = -1
+		  dim pastedSections() as string
+		  
+		  for each barID as string in copiedBarIDs
+		    dim barStartTime as single = demo.getBarStartTime(barID)
+		    if barStartTime < firstBarStartTime or firstBarStartTime = -1 then firstBarStartTime = barStartTime
+		    
+		    dim barLayer as integer = demo.getBarLayer(barID)
+		    if barLayer < topLayer or topLayer = -1 then topLayer = barLayer
+		  next
+		  
+		  dim timeIncrement as single = selectedTime - firstBarStartTime
+		  dim layerIncrement as single = selectedLayer - topLayer
+		  
+		  // Mark the pasted sections as selected
+		  demo.clearBarSelection
+		  
+		  // Add a copy of the copied sections with time increments
+		  for each barID as string in copiedBarIDs
+		    dim barData as dictionary = demo.getBarData(barID)
+		    
+		    dim newBarID as string = demo.addBar( _
+		    bardata.value("type"), _
+		    bardata.value("layer").IntegerValue + layerIncrement, _
+		    bardata.value("startTime").SingleValue + timeIncrement, _
+		    bardata.value("endTime").SingleValue + timeIncrement, _
+		    bardata.value("script"), _
+		    bardata.value("srcBlending"), _
+		    bardata.value("dstBlending"), _
+		    bardata.value("srcAlpha"), _
+		    bardata.value("dstAlpha"), _
+		    barData.value("blendingEQ") _
+		    )
+		    
+		    demo.addBarToSelection(newBarID)
+		    pastedSections.Append(NewBarID)
+		  next
+		  
+		  me.Invalidate
+		  
+		  PasteSections(pastedSections)
+		  
+		  Return True
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditSelectAll() As Boolean Handles EditSelectAll.Action
-			//First we clear the selection
-			demo.clearBarSelection
-			
-			//And Select all the sections
-			
-			// TODO
-			'for i=0 to demo.sections.Count - 1
-			'AddSectionToSelection i
-			'next
-			
-			//We create the undo item
-			AddUndoAction
-			
-			me.Invalidate
-			
+		  //First we clear the selection
+		  demo.clearBarSelection
+		  
+		  //And Select all the sections
+		  
+		  // TODO
+		  'for i=0 to demo.sections.Count - 1
+		  'AddSectionToSelection i
+		  'next
+		  
+		  //We create the undo item
+		  AddUndoAction
+		  
+		  me.Invalidate
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ElementsBringEndtoMarker() As Boolean Handles ElementsBringEndtoMarker.Action
-			SetSelectionEndTime demo.getDemoEndTime
+		  SetSelectionEndTime demo.getDemoEndTime
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ElementsBringStarttoMarker() As Boolean Handles ElementsBringStarttoMarker.Action
-			SetSelectionStartTime demo.getDemoStartTime
+		  SetSelectionStartTime demo.getDemoStartTime
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ElementsSubdivide() As Boolean Handles ElementsSubdivide.Action
-			//wndElementSubdivide.init demo, SelectedSections(0,0)
-			
-			demo.clearBarSelection
+		  //wndElementSubdivide.init demo, SelectedSections(0,0)
+		  
+		  demo.clearBarSelection
 		End Function
 	#tag EndMenuHandler
 
@@ -598,8 +598,13 @@ Inherits Canvas
 		Private Sub drawBackground(g as graphics)
 		  dim usedBackground, unusedBackground as color//Color theme
 		  
-		  usedBackground = &cffffff
-		  unusedBackground = &ceeeeee
+		  if color.IsDarkMode then
+		    usedBackground = &c000000
+		    unusedBackground = &c111111
+		  else
+		    usedBackground = &cffffff
+		    unusedBackground = &ceeeeee
+		  end if
 		  
 		  //Rect background
 		  g.foreColor = UsedBackground
@@ -642,29 +647,71 @@ Inherits Canvas
 		  if duration = 0 then exit
 		  
 		  //Color Theme
-		  If selected Then
-		    If Not demo.getBarEnabled(barID) Then
-		      ' Disabled bars (Selected)
-		      EffectBorderColor = RGB(0,84,121)
-		      EffectFillColor = RGB(32,36,102)
+		  if Color.IsDarkMode then
+		    If selected Then
+		      
+		      If Not demo.getBarEnabled(barID) Then
+		        ' Disabled bars (Selected)
+		        EffectBorderColor = &c092140
+		        EffectFillColor = &c124383
+		        EffectTextColor = &c999999
+		        
+		      Else
+		        ' Enabled bars (Selected)
+		        EffectBorderColor = &c185ab0
+		        EffectFillColor = &c1b66c6
+		        EffectTextColor = &cffffff
+		        
+		      End If
 		      
 		    Else
-		      ' Disabled bars (Selected)
-		      EffectBorderColor = RGB(0,168,243)
-		      EffectFillColor = RGB(63,72,204)
 		      
-		    End If
-		  Else
-		    If Not demo.getBarEnabled(barID) Then
-		      ' Disabled bars (Unselected)
-		      EffectBorderColor = RGB(190,190,190)
-		      EffectFillColor = RGB(200,200,200)
-		      
+		      If Not demo.getBarEnabled(barID) Then
+		        ' Disabled bars (Unselected)
+		        EffectBorderColor = &c111111
+		        EffectFillColor = &c111111
+		        EffectTextColor = &c555555
+		        
+		      Else
+		        ' Enabled bars (Unselected)
+		        EffectBorderColor = &c3333333
+		        EffectFillColor = &c444444
+		        EffectTextColor = &ccccccc
+		        
+		      end if
+		    end if
+		    
+		  else
+		    EffectTextColor = &cffffff
+		    
+		    If selected Then
+		      If Not demo.getBarEnabled(barID) Then
+		        ' Disabled bars (Selected)
+		        EffectBorderColor = RGB(0,84,121)
+		        EffectFillColor = RGB(32,36,102)
+		        EffectTextColor = &cffffff
+		        
+		      Else
+		        ' Enabled bars (Selected)
+		        EffectBorderColor = RGB(0,168,243)
+		        EffectFillColor = RGB(63,72,204)
+		        EffectTextColor = &cffffff
+		        
+		      End If
 		    Else
-		      ' Enabled bars (Unselected)
-		      EffectBorderColor = RGB(140,140,140)
-		      EffectFillColor = RGB(150,150,150)
-		      
+		      If Not demo.getBarEnabled(barID) Then
+		        ' Disabled bars (Unselected)
+		        EffectBorderColor = RGB(190,190,190)
+		        EffectFillColor = RGB(200,200,200)
+		        EffectTextColor = &cffffff
+		        
+		      Else
+		        ' Enabled bars (Unselected)
+		        EffectBorderColor = RGB(140,140,140)
+		        EffectFillColor = RGB(150,150,150)
+		        EffectTextColor = &cffffff
+		        
+		      end if
 		    end if
 		  end if
 		  
@@ -674,7 +721,7 @@ Inherits Canvas
 		  g.DrawRoundRect (startTime, layer, duration, elementHeight - 1, 5, 5)
 		  
 		  //Text writting
-		  g.TextFont = "Helvetica"
+		  g.TextFont = "Ubuntu condensed"
 		  g.TextSize = 10
 		  
 		  //We choose the text to write depending of the section type
@@ -690,7 +737,6 @@ Inherits Canvas
 		  
 		  if endTime - startTime > 16 then
 		    // There is space for the text, so draw it
-		    EffectTextColor = &cFFFFFF
 		    g.ForeColor = EffectTextColor
 		    g.DrawString (theString, startTime + 2, 11 + layer, duration - 4, true)
 		  end if
@@ -779,13 +825,19 @@ Inherits Canvas
 		  dim RuleBackground, RuleDivisionsColor, RuleBorderColor as Color
 		  
 		  // Color theme
-		  // RuleBackground = RGB(255,157,0)
-		  RuleBackground = RGB(240,240,240)
-		  RuleDivisionsColor = RGB(0,0,0)
-		  // RuleBorderColor = RGB(189,117,0)
-		  RuleBorderColor = RGB(175,175,175)
-		  
-		  RuleBackgroundLines = RGB(220,220,220)
+		  if Color.IsDarkMode then
+		    RuleBackground = &c111111
+		    RuleDivisionsColor = &cffffff
+		    RuleBorderColor = &c333333
+		    RuleBackgroundLines = &c222222
+		    
+		  else
+		    RuleBackground = RGB(240,240,240)
+		    RuleDivisionsColor = &c000000
+		    RuleBorderColor = RGB(175,175,175)
+		    RuleBackgroundLines = RGB(220,220,220)
+		    
+		  end if
 		  
 		  // TimeLine Background
 		  g.foreColor = RuleBackground
@@ -831,13 +883,19 @@ Inherits Canvas
 		  dim RuleBackground, RuleDivisionsColor, RuleBorderColor as Color
 		  
 		  // Color theme
-		  // RuleBackground = RGB(255,157,0)
-		  RuleBackground = RGB(200,200,200)
-		  RuleDivisionsColor = RGB(0,0,0)
-		  // RuleBorderColor = RGB(189,117,0)
-		  RuleBorderColor = RGB(175,175,175)
-		  
-		  RuleBackgroundLines = RGB(220,220,220)
+		  if Color.IsDarkMode then
+		    RuleBackground = &c111111
+		    RuleDivisionsColor = &cffffff
+		    RuleBorderColor = &c333333
+		    RuleBackgroundLines = &c222222
+		    
+		  else
+		    RuleBackground = RGB(200,200,200)
+		    RuleDivisionsColor = &c000000
+		    RuleBorderColor = RGB(175,175,175)
+		    RuleBackgroundLines = RGB(220,220,220)
+		    
+		  end if
 		  
 		  // TrackLine Background
 		  g.foreColor = RuleBackground
@@ -1233,30 +1291,52 @@ Inherits Canvas
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="AcceptFocus"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AcceptTabs"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AutoDeactivate"
+			Name="AllowAutoDeactivate"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tooltip"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowFocusRing"
+			Visible=true
+			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowFocus"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowTabs"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Backdrop"
 			Visible=true
 			Group="Appearance"
+			InitialValue=""
 			Type="Picture"
-			EditorType="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
@@ -1264,6 +1344,7 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -1271,14 +1352,7 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="EraseBackground"
-			Visible=true
-			Group="Behavior"
-			InitialValue="True"
-			Type="Boolean"
-			EditorType="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -1286,92 +1360,111 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HelpTag"
-			Visible=true
-			Group="Appearance"
-			Type="String"
-			EditorType="MultiLineEditor"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
-			EditorType="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
+			Visible=false
+			Group=""
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="pixelsPerSecond"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="single"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ruleStartLayer"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="single"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ruleStartTime"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="single"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="showBarIDs"
+			Visible=false
 			Group="Behavior"
 			InitialValue="true"
 			Type="boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
@@ -1379,12 +1472,15 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
+			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabStop"
@@ -1392,12 +1488,15 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Transparent"
@@ -1405,14 +1504,7 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseFocusRing"
-			Visible=true
-			Group="Appearance"
-			InitialValue="True"
-			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -1420,6 +1512,7 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -1427,6 +1520,7 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
