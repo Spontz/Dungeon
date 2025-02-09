@@ -6,7 +6,13 @@ Protected Module ScriptWriter
 		  dim i as integer
 		  
 		  // Section Name
-		  theScript = "[" + bar.value("type") + "]" + EndOfLine.Windows
+		  select case theDemo.engine
+		    
+		  case theDemo.dragon
+		    theScript = "[" + bar.value("type") + "]" + EndOfLine.Windows
+		  case theDemo.phoenix
+		    theScript = ":::" + bar.value("type") + EndOfLine.Windows
+		  end select
 		  
 		  theScript = theScript + "id " + bar.value("id") + EndOfLine.Windows
 		  
@@ -244,16 +250,16 @@ Protected Module ScriptWriter
 		    // Don't export a bar if the type has not been set
 		    if allBars(i).Value("type") = "" then continue
 		    
-		    //We decide the bar name
+		    // Set the bar name
 		    barName = format(allBars(i).Value("id").IntegerValue, "000000") + "_" + allBars(i).Value("type") + ".spo"
 		    
-		    //We create the script file
+		    // Create the script file
 		    file = theDemo.GetDataFolder.child(barName).CreateTextFile
 		    
-		    //We write the contents
+		    // Write the contents
 		    file.write AddScriptHeaders(allBars(i).Value("script"), allBars(i))
 		    
-		    //We close the script file
+		    // Close the script file
 		    file.close
 		  next
 		End Sub
