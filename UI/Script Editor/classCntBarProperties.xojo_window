@@ -1,5 +1,5 @@
 #tag Window
-Begin ContainerControl cntCustom
+Begin ContainerControl classCntBarProperties
    AcceptFocus     =   False
    AcceptTabs      =   False
    AutoDeactivate  =   True
@@ -163,12 +163,10 @@ Begin ContainerControl cntCustom
       Visible         =   True
       Width           =   123
    End
-   Begin ComboBox popTemplate
+   Begin DesktopComboBox popTemplate
       AutoComplete    =   False
       AutoDeactivate  =   True
       Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
       Enabled         =   False
       Height          =   26
       HelpTag         =   ""
@@ -685,7 +683,7 @@ End
 		  dim currentTemplate as string = popTemplate.text
 		  
 		  popElement.DeleteAllRows
-		  popTemplate.DeleteAllRows
+		  popTemplate.RemoveAllRows
 		  
 		  dim f as new FolderItem
 		  
@@ -713,9 +711,9 @@ End
 		  
 		  // If exists, we select the previous item that was in the template menu before reloading
 		  if not (currentTemplate = "") then
-		    for i as integer = 0 to popTemplate.ListCount - 1
-		      if popTemplate.List(i) = currentTemplate then
-		        popTemplate.ListIndex = i
+		    for i as integer = 0 to popTemplate.RowCount - 1
+		      if popTemplate.RowTextAt(i) = currentTemplate then
+		        popTemplate.SelectedRowIndex = i
 		        exit
 		      end if
 		    next
@@ -755,7 +753,7 @@ End
 		  
 		  f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text)
 		  
-		  popTemplate.DeleteAllRows
+		  popTemplate.RemoveAllRows
 		  
 		  if f <> nil then
 		    Trace("cntCustom:LoadTemplates: Found " + str(f.count) + " templates for bar " + popElement.text, cstTraceLevelLog)
@@ -822,7 +820,7 @@ End
 #tag EndEvents
 #tag Events popTemplate
 	#tag Event
-		Sub Change()
+		Sub SelectionChanged(item As DesktopMenuItem)
 		  LoadScriptTemplate
 		End Sub
 	#tag EndEvent

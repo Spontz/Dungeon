@@ -195,7 +195,7 @@ Begin Window wndTimeLine
       Visible         =   True
       Width           =   11
    End
-   Begin cntCustom cntCustomSection
+   Begin classCntBarProperties cntCustomSection
       AcceptFocus     =   True
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -914,6 +914,17 @@ End
 		End Sub
 	#tag EndEvent
 
+
+	#tag MenuHandler
+		Function BarsEditor() As Boolean Handles BarsEditor.Action
+		  dim myWindow as new wndBarsEditor
+		  
+		  myWindow.init(demo)
+		  
+		  Return True
+		  
+		End Function
+	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function ClearEngineLog() As Boolean Handles ClearEngineLog.Action
