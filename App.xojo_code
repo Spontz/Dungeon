@@ -18,6 +18,21 @@ Inherits Application
 	#tag EndEvent
 
 	#tag Event
+		Sub OpenDocument(item As FolderItem)
+		  If not item.Exists Then
+		    return
+		  end if
+		  
+		  // Load the project
+		  dim mywindow as new wndTimeLine
+		  
+		  if not myWindow.init(item) then
+		    Notify("Error loading project", "The selected project could not be opened")
+		  end if
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Function UnhandledException(error As RuntimeException) As Boolean
 		  dim stack as string
 		  dim counter as integer

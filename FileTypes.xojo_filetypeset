@@ -2,72 +2,82 @@
 	#tag FileType
 		CodeName=DungeonProject
 		DocIcon=Demoengine IDE.xojo_resources;&h0
-		Extension=sqlite
-		Flags=&h1
+		Extension=spz
+		Flags=&h5
 		MacCreator=SVEd
 		MacType=SVpj
 		Name=Dungeon/project
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=False
+		HandlerRank=&h11
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 	#tag FileType
 		CodeName=Png
 		Extension=.png
-		Flags=&h0
+		Flags=&h9
 		MacCreator=ogle
 		MacType=PNGf
 		Name=image/png
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=True
+		HandlerRank=&h9
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 	#tag FileType
 		CodeName=Jpeg
 		Extension=.jfif;.jpe;.jpeg;.jpg
-		Flags=&h0
+		Flags=&h9
 		MacCreator=prvw
 		MacType=JPEG
 		Name=image/jpeg
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=True
+		HandlerRank=&h9
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 	#tag FileType
 		CodeName=Mp3
 		Extension=.mp3
-		Flags=&h0
+		Flags=&h9
 		MacCreator=TVOD
 		MacType=Mp3 
 		Name=audio/mp3
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=True
+		HandlerRank=&h9
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 	#tag FileType
 		CodeName=Text
 		Extension=.text;.txt
-		Flags=&h0
+		Flags=&h9
 		MacCreator=????
 		MacType=TEXT
 		Name=text/plain
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=True
+		HandlerRank=&h9
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 	#tag FileType
@@ -78,10 +88,12 @@
 		MacType=????
 		Name=special/any
 		UTI=
-		UTIConformsTo=
+		UTIConformsTo=,public.data
 		Description=
 		MimeType=
 		Imported=True
+		HandlerRank=&h9
+		UTIPhysicalType=public.data
 	#tag EndFileType
 
 #tag EndFileTypeSet
