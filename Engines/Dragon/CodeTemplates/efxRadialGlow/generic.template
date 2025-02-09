@@ -1,1 +1,0 @@
-; Radial glow effect; Threshold RGB valuesfThreshold 0.5 1 0.5; Color accumulationfAccumulation 0fIterations 15; 1 -> recursive; 2-> no recursivefRecursive 1fAlphaVariation 0 0.2fSeparationVariation 0.05 0.05fFromXY 0.5 0.5fToXY 0.5 0.5

@@ -6,13 +6,7 @@ Protected Module ScriptWriter
 		  dim i as integer
 		  
 		  // Section Name
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    theScript = "[" + bar.value("type") + "]" + EndOfLine.Windows
-		  case theDemo.phoenix
-		    theScript = ":::" + bar.value("type") + EndOfLine.Windows
-		  end select
+		  theScript = ":::" + bar.value("type") + EndOfLine.Windows
 		  
 		  theScript = theScript + "id " + bar.value("id") + EndOfLine.Windows
 		  
@@ -55,33 +49,14 @@ Protected Module ScriptWriter
 		  ScriptWriter.WriteGraphicsSPO(theDemo)
 		  ScriptWriter.WriteLoaderSPO  (theDemo)
 		  
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    // Copy fonts texture
-		    dim destination as folderitem = theDemo.GetDataFolder.child("fonts")
-		    
-		    dim f as new FolderItem
-		    
-		    f = f.child("Engines")
-		    f = f.child("Dragon")
-		    f = f.child("fonts")
-		    f = f.Child("font.tga")
-		    
-		    destination.CreateAsFolder
-		    f.CopyFileTo(destination.child("font.tga"))
-		    
-		  case theDemo.phoenix
-		    // Copy resources texture
-		    dim f as new FolderItem
-		    
-		    f = f.child("Engines")
-		    f = f.child("Phoenix")
-		    f = f.child("resources")
-		    
-		    CopyFileOrFolder(f, theDemo.GetDataFolder)
-		    
-		  end
+		  // Copy resources texture
+		  dim f as new FolderItem
+		  
+		  f = f.child("Engines")
+		  f = f.child("Phoenix")
+		  f = f.child("resources")
+		  
+		  CopyFileOrFolder(f, theDemo.GetDataFolder)
 		End Sub
 	#tag EndMethod
 
@@ -108,21 +83,14 @@ Protected Module ScriptWriter
 		  contents = contents + "slave 1" + EndOfLine.Windows
 		  
 		  // Write the file to disk
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    file = theDemo.GetDataFolder().child("control.spo").CreateTextFile
-		    
-		  case theDemo.phoenix
-		    contents = contents + "log_detail 4" + EndOfLine.Windows
-		    
-		    if not theDemo.GetDataFolder().child("config").Exists then
-		      theDemo.GetDataFolder.child("config").CreateAsFolder
-		    end if
-		    
-		    file = theDemo.GetDataFolder().child("config").child("control.spo").CreateTextFile
-		    
-		  end
+		  
+		  contents = contents + "log_detail 4" + EndOfLine.Windows
+		  
+		  if not theDemo.GetDataFolder().child("config").Exists then
+		    theDemo.GetDataFolder.child("config").CreateAsFolder
+		  end if
+		  
+		  file = theDemo.GetDataFolder().child("config").child("control.spo").CreateTextFile
 		  
 		  file.Write contents
 		  file.Close
@@ -147,21 +115,9 @@ Protected Module ScriptWriter
 		  contents = contents + "gl_width " + str(theDemo.GetVideoScreenWidth) + EndOfLine.Windows
 		  contents = contents + "gl_height " + Str(theDemo.GetVideoScreenHeight) + EndOfLine.Windows
 		  
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    contents = contents + "gl_accum 0" + EndOfLine.Windows
-		    contents = contents + "gl_bpp 32" + EndOfLine.Windows
-		    contents = contents + "gl_zbuffer 16" + EndOfLine.Windows
-		    contents = contents + "gl_multisampling 0" + EndOfLine.Windows
-		    contents = contents + "gl_info 0" + EndOfLine.Windows
-		    
-		  case thedemo.phoenix
-		    contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight) + EndOfLine.Windows
-		    contents = contents + "gl_vsync " + str(theDemo.getVideoVerticalSync) + EndOfLine.Windows
-		    
-		  end select
 		  
+		  contents = contents + "gl_aspect " + str(theDemo.GetVideoScreenWidth / theDemo.GetVideoScreenHeight) + EndOfLine.Windows
+		  contents = contents + "gl_vsync " + str(theDemo.getVideoVerticalSync) + EndOfLine.Windows
 		  contents = contents + "gl_stencil 0" + EndOfLine.Windows
 		  
 		  dim theFBOs() as string
@@ -194,19 +150,11 @@ Protected Module ScriptWriter
 		  Next
 		  
 		  // Write the file to disk
-		  select case theDemo.engine
-		    
-		  case theDemo.dragon
-		    file = theDemo.GetDataFolder().child("graphics.spo").CreateTextFile
-		    
-		  case theDemo.phoenix
-		    if not theDemo.GetDataFolder().child("config").Exists then
-		      theDemo.GetDataFolder.child("config").CreateAsFolder
-		    end if
-		    
-		    file = theDemo.GetDataFolder().child("config").child("graphics.spo").CreateTextFile
-		    
-		  end
+		  if not theDemo.GetDataFolder().child("config").Exists then
+		    theDemo.GetDataFolder.child("config").CreateAsFolder
+		  end if
+		  
+		  file = theDemo.GetDataFolder().child("config").child("graphics.spo").CreateTextFile
 		  
 		  file.Write contents
 		  file.Close

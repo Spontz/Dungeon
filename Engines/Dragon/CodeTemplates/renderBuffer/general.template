@@ -1,2 +1,0 @@
-; Recovers the previously saved screen buffer from the video; card and puts it on the screen with the desired parameters; Integer representing the texture unit that will be; recovered over the current screen contents (0 to 9)
-; if '-1' is passed, no texture is binded (useful for glsl)param 0; Clear the screen buffer before restoring? (1=yes, 0=no)fClearScreenBuffer 0; Clear the depth buffer after restoring? (1=yes, 0=no)fClearDepthBuffer 0; Fullscreen restore? 0 = no; 1 = yesfFullScreenRestore 1

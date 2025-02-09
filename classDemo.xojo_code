@@ -1229,16 +1229,6 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function GetDemoType() As string
-		  dim result as string = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='type' LIMIT 1").Field("value").StringValue
-		  
-		  if result = "" then result = dragon
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function getEnabledBarsData() As Dictionary()
 		  dim result() as Dictionary
 		  dim barsRS as RecordSet
@@ -1672,17 +1662,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Function GetVideoVerticalSync() As integer
-		  dim result as string
-		  
-		  select case engine
-		    
-		  case dragon
-		    result = "0"
-		    
-		  case phoenix
-		    result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
-		    
-		  end
+		  dim result as string = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
 		  
 		  return val(result)
 		End Function
@@ -1720,17 +1700,7 @@ Protected Class classDemo
 		  
 		  ' The engine localization
 		  me.SetEnginesFolder GetFolderItem("Engines")
-		  
-		  ' Set the data folder
-		  select case engine
-		    
-		  case dragon
-		    me.SetDataFolder(GetFolderItem("Engines").child("Dragon").child("data_" + controller.getHash))
-		    
-		  case phoenix
-		    me.SetDataFolder(GetFolderItem("Engines").child("Phoenix").child("data_" + controller.getHash))
-		    
-		  end
+		  me.SetDataFolder(GetFolderItem("Engines").child("Phoenix").child("data_" + controller.getHash))
 		  
 		  return true
 		End Function
@@ -1738,67 +1708,34 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub initDefaultFBOs()
-		  select case me.engine
-		    
-		  case me.phoenix
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
-		    
-		    Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    
-		    Call addFBO(512, 512, 0, "RGB", 1, "Bilinear")
-		    Call addFBO(256, 256, 0, "RGB", 1, "Bilinear")
-		    Call addFBO(128, 128, 0, "RGB", 1, "Bilinear")
-		    Call addFBO( 64,  64, 0, "RGB", 1, "Bilinear")
-		    Call addFBO( 32,  32, 0, "RGB", 1, "Bilinear")
-		    
-		  else
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
-		    
-		    Call addFBO(0, 0, 1, "RGBA16F", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA16F", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA16F", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA16F", 2, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
-		    
-		    Call addFBO(512, 512, 0, "RGB", 1, "Bilinear")
-		    Call addFBO(256, 256, 0, "RGB", 1, "Bilinear")
-		    Call addFBO(128, 128, 0, "RGB", 1, "Bilinear")
-		    Call addFBO( 64,  64, 0, "RGB", 1, "Bilinear")
-		    Call addFBO( 32,  32, 0, "RGB", 1, "Bilinear")
-		    
-		  end select
+		  
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 2, "Bilinear")
+		  
+		  Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA_16F", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA_16F", 2, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGBA", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  Call addFBO(0, 0, 1, "RGB", 1, "Bilinear")
+		  
+		  Call addFBO(512, 512, 0, "RGB", 1, "Bilinear")
+		  Call addFBO(256, 256, 0, "RGB", 1, "Bilinear")
+		  Call addFBO(128, 128, 0, "RGB", 1, "Bilinear")
+		  Call addFBO( 64,  64, 0, "RGB", 1, "Bilinear")
+		  Call addFBO( 32,  32, 0, "RGB", 1, "Bilinear")
 		End Sub
 	#tag EndMethod
 
@@ -1872,15 +1809,9 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub initLoaderCode()
-		  select case me.engine
-		    
-		  case me.phoenix
-		    demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderCode',cstLoaderPhoenix)")
-		    
-		  else
-		    demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderCode',cstLoaderDragon)")
-		    
-		  end select
+		  demoDB.sqlexecute ("INSERT into VARIABLES (variable,value) Values ('loaderCode',cstLoaderPhoenix)")
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -2466,12 +2397,10 @@ Protected Class classDemo
 		Sub SetEnginesFolder(folder as folderitem)
 		  if folder = nil then
 		    folder.CreateAsFolder
+		    
 		  elseif not folder.Exists then
 		    folder.CreateAsFolder
-		  end if
-		  
-		  if not folder.Child("Dragon").Exists then
-		    folder.child("Dragon").CreateAsFolder
+		    
 		  end if
 		  
 		  enginesFolder = folder
@@ -2575,18 +2504,7 @@ Protected Class classDemo
 
 	#tag Method, Flags = &h0
 		Sub setVideoVerticalSync(vsync as integer)
-		  dim result as string
-		  
-		  // Check if vsync exists in the list of variables
-		  select case engine
-		    
-		  case dragon
-		    return
-		    
-		  case phoenix
-		    result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
-		    
-		  end
+		  dim result as string = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='vsync' LIMIT 1").Field("value").StringValue
 		  
 		  if result = "" then
 		    // vsync does not exist so create it
@@ -2749,19 +2667,10 @@ Protected Class classDemo
 	#tag Constant, Name = cstLatestDBVersion, Type = Double, Dynamic = False, Default = \"3", Scope = Private
 	#tag EndConstant
 
-	#tag Constant, Name = cstLoaderDragon, Type = String, Dynamic = False, Default = \"string data/pool/loadingfront.jpg\r\nstring data/pool/loadingback.jpg\r\nfProgressBarColor 0.2 0.2 0.498 0\r\nfProgressBarPosition 0.42 0.29 0.61 0.42 \r\nfProgressBarBorderColor 0 0 0 0\r\nfProgressBarBorderPosition 0.25 0.10 0.75 0.12\r\nfBorderWidth 0.002", Scope = Public
-	#tag EndConstant
-
 	#tag Constant, Name = cstLoaderPhoenix, Type = String, Dynamic = False, Default = \"id loader\r\nstring /resources/loading/loadingback.jpg\r\nstring /resources/loading/loadingfront.jpg\r\nstring /resources/loading/loadingbar.jpg\r\n;Postion goes from -1.0 to 1.0\r\nfBarStartPositionX -0.60042\r\nfBarStartPositionY -0.11111\r\nfBarEndPositionX 0.60042\r\nfBarEndPositionY -0.11111\r\nfBarSWidth 0.07", Scope = Public
 	#tag EndConstant
 
 	#tag Constant, Name = cstQueryNewTableSections, Type = String, Dynamic = False, Default = \"CREATE TABLE SECTIONs (id INTEGER PRIMARY KEY\x2C name TEXT\x2C startTime DECIMAL(12\x2C3)\x2C endTime DECIMAL(12\x2C3)\x2C selected BOOLEAN);", Scope = Private
-	#tag EndConstant
-
-	#tag Constant, Name = dragon, Type = String, Dynamic = False, Default = \"dragon", Scope = Public
-	#tag EndConstant
-
-	#tag Constant, Name = phoenix, Type = String, Dynamic = False, Default = \"phoenix", Scope = Public
 	#tag EndConstant
 
 

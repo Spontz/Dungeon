@@ -115,15 +115,7 @@ Inherits listbox
 		    
 		    dim c As New Clipboard
 		    
-		    select case demo.engine
-		      
-		    case demo.phoenix
-		      c.Text = ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
-		      
-		    else
-		      c.Text = "data/" + ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
-		      
-		    end select
+		    c.Text = ReplaceAll(Replace(filePath, poolPath, ""), "\", "/")
 		    
 		    c.Close
 		    

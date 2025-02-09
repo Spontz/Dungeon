@@ -104,8 +104,10 @@ Begin Window wndLoaderSettings
       BorderColor     =   &c00000000
       BracketHighlightColor=   &c00000000
       CaretColor      =   &c00000000
+      CaretLineIndex  =   0
       ClearHighlightedRangesOnTextChange=   True
       DirtyLinesColor =   &c00000000
+      DisableReset    =   False
       DisplayDirtyLines=   True
       DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
@@ -116,19 +118,24 @@ Begin Window wndLoaderSettings
       FontSize        =   12
       GutterBackColor =   &c00000000
       GutterBorderColor=   &c00000000
+      GutterWidth     =   0
       HasBottomBorder =   True
       HasLeftBorder   =   True
       HasRightBorder  =   True
       HasTopBorder    =   True
       Height          =   457
+      HighlightBlocksOnMouseOverGutter=   False
       HighlightMatchingBrackets=   True
       HighlightMatchingBracketsMode=   "SyntaxArea.BracketsHighlightModes.Circle"
+      IgnoreRepaint   =   False
       IndentPixels    =   16
       Index           =   -2147483648
       InitialParent   =   ""
       InvisibleCharacterColor=   &c00000000
+      KeepEntireTextIndented=   False
       Left            =   0
       LeftMarginOffset=   5
+      LineHeight      =   0.0
       LineNumbersColor=   &c00000000
       LineNumbersFontName=   "Consolas"
       LineNumbersFontSize=   12
@@ -138,14 +145,22 @@ Begin Window wndLoaderSettings
       LockRight       =   False
       LockTop         =   True
       ReadOnly        =   False
+      RightMarginAtPixel=   0
       RightScrollMargin=   150
       Scope           =   0
+      ScrollPosition  =   0
+      ScrollPositionX =   0
+      SelectionLength =   0
+      SelectionText   =   ""
       SuggestionPopupBackColor=   &c00000000
       SuggestionPopupSelectedTextColor=   &c00000000
       SuggestionPopupTextColor=   &c00000000
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      TabWidth        =   0
+      Text            =   ""
+      TextHeight      =   0.0
       TextSelectionColor=   &c00000000
       ThickInsertionPoint=   False
       Tooltip         =   ""
@@ -158,8 +173,11 @@ Begin Window wndLoaderSettings
       Width           =   585
    End
    Begin DesktopScrollBar horizontalScrollBar
-      AcceptFocus     =   True
-      AutoDeactivate  =   True
+      AcceptFocus     =   "True"
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowLiveScrolling=   False
+      AutoDeactivate  =   "True"
       Enabled         =   True
       Height          =   16
       HelpTag         =   ""
@@ -167,19 +185,22 @@ Begin Window wndLoaderSettings
       InitialParent   =   ""
       Left            =   0
       LineStep        =   1
-      LiveScroll      =   True
+      LiveScroll      =   "True"
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Maximum         =   0
-      Minimum         =   0
+      Maximum         =   "0"
+      MaximumValue    =   100
+      Minimum         =   "0"
+      MinimumValue    =   0
       PageStep        =   20
       Scope           =   0
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   457
       Transparent     =   True
       Value           =   0
@@ -187,8 +208,11 @@ Begin Window wndLoaderSettings
       Width           =   585
    End
    Begin DesktopScrollBar verticalScrollBar
-      AcceptFocus     =   True
-      AutoDeactivate  =   True
+      AcceptFocus     =   "True"
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowLiveScrolling=   False
+      AutoDeactivate  =   "True"
       Enabled         =   True
       Height          =   457
       HelpTag         =   ""
@@ -196,19 +220,22 @@ Begin Window wndLoaderSettings
       InitialParent   =   ""
       Left            =   584
       LineStep        =   1
-      LiveScroll      =   True
+      LiveScroll      =   "True"
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
-      Maximum         =   0
-      Minimum         =   0
+      Maximum         =   "0"
+      MaximumValue    =   100
+      Minimum         =   "0"
+      MinimumValue    =   0
       PageStep        =   20
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   0
       Transparent     =   True
       Value           =   0
@@ -352,15 +379,8 @@ End
 #tag Events btnDefault
 	#tag Event
 		Sub Action()
-		  select case demo.engine
-		    
-		  case demo.phoenix
-		    codeEditor.Text = demo.cstLoaderPhoenix
-		    
-		  else
-		    codeEditor.Text = demo.cstLoaderDragon
-		    
-		  end select
+		  
+		  codeEditor.Text = demo.cstLoaderPhoenix
 		End Sub
 	#tag EndEvent
 #tag EndEvents

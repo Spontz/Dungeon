@@ -1,7 +1,0 @@
-; This element reproduces the sound passed as
-; argument mixing it with the current sound
-; output.
-; 'fVolume' represents the volume level of
-; the stream
-sSoundFile data/pool/thesong.mp3
-fVolume 1.0

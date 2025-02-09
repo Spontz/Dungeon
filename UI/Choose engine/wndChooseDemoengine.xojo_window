@@ -100,49 +100,6 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h0
-		Sub dragon()
-		  dim demoFile as new FolderItem
-		  
-		  demoFile = demoFile.child("Engines")
-		  
-		  if not demofile.Exists then
-		    Notify("Engines folder could not be found", demofile.ShellPath)
-		    return
-		  end if
-		  
-		  demoFile = demoFile.child("Dragon")
-		  
-		  if not demofile.Exists then
-		    Notify("Dragon folder could not be found", demofile.ShellPath)
-		    return
-		  end if
-		  
-		  demoFile = demoFile.child("ProjectTemplates")
-		  
-		  if not demofile.Exists then
-		    Notify("Dragon project Templates folder could not be found", demofile.ShellPath)
-		    return
-		  end if
-		  
-		  demoFile = demoFile.child("Default.spz")
-		  
-		  if not demofile.Exists then
-		    Notify("Dragon default project database could not be found", demofile.ShellPath)
-		    return
-		  end if
-		  
-		  Dim myWndTimeLine As New wndTimeLine
-		  
-		  // Load the project
-		  if not myWndTimeLine.init(demofile) then
-		    
-		    // And close the selector window
-		    self.close
-		  end if
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub openProject()
 		  Dim file As folderitem = Files.Chooseproject
 		  
@@ -187,7 +144,7 @@ End
 		  demoFile = demoFile.child("Default.spz")
 		  
 		  if not demofile.Exists then
-		    Notify("Default dragon database could not be found", demofile.ShellPath)
+		    Notify("Default Phoenix database could not be found", demofile.ShellPath)
 		    return
 		  end if
 		  

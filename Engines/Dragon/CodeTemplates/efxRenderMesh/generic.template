@@ -1,9 +1,0 @@
-; This effect deforms the contents of the
-; screen using different predefined equations
-; that cannot be edited at this time
-
-; Blending, as usual, is optional
-blend SRC_ALPHA ONE_MINUS_SRC_ALPHA; Choose your deform type (0 to 8)fDeformationType 5
-; Alpha (start -> end) from 0 to 1
-; Indicates the amount of transparency of the
-; result over the current screen contentsfAlphaVariation 0.75 0.75

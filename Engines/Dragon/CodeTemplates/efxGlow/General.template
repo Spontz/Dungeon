@@ -1,3 +1,0 @@
-; ************************; * Causes a Glow effect *; ************************
-
-sRedHighPassColor     red = 0.2;sGreenHighPassColor green = 0.2;sBlueHighPassCOlor   blue = 0.2;sAccumulation accumulation = 3;sRadius radius = 10;

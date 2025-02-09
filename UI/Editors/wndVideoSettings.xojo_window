@@ -547,16 +547,10 @@ End
 		    
 		  next
 		  
-		  if demo.engine = demo.dragon then
-		    lblVsync.Visible = false
-		    popVsync.visible = false
-		    
-		  else
-		    lblVsync.Visible = true
-		    popVsync.visible = true
-		    
-		    popVsync.ListIndex = demo.GetVideoVerticalSync
-		  end if
+		  lblVsync.Visible = true
+		  popVsync.visible = true
+		  
+		  popVsync.ListIndex = demo.GetVideoVerticalSync
 		  
 		  me.visible = true
 		End Sub
@@ -637,20 +631,8 @@ End
 		  currentRow =  me.ScrollPosition + floor(y / me.DefaultRowHeight) - 1
 		  if currentRow > me.ListCount then currentRow = -1
 		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    if me.ListCount < 25 then
-		      base.Append(New MenuItem(cstCreateFBO))
-		      base.Append(New MenuItem("-"))
-		    end if
-		    
-		  else
-		    base.Append(New MenuItem(cstCreateFBO))
-		    base.Append(New MenuItem("-"))
-		    
-		    
-		  end select
+		  base.Append(New MenuItem(cstCreateFBO))
+		  base.Append(New MenuItem("-"))
 		  
 		  if me.ListIndex > -1 then
 		    base.Append(New MenuItem(cstDeleteFBO))
@@ -748,27 +730,14 @@ End
 		    me.cell(row, 4) = "" ' Clear height as ratio has been selected
 		    
 		  case 2
-		    select case demo.engine
-		      // The user clicked in the format column
-		      
-		    case demo.phoenix
-		      cmnFBOOptions.Append(new MenuItem("RGB"    ))
-		      cmnFBOOptions.Append(new MenuItem("RGBA"   ))
-		      cmnFBOOptions.Append(new MenuItem("RGB_16F" ))
-		      cmnFBOOptions.Append(new MenuItem("RGBA_16F"))
-		      cmnFBOOptions.Append(new MenuItem("RGB_32F" ))
-		      cmnFBOOptions.Append(new MenuItem("RGBA_32F"))
-		      cmnFBOOptions.Append(new MenuItem("DEPTH"   ))
-		      
-		    else
-		      cmnFBOOptions.Append(new MenuItem("RGB"    ))
-		      cmnFBOOptions.Append(new MenuItem("RGBA"   ))
-		      cmnFBOOptions.Append(new MenuItem("RGB16F" ))
-		      cmnFBOOptions.Append(new MenuItem("RGBA16F"))
-		      cmnFBOOptions.Append(new MenuItem("RGB32"  ))
-		      cmnFBOOptions.Append(new MenuItem("RGB32F" ))
-		      
-		    end select
+		    // The user clicked in the format column
+		    cmnFBOOptions.Append(new MenuItem("RGB"    ))
+		    cmnFBOOptions.Append(new MenuItem("RGBA"   ))
+		    cmnFBOOptions.Append(new MenuItem("RGB_16F" ))
+		    cmnFBOOptions.Append(new MenuItem("RGBA_16F"))
+		    cmnFBOOptions.Append(new MenuItem("RGB_32F" ))
+		    cmnFBOOptions.Append(new MenuItem("RGBA_32F"))
+		    cmnFBOOptions.Append(new MenuItem("DEPTH"   ))
 		    
 		    selectedMenu = cmnFBOOptions.PopUp
 		    

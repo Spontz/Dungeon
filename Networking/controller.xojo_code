@@ -107,52 +107,29 @@ Protected Module controller
 		  Dim VisualsEngine As FolderItem
 		  dim result as string
 		  
-		  #if TargetWindows
-		    select case demo.engine
-		      
-		    case demo.dragon
-		      
-		      VisualsEngine = GetFolderItem("Engines").child("Dragon")
-		      
-		      //And launch it
-		      If VisualsEngine.exists Then
-		        Dim command As String
-		        command = "cd " + VisualsEngine.ShellPath +" && " + "sve.exe"
-		        Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
-		        
-		        Engine.engineShell = new classEngineShell
-		        Engine.engineShell.Mode = 1 // Asynchronous shell
-		        Engine.engineShell.Execute command
-		      Else
-		        Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
-		      end if
-		      
-		    case demo.phoenix
-		      Trace("Engines.launchLocal: Screen size: " + Screen(0).Width.ToText + "x" + Screen(0).Height.ToText + " pixels", cstTraceLevelLog)
-		      
-		      dim wLeft   as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
-		      dim wTop    as integer = Screen(0).ScaleFactor * App.WindowTopBarHeight
-		      dim wHeight as integer = Screen(0).ScaleFactor * (Screen(0).Height / 2 - App.WindowTopBarHeight)
-		      dim wWidth  as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
-		      
-		      VisualsEngine = GetFolderItem("Engines").child("Phoenix")
-		      
-		      //And launch it
-		      If VisualsEngine.exists Then
-		        Dim command As String
-		        command = "cd " + VisualsEngine.ShellPath +" && " + "Phoenix.exe -window " + wLeft.ToText + " " + wTop.ToText + " " + wWidth.totext + " " + wHeight.toText
-		        Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
-		        
-		        Engine.engineShell = new classEngineShell
-		        Engine.engineShell.Mode = 1 // Asynchronous shell
-		        Engine.engineShell.Execute command
-		      Else
-		        Notify("The engine could not be located","The engine executable must be named sve.exe and be located inside the Engines/Dragon folder")
-		      end if
-		      
-		    end select
+		  Trace("Engines.launchLocal: Screen size: " + Screen(0).Width.ToText + "x" + Screen(0).Height.ToText + " pixels", cstTraceLevelLog)
+		  
+		  dim wLeft   as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
+		  dim wTop    as integer = Screen(0).ScaleFactor * App.WindowTopBarHeight
+		  dim wHeight as integer = Screen(0).ScaleFactor * (Screen(0).Height / 2 - App.WindowTopBarHeight)
+		  dim wWidth  as integer = Screen(0).ScaleFactor * Screen(0).Width / 2
+		  
+		  VisualsEngine = GetFolderItem("Engines").child("Phoenix")
+		  
+		  //And launch it
+		  If VisualsEngine.exists Then
+		    Dim command As String
+		    command = "cd " + VisualsEngine.ShellPath +" && " + "Phoenix.exe -window " + wLeft.ToText + " " + wTop.ToText + " " + wWidth.totext + " " + wHeight.toText
+		    Trace("Engines.launchLocal: Launching engine with: " + command, cstTraceLevelLog)
 		    
-		  #EndIf
+		    Engine.engineShell = new classEngineShell
+		    Engine.engineShell.Mode = 1 // Asynchronous shell
+		    Engine.engineShell.Execute command
+		  Else
+		    Notify("The engine could not be located","The engine executable must be named Phoenix.exe and be located inside the Engines/Phoenix folder")
+		  end if
+		  
+		  
 		End Sub
 	#tag EndMethod
 

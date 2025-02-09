@@ -1,5 +1,0 @@
-fParticlesPerSecond 100
-fParticleSize 1
-fmodulatedColor 0.025 0.05 0.1
-sTexture data/pool/whitePoint.jpg
-cPath data/pool/pathway.pth

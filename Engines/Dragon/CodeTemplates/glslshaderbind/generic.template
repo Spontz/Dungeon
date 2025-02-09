@@ -1,7 +1,0 @@
-; This section enables a glsl shader
-
-; VERTEX SHADER
-string data/pool/shaders/perpixelillumination/vertex.txt
-
-; FRAGMENT SHADER
-string data/pool/shaders/perpixelillumination/fragment.txt

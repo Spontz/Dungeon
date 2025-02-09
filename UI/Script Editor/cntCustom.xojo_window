@@ -432,28 +432,28 @@ Begin ContainerControl cntCustom
       Width           =   126
    End
    Begin DesktopScrollBar horizontalScrollBar
-      AcceptFocus     =   True
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowLiveScrolling=   False
       Enabled         =   True
       Height          =   16
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LineStep        =   1
-      LiveScroll      =   True
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   False
-      Maximum         =   0
-      Minimum         =   0
+      MaximumValue    =   100
+      MinimumValue    =   0
       PageStep        =   20
       Scope           =   0
       TabIndex        =   11
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   166
       Transparent     =   True
       Value           =   0
@@ -475,8 +475,10 @@ Begin ContainerControl cntCustom
       BorderColor     =   &c00000000
       BracketHighlightColor=   &c00000000
       CaretColor      =   &c00000000
+      CaretLineIndex  =   0
       ClearHighlightedRangesOnTextChange=   True
       DirtyLinesColor =   &c00000000
+      DisableReset    =   False
       DisplayDirtyLines=   False
       DisplayGutter   =   True
       DisplayInvisibleCharacters=   False
@@ -487,19 +489,24 @@ Begin ContainerControl cntCustom
       FontSize        =   12
       GutterBackColor =   &c00000000
       GutterBorderColor=   &c00000000
+      GutterWidth     =   0
       HasBottomBorder =   True
       HasLeftBorder   =   True
       HasRightBorder  =   True
       HasTopBorder    =   True
       Height          =   118
+      HighlightBlocksOnMouseOverGutter=   False
       HighlightMatchingBrackets=   True
       HighlightMatchingBracketsMode=   "SyntaxArea.BracketsHighlightModes.Circle"
+      IgnoreRepaint   =   False
       IndentPixels    =   16
       Index           =   -2147483648
       InitialParent   =   ""
       InvisibleCharacterColor=   &c00000000
+      KeepEntireTextIndented=   False
       Left            =   0
       LeftMarginOffset=   5
+      LineHeight      =   0.0
       LineNumbersColor=   &c00000000
       LineNumbersFontName=   "Consolas"
       LineNumbersFontSize=   12
@@ -509,14 +516,22 @@ Begin ContainerControl cntCustom
       LockRight       =   True
       LockTop         =   True
       ReadOnly        =   False
+      RightMarginAtPixel=   0
       RightScrollMargin=   150
       Scope           =   0
+      ScrollPosition  =   0
+      ScrollPositionX =   0
+      SelectionLength =   0
+      SelectionText   =   ""
       SuggestionPopupBackColor=   &c00000000
       SuggestionPopupSelectedTextColor=   &c00000000
       SuggestionPopupTextColor=   &c00000000
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      TabWidth        =   0
+      Text            =   ""
+      TextHeight      =   0.0
       TextSelectionColor=   &c00000000
       ThickInsertionPoint=   False
       Tooltip         =   ""
@@ -529,28 +544,28 @@ Begin ContainerControl cntCustom
       Width           =   532
    End
    Begin DesktopScrollBar verticalScrollBar
-      AcceptFocus     =   True
-      AutoDeactivate  =   True
+      AllowAutoDeactivate=   True
+      AllowFocus      =   True
+      AllowLiveScrolling=   False
       Enabled         =   True
       Height          =   118
-      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   532
       LineStep        =   1
-      LiveScroll      =   True
       LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   True
       LockTop         =   True
-      Maximum         =   0
-      Minimum         =   0
+      MaximumValue    =   100
+      MinimumValue    =   0
       PageStep        =   20
       Scope           =   0
       TabIndex        =   13
       TabPanelIndex   =   0
       TabStop         =   True
+      Tooltip         =   ""
       Top             =   48
       Transparent     =   True
       Value           =   0
@@ -676,15 +691,7 @@ End
 		  
 		  f = f.child("Engines")
 		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    f = f.child("Dragon")
-		    
-		  case demo.phoenix
-		    f = f.child("Phoenix")
-		    
-		  end select
+		  f = f.child("Phoenix")
 		  
 		  f = f.child("CodeTemplates")
 		  
@@ -722,17 +729,7 @@ End
 		Private Sub LoadScriptTemplate()
 		  Trace("cntCustom:LoadScriptTemplate: Searching for script of type " + popTemplate.Text + " for " + popElement.text, cstTraceLevelLog)
 		  
-		  dim f as folderitem
-		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
-		    
-		  case demo.phoenix
-		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
-		    
-		  end select
+		  dim f as folderitem = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
 		  
 		  if f <> nil then
 		    if f.exists then
@@ -756,15 +753,7 @@ End
 		  
 		  if popElement.text = "" then exit
 		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text)
-		    
-		  case demo.phoenix
-		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text)
-		    
-		  end select
+		  f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text)
 		  
 		  popTemplate.DeleteAllRows
 		  
@@ -855,19 +844,9 @@ End
 		  dim f as folderitem
 		  dim data as TextOutputStream
 		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.Text)
-		    if not f.exists then f.CreateAsFolder
-		    f = GetFolderItem("Engines").child("Dragon").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
-		    
-		  case demo.phoenix
-		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.Text)
-		    if not f.exists then f.CreateAsFolder
-		    f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
-		    
-		  end Select
+		  f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.Text)
+		  if not f.exists then f.CreateAsFolder
+		  f = GetFolderItem("Engines").child("Phoenix").child("CodeTemplates").child(popElement.text).child(popTemplate.text + ".template")
 		  
 		  data = f.CreateTextFile
 		  

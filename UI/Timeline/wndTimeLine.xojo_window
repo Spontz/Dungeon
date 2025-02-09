@@ -841,15 +841,7 @@ End
 		    cnvTimeLine.Height = y - 2 - cnvTimeLine.top - scrHorizontal.Height
 		    cntCustomSection.top = y + 2
 		    
-		    select case demo.engine
-		      
-		    case demo.dragon
-		      cntCustomSection.Height = me.Height - cntCustomSection.top - 5
-		      
-		    case demo.phoenix
-		      cntCustomSection.Height = me.Height - cntCustomSection.top - 5 - txtEngineComm.Height
-		      
-		    end select
+		    cntCustomSection.Height = me.Height - cntCustomSection.top - 5 - txtEngineComm.Height
 		    
 		    scrHorizontal.top = cnvTimeLine.top + cnvTimeLine.Height
 		    scrVertical.Height = cnvTimeLine.Height - scrHorizontal.Height
@@ -965,17 +957,6 @@ End
 		  
 		  // Create the section scripts
 		  ScriptWriter.WriteScriptsSPO(demo)
-		  
-		  select case demo.engine
-		    
-		  case demo.dragon
-		    
-		  case demo.phoenix
-		    
-		  else
-		    Notify("Invalid demo type", "wndTimeLine:EngineLaunchLocal")
-		    
-		  end
 		  
 		  // Launch the engine
 		  controller.resetEngine
@@ -1129,18 +1110,8 @@ End
 		  cnvTimeLine.Init demo
 		  
 		  // Hide or display the error message pane
-		  select case demo.engine
-		    
-		  case demo.phoenix
-		    tcpErrorLogger.Listen
-		    
-		  else
-		    txtEngineComm.Visible = false
-		    cntCustomSection.Height = cntCustomSection.Height + txtEngineComm.Height
-		    lbxResourcesManager.Height = self.Height - barProgress.Height
-		    barProgress.top = self.Height - barProgress.Height
-		    
-		  end select
+		  
+		  tcpErrorLogger.Listen
 		  
 		  // Show the timeline
 		  self.Visible = true

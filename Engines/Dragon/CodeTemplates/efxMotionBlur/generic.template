@@ -1,7 +1,0 @@
-; This effect merges the current frame
-; with the previous frame, causing
-; color saturations or motion blur
-; depending of the Alpha value and
-; the used blending mode
-
-fAlphaVariation 0.5 0.25

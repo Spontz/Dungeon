@@ -1,9 +1,0 @@
-; This effect accumulates the current frame
-; with the previous frame, causing
-; color saturations or motion blur
-; depending of the Alpha value,
-; the used blending mode and the
-; amount of times the frame is accumulated
-
-fAccumulation 5
-fAlphaVariation 0.5 0
