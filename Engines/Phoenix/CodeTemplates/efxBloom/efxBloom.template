@@ -13,16 +13,16 @@ fClearDepthBuffer 1
 ; Final image = Attachment 0 + Blur(Attachment 1)
 fFboUnit 4
 
-; Blur amount (10 recommended) - It has performance impacts
-string BlurAmount:=10.0;
-
+[shader]
 ; Blur shader file
-sShaderPath /resources/shaders/sections/efxBloom_blur.glsl
+path /resources/shaders/sections/efxBloom_blur.glsl
 
+[shader]
 ; Bloom shader file
-sShaderPath /resources/shaders/sections/efxBloom_bloom.glsl
-
-; Bloom Shader variables
+path /resources/shaders/sections/efxBloom_bloom.glsl
 uniform float bloom v1:=1.0;
-;uniform float bloom v1:=1+1.0*sin(t*4);
-uniform float exposure v1:=0.2;
+uniform float exposure v1:=1.0;
+
+[expression:run]
+; Blur amount (10 recommended) - It has performance impacts
+BlurAmount:=10;

@@ -6,11 +6,9 @@ fClearScreenBuffer 0
 ; Clear the depth buffer before restoring? (1=yes, 0=no)
 fClearDepthBuffer 0
 
-; Shader file
-sShaderPath pool/shaders/edges/edges.glsl
+[shader]
+path pool/shaders/edges/edges.glsl
 
-; Shader variables
-; ***************************************************
 uniform float step v1:=1;
 
 ; Color mode

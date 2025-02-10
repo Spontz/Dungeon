@@ -8,10 +8,8 @@ sCubemapBottom /pool/skybox/lake/bottom.jpg
 sCubemapFront /pool/skybox/lake/front.jpg
 sCubemapBack /pool/skybox/lake/back.jpg
 
-; *******************
-; * SKYBOX MOVEMENT *
-; *******************
+[expression:run]
 ; Rotation for skybox
-string rx:=0; ry:=t/2; rz:=0;
+rx:=0; ry:=t/2; rz:=0;
 ; Scale for skybox
-string sx:=10; sy:=10; sz:=10;
+sx:=10; sy:=10; sz:=10;
