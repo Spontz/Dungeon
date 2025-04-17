@@ -252,31 +252,6 @@ Begin Window wndTimeLine
       Visible         =   True
       Width           =   11
    End
-   Begin ProgressBar barProgress
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   16
-      HelpTag         =   ""
-      Indeterminate   =   False
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   2
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Maximum         =   100
-      Scope           =   0
-      TabIndex        =   22
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   500
-      Transparent     =   True
-      Value           =   0.0
-      Visible         =   True
-      Width           =   252
-   End
    Begin classDemo demo
       engine          =   ""
       Index           =   -2147483648
@@ -314,12 +289,12 @@ Begin Window wndTimeLine
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   82
+      Height          =   77
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   2
+      Left            =   0
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -343,13 +318,13 @@ Begin Window wndTimeLine
       TextFont        =   "Consolas"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   518
+      Top             =   523
       Transparent     =   False
       Underline       =   False
       UnicodeMode     =   0
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   898
+      Width           =   900
    End
    Begin classLbxResourcesManager lbxResourcesManager
       AutoDeactivate  =   True
@@ -829,22 +804,36 @@ End
 		  dim objectMinimalWidth as integer
 		  dim TimelineMinimalWidth as integer
 		  
-		  objectMinimalHeight = 250
-		  objectMinimalWidth = 250
-		  TimelineMinimalWidth = 500
+		  objectMinimalHeight = 0'250
+		  objectMinimalWidth = 0'250
+		  TimelineMinimalWidth = 0'500
 		  
 		  if me.MouseCursor = System.Cursors.SplitterNorthSouth then
-		    if y > me.Height - objectMinimalHeight then y = me.Height - objectMinimalHeight
-		    if y < objectMinimalHeight then y = objectMinimalHeight
 		    
-		    // We are resizing vertically
-		    cnvTimeLine.Height = y - 2 - cnvTimeLine.top - scrHorizontal.Height
-		    cntCustomSection.top = y + 2
-		    
-		    cntCustomSection.Height = me.Height - cntCustomSection.top - 5 - txtEngineComm.Height
-		    
-		    scrHorizontal.top = cnvTimeLine.top + cnvTimeLine.Height
-		    scrVertical.Height = cnvTimeLine.Height - scrHorizontal.Height
+		    if y < txtEngineComm.top and y > cntCustomSection.top + cntCustomSection.Height then
+		      // We are resizing the bottom part
+		      cntCustomSection.Height = y - 2
+		      txtEngineComm.top = y + 2
+		      txtEngineComm.Height = self.Height - txtEngineComm.top
+		      lbxResourcesManager.Height = y - 2
+		      System.DebugLog("Resizing vertical top. y = " + y.ToString)
+		      
+		    else
+		      // We are resizing the top part
+		      if y > me.Height - objectMinimalHeight then y = me.Height - objectMinimalHeight
+		      if y < objectMinimalHeight then y = objectMinimalHeight
+		      
+		      // We are resizing vertically
+		      cnvTimeLine.Height = y - 2 - cnvTimeLine.top - scrHorizontal.Height
+		      cntCustomSection.top = y + 2
+		      
+		      cntCustomSection.Height = me.Height - cntCustomSection.top - 5 - txtEngineComm.Height
+		      
+		      scrHorizontal.top = cnvTimeLine.top + cnvTimeLine.Height
+		      scrVertical.Height = cnvTimeLine.Height - scrHorizontal.Height
+		      System.DebugLog("Resizing vertical bottom. y = " + y.ToString)
+		      
+		    end if
 		    
 		  elseif me.MouseCursor = System.Cursors.SplitterEastWest then
 		    // We are resizing horizontally
@@ -852,7 +841,6 @@ End
 		    if x < objectMinimalWidth then x = objectMinimalWidth
 		    
 		    lbxResourcesManager.Width = x - 2
-		    barProgress.Width = x - 2
 		    cnvMoreZoom.left = me.width - scrVertical.width
 		    
 		    cnvLeftMarker.left = x + 3
@@ -887,7 +875,11 @@ End
 		    me.MouseCursor = System.Cursors.SplitterEastWest
 		    
 		  elseif x > cnvTimeLine.Left and y < cntCustomSection.top and y > scrHorizontal.top + scrHorizontal.Height then
-		    // Horizontal resizing area
+		    // Horizontal resizing top area
+		    me.MouseCursor = System.Cursors.SplitterNorthSouth
+		    
+		  elseif y < txtEngineComm.top and y > cntCustomSection.top + cntCustomSection.Height then
+		    // Horizontal resizing bottom area
 		    me.MouseCursor = System.Cursors.SplitterNorthSouth
 		    
 		  else
