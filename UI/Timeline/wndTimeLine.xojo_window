@@ -804,21 +804,23 @@ End
 		  dim objectMinimalWidth as integer
 		  dim TimelineMinimalWidth as integer
 		  
-		  objectMinimalHeight = 0'250
-		  objectMinimalWidth = 0'250
-		  TimelineMinimalWidth = 0'500
+		  objectMinimalHeight  = 250
+		  objectMinimalWidth   = 250
+		  TimelineMinimalWidth = 500
 		  
 		  if me.MouseCursor = System.Cursors.SplitterNorthSouth then
 		    
-		    if y < txtEngineComm.top and y > cntCustomSection.top + cntCustomSection.Height then
+		    if dragMode = "bottom" or (y < txtEngineComm.top and y > cntCustomSection.top + cntCustomSection.Height) then
 		      // We are resizing the bottom part
-		      cntCustomSection.Height = y - 2
+		      dragMode = "bottom"
+		      cntCustomSection.Height = y - 2 - cntCustomSection.top
 		      txtEngineComm.top = y + 2
 		      txtEngineComm.Height = self.Height - txtEngineComm.top
 		      lbxResourcesManager.Height = y - 2
 		      System.DebugLog("Resizing vertical top. y = " + y.ToString)
 		      
 		    else
+		      dragMode = "top"
 		      // We are resizing the top part
 		      if y > me.Height - objectMinimalHeight then y = me.Height - objectMinimalHeight
 		      if y < objectMinimalHeight then y = objectMinimalHeight
@@ -835,7 +837,8 @@ End
 		      
 		    end if
 		    
-		  elseif me.MouseCursor = System.Cursors.SplitterEastWest then
+		  elseif dragMode = "left" or (me.MouseCursor = System.Cursors.SplitterEastWest) then
+		    dragMode = "left"
 		    // We are resizing horizontally
 		    if x > me.width - TimelineMinimalWidth then x = me.width - TimelineMinimalWidth
 		    if x < objectMinimalWidth then x = objectMinimalWidth
@@ -887,6 +890,12 @@ End
 		    me.MouseCursor = System.Cursors.StandardPointer
 		    
 		  end if
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseUp(X As Integer, Y As Integer)
+		  dragMode = ""
 		End Sub
 	#tag EndEvent
 
@@ -1207,6 +1216,10 @@ End
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private dragMode As String
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		engine As classEngine
