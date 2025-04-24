@@ -93,7 +93,7 @@ Protected Module controller
 		  // IP: 127.0.0.1
 		  // Port: 29000
 		  
-		  Engine = new classEngine(theDemo.engine)
+		  Engine = new classEngine
 		  
 		  updateTimer = new classUpdateTimer
 		  updateTimer.Period = 1 // As soon as possible
@@ -215,7 +215,6 @@ Protected Module controller
 		  next
 		  
 		  Engine.ToggleBars join(theMessage, ",")
-		  
 		End Sub
 	#tag EndMethod
 

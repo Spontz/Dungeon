@@ -1029,7 +1029,7 @@ End
 		  demo.saveProject(true)
 		  
 		  if demo.projectFolder <> nil then
-		    self.Title = "Spontz Demo Editor [" + demo.engine + "]: " + demo.projectFolder.DisplayName
+		    self.Title = "Spontz Demo Editor: " + demo.projectFolder.DisplayName
 		  end if
 		  
 		End Function
@@ -1087,13 +1087,13 @@ End
 		    return false
 		  end if
 		  
-		  self.Title = "Spontz Demo Editor [" + demo.engine + "]: " + demoFile.Name
+		  self.Title = "Spontz Demo Editor: " + demoFile.Name
 		  
 		  If demo.countFBOs = 0 Then
 		    demo.initDefaultFBOs
 		  End If
 		  
-		  engine = new classEngine(demo.engine)
+		  engine = new classEngine
 		  
 		  // Initialization of the engines manager
 		  controller.init demo

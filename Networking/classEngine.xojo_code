@@ -1,9 +1,7 @@
 #tag Class
 Protected Class classEngine
 	#tag Method, Flags = &h0
-		Sub Constructor(demotype as string)
-		  type = demoType
-		  
+		Sub Constructor()
 		  myConnector = new classConnector
 		  
 		  myConnector.Address = IP
@@ -130,17 +128,15 @@ Protected Class classEngine
 		state As String = "Unknown"
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private type As string
-	#tag EndProperty
-
 
 	#tag ViewBehavior
 		#tag ViewProperty
 			Name="fps"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -148,9 +144,11 @@ Protected Class classEngine
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IP"
+			Visible=false
 			Group="Behavior"
 			InitialValue="127.0.0.1"
 			Type="String"
@@ -162,27 +160,35 @@ Protected Class classEngine
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Port"
+			Visible=false
 			Group="Behavior"
 			InitialValue="28000"
 			Type="integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="runTime"
+			Visible=false
 			Group="Behavior"
 			InitialValue="0"
 			Type="double"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="state"
+			Visible=false
 			Group="Behavior"
 			InitialValue="Unknown"
 			Type="String"
@@ -192,7 +198,9 @@ Protected Class classEngine
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -200,6 +208,7 @@ Protected Class classEngine
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

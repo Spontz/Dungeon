@@ -1273,16 +1273,6 @@ Protected Class classDemo
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function getEngineType() As string
-		  dim result as string
-		  
-		  result = demoDB.SQLSelect("SELECT * FROM VARIABLES where variable='engine' LIMIT 1").Field("value").StringValue
-		  
-		  return result
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Function getFBOsList() As string()
 		  Dim result() As String
 		  dim theRecordset as RecordSet
@@ -1684,8 +1674,6 @@ Protected Class classDemo
 		    Notify("Could not connect to the database", f.ShellPath)
 		    return false
 		  end if
-		  
-		  engine = me.getEngineType
 		  
 		  ' Connect to the database
 		  If not demoDB.Connect() then
@@ -2647,10 +2635,6 @@ Protected Class classDemo
 		Private demoDB As SQLiteDatabase
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		engine As string
-	#tag EndProperty
-
 	#tag Property, Flags = &h1
 		Protected enginesFolder As FolderItem
 	#tag EndProperty
@@ -2722,14 +2706,6 @@ Protected Class classDemo
 			InitialValue="0"
 			Type="Integer"
 			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="engine"
-			Visible=false
-			Group="Behavior"
-			InitialValue=""
-			Type="string"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
