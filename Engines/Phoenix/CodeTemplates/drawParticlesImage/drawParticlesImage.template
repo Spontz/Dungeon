@@ -5,9 +5,6 @@
 ; Each pixel will generate a particle
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shader
-sShader /resources/shaders/sections/drawParticlesImage/drawParticlesImage.glsl
-
 ; Image to place the particles
 sImageFilePath /resources/textures/tv.jpg
 

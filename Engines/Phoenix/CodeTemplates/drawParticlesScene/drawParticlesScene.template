@@ -5,9 +5,6 @@
 ; the given scene
 ; Recommended to use blend mode: SRC_ALPHA - ONE
 
-; Shader
-sShader /resources/shaders/sections/drawParticlesScene/drawParticlesScene.glsl
-
 ; 3D scene Model
 sScene /pool/models/cube/cube.obj
 
