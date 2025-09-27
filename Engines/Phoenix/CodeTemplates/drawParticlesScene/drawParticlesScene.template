@@ -21,7 +21,6 @@ uniform float fTime v1:=t*10;
 uniform float fParticleSize v1:=0.1;
 uniform float fRandomnessFactor v1:=0.2;
 uniform sampler2D partTexture /resources/textures/dust.png
-uniform vec3 force v1:=0;v2:=-2;v3:=0;
 
 [expression:run]
 tx:=0;	ty:=0;	tz:=0;
