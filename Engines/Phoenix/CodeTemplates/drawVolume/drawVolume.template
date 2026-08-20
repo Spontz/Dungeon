@@ -4,7 +4,6 @@ fEnableDepthBufferClearing 0
 fDisableDepthTest 0
 fDisableDepthMask 1
 fEnableDrawWireframe 0
-fFilter 0
 
 [shader]
 path /resources/shaders/sections/drawVolume/drawVolume-simple.glsl
